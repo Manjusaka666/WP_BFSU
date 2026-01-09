@@ -1,0 +1,23 @@
+\begin{table}[!htbp]
+\centering
+\small
+\caption{SSM robustness checks summary}
+\label{tab:ssm_robustness}
+\begin{threeparttable}
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+mean_beta & share_negative & n_sig_neg_90 & start & end & T & spec \\
+\midrule
+-0.522 & 0.907 & 3.000 & 2013Q4 & 2025Q2 & 43.000 & SSM_baseline \\
+-0.490 & 0.860 & 3.000 & 2013Q4 & 2025Q2 & 43.000 & SSM_Z_food_only \\
+-0.530 & 0.930 & 3.000 & 2013Q4 & 2025Q2 & 43.000 & SSM_X_epu_only \\
+-0.529 & 0.930 & 3.000 & 2013Q4 & 2025Q2 & 43.000 & SSM_X_gpr_only \\
+-0.388 & 0.982 & 8.000 & 2011Q2 & 2025Q2 & 56.000 & SSM_alt_expect_index \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Summary of beta_t diagnostics across specifications.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

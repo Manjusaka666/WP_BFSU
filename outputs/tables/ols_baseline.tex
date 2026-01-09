@@ -1,0 +1,37 @@
+\begin{table}[!htbp]
+\centering
+\small
+\caption{诊断性预期：OLS基准回归（预测误差对预测修正）}
+\label{tab:ols_baseline}
+\begin{threeparttable}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Variable & (1) & (2) & (3) \\
+\midrule
+Constant & -0.303*** & -0.232*** & 0.679** \\
+ & (0.109) & (0.089) & (0.341) \\
+Forecast Revision ($FR_t$) & -0.537*** & -0.567*** & -0.588*** \\
+ & (0.114) & (0.124) & (0.109) \\
+Food CPI YoY &  & -0.025* & -0.019* \\
+ &  & (0.014) & (0.012) \\
+M2 Growth YoY &  &  & -0.091** \\
+ &  &  & (0.038) \\
+PPI YoY &  &  & -0.004 \\
+ &  &  & (0.010) \\
+Observations & 43 & NaN & NaN \\
+Observations & NaN & 43 & NaN \\
+Observations & NaN & NaN & 43 \\
+$R^2$ & 0.204 & 0.251 & 0.351 \\
+Adj. $R^2$ & 0.184 & 0.214 & 0.282 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item 因变量：$FE_t = CPI_{t+1} - \mu_t$（预测误差）。
+\item 核心解释变量：$FR_t = \mu_t - \mu_{t-1}$（预测修正）。
+\item 标准误为Newey-West HAC标准误（最大滞后4期）。
+\item 星号：*** p<0.01, ** p<0.05, * p<0.1。
+\item 若 $\beta_{FR} < 0$ 且显著，则支持诊断性预期假说（过度反应）。
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

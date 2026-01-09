@@ -1,0 +1,23 @@
+\begin{table}[!htbp]
+\centering
+\small
+\caption{预测误差与预测修正的描述性统计}
+\label{tab:fe_fr}
+\begin{threeparttable}
+\begin{tabular}{@{}lllllllll@{}}
+\toprule
+Variable & N & Mean & Std & Min & P25 & Median & P75 & Max \\
+\midrule
+预测误差 (FE) & 43.000 & -0.276 & 0.604 & -1.793 & -0.460 & -0.232 & 0.058 & 1.703 \\
+预测修正 (FR) & 43.000 & -0.051 & 0.507 & -1.612 & -0.306 & -0.042 & 0.319 & 0.916 \\
+Corr(FE, FR) & 43.000 & -0.451 &  &  &  &  &  &  \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item FE_t = CPI_{t+1} - μ_t（预测误差）。
+\item FR_t = μ_t - μ_{t-1}（预测修正）。
+\item Corr(FE, FR) < 0 为诊断性预期的初步证据（过度反应）。
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

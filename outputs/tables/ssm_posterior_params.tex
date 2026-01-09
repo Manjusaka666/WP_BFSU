@@ -1,0 +1,27 @@
+\begin{table}[!htbp]
+\centering
+\small
+\caption{贝叶斯状态空间模型：参数后验分布摘要}
+\label{tab:ssm_params}
+\begin{threeparttable}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+param & mean & sd & p05 & p95 \\
+\midrule
+alpha & -0.317 & 0.083 & -0.453 & -0.181 \\
+gamma_Food_CPI_YoY_qavg & -0.178 & 0.098 & -0.338 & -0.011 \\
+gamma_M2_YoY & -0.187 & 0.085 & -0.327 & -0.044 \\
+gamma_PPI_YoY & -0.016 & 0.085 & -0.158 & 0.125 \\
+d_epu_qavg & 0.074 & 0.199 & -0.252 & 0.407 \\
+d_gpr_qavg & -0.122 & 0.249 & -0.524 & 0.290 \\
+R_var & 0.203 & 0.060 & 0.124 & 0.318 \\
+Q_var & 1.274 & 0.496 & 0.653 & 2.202 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Z 为标准化后的控制变量（包含食品通胀控制）；X 为标准化后的不确定性代理（EPU/GPR）。
+\item R\_var 为测量误差方差，Q\_var 为状态创新方差。
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,0 +1,7 @@
+﻿accept_rate,accepted_draws,posterior_draws,spec
+0.9995,1999,2000,BVAR_baseline_p2
+1.0,2000,2000,BVAR_p1
+0.984,1968,2000,BVAR_p4
+1.0,2000,2000,BVAR_add_food
+0.9995,1999,2000,BVAR_alt_infl
+1.0,2000,2000,BVAR_alt_expect_index

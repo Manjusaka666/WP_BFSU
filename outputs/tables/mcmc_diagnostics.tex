@@ -1,0 +1,26 @@
+\begin{table}[!htbp]
+\centering
+\small
+\caption{MCMC收敛性诊断检验}
+\label{tab:mcmc_diag}
+\begin{threeparttable}
+\begin{tabular}{@{}llllll@{}}
+\toprule
+Parameter & Geweke_z & Geweke_p & R_hat & ESS & Converged \\
+\midrule
+alpha & -1.125 & 0.261 & 0.9999 & 2665 & ✓ \\
+gamma[0] & -0.205 & 0.837 & 1.0005 & 2200 & ✓ \\
+d[0] & 0.368 & 0.713 & 1.0000 & 2156 & ✓ \\
+R & 0.470 & 0.638 & 1.0015 & 1681 & ✓ \\
+Q & 0.084 & 0.933 & 1.0004 & 411 & ✓ \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Geweke: H0为链已收敛（前10\\%与后50\\%均值相等），|z|<1.96为通过。
+\item Gelman-Rubin: 基于3条独立链，$\\hat{R}<1.1$（保守：<1.05）为通过。
+\item ESS: 有效样本量，ESS>400为经验阈值。
+\item 收敛判断：同时满足Geweke、R-hat和ESS标准。
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
