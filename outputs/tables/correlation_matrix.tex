@@ -1,29 +1,25 @@
 \begin{table}[!htbp]
-\centering
-\small
-\caption{主要变量相关系数矩阵（下三角）}
-\label{tab:corr_matrix}
-\begin{threeparttable}
-\begin{tabular}{@{}llllllllll@{}}
-\toprule
-Variable & μ_CP & CPI & FE & FR & Food & EPU & GPR & M2 & PPI \\
-\midrule
-μ_CP & 1.000 &  &  &  &  &  &  &  &  \\
-CPI & 0.539 & 1.000 &  &  &  &  &  &  &  \\
-FE & -0.905 & -0.651 & 1.000 &  &  &  &  &  &  \\
-FR & 0.453 & 0.653 & -0.451 & 1.000 &  &  &  &  &  \\
-Food & 0.139 & 0.192 & -0.164 & -0.116 & 1.000 &  &  &  &  \\
-EPU & -0.458 & -0.036 & 0.449 & 0.011 & 0.185 & 1.000 &  &  &  \\
-GPR & -0.169 & -0.034 & 0.105 & 0.040 & -0.421 & 0.097 & 1.000 &  &  \\
-M2 & 0.343 & -0.040 & -0.312 & -0.077 & 0.185 & -0.456 & -0.156 & 1.000 &  \\
-PPI & -0.063 & 0.092 & 0.114 & 0.060 & -0.334 & 0.140 & 0.015 & -0.345 & 1.000 \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}[flushleft]
-\footnotesize
-\item 仅显示下三角矩阵以节省空间。
-\item 对角线为1（省略）。
-\item 基于所有变量均非缺失的样本计算。
-\end{tablenotes}
-\end{threeparttable}
+    \centering
+    \caption{Correlation Matrix of Key Variables (Lower Triangle)}
+    \label{tab:corr_matrix}
+    \begin{tabular}{@{}llllllllll@{}}
+        \toprule
+        Variable   & $\mu_{CP}$ & CPI    & FE     & FR     & Food   & EPU    & GPR    & M2     & PPI   \\
+        \midrule
+        $\mu_{CP}$ & 1.000      &        &        &        &        &        &        &        &       \\
+        CPI        & 0.539      & 1.000  &        &        &        &        &        &        &       \\
+        FE         & -0.905     & -0.651 & 1.000  &        &        &        &        &        &       \\
+        FR         & 0.453      & 0.653  & -0.451 & 1.000  &        &        &        &        &       \\
+        Food       & 0.139      & 0.192  & -0.164 & -0.116 & 1.000  &        &        &        &       \\
+        EPU        & -0.458     & -0.036 & 0.449  & 0.011  & 0.185  & 1.000  &        &        &       \\
+        GPR        & -0.169     & -0.034 & 0.105  & 0.040  & -0.421 & 0.097  & 1.000  &        &       \\
+        M2         & 0.343      & -0.040 & -0.312 & -0.077 & 0.185  & -0.456 & -0.156 & 1.000  &       \\
+        PPI        & -0.063     & 0.092  & 0.114  & 0.060  & -0.334 & 0.140  & 0.015  & -0.345 & 1.000 \\
+        \bottomrule
+    \end{tabular}
+    \begin{flushleft}\footnotesize
+        Only the lower-triangle of the matrix is shown to save space.\\
+        Diagonal entries equal 1 (omitted for brevity).\\
+        Calculated on the sample with no missing values for all variables.
+    \end{flushleft}
 \end{table}

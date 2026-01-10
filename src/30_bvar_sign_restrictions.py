@@ -463,9 +463,9 @@ def main():
         write_tex_table(
             fevd_df,
             'outputs/tables/bvar_fevd.tex',
-            caption='诊断性预期冲击的预测误差方差分解（FEVD）',
+            caption='Forecast Error Variance Decomposition: Diagnostic Expectations Shock',
             label='tab:bvar_fevd',
-            note=f'FEVD表示诊断性预期冲击对各变量预测误差方差的贡献百分比。基于{min(500, acc_n)}次后验抽样的中位数。'
+            note=f'FEVD shows the percentage contribution of the diagnostic expectations shock to forecast error variance of each variable. Based on median of {min(500, acc_n)} posterior draws.'
         )
         print(f"[BVAR] wrote: outputs/tables/bvar_fevd.tex")
     
@@ -479,10 +479,10 @@ def main():
         
         # Key periods to highlight
         key_periods = {
-            '2016Q1': '人民币汇率波动',
-            '2018Q3': '中美贸易摩擦',
-            '2020Q2': '新冠疫情冲击',
-            '2022Q1': '俄乌冲突'
+            '2016Q1': 'RMB Exchange Rate Volatility',
+            '2018Q3': 'US-China Trade Friction',
+            '2020Q2': 'COVID-19 Pandemic Shock',
+            '2022Q1': 'Russia-Ukraine Conflict'
         }
         
         hist_rows = []
@@ -516,9 +516,9 @@ def main():
             write_tex_table(
                 hist_df,
                 'outputs/tables/bvar_historical.tex',
-                caption='关键时期的诊断性预期冲击：历史分解',
+                caption='Diagnostic Expectations Shock in Key Periods: Historical Decomposition',
                 label='tab:bvar_hist',
-                note='Deviation为观测值与均值之差。DE_FEVD为该时期诊断性冲击对预期方差的贡献（基于4期预测视野）。'
+                note='Deviation is observed value minus mean. DE_FEVD is the contribution of diagnostic shock to expectation variance (based on 4-quarter forecast horizon) in that period.'
             )
             print(f"[BVAR] wrote: outputs/tables/bvar_historical.tex")
 

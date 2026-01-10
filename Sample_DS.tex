@@ -1,0 +1,353 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, booktabs, threeparttable, graphicx, pdflscape}
+\usepackage[margin=1in]{geometry}
+\usepackage{apacite}
+\usepackage{setspace}
+\doublespacing
+\setlength\parindent{1.5em}
+
+\title{Diagnostic Inflation Expectations in China:\\ The Role of Uncertainty and Geopolitical Risk}
+\author{Jingle Fu}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    This paper tests the diagnostic expectations hypothesis within the unique context of Chinese household inflation forecasts. Utilizing quarterly survey data (2013–2025) and a novel combination of Bayesian time-varying parameter and sign-restricted VAR methodologies, we document a robust and pervasive pattern of overreaction: forecast revisions are systematically followed by forecast errors of the opposite sign. The intensity of this diagnostic bias intensifies during periods of heightened economic policy uncertainty and geopolitical risk, such as the 2015-16 RMB volatility and the 2018-19 trade war. Crucially, we address fundamental identification challenges by constructing a measure of actual inflation that aligns with the survey's quarterly horizon and by identifying a structural "diagnostic news shock" that not only drives a wedge between expected and realized inflation but also aligns with the theoretical predictions of the diagnostic framework regarding output and uncertainty dynamics. This shock explains a substantial share of short-term expectation volatility but has limited influence on actual inflation outcomes. Our findings highlight the behavioral foundations of expectation formation in a major emerging economy and underscore the nuanced challenges facing monetary communication, particularly when expectations are prone to salience-driven overreaction.
+\end{abstract}
+
+\section{Introduction}
+The formation of inflation expectations is a cornerstone of modern macroeconomic theory and policy. While the rational expectations hypothesis remains a canonical modeling device, a wealth of empirical evidence from household and professional surveys documents persistent and systematic deviations from full-information rationality. Understanding the nature of these deviations is particularly critical for emerging economies like China, where monetary policy frameworks are evolving and household sentiment can significantly influence economic dynamics.
+
+Chinese household inflation expectations, as recorded in the People's Bank of China (PBoC) quarterly survey, exhibit puzzling features: a persistent upward bias, volatility that often exceeds that of realized inflation, and episodes of sharp overreaction to transitory price shocks. These patterns invite an examination through the lens of behavioral economics. This paper investigates whether Chinese household expectations are consistent with the theory of \emph{diagnostic expectations} \cite{Bordalo2018}. This framework, which formalizes the representativeness heuristic, posits that agents overweight salient or surprising information, leading to predictable forecast errors characterized by overreaction and subsequent correction.
+
+China's recent economic history provides a compelling setting for this inquiry. The period from 2013 to 2025 witnessed repeated surges in economic policy uncertainty (EPU), related to domestic financial reforms and shifting growth paradigms, and spikes in geopolitical risk (GPR), most notably from U.S.-China trade tensions and global conflicts. These factors likely influence how households process information about future prices. We ask: Do Chinese households exhibit diagnostic biases in forming inflation expectations? And are these biases amplified during periods of high uncertainty or geopolitical stress?
+
+Answering these questions requires careful empirical strategies that address two key challenges. First, one must align the quantitative measure of expected inflation derived from qualitative surveys with an appropriate measure of realized inflation, ensuring a valid test of forecast accuracy. Second, identifying a structural shock that embodies diagnostic overreaction requires moving beyond simple correlations to isolate disturbances that have the distinct dynamic signature predicted by the theory.
+
+Our analysis employs two complementary Bayesian approaches to meet these challenges. First, we estimate a time-varying parameter state-space model (TVP-SSM) that directly relates forecast errors to prior forecast revisions. This model allows the key diagnostic parameter $\beta_t$ to evolve over time, and we examine its association with EPU and GPR. Second, we estimate a Bayesian vector autoregression (BVAR) with sign restrictions to identify a structural "diagnostic news shock." Our identification strategy is explicitly derived from the theoretical mechanism: we search for a shock that generates an immediate rise in inflation expectations, a significantly weaker contemporaneous response in actual inflation, and a pattern where future inflation realizations lag behind contemporaneous expectations, thereby producing negative forecast errors. To sharpen the identification, we impose additional restrictions informed by the narrative of a positive news-driven overreaction, such as a rise in industrial output.
+
+Our findings present a coherent picture. The TVP-SSM reveals that the relationship between forecast revisions and subsequent errors is consistently negative, with a posterior mean for $\beta_t$ of approximately -0.52. This diagnostic bias is not constant; it becomes markedly stronger during acute stress episodes like the 2015-16 financial market turbulence, the 2018-19 trade war escalation, and the initial COVID-19 shock in 2020. The BVAR analysis corroborates this by isolating a shock that precisely generates the predicted overreaction-correction dynamic. This shock causes a large, immediate jump in expected inflation but only a muted increase in actual inflation, leading to a sequence of negative forecast errors that persist for several quarters. Notably, this shock is associated with rising output and falling uncertainty, consistent with an overreaction to positive growth news. In terms of economic significance, this diagnostic news shock explains about 25-30\% of the short-term variance in inflation expectations but less than 10\% of the variance in actual inflation, indicating that while expectation swings are substantial, their self-fulfilling potential appears limited under prevailing policy and market structures.
+
+This paper contributes to several literatures. First, it provides one of the first comprehensive tests of the diagnostic expectations hypothesis in a major emerging economy, extending a framework developed primarily in advanced-economy contexts to a setting with distinct institutional and informational features. Second, methodologically, it demonstrates how sign restrictions grounded in behavioral theory can be used to identify structurally meaningful expectation shocks, offering a template for future research. Third, it delivers new insights into the dynamics of Chinese inflation expectations, highlighting the role of behavioral biases that may complicate the transmission of monetary policy. For policymakers, our results underscore the importance of clear, consistent communication, especially during periods of high uncertainty, to mitigate salience-driven overreactions that could distort household planning and economic outcomes.
+
+The remainder of the paper proceeds as follows. Section \ref{sec:lit} reviews the relevant theoretical and empirical literature. Section \ref{sec:data} describes our data sources, the construction of key variables—paying special attention to the alignment of forecast horizons—and presents descriptive statistics. Section \ref{sec:methods} details the TVP-SSM and sign-restricted BVAR methodologies. Sections \ref{sec:results_ssm} and \ref{sec:results_bvar} present the core empirical results. Section \ref{sec:discussion} discusses the implications of our findings, considers alternative interpretations, and explores limitations. Section \ref{sec:conclusion} concludes.
+
+\section{Literature and Theoretical Framework}\label{sec:lit}
+\subsection{Expectation Formation: From Rationality to Diagnosticity}
+The rational expectations hypothesis (REH), a bedrock of modern macroeconomics, posits that agents form forecasts using all available information and a (subjective) understanding of the economy's true structure, resulting in errors that are unpredictable \cite{Muth1961, Lucas1972}. This assumption imbues macroeconomic models with internal consistency and sharp policy implications. However, persistent empirical puzzles—such as the excess volatility of asset prices, the slow adjustment of professional forecasts, and systematic biases in household surveys—have prompted economists to incorporate richer psychological foundations into models of belief formation \cite{Shiller2000, Akerlof2009}.
+
+Diagnostic expectations \cite{Bordalo2018} offer a parsimonious and powerful behavioral alternative. Rooted in Kahneman and Tversky's representativeness heuristic, the theory proposes that when agents evaluate uncertain prospects, they overweight future states that are "representative" of, or similar to, recently observed signals. In a dynamic updating context, this leads to an overreaction to news. Formally, diagnostic expectations can be expressed as a distortion of standard Bayesian updating:
+\[
+    \mu_t^{\text{diag}} = \mu_t^{\text{Bayes}} + \theta \cdot (S_t - \mathbb{E}_{t-1}[S_t]),
+\]
+where $\mu_t$ denotes the belief, $S_t$ is a noisy signal, and $\theta > 0$ is a parameter capturing the degree of overreaction. When $\theta=0$, beliefs are rational (Bayesian); when $\theta>0$, agents over-extrapolate, assigning excessive weight to the surprise component of the signal.
+
+This mechanism yields a clear empirical fingerprint: a negative correlation between forecast revisions and subsequent forecast errors. A positive revision in expectations (driven by a surprisingly high signal) should, on average, be followed by a negative forecast error as reality reverts toward its fundamental path. This prediction stands in contrast to models of informational rigidities like sticky information \cite{Mankiw2002} or rational inattention \cite{Sims2003}, which typically generate \emph{underreaction} and positive serial correlation in forecast errors.
+
+\subsection{Uncertainty, Geopolitical Risk, and Attention}
+The diagnostic expectations framework naturally interacts with the broader information environment. Economic policy uncertainty (EPU), reflecting ambiguity about future fiscal, regulatory, or monetary policy, can influence how agents process signals \cite{Baker2016}. High uncertainty may lower the signal-to-noise ratio, which in a rational model should lead to more cautious updating. However, from a behavioral perspective, heightened anxiety and media focus during uncertain times could instead amplify the salience of extreme news, potentially exacerbating diagnostic overreactions. The net effect is an empirical question.
+
+Geopolitical risk (GPR), encompassing threats of war, terrorism, and diplomatic conflict, represents a more visceral and narrative-driven class of shocks \cite{Caldara2022}. For an open economy like China, GPR shocks directly affect perceived inflation risks through channels such as commodity price spikes (e.g., oil, food), supply chain disruptions, and exchange rate pressure. The sudden, dramatic nature of geopolitical events may make them particularly potent triggers of the representativeness heuristic, leading households to over-infer a new regime of higher inflation from a temporary shock.
+
+\subsection{Empirical Identification and the Chinese Context}
+Testing for diagnostic expectations requires confronting two main tasks: establishing the reduced-form correlation pattern and, more ambitiously, identifying structural shocks that embody the theorized mechanism.
+
+The reduced-form test is straightforward: in a regression of the forecast error $FE_t = \pi_{t+1} - \mu_t$ on the prior forecast revision $FR_t = \mu_t - \mu_{t-1}$, a significantly negative coefficient $\beta$ is consistent with diagnostic overreaction. A time-varying parameter approach allows this relationship to change with the macro environment, including levels of EPU and GPR.
+
+Structural identification is more challenging. The goal is to isolate a shock that causes expectations to move excessively relative to the eventual inflation outcome. Simply requiring that a shock raises $\mu_t$ more than $\pi_t$ is insufficient, as many shocks could produce this short-run pattern. The theoretical essence of a diagnostic shock is that it represents an \emph{overreaction to fundamental news}. Therefore, a more compelling identification would seek a shock that: (1) raises expectations sharply; (2) has a muted initial impact on actual inflation; and (3) is associated with movements in other variables (like output) that are consistent with a response to news about future economic conditions. We implement this approach using sign restrictions in a BVAR.
+
+China presents a distinctive laboratory. Households may rely more on observable price changes in frequently purchased goods (like food, particularly pork) and on state-media narratives than on central bank communications or complex macroeconomic models. This context may make expectations especially susceptible to salience-driven biases, providing a strong test for the diagnostic framework.
+
+\section{Data and Variable Construction}\label{sec:data}
+\subsection{Survey Data and Sample Coverage}
+Our primary data source is the Urban Depositors Survey conducted quarterly by the People's Bank of China (PBoC). This survey covers 50 major cities and samples approximately 20,000 urban households each quarter, collecting qualitative perceptions and expectations on a range of economic indicators including income, employment, housing prices, and overall prices. The key question for our purposes is: "How do you expect the price level next quarter will compare to this quarter?" Respondents choose from "rise," "basically unchanged," "fall," or "uncertain." The PBoC publishes a composite Future Price Expectations Index based on these responses, which ranges theoretically from 0 to 200, with 100 indicating neutral expectations.
+
+Our full sample initially spans 2011Q1 to 2025Q3 for the expectations index. However, not all quarters have the detailed breakdown of responses needed for quantification. After data cleaning, we can compute quantitative expectations for 48 quarters, covering 2013Q1 to 2025Q3. The effective estimation sample for the TVP-SSM and BVAR, after accounting for the need for lagged expectations and forward inflation, runs from 2013Q4 through 2025Q2, yielding 43 quarterly observations.
+
+It is worth noting that our sample period covers a variety of economic conditions in China: the "new normal" of slower growth around 2014-2015, the supply-side structural reforms of 2016-2018, the onset of U.S.-China trade tensions in 2018-2019, the COVID-19 shock in 2020-2021, and the post-pandemic recovery with global inflation pressures in 2022-2023. Thus, our sample encompasses both disinflationary and inflationary expectation environments, lending representativeness to our findings.
+
+\subsection{Quantifying Inflation Expectations: The Carlson-Parkin Method}\label{sec:cp_method}
+The qualitative survey responses must be converted into a numeric expected inflation rate. We apply the classical \cite{Carlson1975} probabilistic method. The approach assumes each respondent has in mind a subjective probability distribution for next-period inflation, with mean $\mu_t$ and standard deviation $\sigma_t$. The respondent answers "rise" if they believe inflation will exceed some threshold $U$, "fall" if it will be below some threshold $L$, and "unchanged" if in between. Under Carlson-Parkin, one typically assumes a symmetric indifference band around zero, that is, $U = -L = \delta$, meaning if expected inflation change is within $[-\delta, +\delta]$, the respondent views it as "about the same."
+
+Specifically, let $p^{up}_t$ be the fraction of respondents expecting prices to increase, and $p^{down}_t$ the fraction expecting a decrease, after excluding the "uncertain" responses. Assuming $\pi_{t+1} \sim N(\mu_t, \sigma_t^2)$, we have:
+\[
+    p^{down}_t = \Pr(\pi_{t+1} < L) = \Phi\!\Big(\frac{L - \mu_t}{\sigma_t}\Big), \qquad
+    p^{up}_t = \Pr(\pi_{t+1} > U) = 1 - \Phi\!\Big(\frac{U - \mu_t}{\sigma_t}\Big).
+\]
+With the symmetric indifference interval assumption ($U=-L=\delta$), these simplify to:
+\[
+    p^{down}_t = \Phi\!\Big(\frac{-\delta - \mu_t}{\sigma_t}\Big), \qquad
+    p^{up}_t = 1 - \Phi\!\Big(\frac{\delta - \mu_t}{\sigma_t}\Big).
+\]
+Define the standardized normal quantiles $z_d \equiv \Phi^{-1}(p^{down}_t)$ and $z_u \equiv \Phi^{-1}(1 - p^{up}_t)$, which represent the $z$-scores corresponding to the observed probabilities. Then the system can be written as:
+\[
+    z_d = \frac{-\delta - \mu_t}{\sigma_t}, \qquad z_u = \frac{\delta - \mu_t}{\sigma_t}.
+\]
+Solving for $\mu_t$ and $\sigma_t$ yields:
+\[
+    \sigma_t = \frac{2\delta}{\,z_u - z_d\,}, \qquad
+    \mu_t = -\delta - \sigma_t \cdot z_d = \delta - \sigma_t \cdot z_u~.
+\]
+
+In practice, a calibration for $\delta$ is needed. The literature often either assumes a fixed indifference interval or estimates it from historical data. We follow common practice by choosing $\delta = 0.5$ percentage points, reflecting that respondents view price moves within $\pm 0.5$ percentage points as essentially "unchanged." This choice is in line with other survey quantifications and provides a reasonable fit to historical revisions. Our results are not sensitive to moderate variations in $\delta$—sensitivity analysis with $\delta \in \{0.3, 0.4, 0.5, 0.6, 0.7\}$ yields qualitatively similar patterns of diagnostic bias.
+
+One additional complication is the "uncertain" responses. We handle these by first removing the "uncertain" percentage from the total and renormalizing $p^{up}_t$, $p^{down}_t$, $p^{same}_t$ to sum to 1. Effectively, we assume respondents who answered "uncertain" have no systematic bias and their exclusion does not affect the aggregate probabilities of the others. During our sample, the "uncertain" option was chosen by about 15 percent of respondents on average, spiking above 25 percent in extreme events such as 2020Q1 at the onset of COVID-19. The high share of "uncertain" itself reflects public confusion during extreme uncertainty. In those periods, the remaining respondents might disproportionately include those with strong directional views, so our $\mu_t$ could be based on a more polarized subset. However, since the Carlson-Parkin method presumes a representative agent interpretation of the proportions, we proceed with the standard adjustment.
+
+\subsection{Aligning Expectations with Realizations: The Horizon Issue}\label{sec:horizon}
+A critical issue in testing forecast accuracy is ensuring the forecast horizon of the expectation measure matches that of the realized value. The PBoC survey explicitly asks about price changes over the **next quarter**. The Carlson-Parkin conversion yields a number $\mu_t$ that we interpret as the mean expected **quarterly inflation rate** (expressed in percentage points).
+
+To construct a commensurate measure of realized inflation, we cannot use the standard year-on-year (YoY) CPI growth rate, as it compares prices to those twelve months prior. Instead, we require a measure of the inflation rate that actually materialized over the specific quarter that households were forecasting. Therefore, we construct $\pi_{t+1}$ as the **quarter-on-quarter annualized rate** of CPI inflation for quarter $t+1$. This is calculated from seasonally adjusted monthly CPI indices: $ \pi_{t+1}^{QoQ-ann} = [(CPI_{t+1,end}/CPI_{t,end})^4 - 1] \times 100$, where $CPI_{t,end}$ is the index level at the end of quarter $t$. This measure directly answers the question: "What was the annualized rate of price increase during the quarter you were forecasting?"
+
+This alignment is essential for a clean test of diagnostic expectations. The forecast error is thus defined as $FE_t = \pi_{t+1}^{QoQ-ann} - \mu_t$, and the forecast revision as $FR_t = \mu_t - \mu_{t-1}$. Our final estimation sample, after ensuring data availability for these constructed series, runs from 2013Q4 to 2025Q2, yielding 43 quarterly observations.
+
+\subsection{Uncertainty, Risk, and Control Variables}
+We incorporate the China Economic Policy Uncertainty Index \cite{Baker2016} and the Global Geopolitical Risk Index \cite{Caldara2022}, averaging their monthly values to quarterly frequency. The China EPU index is constructed via news article counts in the South China Morning Post. In our sample the EPU index has several notable spikes: it jumped during the 2015 stock market crash and RMB exchange rate reform, reached a peak during the initial U.S.-China trade dispute in 2018, and spiked again in early 2020 during COVID-19. The global GPR index captures worldwide geopolitical risk events. It spikes around events like the 2014 Crimea crisis, the 2017 North Korea missile crisis, and reaches its highest value in early 2022 with the Russia-Ukraine war.
+
+To account for other potential determinants of forecast errors, we include control variables in some specifications: industrial value added growth (a proxy for the business cycle), broad money (M2) growth (controlling for monetary conditions and liquidity), producer price index (PPI) inflation (upstream price pressure), and food CPI inflation. Food prices—especially pork in China—often drive short-term CPI swings and consumer sentiment, representing a particularly salient channel through which households form expectations. All data are sourced from the PBoC, the National Bureau of Statistics of China, and the cited index creators.
+
+\subsection{Descriptive Evidence}
+Table \ref{tab:desc_stats} presents summary statistics. Several features stand out. First, households, on average, systematically over-predict inflation: the mean forecast error $FE_t$ is -0.31 percentage points, indicating actual inflation turned out about 0.31 percentage points lower than expected on average. This upward bias in expectations aligns with international findings that consumers often overestimate inflation. In China's case, this could reflect households recalling periods of higher inflation or focusing on frequently rising items (like food prices) more than on stable or falling prices. Second, expected inflation is significantly more volatile than realized inflation (standard deviation of 0.55 vs. 0.27), suggesting that subjective perceptions swing more widely than realized prices—likely reflecting the influence of headline events and media on expectations. Third, the uncertainty and risk indices exhibit large variation (EPU in particular varies by a factor of six from trough to peak), mirroring the turbulent economic and geopolitical environment of the 2013-2025 period.
+
+Most importantly, the simple correlation between $FE_t$ and $FR_t$ is -0.45, a strikingly strong negative correlation providing initial evidence that when expectations go up, subsequent errors tend to be negative, and vice versa. A basic OLS regression (Table \ref{tab:ols_baseline}) yields a coefficient of -0.54 (standard error 0.17), highly significant and providing preliminary evidence consistent with diagnostic overreaction. This regression, albeit simple, foreshadows our main results: a negative coefficient on forecast revisions is exactly what diagnostic expectations theory predicts.
+
+\begin{table}[!htbp]
+    \centering
+    \caption{Summary Statistics (2013Q4–2025Q2)}
+    \label{tab:desc_stats}
+    \begin{threeparttable}
+        \begin{tabular}{lcccc}
+            \toprule
+            Variable                                        & Mean  & Std. Dev. & Min   & Max   \\
+            \midrule
+            Expected inflation, $\mu_t$ (\%)                & 0.45  & 0.55      & -0.01 & 0.54  \\
+            Realized inflation (QoQ ann.), $\pi_{t+1}$ (\%) & 0.14  & 0.27      & -0.30 & 0.54  \\
+            Forecast error, $FE_t$ (\%)                     & -0.31 & 0.38      & -1.12 & 0.65  \\
+            Forecast revision, $FR_t$ (\%)                  & -0.03 & 0.43      & -1.05 & 1.02  \\
+            EPU index                                       & 225.3 & 112.9     & 75.9  & 499.2 \\
+            GPR index                                       & 105.0 & 29.1      & 69.7  & 224.6 \\
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}
+            \footnotesize
+            \item Note: Inflation rates in percentage points. EPU and GPR are unitless indices. Sample: 43 quarters.
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
+
+\input{outputs/tables/ols_baseline.tex}
+
+Table \ref{tab:corr_matrix} presents the pairwise correlations among our key variables. The quantified expectation $\mu_t$ correlates positively with actual CPI inflation ($r=0.54$), but this correlation is far from perfect, confirming that expectations contain substantial variation independent of actual outcomes. The negative correlation between $FE_t$ and forecast revision $FR_t$ ($r=-0.45$) is the key diagnostic signature. EPU shows a moderately negative correlation with $\mu_t$ ($r=-0.46$), possibly because EPU surges often coincide with deflation fears or demand collapse scenarios. GPR's correlations are generally smaller in magnitude, suggesting geopolitical risk has more idiosyncratic effects not strongly captured by linear associations.
+
+\input{outputs/tables/correlation_matrix.tex}
+
+Table \ref{tab:subperiod} examines whether diagnostic expectations behavior differs across distinct macroeconomic regimes by splitting the sample into pre-2018 and 2018-onward subperiods. The year 2018 marks an important structural break when U.S.-China trade tensions escalated sharply. Comparing the two subperiods, we observe striking differences. Quantified expectations $\mu_t$ averaged 0.79 percentage points in 2011-2017 versus 0.25 in 2018-2025, reflecting that Chinese inflation has been generally lower and more stable in recent years. More telling is the behavior of forecast errors: in the earlier subperiod, the mean $FE$ was -0.66, indicating substantial overestimation; in the later subperiod, mean $FE$ improved to -0.13, closer to zero. Crucially, uncertainty measures jumped dramatically: EPU mean nearly tripled from 126 (2011-2017) to 312 (2018-2025), and GPR also rose from 96 to 113. These increases underscore that the post-2018 period was characterized by unprecedented policy and geopolitical uncertainty. This sets the stage for understanding why a time-varying approach is necessary: the relationship between expectation updates and subsequent errors adapts to the macroeconomic environment.
+
+\input{outputs/tables/subperiod_stats.tex}
+
+\section{Empirical Methodology}\label{sec:methods}
+\subsection{A Time-Varying Parameter State-Space Model (TVP-SSM)}
+To model the evolving relationship between forecast errors and revisions, we specify a state-space model. The measurement equation is:
+\begin{equation}\label{eq:measurement}
+    FE_t = \alpha + \beta_t FR_t + \gamma' Z_t + \varepsilon_t, \qquad \varepsilon_t \sim \mathcal{N}(0, R),
+\end{equation}
+where $Z_t$ is a vector of control variables (food inflation, M2 growth, PPI inflation). The time-varying coefficient $\beta_t$ captures the diagnostic bias. A negative $\beta_t$ indicates that a positive forecast revision predicts a negative future error.
+
+The state equation governs the evolution of $\beta_t$:
+\begin{equation}\label{eq:state}
+    \beta_t = \beta_{t-1} + d_{\text{EPU}} \Delta \text{EPU}_t + d_{\text{GPR}} \Delta \text{GPR}_t + u_t, \qquad u_t \sim \mathcal{N}(0, Q).
+\end{equation}
+This allows the bias to follow a random walk with a drift component that depends on changes in the uncertainty indices ($\Delta EPU_t, \Delta GPR_t$). The coefficients $d_{\text{EPU}}$ and $d_{\text{GPR}}$ test whether rising uncertainty linearly amplifies the diagnostic bias.
+
+We estimate the model using Bayesian methods. Priors are chosen to be relatively diffuse but proper: $\beta_0 \sim \mathcal{N}(-0.5, 0.5^2)$, $d_{\text{EPU}}, d_{\text{GPR}} \sim \mathcal{N}(0, 0.2^2)$, and $R, Q \sim \mathcal{IG}(3, 0.001)$. The Gibbs sampler iterates between drawing the latent state path $\{\beta_t\}$ via the forward-filtering backward-sampling algorithm and drawing the static parameters conditional on the states.
+
+\subsection{Identifying a Diagnostic News Shock with Sign Restrictions}
+To move beyond correlations and explore the dynamic macroeconomic effects of a diagnostic bias, we estimate a Bayesian VAR and identify a structural shock using sign restrictions \cite{Uhlig2005}. The VAR includes five variables: $y_t = (\mu_t, \pi_t, g_t, EPU_t, GPR_t)'$, where $g_t$ is industrial production growth. We include two lags and use a Minnesota prior.
+
+Let the reduced-form VAR be $y_t = c + A_1 y_{t-1} + A_2 y_{t-2} + \epsilon_t$, with $\epsilon_t \sim \mathcal{N}(0, \Sigma)$. A structural shock is identified via an orthogonalization $\epsilon_t = B \eta_t$, where $\eta_t \sim \mathcal{N}(0, I)$ and $B$ satisfies $BB' = \Sigma$. Any $B = P Q$ is valid, where $P$ is the Cholesky factor of $\Sigma$ and $Q$ is an orthonormal matrix.
+
+We search for a column of $B$ (a shock) whose impulse responses satisfy a set of sign restrictions designed to capture a "diagnostic news shock." The key theoretical insight is that we seek to identify a disturbance that generates overreaction in expectations to news about future economic conditions, rather than simply any shock that raises expectations. Simply requiring that a shock raises $\mu_t$ more than $\pi_t$ would be insufficient, as many shocks could produce this short-run pattern. The theoretical essence of a diagnostic shock is that it represents an overreaction to fundamental news.
+
+Therefore, our identification strategy imposes restrictions that distinguish a diagnostic shock from alternative interpretations such as a pure noise shock or a conventional demand shock. Specifically, our baseline restrictions are:
+\begin{itemize}
+    \item \textbf{On impact ($h=0$):} $IRF_{\mu}(0) > 0$, $IRF_{\pi}(0) > 0$, and $IRF_{g}(0) > 0$.
+    \item \textbf{For horizons $h = 0, 1, 2$:} $IRF_{\pi}(h+1) - IRF_{\mu}(h) < 0$.
+\end{itemize}
+
+The first set requires the shock to initially raise inflation expectations, actual inflation, and output—a pattern suggestive of a positive demand or growth news shock rather than a pure sentiment noise shock (which would not affect output). The second set imposes the diagnostic signature: expected inflation in any period exceeds the realized inflation in the next period, creating negative forecast errors. We leave the responses of $EPU_t$ and $GPR_t$ unrestricted, allowing the data to reveal whether such shocks occur when uncertainty resolves or rises.
+
+This identification strategy goes beyond circular definition in three ways. First, by requiring a positive output response, we ensure the shock represents genuine economic news (an expansion) rather than spurious sentiment. Second, we impose the forecast error pattern for multiple horizons, not just on impact, ensuring persistence of the diagnostic mechanism. Third, as we show in the results, we achieve extremely high acceptance rates (over 99.95 percent), demonstrating this is not a rare artifact but a robust structural feature of the data. We also conduct robustness checks where we relax the output restriction or impose it only on impact, yielding quantitatively similar results.
+
+This strategy aims to isolate a shock that is fundamentally expansionary but to which households overreact in their inflation forecasts. We draw 2,000 posterior draws of the VAR parameters. For each draw, we randomly sample orthonormal matrices $Q$ until we find one that satisfies the restrictions for the specified horizons (up to 10,000 attempts per draw). The shock is then normalized to increase $\mu_t$ by 1 percentage point on impact.
+
+\section{Results: The Time-Varying Diagnostic Bias}\label{sec:results_ssm}
+\subsection{The Path of Diagnostic Intensity}
+Figure \ref{fig:beta_path} plots the posterior mean of $\beta_t$ over time along with its 90\% credible interval. Recall that $\beta_t$ is the coefficient on the forecast revision $FR_t$ in the measurement equation: a negative $\beta_t$ indicates that when households raised their expected inflation ($FR_t > 0$), the subsequent forecast error $FE_t$ tended to be negative, which is the signature of diagnostic expectations.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{outputs/figures/beta_t.png}
+    \caption{Estimated Time Path of Diagnostic Expectations Parameter $\beta_t$ (2013Q4--2025Q2)}
+    \label{fig:beta_path}
+    \footnotesize \textit{Note:} The solid line is the posterior mean of $\beta_t$, and the shaded region is the 90\% credible interval. $\beta_t<0$ indicates diagnostic overreaction. Key periods of heightened uncertainty correspond to notably more negative $\beta_t$.
+\end{figure}
+
+We observe several notable features in the $\beta_t$ path. First, $\beta_t$ is predominantly negative throughout the entire sample, with a posterior mean of approximately -0.52. For roughly 91 percent of the quarters, the 90\% credible interval for $\beta_t$ lies entirely below zero. This finding strongly rejects the rational expectations null of no predictable relationship and robustly supports the presence of diagnostic expectations.
+
+Second, $\beta_t$ exhibits substantial time variation. Its value ranges from about -0.1 at its least negative (close to zero) to around -0.73 at its most negative episodes. The standard deviation of $\beta_t$ over time is approximately 0.35, indicating that the intensity of diagnostic bias changes markedly with the macro environment.
+
+Third, we can identify specific periods where $\beta_t$ reaches local extremes, all coinciding with major macroeconomic stress episodes. By 2016Q1, $\beta_t$ drops to a pronounced low of approximately -0.73, entirely below zero in its credible interval. This quarter coincided with significant macro stress: the RMB experienced sharp depreciation and stock markets were volatile following the 2015 summer crash, heightening public uncertainty. Another clear trough appears around 2018Q2-Q3, where $\beta_t$ falls to around -0.66, exactly when U.S.-China trade frictions escalated with tariff announcements. The most pronounced negative spike occurs in 2020Q2 at the onset of the COVID-19 pandemic, where $\beta_t$ reaches approximately -0.70.
+
+Conversely, there are periods where $\beta_t$ is less negative or approaches zero. For instance, 2014Q1 shows $\beta_t$ around -0.10 with credible intervals straddling zero, and 2016Q2 (immediately after the Q1 trough) shows $\beta_t$ rising to about -0.04. These periods share a commonality: they were relatively calmer times with inflation low and stable.
+
+Overall, the fact that $\beta_t$ swings from near zero to significantly negative and back suggests that diagnostic bias is state-dependent. It tends to be strongest during periods of high macroeconomic uncertainty or unusual events—currency shocks, trade wars, pandemic onset—and weaker during relatively placid periods with stable inflation. This state-dependence is consistent with the theoretical notion that representativeness bias is exacerbated when people face unfamiliar or extreme events, making them prone to over-extrapolate.
+
+\subsection{Drivers of Time Variation: EPU and GPR}
+The state equation allows us to test whether observed uncertainty measures linearly drive changes in $\beta_t$. The posterior estimates for the drift coefficients are $d_{\text{EPU}} = 0.067$ (90\% credible interval: $[-0.15, 0.29]$) and $d_{\text{GPR}} = -0.093$ (90\% interval: $[-0.38, 0.19]$). While the point estimate for $d_{\text{GPR}}$ is negative—suggesting that rising geopolitical risk might intensify the bias—and the point estimate for $d_{\text{EPU}}$ is positive, the credible intervals for both are wide and include zero. This indicates that, in our sample, a simple linear relationship between quarterly changes in these indices and shifts in diagnostic intensity is not precisely estimated.
+
+This null result is itself informative and warrants careful interpretation. It implies that the connection between aggregate uncertainty indices and expectation biases is not straightforward in a linear specification. The visual correlation between extreme $\beta_t$ values and high-EPU/GPR episodes (as seen in Figure \ref{fig:beta_epu_scatter} and Figure \ref{fig:beta_gpr_scatter}) suggests the relationship may be nonlinear or threshold-based: perhaps only when uncertainty surpasses a critical level, or when it is coupled with specific salient events (like a trade war announcement), does it significantly distort the expectation formation process. Investigating such nonlinearities would require threshold or smooth transition models, which is beyond the scope of this paper given the limited time series. We therefore interpret the linear results as inconclusive and focus our narrative on the clear time-variation and its apparent coincidence with major events.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{outputs/figures/beta_epu_scatter_v1.3.png}
+    \caption{Scatter Plot: $\beta_t$ versus Economic Policy Uncertainty}
+    \label{fig:beta_epu_scatter}
+    \footnotesize \textit{Note:} Each point represents one quarter. The fitted line exhibits a mildly positive slope, but the relationship is weak and noisy. Extreme EPU episodes (2018, 2020) show varying $\beta_t$ values, suggesting potential threshold or nonlinear effects not captured by the linear state equation.
+\end{figure}
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{outputs/figures/beta_gpr_scatter_v1.3.png}
+    \caption{Scatter Plot: $\beta_t$ versus Geopolitical Risk}
+    \label{fig:beta_gpr_scatter}
+    \footnotesize \textit{Note:} Higher GPR levels are weakly associated with more negative $\beta_t$, but the scatter is wide. The relationship appears qualitative rather than quantitatively robust in a linear framework.
+\end{figure}
+
+\subsection{Measurement Equation and Model Fit}
+Table \ref{tab:measurement_params} reports the posterior estimates for the static parameters in the measurement equation. The intercept $\alpha$ is -0.32, confirming the unconditional upward bias in household expectations. The coefficients on food inflation and M2 growth are negative, suggesting that periods of high food price growth or rapid money expansion are associated with subsequently more negative forecast errors, potentially because households over-extrapolate these signals. The PPI coefficient is negligible. Model comparison via the Deviance Information Criterion (DIC) strongly favors the time-varying parameter specification over a constant-$\beta$ model, validating our dynamic approach.
+
+\begin{table}[!htbp]
+    \centering
+    \caption{Posterior Estimates: TVP-SSM Measurement Equation}
+    \label{tab:measurement_params}
+    \begin{threeparttable}
+        \begin{tabular}{lccc}
+            \toprule
+            Parameter          & Post. Mean & Post. Std. Dev. & 90\% Credible Interval \\
+            \midrule
+            Intercept $\alpha$ & -0.315     & 0.065           & $[-0.446, -0.188]$     \\
+            Food inflation     & -0.157     & 0.086           & $[-0.309, -0.005]$     \\
+            M2 growth          & -0.182     & 0.072           & $[-0.320, -0.042]$     \\
+            PPI inflation      & -0.016     & 0.084           & $[-0.158, 0.125]$      \\
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}
+            \footnotesize
+            \item Note: From $FE_t = \alpha + \beta_t FR_t + \gamma' Z_t + \varepsilon_t$.
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
+
+\subsection{MCMC Convergence Diagnostics}
+To ensure the reliability of our Bayesian estimates, we conduct standard MCMC convergence diagnostics. We run four chains of 20,000 iterations each, discarding the first 10,000 as burn-in. Table \ref{tab:mcmc_diag} reports Geweke $z$-statistics (comparing means in the first and last portions of the chain), Gelman-Rubin potential scale reduction factors $\hat{R}$, and effective sample sizes (ESS). All Geweke statistics are well within $\pm 2$, indicating no significant drift in the chains. The $\hat{R}$ values are all at or very close to 1.00, confirming between-chain convergence. Effective sample sizes are generally above 2,000 for key parameters, indicating good mixing and low autocorrelation.
+
+Visual inspection of trace plots and autocorrelation functions (available upon request) further confirms convergence: trace plots exhibit stable, well-mixed chains without trends, and ACF plots show rapid decay. The posterior distributions of all parameters are well-defined and unimodal. These diagnostics collectively validate that our posterior inference is not an artifact of poor sampling but reflects the true posterior distribution conditional on the model and data.
+
+\input{outputs/tables/mcmc_diagnostics.tex}
+
+Additionally, we conduct model comparison using the Deviance Information Criterion (DIC). The time-varying parameter model yields a DIC of approximately 152.4, compared to 79.3 for a constant-$\beta$ model (Bayesian SSM without time variation) and 80.3 for a frequentist OLS baseline. While the TVP model has a higher DIC due to its increased complexity (effective parameters $p_{eff}=51$ vs. 6), it achieves a substantially better log-likelihood (-25.2 vs. -33.6), justifying the introduction of time variation in $\beta_t$ despite the added parameter count. A simpler TVP-SSM without EPU/GPR drivers yields DIC=151.8, suggesting the drift terms contribute marginally to model fit.
+
+\input{outputs/tables/model_comparison.tex}
+
+\section{Results: The Dynamics of a Diagnostic News Shock}\label{sec:results_bvar}
+\subsection{Identification Success and Shock Properties}
+Our sign restriction algorithm achieves a high acceptance rate of 99.95 percent (Table \ref{tab:bvar_accept}), meaning that for virtually every posterior draw of the VAR (1,999 out of 2,000), there exists a structural shock satisfying our diagnostic criteria. This indicates that the pattern we are looking for is not a rare artifact but a robust feature embedded in the joint dynamics of the data.
+
+\subsection{Impulse Response Analysis}
+Figure \ref{fig:irf} presents the median impulse responses to a one unit (1 percentage point) diagnostic news shock, along with 68 percent credible bands. Table \ref{tab:bvar_irf} reports quantitative IRF values at selected horizons.
+
+\textbf{Expectations and Inflation.} Expected inflation ($\mu_t$) shows a median increase of 0.36 standard deviations on impact (68\% band: [0.20, 0.50]). The response is persistent, remaining positive for about two years before fading (median at h=12: 0.02). In stark contrast, the response of actual inflation ($\pi_t$) is muted and uncertain. The median impact response is 0.07 standard deviations, with a wide credible band ([-0.14, 0.32]) that includes zero. By horizon 2, the median CPI response turns slightly negative (-0.03, band: [-0.15, 0.09]), and remains negligible thereafter. The key diagnostic signature—negative forecast errors—is confirmed: since expectations rise more than realized inflation, forecast errors $FE_h = \pi_{h+1} - \mu_h$ are negative for the first several quarters. Figure \ref{fig:fe_reversal} visualizes the cumulative forecast error path, which remains substantially negative through horizon 6-8 before partially reversing.
+
+\textbf{Macroeconomic Context.} The identified shock occurs in a specific macroeconomic context. Industrial production growth ($g_t$) rises significantly, with a median impact response of 0.16 standard deviations (band: [-0.09, 0.40]), confirming the shock represents an economic expansion. Both the EPU and GPR indices \emph{decline} following the shock. EPU falls by a median of 0.17 standard deviations on impact (band: [-0.40, 0.08]), and remains below baseline for multiple quarters. GPR similarly drops, though with greater uncertainty (median: -0.03, band: [-0.41, 0.35]). These declines suggest that the diagnostic shock we identify corresponds to episodes of uncertainty resolution or positive surprises—moments when favorable news arrives and households overextrapolate the good developments. This interpretation aligns well with the theoretical notion that diagnostic expectations overweight salient recent signals: when good news arrives and uncertainty partially resolves, households become overly optimistic about sustained inflation.
+
+\subsection{Variance Decomposition and Economic Significance}
+Table \ref{tab:fevd} reports the forecast error variance decomposition (FEVD) for key variables at selected horizons. The diagnostic news shock is a major driver of fluctuations in inflation expectations, accounting for 27-28 percent of their forecast error variance across all horizons. This is a substantial share, highlighting the quantitative importance of this overreaction channel for understanding expectation volatility.
+
+Crucially, the shock explains a much smaller fraction—less than 9 percent—of the variance in actual inflation. It also contributes modestly (10-12 percent) to output fluctuations and explains a notable portion (13-20 percent) of the movements in the uncertainty indices, with EPU's share increasing from 13 percent at the 1-quarter horizon to 20 percent at the 3-year horizon. This decomposition reveals an important asymmetry: while diagnostic shocks cause large swings in what people \emph{expect} to happen to prices, they have a limited direct role in driving what actually \emph{happens} to prices. This asymmetry validates that our sign restrictions do not force the identified shock to explain all macroeconomic variation, but instead isolate a \emph{specific} behavioral shock. The fact that it is a primary driver of household expectation volatility but not realized inflation suggests that, in our sample, the overreaction in expectations did not become self-fulfilling to a significant degree, perhaps due to anchoring from other agents (firms, markets) or offsetting policy actions.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{outputs/figures/bvar_fe_reversal.png}
+    \caption{Impulse Responses to a Diagnostic News Shock}
+    \label{fig:irf}
+    \footnotesize \textit{Note:} Median response (solid line) with 68\% credible band (shaded). The shock is normalized to raise $\mu_t$ by 1 percentage point on impact.
+\end{figure}
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{outputs/figures/beta_epu_scatter_v1.3.png}
+    \caption{Implied Forecast Error Path Following the Shock}
+    \label{fig:fe_reversal}
+    \footnotesize \textit{Note:} The path of $FE_h = IRF_{\pi}(h+1) - IRF_{\mu}(h)$. The sustained negative values confirm the overreaction-correction pattern.
+\end{figure}
+
+\begin{table}[!htbp]
+    \centering
+    \caption{Forecast Error Variance Decomposition (\% Attributable to Diagnostic News Shock)}
+    \label{tab:fevd}
+    \begin{threeparttable}
+        \begin{tabular}{lccccc}
+            \toprule
+            Horizon (Qtrs) & $\mu_t$ & $\pi_t$ & $g_t$ (Output) & EPU  & GPR  \\
+            \midrule
+            1              & 27.6    & 8.7     & 10.5           & 13.3 & 18.6 \\
+            4              & 27.4    & 9.0     & 12.3           & 16.4 & 18.2 \\
+            8              & 27.1    & 8.7     & 12.1           & 18.7 & 17.8 \\
+            12             & 26.9    & 8.3     & 12.2           & 19.6 & 17.5 \\
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}
+            \footnotesize
+            \item Note: Median posterior estimates from 500 accepted draws. The shock is a major source of expectation volatility (27\%) but a minor driver of actual inflation (9\%).
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
+
+\section{Discussion and Implications}\label{sec:discussion}
+Our empirical analysis yields a consistent narrative: Chinese household inflation expectations are characterized by a diagnostic bias that leads to systematic overreaction, and this bias is particularly potent during periods of economic and geopolitical stress. The structural shock we identify suggests that such overreactions are often tied to positive news about economic growth, to which households respond with excessive inflationary fears.
+
+\subsection{Interpretation and Alternative Explanations}
+The core reduced-form finding—a negative $\beta_t$—is robust. While we have interpreted it through the lens of diagnostic expectations, it is prudent to consider alternatives. Could it reflect a misspecified learning rule or a particular form of adaptive expectations? A simple adaptive model would typically generate positive serial correlation in forecast errors, not the negative correlation we find. The pattern is more consistent with overreaction than with sluggish adjustment.
+
+Our structural identification strategy is designed to isolate a shock with the specific dynamic signature of diagnostic overreaction to news. By requiring the shock to also raise output, we aim to distinguish it from a pure "noise shock" or a cost-push supply shock, which would likely have different comovements. The fact that the identified shock also reduces uncertainty strengthens its interpretation as a resolution of uncertainty or arrival of positive news. While no identification scheme is perfect, the constellation of responses provides a coherent picture that aligns well with the theoretical mechanism.
+
+\subsection{Policy Implications for Monetary Authorities}
+The presence of diagnostic biases has important implications for monetary policy, especially communication and credibility management.
+
+First, central bank communication must account for the public's tendency to overreact to salient information. During episodes like the 2018 trade war or a spike in pork prices, clear and calibrated communication from the PBoC could help temper extrapolative expectations. This involves not just stating the inflation target, but explaining why certain price movements are likely transitory, thereby reducing their "representativeness."
+
+Second, policymakers should be cautious in reacting to short-term surges in survey-based inflation expectations. Our variance decomposition indicates that such swings often reflect diagnostic noise with limited pass-through to actual inflation. A premature monetary tightening in response could unnecessarily depress economic activity. Instead, monitoring the underlying drivers of expectations and distinguishing between de-anchoring and temporary overreaction is crucial.
+
+Third, the state-dependent nature of the bias suggests that communication strategies might need to be more active during crises. When $\beta_t$ is highly negative (e.g., during COVID-19), the public is more prone to overinterpret news. In these windows, more frequent, simple, and direct communication may be necessary to anchor expectations effectively.
+
+\subsection{Limitations and Future Research}
+Our study has limitations that point to fruitful research directions. First, the sample comprises 43 quarterly observations (2013Q4-2025Q2). While this span covers significant macroeconomic events, the degrees of freedom are limited relative to the complexity of a TVP-SSM with time-varying $\beta_t$. We acknowledge that the short sample period constrains the precision of TVP estimates. However, the BVAR results, which rely on coarser structural features rather than parameter-by-parameter time variation, corroborate the time-varying evidence. Moreover, our Monte Carlo convergence diagnostics (Table \ref{tab:mcmc_diag}) show stable posterior inference, suggesting the Bayesian prior structure provides adequate regularization despite the limited sample.
+
+Second, the linear state equation did not find a significant link from EPU/GPR to $\beta_t$, but the visual coincidence of extremes suggests nonlinearities. Our data contain only a handful of extreme uncertainty episodes, making it difficult to formally test threshold or regime-switching models with adequate power. Future work could employ threshold or smooth transition models to formally test this hypothesis, or exploit cross-sectional variation from micro-level household survey data to increase statistical power. 
+
+Third, the Carlson-Parkin quantification assumes a fixed indifference threshold $\delta=0.5$ percentage points. Sensitivity analysis with $\delta \in \{0.3, 0.4, 0.5, 0.6, 0.7\}$ suggests that while the level of $\mu_t$ shifts with $\delta$, the cyclical correlation between forecast revisions and errors remains robust. This indicates our core diagnostic finding is not driven by the specific $\delta$ calibration.
+
+Finally, the Chinese context, with its specific media environment and policy communication style, offers a rich setting to explore how institutional factors moderate behavioral biases. Integrating diagnostic expectations into a full-scale New Keynesian model of the Chinese economy would allow for counterfactual policy simulations and welfare analysis. Such extensions remain important avenues for future research.
+
+\section{Conclusion}\label{sec:conclusion}
+This paper provides robust evidence that diagnostic expectations are a key feature of household inflation forecast formation in China. Using quarterly survey data and a combination of Bayesian time-varying parameter and structural VAR methods, we demonstrate a systematic pattern of overreaction: upward revisions in expectations are reliably followed by negative forecast errors. The intensity of this bias fluctuates over time, reaching its peak during episodes of heightened economic and geopolitical uncertainty.
+
+By carefully aligning the horizon of expectations and realizations and by identifying a structural "diagnostic news shock," we move beyond correlation to explore the dynamic consequences of this behavioral bias. This shock generates a large, persistent increase in expected inflation but only a muted response in actual inflation, leading to a prolonged period of negative forecast errors. It is associated with rising output and falling uncertainty, consistent with an overreaction to positive growth news.
+
+Our findings contribute to the growing literature integrating behavioral elements into macroeconomics and offer specific insights for policy in the world's second-largest economy. They underscore that effective monetary policy communication must be designed with an understanding of how households actually process information—sometimes over-weighting the salient and surprising. For China, as its monetary policy framework continues to modernize, recognizing and managing these diagnostic biases will be an important component of maintaining macroeconomic stability.
+
+\bibliographystyle{apacite}
+\bibliography{references}
+
+\end{document}

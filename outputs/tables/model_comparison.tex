@@ -1,27 +1,27 @@
 \begin{table}[!htbp]
-\centering
-\small
-\caption{模型比较：信息准则（基于实际估计结果）}
-\label{tab:model_comp}
-\begin{threeparttable}
-\begin{tabular}{@{}llllll@{}}
-\toprule
-Model & DIC & p_eff & WAIC & log_lik & Notes \\
-\midrule
-OLS (固定参数) & 80.3 & 5.0 & 81.3 & -35.1 & 频率学派基准 \\
-SSM 固定β & 79.3 & 6.0 & 80.5 & -33.6 & 贝叶斯固定参数 \\
-TVP-SSM (无驱动) & 151.8 & 49.0 & 161.6 & -26.9 & 随机游走β_t \\
-TVP-SSM (EPU+GPR) & 152.4 & 51.0 & 162.6 & -25.2 & 完整模型 (基准) \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}[flushleft]
-\footnotesize
-\item DIC = Deviance Information Criterion，越小越好。
-\item WAIC = Widely Applicable IC，越小越好（比DIC更稳健）。
-\item log_lik = 对数似然（近似值），越大越好。
-\item p_eff = 有效参数数量（TVP模型包含时变β_t）。
-\item 基于SSM后验参数（R_var=0.230, Q_var=0.519）计算近似值。
-\item TVP-SSM模型在拟合度上优于固定参数基准。
-\end{tablenotes}
-\end{threeparttable}
+    \centering
+    \small
+    \caption{Model Comparison: Information Criteria (Based on Estimated Results)}
+    \label{tab:model_comp}
+    \begin{threeparttable}
+        \begin{tabular}{@{}llllll@{}}
+            \toprule
+            Model                  & DIC   & p\_eff & WAIC  & log\_lik & Notes                    \\
+            \midrule
+            OLS (fixed parameters) & 80.3  & 5.0    & 81.3  & -35.1    & Frequentist baseline     \\
+            SSM (fixed $\beta$)    & 79.3  & 6.0    & 80.5  & -33.6    & Bayesian fixed-parameter \\
+            TVP-SSM (no drivers)   & 151.8 & 49.0   & 161.6 & -26.9    & Random-walk $\beta_t$    \\
+            TVP-SSM (EPU+GPR)      & 152.4 & 51.0   & 162.6 & -25.2    & Full model (baseline)    \\
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}[flushleft]
+            \footnotesize
+            \item DIC = Deviance Information Criterion; smaller is better.
+            \item WAIC = Widely Applicable Information Criterion; smaller is better (more robust than DIC).
+            \item log\_lik = log-likelihood (approx.); larger (less negative) is better.
+            \item p\_eff = effective number of parameters (TVP models include time-varying $\beta_t$).
+            \item Approximate values computed using SSM posterior parameters (e.g., $R\_var=0.230$, $Q\_var=0.519$).
+            \item TVP-SSM models achieve substantially higher log-likelihoods than fixed-parameter baselines, justifying time variation in $\beta_t$.
+        \end{tablenotes}
+    \end{threeparttable}
 \end{table}

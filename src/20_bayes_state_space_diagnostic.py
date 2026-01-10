@@ -294,11 +294,11 @@ def main():
     write_three_line_table(
         beta_df,
         TAB_DIR / "beta_t_path.tex",
-        caption="时变诊断性强度 $\\beta_t$（后验均值与90\\%区间）",
-        label="tab:beta_path",
+        caption="Time-Varying Diagnostic Intensity $\\beta_t$ (Posterior Mean and 90\\% Interval)",
+       label="tab:beta_path",
         notes=[
-            "测量方程：$FE_t = \\alpha + \\beta_t FR_t + \\gamma'Z_t + \\varepsilon_t$。",
-            "当 $\\beta_t<0$ 时，预测修正与预测误差负相关，体现过度反应（diagnostic expectations）。",
+            "Measurement equation: $FE_t = \\alpha + \\beta_t FR_t + \\gamma'Z_t + \\varepsilon_t$.",
+            "When $\\beta_t<0$, forecast revisions are negatively correlated with forecast errors, reflecting overreaction (diagnostic expectations).",
         ],
         float_format="{:.3f}",
     )
@@ -326,11 +326,11 @@ def main():
     write_three_line_table(
         summ_df,
         TAB_DIR / "ssm_posterior_params.tex",
-        caption="贝叶斯状态空间模型：参数后验分布摘要",
+        caption="Bayesian State-Space Model: Posterior Summary of Parameters",
         label="tab:ssm_params",
         notes=[
-            "Z 为标准化后的控制变量（包含食品通胀控制）；X 为标准化后的不确定性代理（EPU/GPR）。",
-            "R\\_var 为测量误差方差，Q\\_var 为状态创新方差。",
+            "Z are standardized control variables (includes food inflation control); X are standardized uncertainty proxies (EPU/GPR).",
+            "R\\_var is measurement error variance, Q\\_var is state innovation variance.",
         ],
         float_format="{:.3f}",
     )
@@ -342,16 +342,16 @@ def main():
                 "estimation_start": use["quarter"].iloc[0],
                 "estimation_end": use["quarter"].iloc[-1],
                 "T_quarters": int(T),
-                "note": "问卷序列从2011Q1起；CP 需要分项占比，导致有效估计样本可能更短（见本文附录）。",
+                "note": "Survey series starts from 2011Q1; CP method requires category breakdowns, leading to a potentially shorter effective estimation sample (see Appendix).",
             }
         ]
     )
     write_three_line_table(
         sample,
         TAB_DIR / "ssm_sample.tex",
-        caption="SSM 估计样本信息",
+        caption="SSM Estimation Sample Information",
         label="tab:ssm_sample",
-        notes=["估计样本由 mu\\_cp、CPI\\_YoY、以及控制变量均可得的季度构成。"],
+        notes=["Estimation sample consists of quarters where mu\\_cp, CPI\\_YoY, and all control variables are available."],
         float_format="{:.0f}",
     )
 
@@ -377,7 +377,7 @@ def main():
     write_figure_wrapper(
         image_rel_path="outputs/figures/beta_t.png",
         tex_path=FIG_DIR / "beta_t.tex",
-        caption="时变诊断性强度 $\\beta_t$ 的后验路径（90\\%置信带）",
+        caption="Posterior Path of Time-Varying Diagnostic Intensity $\\beta_t$ (90\\% Credible Band)",
         label="fig:beta_t",
         width=r"0.95\linewidth",
     )

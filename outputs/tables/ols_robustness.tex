@@ -1,40 +1,40 @@
 \begin{table}[!htbp]
-\centering
-\small
-\caption{OLS稳健性检验：不同控制变量设定}
-\label{tab:ols_rob}
-\begin{threeparttable}
-\begin{tabular}{@{}lllll@{}}
-\toprule
-Variable & (1) Baseline & (2) No Food & (3) Food Only & (4) +EPU+GPR \\
-\midrule
-Constant & 0.679** & 0.655* & -0.232*** & -0.412 \\
- & (0.341) & (0.363) & (0.089) & (0.384) \\
-Forecast Revision ($FR_t$) & -0.588*** & -0.570*** & -0.567*** & -0.592*** \\
- & (0.109) & (0.100) & (0.124) & (0.086) \\
-Food CPI YoY & -0.019* &  & -0.025* & -0.041*** \\
- & (0.012) &  & (0.014) & (0.009) \\
-M2 Growth YoY & -0.091** & -0.095** &  & -0.027 \\
- & (0.038) & (0.039) &  & (0.032) \\
-PPI YoY & -0.004 & 0.003 &  & -0.010 \\
- & (0.010) & (0.010) &  & (0.008) \\
-EPU Index &  &  &  & 0.003** \\
- &  &  &  & (0.001) \\
-GPR Index &  &  &  & -0.002 \\
- &  &  &  & (0.003) \\
-Observations & 43 & NaN & NaN & NaN \\
-Observations & NaN & 43 & NaN & NaN \\
-Observations & NaN & NaN & 43 & NaN \\
-Observations & NaN & NaN & NaN & 43 \\
-$R^2$ & 0.351 & 0.325 & 0.251 & 0.519 \\
-Adj. $R^2$ & 0.282 & 0.273 & 0.214 & 0.439 \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}[flushleft]
-\footnotesize
-\item 因变量均为预测误差 $FE_t$。
-\item 所有规格均使用Newey-West HAC标准误（滞后4期）。
-\item 核心变量 $FR_t$ 的系数在所有规格下稳健为负。
-\end{tablenotes}
-\end{threeparttable}
+    \centering
+    \small
+    \caption{OLS Robustness Checks: Alternative Control Variable Specifications}
+    \label{tab:ols_rob}
+    \begin{threeparttable}
+        \begin{tabular}{@{}lllll@{}}
+            \toprule
+            Variable                   & (1) Baseline & (2) No Food & (3) Food Only & (4) +EPU+GPR \\
+            \midrule
+            Constant                   & 0.679**      & 0.655*      & -0.232***     & -0.412       \\
+                                       & (0.341)      & (0.363)     & (0.089)       & (0.384)      \\
+            Forecast Revision ($FR_t$) & -0.588***    & -0.570***   & -0.567***     & -0.592***    \\
+                                       & (0.109)      & (0.100)     & (0.124)       & (0.086)      \\
+            Food CPI YoY               & -0.019*      &             & -0.025*       & -0.041***    \\
+                                       & (0.012)      &             & (0.014)       & (0.009)      \\
+            M2 Growth YoY              & -0.091**     & -0.095**    &               & -0.027       \\
+                                       & (0.038)      & (0.039)     &               & (0.032)      \\
+            PPI YoY                    & -0.004       & 0.003       &               & -0.010       \\
+                                       & (0.010)      & (0.010)     &               & (0.008)      \\
+            EPU Index                  &              &             &               & 0.003**      \\
+                                       &              &             &               & (0.001)      \\
+            GPR Index                  &              &             &               & -0.002       \\
+                                       &              &             &               & (0.003)      \\
+            Observations               & 43           & NaN         & NaN           & NaN          \\
+            Observations               & NaN          & 43          & NaN           & NaN          \\
+            Observations               & NaN          & NaN         & 43            & NaN          \\
+            Observations               & NaN          & NaN         & NaN           & 43           \\
+            $R^2$                      & 0.351        & 0.325       & 0.251         & 0.519        \\
+            Adj. $R^2$                 & 0.282        & 0.273       & 0.214         & 0.439        \\
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}[flushleft]
+            \footnotesize
+            \item The dependent variable in all specifications is the forecast error $FE_t$.
+            \item All specifications report Newey-West HAC standard errors (lag 4).
+            \item The coefficient on the core variable $FR_t$ is robustly negative across specifications.
+        \end{tablenotes}
+    \end{threeparttable}
 \end{table}
