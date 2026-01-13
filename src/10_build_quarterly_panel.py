@@ -96,32 +96,32 @@ def main():
         "pboc_sample_start": start_q,
         "pboc_sample_end": end_q,
         "n_quarters": int(nonmissing_key.sum()),
-        "note": "PBOC 储户问卷季度序列从 2011Q1 起（按当前抓取与整理口径）。",
+        "note": "PBOC depositor survey quarterly series starts from 2011Q1 (based on current scrape and alignment).",
     }])
     write_three_line_table(
         overview,
         TAB_DIR / "sample_overview.tex",
-        caption="样本覆盖与起始时间说明",
+        caption="Sample Coverage and Start Date",
         label="tab:sample_overview",
         notes=[
-            "本文核心问卷序列来自 PBOC《储户问卷调查报告》（季度）。",
-            "若未来补齐更早年份，可在不改变代码结构的前提下扩展样本。"
+            "The core survey series comes from PBOC Urban Depositors Survey (Quarterly).",
+            "Future extensions can expand the sample if earlier data becomes available."
         ],
         float_format="{:.0f}",
     )
 
     # Descriptive statistics for key variables
     key_cols = []
-    for c in ["infl_exp_index","mu_cp","CPI_YoY","Food_CPI_YoY_qavg","epu_qavg","gpr_qavg","Ind_Value_Added_YoY","M2_YoY"]:
+    for c in ["infl_exp_index","mu_cp","CPI_YoY","CPI_QoQ_Ann","Food_CPI_YoY_qavg","epu_qavg","gpr_qavg","Ind_Value_Added_YoY","M2_YoY"]:
         if c in df.columns:
             key_cols.append(c)
     desc = _desc(df.dropna(subset=["quarter"]), key_cols)
     write_three_line_table(
         desc,
         TAB_DIR / "desc_stats.tex",
-        caption="主要变量描述性统计（季度）",
+        caption="Descriptive Statistics of Key Variables (Quarterly)",
         label="tab:desc_stats",
-        notes=["均值/标准差以可得样本计算，变量定义见数据附录。"],
+        notes=["Mean/Std calculated using available sample. See data appendix for variable definitions."],
         float_format="{:.3f}",
     )
 

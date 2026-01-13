@@ -106,11 +106,11 @@ def main():
     write_three_line_table(
         cov,
         TAB_DIR / "cp_coverage.tex",
-        caption="Carlson–Parkin（CP）定量化：可用样本覆盖情况",
+        caption="Carlson-Parkin (CP) Quantification: Sample Coverage",
         label="tab:cp_coverage",
         notes=[
-            "CP 需要问卷中“上涨/下降/看不准”等占比数据；缺失占比的季度无法计算。",
-            "pi\\_baseline 使用 NBS CPI 同比通胀率（百分点）。"
+            "CP requires response shares (up/down/uncertain); quarters with missing shares cannot be computed.",
+            "pi\\_baseline uses NBS CPI YoY inflation rate (percentage points)."
         ],
         float_format="{:.0f}",
     )
@@ -119,9 +119,9 @@ def main():
     write_three_line_table(
         head,
         TAB_DIR / "cp_head.tex",
-        caption="CP 定量化通胀预期（前10期示例）",
+        caption="CP Quantified Inflation Expectations (First 10 Periods)",
         label="tab:cp_head",
-        notes=["mu\\_cp 为定量化的下一季度通胀预期（同比，百分点）。"],
+        notes=["mu\\_cp is the quantified next-quarter inflation expectation (YoY, percentage points)."],
         float_format="{:.3f}",
     )
 

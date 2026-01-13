@@ -62,21 +62,77 @@ def main():
     m = m.dropna(subset=["value"])
     m_wide = m.pivot_table(index="date", columns="series_name", values="value", aggfunc="mean").sort_index()
 
-    # Convert index-style YoY to inflation rates
+    # Convert raw indices to rates
+    # IMPORTANT: Raw data "CPI_YoY" is actually MoM Index (e.g. 100.9 = 0.9% MoM increase)
+    # Early data (2000) contains zeros which would break cumulative product
+    
     if "CPI_YoY" in m_wide.columns:
-        m_wide["CPI_YoY_idx"] = m_wide["CPI_YoY"]
-        m_wide["CPI_YoY"] = m_wide["CPI_YoY_idx"] - 100.0
+        m_wide["CPI_MoM_Idx"] = m_wide["CPI_YoY"]
+        m_wide["CPI_MoM"] = m_wide["CPI_MoM_Idx"] - 100.0
+        
+        # Find first non-zero index to start cumulative product
+        first_valid_idx = m_wide[m_wide["CPI_MoM_Idx"] > 0].index.min()
+        
+        if pd.notna(first_valid_idx):
+            # Reconstruct CPI Level from first valid month (Base=100 at start)
+            m_wide.loc[first_valid_idx:, "CPI_Level"] = (
+                100.0 * (1.0 + m_wide.loc[first_valid_idx:, "CPI_MoM"] / 100.0).cumprod()
+            )
+            # Compute true YoY: (Level_t / Level_{t-12} - 1) * 100
+            m_wide["CPI_YoY_Rate"] = 100.0 * (m_wide["CPI_Level"] / m_wide["CPI_Level"].shift(12) - 1.0)
+        else:
+            m_wide["CPI_Level"] = np.nan
+            m_wide["CPI_YoY_Rate"] = np.nan
+    
     if "PPI_YoY" in m_wide.columns:
-        m_wide["PPI_YoY_idx"] = m_wide["PPI_YoY"]
-        m_wide["PPI_YoY"] = m_wide["PPI_YoY_idx"] - 100.0
+        m_wide["PPI_MoM_Idx"] = m_wide["PPI_YoY"]
+        m_wide["PPI_MoM"] = m_wide["PPI_MoM_Idx"] - 100.0
+        
+        first_valid_idx = m_wide[m_wide["PPI_MoM_Idx"] > 0].index.min()
+        
+        if pd.notna(first_valid_idx):
+            m_wide.loc[first_valid_idx:, "PPI_Level"] = (
+                100.0 * (1.0 + m_wide.loc[first_valid_idx:, "PPI_MoM"] / 100.0).cumprod()
+            )
+            m_wide["PPI_YoY_Rate"] = 100.0 * (m_wide["PPI_Level"] / m_wide["PPI_Level"].shift(12) - 1.0)
+        else:
+            m_wide["PPI_Level"] = np.nan
+            m_wide["PPI_YoY_Rate"] = np.nan
 
     out_m = INTERMEDIATE_DIR / "nbs_macro_monthly_wide.csv"
     m_wide.reset_index().to_csv(out_m, index=False, encoding="utf-8-sig")
 
-    # Monthly -> Quarterly averages
+    # Monthly -> Quarterly (use last month level for QoQ, mean for others)
+    # For inflation rates, we usually average monthly YoY rates.
+    # For QoQ Annualized, we need (Level_end_Q / Level_end_PrevQ)^4 - 1
+    
+    # 1. Add quarter column and reset index to prepare for groupby
     qavg = m_wide.copy()
     qavg["quarter"] = qavg.index.to_period("Q").astype(str)
-    qavg = qavg.reset_index(drop=True).groupby("quarter", as_index=False).mean(numeric_only=True)
+    qavg = qavg.reset_index(drop=True)
+    
+    # 2. Define aggregation dict
+    agg_dict = {}
+    for c in qavg.columns:
+        if c == "quarter":
+            continue
+        elif c in ["CPI_Level", "PPI_Level"]:
+            agg_dict[c] = "last"  # Take last month of quarter for price levels
+        else:
+            agg_dict[c] = "mean"
+    
+    # 3. Aggregate to quarterly
+    q_agg = qavg.groupby("quarter", as_index=False).agg(agg_dict)
+    
+    # 4. Compute Quarterly rates from aggregated Levels
+    if "CPI_Level" in q_agg.columns:
+        # QoQ Annualized: ((P_t / P_{t-1})^4 - 1) * 100
+        q_agg["CPI_QoQ_Ann"] = 100.0 * ((q_agg["CPI_Level"] / q_agg["CPI_Level"].shift(1))**4 - 1.0)
+        # Verify YoY from quarterly levels (vs average of monthly YoY)
+        q_agg["CPI_YoY_from_Level"] = 100.0 * (q_agg["CPI_Level"] / q_agg["CPI_Level"].shift(4) - 1.0)
+        # Rename the averaged 'CPI_YoY_Rate' to 'CPI_YoY' for compatibility
+        if "CPI_YoY_Rate" in q_agg.columns:
+            q_agg = q_agg.rename(columns={"CPI_YoY_Rate": "CPI_YoY"})
 
     # Quarterly block (GDP level)
     q = df[df["frequency"].astype(str).str.lower().eq("quarterly")].copy()
@@ -90,10 +146,10 @@ def main():
             q_wide = q_wide.sort_values("quarter")
             # compute YoY growth from 4-quarter lag
             q_wide["GDP_yoy_pct"] = 100.0 * (q_wide["GDP_level"] / q_wide["GDP_level"].shift(4) - 1.0)
-        qavg = qavg.merge(q_wide, on="quarter", how="left")
+        q_agg = q_agg.merge(q_wide, on="quarter", how="left")
 
     out_q = INTERMEDIATE_DIR / "nbs_macro_quarterly.csv"
-    qavg.sort_values("quarter").to_csv(out_q, index=False, encoding="utf-8-sig")
+    q_agg.sort_values("quarter").to_csv(out_q, index=False, encoding="utf-8-sig")
 
     # Coverage table
     cov_rows = []
@@ -111,11 +167,11 @@ def main():
     write_three_line_table(
         cov,
         TAB_DIR / "nbs_series_coverage.tex",
-        caption="NBS 宏观控制变量覆盖情况（季度频率）",
+        caption="NBS Macro Control Variables Coverage (Quarterly)",
         label="tab:nbs_coverage",
         notes=[
-            "CPI_YoY、PPI_YoY 为同比指数（=100 表示与上年同期持平），本文转化为通胀率：指数-100。",
-            "GDP_level 为季度GDP水平，GDP_yoy_pct 按四季度滞后计算同比增速。"
+            "CPI\\_YoY, PPI\\_YoY are YoY indices (100 = same as last year); transformed to inflation rates: Index - 100.",
+            "GDP\\_level is nominal GDP; GDP\\_yoy\\_pct is computed as 4-quarter lag growth."
         ],
         float_format="{:.0f}",
     )

@@ -8,8 +8,9 @@ import subprocess
 from pathlib import Path
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
-PANEL = ROOT/"data"/"panel_quarterly.csv"
+# Fix: robustness folder is at src/robustness, so need parents[2] to get to project root
+ROOT = Path(__file__).resolve().parents[2]
+PANEL = ROOT / "data" / "processed" / "panel_quarterly.csv"
 
 def run(cmd):
     print("\n$", " ".join(cmd))
@@ -18,24 +19,24 @@ def run(cmd):
 def main():
     py = sys.executable
 
-    # 1) SSM baseline (mu_cp & CPI_YoY; Z includes Food, M2, PPI; X includes EPU, GPR)
-    run([py, str(ROOT/"scripts"/"ssm_tvp_diagnostic.py"),
+    # 1) SSM baseline (mu_cp & CPI_QoQ_Ann; Z includes Food, M2, PPI; X includes EPU, GPR)
+    run([py, str(ROOT / "src" / "robustness" / "ssm_tvp_diagnostic.py"),
          "--panel", str(PANEL),
          "--exp_var", "mu_cp",
-         "--infl_var", "CPI_YoY",
+         "--infl_var", "CPI_QoQ_Ann",
          "--standardize_yH", "0",
-         "--outdir", str(ROOT/"outputs"/"ssm_baseline")])
+         "--outdir", str(ROOT / "outputs" / "ssm_baseline")])
 
     # 2) BVAR baseline
-    run([py, str(ROOT/"scripts"/"bvar_sign_restrictions.py"),
+    run([py, str(ROOT / "src" / "robustness" / "bvar_sign_restrictions.py"),
          "--panel", str(PANEL),
-         "--vars", "mu_cp","CPI_YoY","Ind_Value_Added_YoY","epu_qavg","gpr_qavg",
+         "--vars", "mu_cp","CPI_QoQ_Ann","Ind_Value_Added_YoY","epu_qavg","gpr_qavg",
          "--exp_var", "mu_cp",
-         "--infl_var", "CPI_YoY",
+         "--infl_var", "CPI_QoQ_Ann",
          "--p", "2",
          "--H", "12",
          "--fe_kmax", "4",
-         "--outdir", str(ROOT/"outputs"/"bvar_baseline")])
+         "--outdir", str(ROOT / "outputs" / "bvar_baseline")])
 
 if __name__ == "__main__":
     main()

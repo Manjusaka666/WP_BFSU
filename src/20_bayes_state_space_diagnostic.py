@@ -7,8 +7,8 @@ Core equations (quarterly):
 
 Where:
   - mu_cp: Carlson–Parkin quantified expected inflation for next quarter (pp)
-  - CPI_YoY: realized CPI inflation rate (pp)
-  - FE_t = CPI_YoY_{t+1} - mu_cp_t
+  - CPI_QoQ_Ann: realized CPI Quarter-on-Quarter Annualized inflation rate (pp)
+  - FE_t = CPI_QoQ_Ann_{t+1} - mu_cp_t
   - FR_t = mu_cp_t - mu_cp_{t-1}
   - Z_t includes Food CPI control (Food_CPI_YoY_qavg) to address "pork/food cycle" concerns.
   - X_t includes uncertainty proxies (EPU, GPR) to allow state-dependent diagnostic intensity.
@@ -41,6 +41,14 @@ from _paths import PROCESSED_DIR, TAB_DIR, FIG_DIR, ensure_dirs
 from utils_latex import write_three_line_table, write_figure_wrapper
 
 PANEL_FILE = PROCESSED_DIR / "panel_quarterly.csv"
+
+# Plotting configuration
+plt.rcParams.update({
+    "font.family": "serif",
+    "font.serif": ["Times New Roman"],
+    "mathtext.fontset": "cm",
+    "axes.unicode_minus": False
+})
 
 
 def _draw_norm(
@@ -125,7 +133,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--panel", type=str, default=str(PANEL_FILE))
     ap.add_argument("--exp_var", type=str, default="mu_cp")
-    ap.add_argument("--infl_var", type=str, default="CPI_YoY")
+    ap.add_argument("--infl_var", type=str, default="CPI_QoQ_Ann")
     ap.add_argument(
         "--z_cols", nargs="*", default=["Food_CPI_YoY_qavg", "M2_YoY", "PPI_YoY"]
     )
@@ -355,22 +363,47 @@ def main():
         float_format="{:.0f}",
     )
 
-    # Plot beta_t
+    # Plot beta_t with professional styling
     FIG_DIR.mkdir(parents=True, exist_ok=True)
     fig_path = FIG_DIR / "beta_t.png"
-    plt.figure()
+    
+    # Set publication style
+    plt.rcParams['font.family'] = 'serif'
+    plt.rcParams['font.serif'] = ['Times New Roman', 'DejaVu Serif']
+    plt.rcParams['font.size'] = 10
+    plt.rcParams['figure.facecolor'] = 'white'
+    plt.rcParams['axes.facecolor'] = 'white'
+    plt.rcParams['savefig.dpi'] = 300
+    plt.rcParams['savefig.bbox'] = 'tight'
+    
+    fig, ax = plt.subplots(figsize=(8, 4.5))
     x = np.arange(T)
-    plt.plot(x, beta_mean)
-    plt.fill_between(x, beta_p05, beta_p95, alpha=0.2)
-    plt.axhline(0.0, linewidth=1)
-    plt.xticks(
-        x[:: max(1, T // 10)],
-        use["quarter"].to_list()[:: max(1, T // 10)],
-        rotation=45,
-        ha="right",
-    )
+    
+    # Main line - professional blue
+    ax.plot(x, beta_mean, color='#2E5090', linewidth=2, label=r'Posterior Mean $\beta_t$')
+    
+    # Credible interval - light blue fill
+    ax.fill_between(x, beta_p05, beta_p95, alpha=0.25, color='#7FA5D2', 
+                     label='90% Credible Interval')
+    
+    # Zero reference line
+    ax.axhline(0.0, color='#5A5A5A', linestyle='--', linewidth=1.2, alpha=0.7)
+    
+    # Styling
+    ax.set_xlabel('Quarter', fontsize=11)
+    ax.set_ylabel(r'Diagnostic Parameter $\beta_t$', fontsize=11)
+    ax.legend(loc='lower left', frameon=False, fontsize=9)
+    ax.grid(True, alpha=0.2, linestyle=':', linewidth=0.5)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    
+    # X-axis formatting
+    ax.set_xticks(x[::max(1, T // 10)])
+    ax.set_xticklabels(use["quarter"].to_list()[::max(1, T // 10)], 
+                       rotation=45, ha='right', fontsize=9)
+    
     plt.tight_layout()
-    plt.savefig(fig_path, dpi=200)
+    plt.savefig(fig_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
 
     # Figure wrapper tex (relative path from paper root is user-defined; we keep outputs/figures/...)

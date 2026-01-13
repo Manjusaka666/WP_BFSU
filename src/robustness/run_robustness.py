@@ -63,7 +63,7 @@ def main():
             "SSM_baseline",
             dict(
                 exp_var="mu_cp",
-                infl_var="CPI_YoY",
+                infl_var="CPI_QoQ_Ann",
                 z_cols=["Food_CPI_YoY_qavg", "M2_YoY", "PPI_YoY"],
                 x_cols=["epu_qavg", "gpr_qavg"],
                 standardize_yH=0,
@@ -73,7 +73,7 @@ def main():
             "SSM_Z_food_only",
             dict(
                 exp_var="mu_cp",
-                infl_var="CPI_YoY",
+                infl_var="CPI_QoQ_Ann",
                 z_cols=["Food_CPI_YoY_qavg"],
                 x_cols=["epu_qavg", "gpr_qavg"],
                 standardize_yH=0,
@@ -83,7 +83,7 @@ def main():
             "SSM_X_epu_only",
             dict(
                 exp_var="mu_cp",
-                infl_var="CPI_YoY",
+                infl_var="CPI_QoQ_Ann",
                 z_cols=["Food_CPI_YoY_qavg", "M2_YoY", "PPI_YoY"],
                 x_cols=["epu_qavg"],
                 standardize_yH=0,
@@ -93,7 +93,7 @@ def main():
             "SSM_X_gpr_only",
             dict(
                 exp_var="mu_cp",
-                infl_var="CPI_YoY",
+                infl_var="CPI_QoQ_Ann",
                 z_cols=["Food_CPI_YoY_qavg", "M2_YoY", "PPI_YoY"],
                 x_cols=["gpr_qavg"],
                 standardize_yH=0,
@@ -103,7 +103,7 @@ def main():
             "SSM_alt_expect_index",
             dict(
                 exp_var="infl_exp_index",
-                infl_var="CPI_YoY",
+                infl_var="CPI_QoQ_Ann",
                 z_cols=["Food_CPI_YoY_qavg", "M2_YoY", "PPI_YoY"],
                 x_cols=["epu_qavg", "gpr_qavg"],
                 standardize_yH=1,
@@ -116,7 +116,7 @@ def main():
         outdir = OUT / name
         cmd = [
             py,
-            str(ROOT / "src" / "20_bayes_state_space_diagnostic.py"),
+            str(ROOT / "src" / "robustness" / "ssm_tvp_diagnostic.py"),
             "--panel",
             str(PANEL),
             "--exp_var",
@@ -154,13 +154,13 @@ def main():
             dict(
                 vars=[
                     "mu_cp",
-                    "CPI_YoY",
+                    "CPI_QoQ_Ann",
                     "Ind_Value_Added_YoY",
                     "epu_qavg",
                     "gpr_qavg",
                 ],
                 exp_var="mu_cp",
-                infl_var="CPI_YoY",
+                infl_var="CPI_QoQ_Ann",
                 p=2,
             ),
         ),
@@ -169,13 +169,13 @@ def main():
             dict(
                 vars=[
                     "mu_cp",
-                    "CPI_YoY",
+                    "CPI_QoQ_Ann",
                     "Ind_Value_Added_YoY",
                     "epu_qavg",
                     "gpr_qavg",
                 ],
                 exp_var="mu_cp",
-                infl_var="CPI_YoY",
+                infl_var="CPI_QoQ_Ann",
                 p=1,
             ),
         ),
@@ -184,13 +184,13 @@ def main():
             dict(
                 vars=[
                     "mu_cp",
-                    "CPI_YoY",
+                    "CPI_QoQ_Ann",
                     "Ind_Value_Added_YoY",
                     "epu_qavg",
                     "gpr_qavg",
                 ],
                 exp_var="mu_cp",
-                infl_var="CPI_YoY",
+                infl_var="CPI_QoQ_Ann",
                 p=4,
             ),
         ),
@@ -199,44 +199,30 @@ def main():
             dict(
                 vars=[
                     "mu_cp",
-                    "CPI_YoY",
+                    "CPI_QoQ_Ann",
                     "Ind_Value_Added_YoY",
                     "Food_CPI_YoY_qavg",
                     "epu_qavg",
                     "gpr_qavg",
                 ],
                 exp_var="mu_cp",
-                infl_var="CPI_YoY",
+                infl_var="CPI_QoQ_Ann",
                 p=2,
             ),
         ),
-        (
-            "BVAR_alt_infl",
-            dict(
-                vars=[
-                    "mu_cp",
-                    "CPI_YoY_idx",
-                    "Ind_Value_Added_YoY",
-                    "epu_qavg",
-                    "gpr_qavg",
-                ],
-                exp_var="mu_cp",
-                infl_var="CPI_YoY_idx",
-                p=2,
-            ),
-        ),
+        # Removed BVAR_alt_infl spec - CPI_YoY_idx variable not available in panel
         (
             "BVAR_alt_expect_index",
             dict(
                 vars=[
                     "infl_exp_index",
-                    "CPI_YoY",
+                    "CPI_QoQ_Ann",
                     "Ind_Value_Added_YoY",
                     "epu_qavg",
                     "gpr_qavg",
                 ],
                 exp_var="infl_exp_index",
-                infl_var="CPI_YoY",
+                infl_var="CPI_QoQ_Ann",
                 p=2,
             ),
         ),
@@ -247,7 +233,7 @@ def main():
         outdir = OUT / name
         cmd = [
             py,
-            str(ROOT / "src" / "30_bvar_sign_restrictions.py"),
+            str(ROOT / "src" / "robustness" / "bvar_sign_restrictions.py"),
             "--panel",
             str(PANEL),
             "--vars",

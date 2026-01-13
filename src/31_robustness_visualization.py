@@ -19,6 +19,14 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
+# Plotting configuration
+plt.rcParams.update({
+    "font.family": "serif",
+    "font.serif": ["Times New Roman"],
+    "mathtext.fontset": "cm",
+    "axes.unicode_minus": False
+})
 import matplotlib.gridspec as gridspec
 
 # 配置matplotlib中文字体
@@ -80,20 +88,20 @@ def plot_beta_comparison():
         food_only = -0.35 + 0.08 * np.sin(t / 5) + 0.04 * np.random.randn(T).cumsum()
         epu_only = -0.45 + 0.12 * np.sin(t / 4) + 0.06 * np.random.randn(T).cumsum()
         
-        ax.plot(baseline, label='Baseline (示例数据)', linewidth=2, alpha=0.9)
-        ax.plot(food_only, label='Food Only (示例)', linewidth=1.5, alpha=0.7)
-        ax.plot(epu_only, label='EPU Only (示例)', linewidth=1.5, alpha=0.7)
+        ax.plot(baseline, label='Baseline (Synthetic)', linewidth=2, alpha=0.9)
+        ax.plot(food_only, label='Food Only (Synthetic)', linewidth=1.5, alpha=0.7)
+        ax.plot(epu_only, label='EPU Only (Synthetic)', linewidth=1.5, alpha=0.7)
     
     ax.axhline(0, color='k', linestyle='--', linewidth=1, alpha=0.5)
-    ax.set_xlabel('时间（季度）', fontsize=12)
-    ax.set_ylabel('诊断强度 (β_t)', fontsize=12)
-    ax.set_title('稳健性检验：不同规格下的β_t路径对比', fontsize=14, fontweight='bold', pad=15)
+    ax.set_xlabel('Horizon (quarters)', fontsize=12)
+    ax.set_ylabel('Diagnostic Intensity (β_t)', fontsize=12)
+    ax.set_title('Robustness Check: β_t Paths Across Specifications', fontsize=14, fontweight='bold', pad=15)
     ax.legend(loc='lower left', frameon=True, fontsize=9, ncol=2)
     ax.grid(True, alpha=0.3, linestyle=':')
     
     plt.tight_layout()
     outfile = FIG_DIR / "robustness_beta_compare.png"
-    fig.savefig(outfile, dpi=200, bbox_inches='tight')
+    fig.savefig(outfile, dpi=300, bbox_inches='tight')
     plt.close(fig)
     
     if has_data:
@@ -137,14 +145,14 @@ def plot_bvar_comparison():
                 ax.set_ylabel(var_name, fontsize=10)
                 ax.grid(True, alpha=0.3)
                 if idx >= 2:
-                    ax.set_xlabel('期数（季度）', fontsize=10)
+                    ax.set_xlabel('Horizon (quarters)', fontsize=10)
             
-            fig.suptitle('BVAR诊断性冲击的脉冲响应（中位数）', 
+            fig.suptitle('BVAR Diagnostic Shock Impulse Response (Median)', 
                         fontsize=14, fontweight='bold', y=0.995)
             plt.tight_layout()
             
             outfile = FIG_DIR / "robustness_bvar_compare.png"
-            fig.savefig(outfile, dpi=200, bbox_inches='tight')
+            fig.savefig(outfile, dpi=300, bbox_inches='tight')
             plt.close(fig)
             
             print(f"[Robustness Viz] ✓ Wrote: {outfile} (main BVAR IRF)")
@@ -198,11 +206,11 @@ def plot_bvar_comparison():
     bars = ax.bar(specs, accept_rates, color=colors, alpha=0.8, 
                   edgecolor='black', linewidth=1.2)
     ax.axhline(0.95, color='red', linestyle='--', linewidth=1.5, 
-              label='95% 接受阈值', alpha=0.7)
+              label='95% Acceptance Threshold', alpha=0.7)
     
-    ax.set_ylabel('符号约束接受率', fontsize=12)
-    ax.set_xlabel('BVAR 规格', fontsize=12)
-    ax.set_title('稳健性检验：不同BVAR规格的诊断性冲击识别成功率', 
+    ax.set_ylabel('Acceptance Rate', fontsize=12)
+    ax.set_xlabel('BVAR Specification', fontsize=12)
+    ax.set_title('Robustness Check: Acceptance Rate of Diagnostic Shock Identification', 
                 fontsize=14, fontweight='bold', pad=15)
     ax.set_ylim(max(0.9, min(accept_rates) - 0.05), 1.02)
     ax.legend(fontsize=10, loc='lower right')
@@ -216,7 +224,7 @@ def plot_bvar_comparison():
     
     plt.tight_layout()
     outfile = FIG_DIR / "robustness_bvar_compare.png"
-    fig.savefig(outfile, dpi=200, bbox_inches='tight')
+    fig.savefig(outfile, dpi=300, bbox_inches='tight')
     plt.close(fig)
     
     print(f"[Robustness Viz] ✓ Wrote: {outfile}")
@@ -234,9 +242,9 @@ def plot_prior_sensitivity():
     """
     # Check if actual prior sensitivity runs exist
     lambda_dirs = [
-        (ROBUSTNESS_DIR / "SSM_prior_tight", "紧先验 (λ_Q=0.2)", '#2E86AB'),
-        (ROBUSTNESS_DIR / "SSM_baseline", "基准先验 (λ_Q=1.0)", '#F18F01'),
-        (ROBUSTNESS_DIR / "SSM_prior_loose", "松先验 (λ_Q=5.0)", '#6A994E'),
+        (ROBUSTNESS_DIR / "SSM_prior_tight", "Tight (λ_Q=0.2)", '#2E86AB'),
+        (ROBUSTNESS_DIR / "SSM_baseline", "Baseline (λ_Q=1.0)", '#F18F01'),
+        (ROBUSTNESS_DIR / "SSM_prior_loose", "Loose (λ_Q=5.0)", '#6A994E'),
     ]
     
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -276,16 +284,16 @@ def plot_prior_sensitivity():
         )
     
     ax.axhline(0, color='k', linestyle='--', linewidth=1, alpha=0.5)
-    ax.set_xlabel('时间（季度）', fontsize=12)
+    ax.set_xlabel('Time (Quarter)', fontsize=12)
     ax.set_ylabel('β_t', fontsize=12)
-    ax.set_title('先验敏感性分析：不同Q先验下的β_t路径', 
+    ax.set_title('Prior Sensitivity Analysis: β_t Paths Under Different Q Priors', 
                 fontsize=14, fontweight='bold', pad=15)
     ax.legend(fontsize=10, loc='lower left')
     ax.grid(True, alpha=0.3, linestyle=':')
     
     plt.tight_layout()
     outfile = FIG_DIR / "prior_sensitivity.png"
-    fig.savefig(outfile, dpi=200, bbox_inches='tight')
+    fig.savefig(outfile, dpi=300, bbox_inches='tight')
     plt.close(fig)
     
     print(f"[Robustness Viz] ✓ Wrote: {outfile} ({plotted_count} prior specifications)")

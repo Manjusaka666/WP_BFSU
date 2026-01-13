@@ -1,23 +1,23 @@
 \begin{table}[!htbp]
     \centering
     \small
-    \caption{Descriptive Statistics: Forecast Errors and Forecast Revisions}
+    \caption{Forecast Error and Revision Statistics}
     \label{tab:fe_fr}
     \begin{threeparttable}
         \begin{tabular}{@{}lllllllll@{}}
             \toprule
             Variable               & N      & Mean   & Std   & Min    & P25    & Median & P75   & Max   \\
             \midrule
-            Forecast Error (FE)    & 43.000 & -0.276 & 0.604 & -1.793 & -0.460 & -0.232 & 0.058 & 1.703 \\
+            Forecast Error (FE)    & 43.000 & 1.130  & 3.171 & -7.004 & -0.670 & 1.453  & 3.110 & 7.611 \\
             Forecast Revision (FR) & 43.000 & -0.051 & 0.507 & -1.612 & -0.306 & -0.042 & 0.319 & 0.916 \\
-            Corr(FE, FR)           & 43.000 & -0.451 &       &        &        &        &       &       \\
+            Corr(FE, FR)           & 43.000 & -0.192 &       &        &        &        &       &       \\
             \bottomrule
         \end{tabular}
         \begin{tablenotes}[flushleft]
             \footnotesize
-            \item $FE_t = CPI_{t+1} - \mu_t$ (forecast error).
-            \item $FR_t = \mu_t - \mu_{t-1}$ (forecast revision).
-            \item A negative Corr(FE, FR) provides preliminary evidence of diagnostic expectations (overreaction).
+            \item $FE_t = \pi^{QoQ,ann}_{t+1} - \mu_t$ (Forecast Error), where $\pi^{QoQ,ann}$ corresponds to CPI QoQ Ann.
+            \item $FR_t = \mu_t - \mu_{t-1}$ (Forecast Revision).
+            \item $Corr(FE, FR) < 0$ suggests diagnostic expectations.
         \end{tablenotes}
     \end{threeparttable}
 \end{table}

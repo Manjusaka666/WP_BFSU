@@ -1,25 +1,25 @@
 \begin{table}[!htbp]
-    \centering
-    \small
-    \caption{OLS Regression Diagnostic Tests (Based on Model (3) Full Controls)}
-    \label{tab:ols_diag}
-    \begin{threeparttable}
-        \begin{tabular}{@{}llll@{}}
-            \toprule
-            Test              & Statistic & P-value & Conclusion            \\
-            \midrule
-            Breusch-Pagan     & 8.198     & 0.085   & Homoskedastic         \\
-            Ljung-Box (lag=4) & 3.492     & 0.479   & No autocorr           \\
-            Durbin-Watson     & 1.479     & —       & H0: no autocorr if ~2 \\
-            Jarque-Bera       & 8.506     & 0.014   & Non-normal            \\
-            \bottomrule
-        \end{tabular}
-        \begin{tablenotes}[flushleft]
-            \footnotesize
-            \item Breusch-Pagan: Null hypothesis is homoskedasticity.
-            \item Ljung-Box: Null hypothesis is no residual autocorrelation.
-            \item Durbin-Watson: Statistic near 2 indicates no first-order autocorrelation.
-            \item Jarque-Bera: Null hypothesis is residuals are normally distributed.
-        \end{tablenotes}
-    \end{threeparttable}
+\centering
+\small
+\caption{OLS Diagnostics (Model 3 with Full Controls)}
+\label{tab:ols_diag}
+\begin{threeparttable}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Test & Statistic & P-value & Conclusion \\
+\midrule
+Breusch-Pagan & 10.687 & 0.030 & Heteroskedastic \\
+Ljung-Box (lag=4) & 22.220 & 0.000 & Autocorrelated \\
+Durbin-Watson & 2.721 & — & H0: no autocorr if ~2 \\
+Jarque-Bera & 0.818 & 0.664 & Normal \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Breusch-Pagan: H0 is homoskedasticity.
+\item Ljung-Box: H0 is no autocorrelation.
+\item Durbin-Watson: Statistic near 2 indicates no first-order autocorrelation.
+\item Jarque-Bera: H0 is normality of residuals.
+\end{tablenotes}
+\end{threeparttable}
 \end{table}

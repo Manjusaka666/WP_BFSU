@@ -7,7 +7,7 @@ Model (quarterly):
   FE_t   = alpha + beta_t * FR_t + gamma' Z_t + eps_t,   eps_t ~ N(0, R)
   beta_t = beta_{t-1} + d' X_t + u_t,                    u_t   ~ N(0, Q)
 
-Default construction (if you use exp_var=mu_cp, infl_var=CPI_YoY):
+Default construction (if you use exp_var=mu_cp, infl_var=CPI_QoQ_Ann):
   FE_t = infl_{t+1} - exp_t
   FR_t = exp_t - exp_{t-1}
 
@@ -95,7 +95,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--panel", type=str, required=True)
     ap.add_argument("--exp_var", type=str, default="mu_cp")
-    ap.add_argument("--infl_var", type=str, default="CPI_YoY")
+    ap.add_argument("--infl_var", type=str, default="CPI_QoQ_Ann")
     ap.add_argument("--z_cols", nargs="*", default=["Food_CPI_YoY_qavg","M2_YoY","PPI_YoY"])
     ap.add_argument("--x_cols", nargs="*", default=["epu_qavg","gpr_qavg"])
     ap.add_argument("--draws", type=int, default=6000)

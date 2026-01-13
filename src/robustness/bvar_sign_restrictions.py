@@ -7,7 +7,7 @@ Restriction (generalized):
   (R1) IRF_exp(0) > 0
   (R2) FE reversal: IRF_infl(h+1) - IRF_exp(h) < 0 for h=0..fe_kmax-1
 
-Where exp is the expectation variable (default mu_cp), infl is inflation (default CPI_YoY).
+Where exp is the expectation variable (default mu_cp), infl is inflation (default CPI_QoQ_Ann).
 
 Outputs:
   - acceptance.csv
@@ -103,9 +103,9 @@ def plot_irf_bands(h, med, lo, hi, names, title, out_png: Path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--panel", type=str, required=True)
-    ap.add_argument("--vars", nargs="+", default=["mu_cp","CPI_YoY","Ind_Value_Added_YoY","epu_qavg","gpr_qavg"])
+    ap.add_argument("--vars", nargs="+", default=["mu_cp","CPI_QoQ_Ann","Ind_Value_Added_YoY","epu_qavg","gpr_qavg"])
     ap.add_argument("--exp_var", type=str, default="mu_cp")
-    ap.add_argument("--infl_var", type=str, default="CPI_YoY")
+    ap.add_argument("--infl_var", type=str, default="CPI_QoQ_Ann")
     ap.add_argument("--p", type=int, default=2)
     ap.add_argument("--H", type=int, default=12)
     ap.add_argument("--draws", type=int, default=2000)

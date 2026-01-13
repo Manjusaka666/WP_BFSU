@@ -9,7 +9,7 @@ Key idea (referee-proof):
   In our quarterly VAR we implement this via a sign restriction on the FE_realized variable.
 
 Data construction within this script:
-  FE_realized_t := CPI_YoY_t - mu_cp_{t-1}
+  FE_realized_t := CPI_QoQ_Ann_t - mu_cp_{t-1}
 
 Inputs:
   data/processed/panel_quarterly.csv
@@ -30,6 +30,14 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
+# Plotting configuration
+plt.rcParams.update({
+    "font.family": "serif",
+    "font.serif": ["Times New Roman"],
+    "mathtext.fontset": "cm",
+    "axes.unicode_minus": False
+})
 
 
 # ---------------- LaTeX table (booktabs three-line) ----------------
@@ -173,10 +181,10 @@ def main():
     ap.add_argument(
         "--vars",
         nargs="+",
-        default=["mu_cp", "CPI_YoY", "Ind_Value_Added_YoY", "epu_qavg", "gpr_qavg"],
+        default=["mu_cp", "CPI_QoQ_Ann", "Ind_Value_Added_YoY", "epu_qavg", "gpr_qavg"],
     )
     ap.add_argument("--exp_var", default="mu_cp")
-    ap.add_argument("--infl_var", default="CPI_YoY")
+    ap.add_argument("--infl_var", default="CPI_QoQ_Ann")
     ap.add_argument("--p", type=int, default=2)
     ap.add_argument("--H", type=int, default=12)
     ap.add_argument(

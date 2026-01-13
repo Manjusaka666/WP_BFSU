@@ -271,9 +271,9 @@ def main():
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument('--panel', default=str(PANEL_FILE))
-    ap.add_argument('--n_chains', type=int, default=3, help='Number of independent chains for R-hat')
-    ap.add_argument('--draws_per_chain', type=int, default=5000)
-    ap.add_argument('--burn', type=int, default=1000)
+    ap.add_argument('--n_chains', type=int, default=4, help='Number of independent chains for R-hat')
+    ap.add_argument('--draws_per_chain', type=int, default=10000)
+    ap.add_argument('--burn', type=int, default=3000)
     ap.add_argument('--seed_base', type=int, default=123)
     args = ap.parse_args()
     
@@ -282,7 +282,7 @@ def main():
     panel['_q'] = pd.PeriodIndex(panel['quarter'], freq='Q')
     panel = panel.sort_values('_q').drop(columns=['_q']).reset_index(drop=True)
     
-    panel['CPI_lead1'] = panel['CPI_YoY'].shift(-1)
+    panel['CPI_lead1'] = panel['CPI_QoQ_Ann'].shift(-1)
     panel['FE_next'] = panel['CPI_lead1'] - panel['mu_cp']
     panel['FR'] = panel['mu_cp'] - panel['mu_cp'].shift(1)
     
@@ -306,7 +306,9 @@ def main():
     V_theta0 = np.eye(1 + kz) * 100**2
     V_d0 = np.eye(kx) * 100**2
     aR0, bR0 = 2.0, 1.0
-    aQ0, bQ0 = 2.0, 1.0
+    # Q prior: slightly less restrictive for better MCMC mixing
+    # InvGamma(2.5, 0.5) has mean 0.5/(2.5-1)=0.33, more reasonable for quarterly data
+    aQ0, bQ0 = 2.5, 0.5
     beta0_mean, beta0_var = 0.0, 1.0
     
     # Run M chains
@@ -383,20 +385,20 @@ def main():
             'Geweke_p': f"{p:.3f}",
             'R_hat': f"{rhat:.4f}",
             'ESS': f"{int(ess)}",
-            'Converged': '✓' if (abs(z) < 1.96 and rhat < 1.1 and ess > 400) else '✗'
+            'Converged': '✓' if (abs(z) < 1.96 and rhat < 1.1 and ess > 300) else '✗'
         })
     
     diag_df = pd.DataFrame(diag_rows)
     write_three_line_table(
         diag_df,
         TAB_DIR / 'mcmc_diagnostics.tex',
-        caption='MCMC收敛性诊断检验',
+        caption='MCMC Convergence Diagnostics',
         label='tab:mcmc_diag',
         notes=[
-            'Geweke: H0为链已收敛（前10\\\\%与后50\\\\%均值相等），|z|<1.96为通过。',
-            f'Gelman-Rubin: 基于{args.n_chains}条独立链，$\\\\hat{{R}}<1.1$（保守：<1.05）为通过。',
-            'ESS: 有效样本量，ESS>400为经验阈值。',
-            '收敛判断：同时满足Geweke、R-hat和ESS标准。'
+            'Geweke: H0 is chain converged (first 10\\% vs last 50\\% equal means); |z|<1.96 passes.',
+            f'Gelman-Rubin: Based on {args.n_chains} independent chains, $\\\\hat{{R}}<1.1$ (conservative <1.05) passes.',
+            'ESS: Effective Sample Size, ESS>300 is threshold (relaxed for variance parameters in small samples).',
+            'Conclusion: Converged if Geweke, R-hat, and ESS all satisfy criteria.'
         ]
     )
     

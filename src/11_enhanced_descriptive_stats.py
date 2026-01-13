@@ -55,20 +55,21 @@ def main():
     panel = panel.sort_values('_q').drop(columns=['_q']).reset_index(drop=True)
     
     # Construct derived variables
-    panel['CPI_lead1'] = panel['CPI_YoY'].shift(-1)
-    panel['FE'] = panel['CPI_lead1'] - panel['mu_cp']
+    # FE uses realized QoQ Annualized inflation for the next quarter matching survey horizon
+    panel['CPI_target'] = panel['CPI_QoQ_Ann'].shift(-1)
+    panel['FE'] = panel['CPI_target'] - panel['mu_cp']
     panel['FR'] = panel['mu_cp'] - panel['mu_cp'].shift(1)
     
     # ===== Extended descriptive statistics =====
     core_vars = {
-        'mu_cp': '定量化通胀预期 (CP方法)',
-        'CPI_YoY': 'CPI同比增速',
-        'Food_CPI_YoY_qavg': '食品CPI同比',
-        'epu_qavg': 'EPU指数',
-        'gpr_qavg': 'GPR指数',
-        'M2_YoY': 'M2同比增速',
-        'PPI_YoY': 'PPI同比增速',
-        'Ind_Value_Added_YoY': '工业增加值同比'
+        'mu_cp': 'Exp. Inflation (CP)',
+        'CPI_QoQ_Ann': 'CPI YoY',
+        'Food_CPI_YoY_qavg': 'Food CPI YoY',
+        'epu_qavg': 'EPU Index',
+        'gpr_qavg': 'GPR Index',
+        'M2_YoY': 'M2 YoY',
+        'PPI_YoY': 'PPI YoY',
+        'Ind_Value_Added_YoY': 'Ind. Value Added YoY'
     }
     
     stats_rows = []
@@ -85,12 +86,12 @@ def main():
     write_three_line_table(
         stats_df,
         TAB_DIR / 'desc_stats_extended.tex',
-        caption='主要变量描述性统计（季度数据，2011Q1-2025Q3）',
+        caption='Descriptive Statistics of Key Variables (Quarterly, 2011Q1-2025Q3)',
         label='tab:desc_extended',
         notes=[
-            '通胀变量以百分点为单位。',
-            'EPU和GPR为指数（无单位）。',
-            'N为非缺失观测数。'
+            'Inflation variables in percentage points.',
+            'EPU and GPR are unitless indices.',
+            'N denotes non-missing observations.'
         ],
         float_format='{:.3f}'
     )
@@ -99,7 +100,7 @@ def main():
     fe_fr_data = panel.dropna(subset=['FE', 'FR']).copy()
     
     fe_fr_rows = []
-    for var, label in [('FE', '预测误差 (FE)'), ('FR', '预测修正 (FR)')]:
+    for var, label in [('FE', 'Forecast Error (FE)'), ('FR', 'Forecast Revision (FR)')]:
         stats = compute_stats(fe_fr_data[var])
         stats['Variable'] = label
         fe_fr_rows.append(stats)
@@ -124,18 +125,18 @@ def main():
     write_three_line_table(
         fe_fr_df,
         TAB_DIR / 'fe_fr_stats.tex',
-        caption='预测误差与预测修正的描述性统计',
+        caption='Forecast Error and Revision Statistics',
         label='tab:fe_fr',
         notes=[
-            'FE_t = CPI_{t+1} - μ_t（预测误差）。',
-            'FR_t = μ_t - μ_{t-1}（预测修正）。',
-            'Corr(FE, FR) < 0 为诊断性预期的初步证据（过度反应）。'
+            'FE_t = CPI_{t+1} - mu_t (Forecast Error).',
+            'FR_t = mu_t - mu_{t-1} (Forecast Revision).',
+            'Corr(FE, FR) < 0 suggests diagnostic expectations.'
         ],
         float_format='{:.3f}'
     )
     
     # ===== Correlation matrix =====
-    corr_vars = ['mu_cp', 'CPI_YoY', 'FE', 'FR', 'Food_CPI_YoY_qavg', 
+    corr_vars = ['mu_cp', 'CPI_QoQ_Ann', 'FE', 'FR', 'Food_CPI_YoY_qavg', 
                  'epu_qavg', 'gpr_qavg', 'M2_YoY', 'PPI_YoY']
     
     corr_data = panel[corr_vars].dropna()
@@ -144,7 +145,7 @@ def main():
     # Format correlation matrix for LaTeX
     corr_labels = {
         'mu_cp': 'μ_CP',
-        'CPI_YoY': 'CPI',
+        'CPI_QoQ_Ann': 'CPI',
         'FE': 'FE',
         'FR': 'FR',
         'Food_CPI_YoY_qavg': 'Food',
@@ -169,12 +170,11 @@ def main():
     write_three_line_table(
         corr_display,
         TAB_DIR / 'correlation_matrix.tex',
-        caption='主要变量相关系数矩阵（下三角）',
+        caption='Correlation Matrix (Key Variables)',
         label='tab:corr_matrix',
         notes=[
-            '仅显示下三角矩阵以节省空间。',
-            '对角线为1（省略）。',
-            '基于所有变量均非缺失的样本计算。'
+            'Lower triangle shown.',
+            'Based on common sample.'
         ],
         float_format='{:.3f}'
     )
@@ -188,7 +188,7 @@ def main():
     for period, label in [(False, '2011-2017'), (True, '2018-2025')]:
         subset = panel[panel['is_post2018'] == period]
         
-        for var in ['mu_cp', 'CPI_YoY', 'FE', 'FR', 'epu_qavg', 'gpr_qavg']:
+        for var in ['mu_cp', 'CPI_QoQ_Ann', 'FE', 'FR', 'epu_qavg', 'gpr_qavg']:
             if var in subset.columns and subset[var].notna().sum() > 0:
                 stats = compute_stats(subset[var])
                 subperiod_rows.append({
@@ -206,12 +206,11 @@ def main():
     write_three_line_table(
         subperiod_df,
         TAB_DIR / 'subperiod_stats.tex',
-        caption='分时期描述性统计：2018年前后对比',
+        caption='Sub-period Statistics: Pre vs Post 2018',
         label='tab:subperiod',
         notes=[
-            '2018年为分界点（中美贸易摩擦升级）。',
-            '2018年后EPU和GPR均值上升，反映不确定性增强。',
-            '预测误差(FE)的波动性在两个时期有所不同。'
+            '2018 marks the escalation of US-China trade tensions.',
+            'EPU and GPR means rose in the post-2018 period.'
         ],
         float_format='{:.3f}'
     )

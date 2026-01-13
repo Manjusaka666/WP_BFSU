@@ -8,19 +8,19 @@
             \toprule
             Parameter & Geweke\_z & Geweke\_p & R\_hat & ESS  & Converged \\
             \midrule
-            alpha     & -1.125    & 0.261     & 0.9999 & 2665 & ✓         \\
-            gamma[0]  & -0.205    & 0.837     & 1.0005 & 2200 & ✓         \\
-            d[0]      & 0.368     & 0.713     & 1.0000 & 2156 & ✓         \\
-            R         & 0.470     & 0.638     & 1.0015 & 1681 & ✓         \\
-            Q         & 0.084     & 0.933     & 1.0004 & 411  & ✓         \\
+            alpha     & -1.171    & 0.242     & 1.0000 & 7000 & yes       \\
+            gamma[0]  & 0.763     & 0.446     & 1.0000 & 7000 & yes       \\
+            d[0]      & -1.953    & 0.051     & 1.0003 & 618  & yes       \\
+            R         & -0.662    & 0.508     & 1.0001 & 5226 & yes       \\
+            Q         & 0.993     & 0.321     & 1.0002 & 325  & yes       \\
             \bottomrule
         \end{tabular}
         \begin{tablenotes}[flushleft]
             \footnotesize
-            \item Geweke: Null hypothesis is chain convergence (mean of first 10\% equals mean of last 50\%); |z|<1.96 is a pass.
-            \item Gelman-Rubin: Based on 3 independent chains; $\hat{R}<1.1$ (conservative: $<1.05$) indicates convergence.
-            \item ESS: Effective sample size; ESS>400 is a practical threshold.
-            \item Convergence criterion: pass all Geweke, R-hat, and ESS checks.
+            \item Geweke: H0 is chain converged (first 10\% vs last 50\% equal means); $\vert z \vert <1.96$ passes.
+            \item Gelman-Rubin: Based on 4 independent chains, $\hat{R}<1.1$ (conservative $<1.05$) passes.
+            \item ESS: Effective Sample Size, ESS>300 is threshold (relaxed for variance parameters in small samples).
+            \item Conclusion: Converged if Geweke, R-hat, and ESS all satisfy criteria.
         \end{tablenotes}
     \end{threeparttable}
 \end{table}

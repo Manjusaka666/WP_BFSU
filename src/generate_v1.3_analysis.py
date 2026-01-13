@@ -57,39 +57,38 @@ def load_data():
     return df
 
 def plot_scatter_with_lowess(df, x_var, x_label, filename):
-    """Plot scatter + LOWESS smoothing line"""
-    fig, ax = plt.subplots(figsize=(10, 6))
+    """Plot scatter + LOWESS smoothing line - Publication quality"""
+    # Set professional style
+    plt.rcParams['font.family'] = 'serif'
+    plt.rcParams['font.serif'] = ['Times New Roman', 'DejaVu Serif']
+    plt.rcParams['font.size'] = 10
+    plt.rcParams['figure.facecolor'] = 'white'
+    plt.rcParams['axes.facecolor'] = 'white'
     
-    # Scatter plot
+    fig, ax = plt.subplots(figsize=(7, 5))
+    
+    # Scatter plot - professional blue with navy edges
     ax.scatter(df[x_var], df['beta_mean'], 
-               alpha=0.6, s=80, c='steelblue', edgecolors='navy', linewidth=0.5)
+               alpha=0.6, s=60, c='#2E5090', edgecolors='#1A2F5A', linewidth=0.5)
     
-    # LOWESS smoothing
-    lowess_result = lowess(df['beta_mean'], df[x_var], frac=0.3)
+    # LOWESS smoothing - smoother and thicker
+    lowess_result = lowess(df['beta_mean'], df[x_var], frac=0.4)  # Smoother
     ax.plot(lowess_result[:, 0], lowess_result[:, 1], 
-            color='red', linewidth=2.5, label='LOWESS Fit')
+            color='#C8102E', linewidth=3.0, label='LOWESS Trend', zorder=10)  # Thicker
     
     # Zero line
-    ax.axhline(y=0, color='black', linestyle='--', linewidth=1, alpha=0.5, label='Zero Line')
+    ax.axhline(y=0, color='#5A5A5A', linestyle='--', linewidth=1.2, alpha=0.7)
     
-    # Annotate key periods
-    high_periods = df[df[x_var] > df[x_var].quantile(0.75)]
-    for idx, row in high_periods.iterrows():
-        if row['beta_mean'] < -0.8:  # Only annotate extreme negative values
-            ax.annotate(row['quarter'], 
-                       xy=(row[x_var], row['beta_mean']),
-                       xytext=(10, 10), textcoords='offset points',
-                       fontsize=8, alpha=0.7,
-                       bbox=dict(boxstyle='round,pad=0.3', fc='yellow', alpha=0.3))
-    
-    ax.set_xlabel(x_label, fontsize=12, fontweight='bold')
-    ax.set_ylabel(r'Diagnostic Intensity $\beta_t$ (Posterior Mean)', fontsize=12, fontweight='bold')
-    ax.set_title(f'Nonlinear Relationship: $\\beta_t$ vs {x_label}', fontsize=14, fontweight='bold')
-    ax.legend(fontsize=10)
-    ax.grid(True, alpha=0.3, linestyle=':')
+    # Labels and styling (NO TITLE - use LaTeX caption)
+    ax.set_xlabel(x_label, fontsize=11)
+    ax.set_ylabel(r'Diagnostic Parameter $\beta_t$', fontsize=11)
+    ax.legend(loc='best', frameon=False, fontsize=9)
+    ax.grid(True, alpha=0.2, linestyle=':', linewidth=0.5)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
     
     plt.tight_layout()
-    plt.savefig(FIG_DIR / filename, dpi=300, bbox_inches='tight')
+    plt.savefig(FIG_DIR / filename, dpi=300, bbox_inches='tight', facecolor='white')
     print(f"[Figure] Saved: {FIG_DIR / filename}")
     plt.close()
 

@@ -146,7 +146,7 @@ def main():
     panel = panel.sort_values('_q').drop(columns=['_q']).reset_index(drop=True)
     
     # Construct variables
-    panel['CPI_lead1'] = panel['CPI_YoY'].shift(-1)
+    panel['CPI_lead1'] = panel['CPI_QoQ_Ann'].shift(-1)
     panel['FE'] = panel['CPI_lead1'] - panel['mu_cp']
     panel['FR'] = panel['mu_cp'] - panel['mu_cp'].shift(1)
     
@@ -193,14 +193,14 @@ def main():
         spec_names,
         var_labels,
         TAB_DIR / 'ols_baseline.tex',
-        caption='诊断性预期：OLS基准回归（预测误差对预测修正）',
+        caption='Diagnostic Expectations: OLS Baseline (Forecast Errors on Revisions)',
         label='tab:ols_baseline',
         notes=[
-            '因变量：$FE_t = CPI_{t+1} - \\mu_t$（预测误差）。',
-            '核心解释变量：$FR_t = \\mu_t - \\mu_{t-1}$（预测修正）。',
-            '标准误为Newey-West HAC标准误（最大滞后4期）。',
-            '星号：*** p\u003c0.01, ** p\u003c0.05, * p\u003c0.1。',
-            '若 $\\beta_{FR} \u003c 0$ 且显著，则支持诊断性预期假说（过度反应）。'
+            'Dependent variable: $FE_t = CPI_{t+1} - \\mu_t$ (forecast error).',
+            'Key regressor: $FR_t = \\mu_t - \\mu_{t-1}$ (forecast revision).',
+            'Newey-West HAC standard errors (lag=4).',
+            'Significance: *** p<0.01, ** p<0.05, * p<0.1.',
+            'If $\\beta_{FR} < 0$ and significant, it supports diagnostic expectations (overreaction).'
         ]
     )
     
@@ -239,12 +239,12 @@ def main():
         rob_names,
         var_labels,
         TAB_DIR / 'ols_robustness.tex',
-        caption='OLS稳健性检验：不同控制变量设定',
+        caption='OLS Robustness Checks: Alternative Control Variables',
         label='tab:ols_rob',
         notes=[
-            '因变量均为预测误差 $FE_t$。',
-            '所有规格均使用Newey-West HAC标准误（滞后4期）。',
-            '核心变量 $FR_t$ 的系数在所有规格下稳健为负。'
+            'Dependent variable: Forecast Error $FE_t$.',
+            'All specifications use Newey-West HAC standard errors (lag=4).',
+            'The coefficient on forecast revision $FR_t$ is robustly negative across specifications.'
         ]
     )
     
@@ -297,13 +297,13 @@ def main():
     write_three_line_table(
         diag_df,
         TAB_DIR / 'ols_diagnostics.tex',
-        caption='OLS回归诊断检验（基于模型(3)全控制变量规格）',
+        caption='OLS Diagnostics (Model 3 with Full Controls)',
         label='tab:ols_diag',
         notes=[
-            'Breusch-Pagan: H0为同方差。',
-            'Ljung-Box: H0为残差无自相关。',
-            'Durbin-Watson: 统计量接近2表明无一阶自相关。',
-            'Jarque-Bera: H0为残差服从正态分布。'
+            'Breusch-Pagan: H0 is homoskedasticity.',
+            'Ljung-Box: H0 is no autocorrelation.',
+            'Durbin-Watson: Statistic near 2 indicates no first-order autocorrelation.',
+            'Jarque-Bera: H0 is normality of residuals.'
         ]
     )
     
