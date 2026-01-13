@@ -180,13 +180,14 @@ def main():
     )
     
     # ===== Sub-period statistics =====
-    # Split at 2018Q1 (around when trade war escalated)
-    panel['year'] = panel['quarter'].str[:4].astype(int)
-    panel['is_post2018'] = panel['year'] >= 2018
+    # Align subperiod stats with mu_cp availability
+    panel_mu = panel[panel['mu_cp'].notna()].copy()
+    panel_mu['year'] = panel_mu['quarter'].str[:4].astype(int)
+    panel_mu['is_post2018'] = panel_mu['year'] >= 2018
     
     subperiod_rows = []
-    for period, label in [(False, '2011-2017'), (True, '2018-2025')]:
-        subset = panel[panel['is_post2018'] == period]
+    for period, label in [(False, '2013-2017 (mu sample)'), (True, '2018-2025 (mu sample)')]:
+        subset = panel_mu[panel_mu['is_post2018'] == period]
         
         for var in ['mu_cp', 'CPI_QoQ_Ann', 'FE', 'FR', 'epu_qavg', 'gpr_qavg']:
             if var in subset.columns and subset[var].notna().sum() > 0:
@@ -202,6 +203,7 @@ def main():
                 })
     
     subperiod_df = pd.DataFrame(subperiod_rows)
+    subperiod_df['Variable'] = subperiod_df['Variable'].str.replace('_', r'\_', regex=False)
     
     write_three_line_table(
         subperiod_df,
@@ -209,6 +211,7 @@ def main():
         caption='Sub-period Statistics: Pre vs Post 2018',
         label='tab:subperiod',
         notes=[
+            'Subperiods based on quarters with non-missing mu_cp (2013Q1-2025Q3).',
             '2018 marks the escalation of US-China trade tensions.',
             'EPU and GPR means rose in the post-2018 period.'
         ],
@@ -231,8 +234,8 @@ def main():
     if fe_fr_data['FE'].mean() < 0:
         print("  → Systematic over-prediction (expectations > realized inflation)")
     
-    print(f"\nPre-2018 EPU mean: {panel[~panel['is_post2018']]['epu_qavg'].mean():.2f}")
-    print(f"Post-2018 EPU mean: {panel[panel['is_post2018']]['epu_qavg'].mean():.2f}")
+    print(f"\nPre-2018 EPU mean (mu sample): {panel_mu[~panel_mu['is_post2018']]['epu_qavg'].mean():.2f}")
+    print(f"Post-2018 EPU mean (mu sample): {panel_mu[panel_mu['is_post2018']]['epu_qavg'].mean():.2f}")
 
 
 if __name__ == '__main__':

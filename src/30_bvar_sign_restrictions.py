@@ -295,6 +295,9 @@ def main():
     acc_n = len(accepted)
     accepted = np.asarray(accepted)  # (acc_n, H+1, n)
 
+    def _latex_escape(text: str) -> str:
+        return text.replace("_", r"\_")
+
     # acceptance summary
     acc_df = pd.DataFrame(
         [
@@ -307,8 +310,17 @@ def main():
             }
         ]
     )
+    acc_table = acc_df.rename(
+        columns={
+            "accepted_draws": "accepted draws",
+            "posterior_draws": "posterior draws",
+            "rotations_per_draw": "rotations per draw",
+            "total_rotations": "total rotations",
+            "accept_rate_per_posterior_draw": "accept rate per posterior draw",
+        }
+    )
     write_tex_table(
-        acc_df,
+        acc_table,
         args.out_acc_tex,
         caption="BVAR sign-restriction acceptance",
         label="tab:bvar_accept",
@@ -379,12 +391,13 @@ def main():
 
     # build table at key horizons
     key_h = sorted(set([0, 1, 2, 4, 8, H]))
+    display_varnames = [_latex_escape(v) for v in varnames]
     rows = []
     for i, nm in enumerate(varnames):
         for h in key_h:
             rows.append(
                 {
-                    "variable": nm,
+                    "variable": display_varnames[i],
                     "h": h,
                     "p16": q16[h, i],
                     "p50": q50[h, i],
@@ -398,7 +411,11 @@ def main():
         args.out_irf_tex,
         caption="Impulse responses to the identified DE shock (standardized units)",
         label="tab:bvar_irf",
-        note=f"Median and 16/84% bands. DE shock is selected as any rotated structural shock that raises mu_cp on impact and yields FE_h<0 for h=0..{kmax - 1}.",
+        note=(
+            "Median and 16/84% bands in standardized units; shock size is one standard deviation. "
+            f"DE shock is selected as any rotated structural shock that raises $\\mu_{{cp}}$ on impact "
+            f"and yields $FE_h<0$ for h=0..{kmax - 1}."
+        ),
     )
 
     # plot IRFs for all VAR variables
@@ -462,7 +479,7 @@ def main():
             for h in [1, 4, 8, 12]:
                 if h <= fevd_horizon:
                     fevd_rows.append({
-                        'Variable': nm,
+                        'Variable': display_varnames[i],
                         'Horizon': h,
                         'FEVD_%': f"{fevd_median[h, i]:.2f}"
                     })

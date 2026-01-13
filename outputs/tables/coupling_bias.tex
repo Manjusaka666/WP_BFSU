@@ -1,0 +1,27 @@
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Mechanical Coupling Bias: Upper-Bound Check}
+\label{tab:coupling_bias}
+\begin{threeparttable}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Statistic & Value \\
+\midrule
+N (FE/FR sample) & 43 \\
+Var(FR) & 0.257 \\
+OLS beta (FE on FR, HAC4) & -1.200 \\
+Max mechanical beta & -0.500 \\
+Max Var(e) & 0.129 \\
+Var(e) needed for $\beta_{OLS}$ & 0.309 \\
+Needed/Max Var(e) & 2.40 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Under $\mu_t=\mu^*_t+e_t$ with iid $e_t$, $\beta_{mech}=-\mathrm{Var}(e_t)/\mathrm{Var}(FR_t)$.
+\item Since $\mathrm{Var}(FR_t)=\mathrm{Var}(\Delta \mu^*_t)+2\mathrm{Var}(e_t)$, $\beta_{mech}\in[-0.5,0)$.
+\item OLS beta is the bivariate slope (same point estimate as HAC(4)).
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

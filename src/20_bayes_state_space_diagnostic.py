@@ -391,7 +391,8 @@ def main():
     
     # Styling
     ax.set_xlabel('Quarter', fontsize=11)
-    ax.set_ylabel(r'Diagnostic Parameter $\beta_t$', fontsize=11)
+    beta_units = "standardized units" if int(args.standardize_yH) == 1 else "pp per pp"
+    ax.set_ylabel(r'Diagnostic Parameter $\beta_t$' + f' ({beta_units})', fontsize=11)
     ax.legend(loc='lower left', frameon=False, fontsize=9)
     ax.grid(True, alpha=0.2, linestyle=':', linewidth=0.5)
     ax.spines['top'].set_visible(False)

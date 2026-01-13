@@ -37,17 +37,9 @@ def _to_frac(x: float) -> float:
     x = float(x)
     return x/100.0 if x > 1.0 else x
 
-def main():
-    ensure_dirs()
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--pboc", type=str, default=str(PBOC_FILE))
-    ap.add_argument("--nbs_q", type=str, default=str(NBS_Q_FILE))
-    ap.add_argument("--out", type=str, default=str(OUT_FILE))
-    ap.add_argument("--delta", type=float, default=0.5, help="Tolerance band delta (pp)")
-    args = ap.parse_args()
-
-    pboc = pd.read_csv(args.pboc)
-    nbsq = pd.read_csv(args.nbs_q)
+def compute_cp(pboc_path: Path, nbs_q_path: Path, delta: float) -> pd.DataFrame:
+    pboc = pd.read_csv(pboc_path)
+    nbsq = pd.read_csv(nbs_q_path)
 
     if "report_quarter" in pboc.columns and "quarter" not in pboc.columns:
         pboc = pboc.rename(columns={"report_quarter": "quarter"})
@@ -63,6 +55,9 @@ def main():
         raise ValueError("nbs_macro_quarterly.csv must contain 'CPI_YoY' (inflation rate in pp).")
 
     base = nbsq[["quarter", "CPI_YoY"]].rename(columns={"CPI_YoY": "pi_baseline"})
+    if base["pi_baseline"].median(skipna=True) > 20:
+        # Convert YoY index (100 = no change) to inflation rate in pp.
+        base["pi_baseline"] = base["pi_baseline"] - 100.0
     df = pboc[["quarter"] + share_cols].merge(base, on="quarter", how="left").sort_values("quarter")
 
     # fractions
@@ -78,9 +73,9 @@ def main():
     p_down = df["price_down_share"] / eff
 
     # CP mapping
-    delta = float(args.delta)
-    z_u = norm.ppf(1.0 - p_up.clip(1e-6, 1-1e-6))
-    z_d = norm.ppf(p_down.clip(1e-6, 1-1e-6))
+    delta = float(delta)
+    z_u = norm.ppf(1.0 - p_up.clip(1e-6, 1 - 1e-6))
+    z_d = norm.ppf(p_down.clip(1e-6, 1 - 1e-6))
 
     sigma = 2.0 * delta / (z_u - z_d)
     mu = df["pi_baseline"] + delta - sigma * z_u
@@ -90,6 +85,19 @@ def main():
     df["sigma_cp"] = np.where(valid, sigma, np.nan)
     df["mu_cp"] = np.where(valid, mu, np.nan)
     df["delta_used"] = delta
+    return df
+
+
+def main():
+    ensure_dirs()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--pboc", type=str, default=str(PBOC_FILE))
+    ap.add_argument("--nbs_q", type=str, default=str(NBS_Q_FILE))
+    ap.add_argument("--out", type=str, default=str(OUT_FILE))
+    ap.add_argument("--delta", type=float, default=0.5, help="Tolerance band delta (pp)")
+    args = ap.parse_args()
+
+    df = compute_cp(Path(args.pboc), Path(args.nbs_q), float(args.delta))
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -101,7 +109,7 @@ def main():
         "n_quarters_cp": int(df["mu_cp"].notna().sum()),
         "start": df["quarter"].iloc[0],
         "end": df["quarter"].iloc[-1],
-        "delta_pp": delta,
+        "delta_pp": float(args.delta),
     }])
     write_three_line_table(
         cov,

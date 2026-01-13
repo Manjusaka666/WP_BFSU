@@ -1,0 +1,26 @@
+\begin{table}[!htbp]
+    \centering
+    \small
+    \caption{Delta Sensitivity for Carlson-Parkin Quantification}
+    \label{tab:delta_sensitivity}
+    \begin{threeparttable}
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{@{}llllllllllll@{}}
+            \toprule
+            $\delta$ & N  & Mean $\mu $ & SD $\mu $ & Mean FE & SD FE & Mean FR & SD FR & Corr(FE,FR) & OLS (SE)       & TVP mean $\beta $ & Share $\beta<0$ \\
+            \midrule
+            0.3      & 43 & 0.286       & 0.388     & 1.243   & 3.183 & -0.033  & 0.446 & -0.324      & -2.433 (0.674) & -2.486            & 100.0\%         \\
+            0.5      & 43 & 0.400       & 0.536     & 1.130   & 3.171 & -0.051  & 0.507 & -0.192      & -1.325 (0.729) & -1.439            & 100.0\%         \\
+            0.7      & 43 & 0.513       & 0.699     & 1.017   & 3.169 & -0.068  & 0.602 & -0.096      & -0.617 (0.722) & -0.814            & 72.1\%          \\
+            \bottomrule
+        \end{tabular}%
+        }
+        \begin{tablenotes}[flushleft]
+            \footnotesize
+            \item Summary stats use the OLS sample (non-missing FE, FR, and controls).
+            \item $FE_t = CPI_{t+1}^{QoQ,ann} - \mu_t$ and $FR_t = \mu_t - \mu_{t-1}$.
+            \item OLS includes Food CPI, M2, and PPI with HAC(4) standard errors.
+            \item TVP metrics use the posterior-mean $\beta_t$ path from the TVP-SSM.
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}

@@ -26,6 +26,31 @@ Akerlof, G\BPBI A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Angeletos%
+\ \BBA {} Lian%
+}{%
+Angeletos%
+\ \BBA {} Lian%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+Angeletos2018}
+\APACinsertmetastar {%
+Angeletos2018}%
+\begin{APACrefauthors}%
+Angeletos, G\BHBI M.%
+\BCBT {}\ \BBA {} Lian, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Forward guidance without the forward guidance puzzle} {Forward guidance without the forward guidance puzzle}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Review}{108}{9}{2477--2512}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Baker%
 , Bloom%
 \BCBL {}\ \BBA {} Davis%
@@ -128,6 +153,31 @@ Carlson, J\BPBI A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Coibion%
+\ \BBA {} Gorodnichenko%
+}{%
+Coibion%
+\ \BBA {} Gorodnichenko%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+Coibion2015}
+\APACinsertmetastar {%
+Coibion2015}%
+\begin{APACrefauthors}%
+Coibion, O.%
+\BCBT {}\ \BBA {} Gorodnichenko, Y.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Information rigidity and the expectations formation process: A simple framework and new facts} {Information rigidity and the expectations formation process: A simple framework and new facts}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Review}{105}{8}{2644--2678}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Lucas%
 }{%
 Lucas%
@@ -147,6 +197,31 @@ Lucas, R\BPBI E.%
 {\BBOQ}\APACrefatitle {Expectations and the neutrality of money} {Expectations and the neutrality of money}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Economic Theory}{4}{2}{103--124}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Malmendier%
+\ \BBA {} Nagel%
+}{%
+Malmendier%
+\ \BBA {} Nagel%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+Malmendier2016}
+\APACinsertmetastar {%
+Malmendier2016}%
+\begin{APACrefauthors}%
+Malmendier, U.%
+\BCBT {}\ \BBA {} Nagel, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Learning from inflation experiences} {Learning from inflation experiences}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The Quarterly Journal of Economics}{131}{1}{53--87}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

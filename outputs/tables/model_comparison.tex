@@ -1,27 +1,25 @@
 \begin{table}[!htbp]
     \centering
     \small
-    \caption{Model Comparison: Information Criteria (Based on Estimated Results)}
+    \caption{Model Comparison: Log-Likelihood and Information Criteria}
     \label{tab:model_comp}
     \begin{threeparttable}
         \begin{tabular}{@{}llllll@{}}
             \toprule
-            Model                  & DIC   & p\_eff & WAIC  & log\_lik & Notes                    \\
+            Model               & log\_lik & AIC   & BIC   & p\_eff & Notes                 \\
             \midrule
-            OLS (fixed parameters) & 80.3  & 5.0    & 81.3  & -35.1    & Frequentist baseline     \\
-            SSM (fixed $\beta$)    & 79.3  & 6.0    & 80.5  & -33.6    & Bayesian fixed-parameter \\
-            TVP-SSM (no drivers)   & 151.8 & 49.0   & 161.6 & -26.9    & Random-walk $\beta_t$    \\
-            TVP-SSM (EPU+GPR)      & 152.4 & 51.0   & 162.6 & -25.2    & Full model (baseline)    \\
+            OLS (FR only)       & -109.3   & 224.7 & 229.9 & 3.0    & Gaussian OLS baseline \\
+            SSM (fixed $\beta$) & -108.6   & 229.2 & 239.7 & 6.0    & OLS with controls     \\
+            TVP-SSM (EPU+GPR)   & -107.1   & 316.1 & 406.0 & 51.0   & Posterior-mean TVP    \\
             \bottomrule
         \end{tabular}
         \begin{tablenotes}[flushleft]
             \footnotesize
-            \item DIC = Deviance Information Criterion; smaller is better.
-            \item WAIC = Widely Applicable Information Criterion; smaller is better (more robust than DIC).
-            \item log\_lik = log-likelihood (approx.); larger (less negative) is better.
-            \item p\_eff = effective number of parameters (TVP models include time-varying $\beta_t$).
-            \item Approximate values computed using SSM posterior parameters (e.g., $R\_var=0.230$, $Q\_var=0.519$).
-            \item TVP-SSM models achieve substantially higher log-likelihoods than fixed-parameter baselines, justifying time variation in $\beta_t$.
+            \item log\_lik is total-sample log-likelihood evaluated at point estimates.
+            \item For TVP-SSM, log\_lik uses posterior-mean parameters and the $\beta_t$ mean path.
+            \item Controls are standardized as in the TVP-SSM; FE/FR are in pp units.
+            \item AIC/BIC computed from log\_lik and p\_eff; p\_eff counts time-varying $\beta_t$ for TVP.
+            \item TVP-SSM parameters use posterior means from Table 7 (R\_var=9.721, Q\_var=1.003).
         \end{tablenotes}
     \end{threeparttable}
 \end{table}

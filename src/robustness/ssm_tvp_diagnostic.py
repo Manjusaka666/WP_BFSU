@@ -103,6 +103,12 @@ def main():
     ap.add_argument("--thin", type=int, default=2)
     ap.add_argument("--seed", type=int, default=123)
     ap.add_argument("--standardize_yH", type=int, default=0, help="1: z-score y and H before estimation (useful for index-type exp_var)")
+    ap.add_argument("--aR0", type=float, default=2.0)
+    ap.add_argument("--bR0", type=float, default=1.0)
+    ap.add_argument("--aQ0", type=float, default=2.0)
+    ap.add_argument("--bQ0", type=float, default=1.0)
+    ap.add_argument("--beta0_mean", type=float, default=0.0)
+    ap.add_argument("--beta0_var", type=float, default=1.0)
     ap.add_argument("--outdir", type=str, default="outputs/ssm")
     args = ap.parse_args()
 
@@ -150,9 +156,9 @@ def main():
     # Priors
     V_theta0 = np.eye(1 + kz) * (100.0**2)
     V_d0 = np.eye(kx) * (100.0**2)
-    aR0, bR0 = 2.0, 1.0
-    aQ0, bQ0 = 2.0, 1.0
-    beta0_mean, beta0_var = 0.0, 1.0
+    aR0, bR0 = float(args.aR0), float(args.bR0)
+    aQ0, bQ0 = float(args.aQ0), float(args.bQ0)
+    beta0_mean, beta0_var = float(args.beta0_mean), float(args.beta0_var)
 
     rng = np.random.default_rng(int(args.seed))
 

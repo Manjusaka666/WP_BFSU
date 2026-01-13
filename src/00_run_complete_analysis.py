@@ -87,6 +87,7 @@ def main():
         ],
         3: [
             ("11_enhanced_descriptive_stats.py", "Enhanced Descriptive Statistics [P1]"),
+            ("12_coupling_bias_check.py", "Mechanical Coupling Bias Check [P1]"),
         ],
         4: [
             ("15_baseline_ols_regression.py", "OLS Baseline Regression [P0]"),

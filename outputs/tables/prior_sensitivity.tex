@@ -1,0 +1,25 @@
+\begin{table}[!htbp]
+    \centering
+    \small
+    \caption{Prior sensitivity for the TVP-SSM}
+    \label{tab:prior_sensitivity}
+    \begin{threeparttable}
+        \begin{tabular}{@{}lllll@{}}
+            \toprule
+            Setting      & Beta mean & Beta range     & Share $\beta<0$ & LogLik   \\
+            \midrule
+            Baseline     & -1.439    & [-2.64, -0.09] & 100.0\%         & -107.073 \\
+            Loose priors & -1.514    & [-3.78, 1.08]  & 83.7\%          & -104.846 \\
+            Tight priors & -1.261    & [-1.59, -0.14] & 100.0\%         & -108.186 \\
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}[flushleft]
+            \footnotesize
+            \item Baseline priors: $R,Q \sim InvGamma(2,1)$, $\beta_0 \sim \mathcal{N} (0,1)$.
+            \item Loose priors: $R,Q \sim InvGamma(2,4)$, $\beta_0 \sim \mathcal{N} (0,4)$.
+            \item Tight priors: $R,Q \sim InvGamma(2,0.25)$, $\beta_0 \sim \mathcal{N} (0,0.25)$.
+            \item LogLik is total-sample log-likelihood at posterior means and the $\beta_t$ mean path.
+            \item FE/FR are in pp units; controls are standardized as in the TVP-SSM.
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
