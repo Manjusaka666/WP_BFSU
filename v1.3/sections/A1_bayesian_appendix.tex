@@ -1,0 +1,12 @@
+\section{Bayesian Workflow Appendix}
+
+The Bayesian state-space model estimates
+\begin{align}
+FE_t &= \alpha + \beta_t FR_t + \gamma'Z_t + \varepsilon_t, \qquad \varepsilon_t \sim \mathcal{N}(0, R), \\
+\beta_t &= \beta_{t-1} + d'X_t + u_t, \qquad u_t \sim \mathcal{N}(0, Q),
+\end{align}
+with conjugate priors and multi-chain Gibbs sampling. I report posterior means and credible intervals in Table~\ref{tab:ssm_posterior_params}, then verify convergence with split-chain diagnostics in Table~\ref{tab:mcmc_diagnostics}. Posterior adequacy is judged against predictive moments in Table~\ref{tab:ppc_summary}, where posterior predictive envelopes should cover observed moments more tightly than prior predictive envelopes.
+
+Shrinkage sensitivity uses alternative state-innovation prior scales, reported in Table~\ref{tab:prior_sensitivity}. The key criterion is sign and magnitude stability of the diagnostic state, not exact equality across priors. If convergence or predictive checks fail, the model is reparameterized or further shrunk before interpretation, which is why Bayesian outputs are presented as diagnostics tied to identifiable frequentist evidence rather than as independent causal claims.
+
+Appendix tables are reported in the main robustness section to avoid duplicate labels in the compiled manuscript. The underlying artifacts remain in \texttt{outputs/tables/ssm\_sample.tex}, \texttt{outputs/tables/ssm\_posterior\_params.tex}, \texttt{outputs/tables/mcmc\_diagnostics.tex}, \texttt{outputs/tables/ppc\_summary.tex}, and \texttt{outputs/tables/prior\_sensitivity.tex}.

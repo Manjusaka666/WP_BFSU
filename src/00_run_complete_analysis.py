@@ -18,7 +18,7 @@ Sequence:
 
 Usage:
     python src/00_run_complete_analysis.py
-    
+
     # Or run specific phases:
     python src/00_run_complete_analysis.py --phase 3
 
@@ -39,16 +39,16 @@ SRC = ROOT / "src"
 def run_script(script_name: str, description: str):
     """Run a Python script and handle errors"""
     script_path = SRC / script_name
-    
+
     if not script_path.exists():
         print(f"  ⚠ SKIP: {script_name} (file not found)")
         return False
-    
+
     print(f"\n{'='*70}")
     print(f"  RUNNING: {description}")
     print(f"  Script: {script_name}")
     print(f"{'='*70}")
-    
+
     try:
         subprocess.check_call([sys.executable, str(script_path)], cwd=str(ROOT))
         print(f"  ✓ SUCCESS: {description}\n")
@@ -62,14 +62,14 @@ def run_script(script_name: str, description: str):
 
 def main():
     parser = argparse.ArgumentParser(description='Run complete analysis pipeline')
-    parser.add_argument('--phase', type=int, choices=range(1, 9), 
+    parser.add_argument('--phase', type=int, choices=range(1, 9),
                        help='Run specific phase only (1-8)')
     parser.add_argument('--skip-download', action='store_true',
                        help='Skip data download steps (01-04)')
     parser.add_argument('--skip-robustness', action='store_true',
                        help='Skip robustness checks (saves time)')
     args = parser.parse_args()
-    
+
     phases = {
         1: [
             ("01_download_gpr.py", "Download GPR data"),
@@ -107,13 +107,13 @@ def main():
             ("31_robustness_visualization.py", "Robustness Visualization [P1/P2]"),
         ],
     }
-    
+
     print("""
 ╔══════════════════════════════════════════════════════════════╗
 ║                COMPLETE ANALYSIS PIPELINE                    ║
 ╚══════════════════════════════════════════════════════════════╝
     """)
-    
+
     # Determine which phases to run
     if args.phase:
         phases_to_run = {args.phase: phases[args.phase]}
@@ -126,18 +126,18 @@ def main():
         if args.skip_robustness:
             print("Skipping robustness checks\n")
             phases_to_run.pop(8, None)
-    
+
     # Track results
     results = {'success': [], 'failed': [], 'skipped': []}
-    
+
     # Run phases
     for phase_num in sorted(phases_to_run.keys()):
         phase_scripts = phases_to_run[phase_num]
-        
+
         print(f"\n{'#'*70}")
         print(f"# PHASE {phase_num}")
         print(f"{'#'*70}")
-        
+
         for script, desc in phase_scripts:
             success = run_script(script, desc)
             if success:
@@ -146,34 +146,34 @@ def main():
                 results['failed'].append((script, desc))
             else:
                 results['skipped'].append((script, desc))
-    
+
     # Final summary
     print(f"\n{'='*70}")
     print("PIPELINE COMPLETE - SUMMARY")
     print(f"{'='*70}")
-    
+
     print(f"\n✓ SUCCESS: {len(results['success'])} scripts")
     for script, desc in results['success']:
         print(f"  - {desc}")
-    
+
     if results['failed']:
         print(f"\n✗ FAILED: {len(results['failed'])} scripts")
         for script, desc in results['failed']:
             print(f"  - {desc} ({script})")
-    
+
     if results['skipped']:
         print(f"\n⚠ SKIPPED: {len(results['skipped'])} scripts")
         for script, desc in results['skipped']:
             print(f"  - {desc}")
-    
+
     # Output file summary
     print(f"\n{'='*70}")
     print("KEY OUTPUTS GENERATED")
     print(f"{'='*70}")
-    
+
     tables_dir = ROOT / "outputs" / "tables"
     figures_dir = ROOT / "outputs" / "figures"
-    
+
     print("\n📊 TABLES:")
     if tables_dir.exists():
         for tex_file in sorted(tables_dir.glob("*.tex")):
@@ -183,7 +183,7 @@ def main():
             elif any(x in tex_file.stem for x in ["fe_fr", "fevd", "historical"]):
                 priority = " [P1]"
             print(f"  - {tex_file.name}{priority}")
-    
+
     print("\n📈 FIGURES:")
     if figures_dir.exists():
         for fig_file in sorted(figures_dir.glob("*.png")):
@@ -193,7 +193,7 @@ def main():
             elif any(x in fig_file.stem for x in ["robustness", "sensitivity"]):
                 priority = " [P1/P2]"
             print(f"  - {fig_file.name}{priority}")
-    
+
     print(f"\n{'='*70}")
     print("NEXT STEPS")
     print(f"{'='*70}")
@@ -209,7 +209,7 @@ def main():
 If any scripts failed, run them individually to debug:
     python src/SCRIPT_NAME.py
     """)
-    
+
     # Exit code
     if results['failed']:
         print("\n⚠ WARNING: Some scripts failed. Review errors above.")

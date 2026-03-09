@@ -1,0 +1,26 @@
+﻿\section{Institutional Setting and Measurement}
+
+The empirical core is the People's Bank of China urban depositor survey, observed quarterly and merged with macro controls from official statistical releases and standard uncertainty indices. I align every series to quarterly frequency and preserve original release timing so that expectation variables are measured before the realized inflation outcome they are asked to predict. Table~\ref{tab:sample_overview} reports the estimation window and usable observations after alignment, and Table~\ref{tab:desc_stats} reports units, dispersion, and coverage for the variables that enter identification and mechanism tests.
+
+The survey is qualitative, so I map response shares into a quantitative expectation measure with Carlson--Parkin inversion. That mapping requires explicit assumptions on response thresholds and on how to treat ``uncertain'' answers, and those assumptions can dominate short samples when response composition shifts. I therefore avoid dropping non-answers as noise and instead keep them in two ways: a renormalized benchmark expectation and lower/upper bounds that allocate uncertain responses to pessimistic and optimistic extremes. Table~\ref{tab:cp_coverage} reports the quarters where the mapping is identified, and Table~\ref{tab:cp_bounds} shows how much inference moves when uncertainty responses are reallocated.
+
+This measurement strategy matters because the paper distinguishes revision from level and forecast error from bias, and each object must remain traceable to the survey question and inflation definition. Revisions are quarter-to-quarter changes in quantified expectations, forecast errors are next-quarter realizations minus contemporaneous expectations, and uncertainty controls enter as state variables rather than as ex post narrative labels. Figure~\ref{fig:expectations_vs_realized} visualizes the expectation-realization gap that motivates identification, while Figure~\ref{fig:revision_error_dynamics} shows that large revisions and subsequent errors often move with opposite sign in turbulent episodes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{expectations_vs_realized.pdf}
+\caption{Quantified Expectations and Realized Inflation}
+\label{fig:expectations_vs_realized}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{revision_error_dynamics.pdf}
+\caption{Revision and Subsequent Forecast Error Dynamics}
+\label{fig:revision_error_dynamics}
+\end{figure}
+
+\input{\tabdir/sample_overview}
+\input{\tabdir/desc_stats}
+\input{\tabdir/cp_coverage}
+\input{\tabdir/cp_bounds}

@@ -1,0 +1,23 @@
+\begin{table}[!htbp]
+\centering
+\caption{Salience-IV Identification Results}
+\label{tab:identification_main}
+\begin{threeparttable}
+
+\begin{tabular}{lrrrr}
+\toprule
+specification & coefficient & se\_NW & p\_value & n\_obs\\
+\midrule
+First stage: salience on congestion IV & 0.082 & 0.076 & 0.291 & 32\\
+2SLS: revision on instrumented salience & -0.149 & 0.462 & 0.750 & 32\\
+2SLS: forecast error on instrumented revision & 33.688 & 108.554 & 0.758 & 32\\
+Reduced form: forecast error on congestion IV & -0.411 & 0.494 & 0.412 & 32\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Newey-West standard errors use 4 quarterly lags.
+\item The key diagnostic prediction requires a negative coefficient in the forecast-error equation.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

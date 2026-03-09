@@ -1,0 +1,7 @@
+\section{Additional Robustness}
+
+Additional checks target specification fragility and implementation drift. The parity table compares new R outputs with legacy Python quantities to verify that refactoring did not create hidden definition changes in shared variables. Placebo and anticipation tests are reported in the main text because they directly evaluate identification threats, while this appendix keeps supporting diagnostics that are informative but not central to the causal chain.
+
+For structural dynamics, the appendix BVAR is treated as a consistency layer. Acceptance rates, FEVD shares, and prior or lag-order sensitivity are all reported because sign-restriction results can look stable while acceptance collapses, which would invalidate interpretation. Tables~\ref{tab:bvar_acceptance}, \ref{tab:bvar_irf_summary}, \ref{tab:bvar_fevd}, and \ref{tab:bvar_sensitivity} keep that information visible.
+
+Supporting robustness artifacts are stored in \texttt{outputs/tables/parity\_check.tex}, \texttt{outputs/tables/placebo\_tests.tex}, \texttt{outputs/tables/bvar\_acceptance.tex}, \texttt{outputs/tables/bvar\_irf\_summary.tex}, \texttt{outputs/tables/bvar\_fevd.tex}, and \texttt{outputs/tables/bvar\_sensitivity.tex}; they are referenced here without re-inserting duplicate labeled floats.

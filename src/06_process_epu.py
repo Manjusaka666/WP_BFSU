@@ -1,4 +1,3 @@
-\
 """
 Process China Mainland Paper EPU raw Excel into clean monthly and quarterly series.
 
@@ -21,7 +20,7 @@ from utils_latex import write_three_line_table
 RAW_FILE = RAW_DIR / "China_Mainland_Paper_EPU.xlsx"
 SHEET = "EPU 2000 onwards"
 
-def main():
+def main():f
     ensure_dirs()
     ap = argparse.ArgumentParser()
     ap.add_argument("--raw", type=str, default=str(RAW_FILE))

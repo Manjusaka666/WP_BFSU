@@ -1,0 +1,38 @@
+﻿\section{Robustness and Bayesian Diagnostics}
+
+Robustness is organized around falsifiable threats rather than table accumulation. On the frequentist side, the identification section already reports placebo and anticipation failures for alternative channels, and the migration check in Table~\ref{tab:parity_check} confirms that the new R pipeline reproduces legacy Python quantities where definitions overlap. This parity layer prevents silent specification drift during refactoring and keeps empirical claims auditable across implementations.
+
+The Bayesian state-space module contributes diagnostic transparency rather than standalone causal identification. Table~\ref{tab:ssm_posterior_params} reports posterior location and dispersion, Table~\ref{tab:mcmc_diagnostics} reports split-chain convergence and effective sample sizes, and Table~\ref{tab:ppc_summary} contrasts prior and posterior predictive fit on mean, variance, and tail moments. Prior sensitivity in Table~\ref{tab:prior_sensitivity} checks whether the sign and magnitude of the diagnostic state are driven by shrinkage choices instead of data information.
+
+The appendix BVAR remains a consistency check with explicit acceptance accounting. Identification imposes impact restrictions on salience and expectations plus short-run forecast-error reversal, and Table~\ref{tab:bvar_acceptance} reports how often draws satisfy these conditions. IRF and FEVD summaries in Tables~\ref{tab:bvar_irf_summary} and \ref{tab:bvar_fevd} then show whether structural dynamics align with the baseline mechanism without redefining the shock as the object to be proven.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{beta_t.pdf}
+\caption{Bayesian State-Space Path of Diagnostic Intensity}
+\label{fig:beta_t_path}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{bvar_irf_de_shock.pdf}
+\caption{Appendix BVAR Impulse Responses to Identified Diagnostic Shock}
+\label{fig:bvar_irf}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{uncertainty_salience_states.pdf}
+\caption{Uncertainty and Salience States}
+\label{fig:uncertainty_salience}
+\end{figure}
+
+\input{\tabdir/parity_check}
+\input{\tabdir/ssm_posterior_params}
+\input{\tabdir/mcmc_diagnostics}
+\input{\tabdir/ppc_summary}
+\input{\tabdir/prior_sensitivity}
+\input{\tabdir/bvar_acceptance}
+\input{\tabdir/bvar_irf_summary}
+\input{\tabdir/bvar_fevd}
+\input{\tabdir/bvar_sensitivity}

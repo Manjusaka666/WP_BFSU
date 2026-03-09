@@ -1,0 +1,20 @@
+\begin{table}[!htbp]
+\centering
+\caption{BVAR sensitivity to priors and lag length}
+\label{tab:bvar_sensitivity}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+spec & acceptance & mu\_h0 & fe\_reversal\_h1 \\
+\midrule
+baseline & 0.969 & 0.281 & -0.227 \\
+tighter\_prior & 0.976 & 0.288 & -0.223 \\
+longer\_lag & 0.767 & 0.153 & -0.130 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Core sign pattern remains under alternative priors and lag order when accepted draws exist.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

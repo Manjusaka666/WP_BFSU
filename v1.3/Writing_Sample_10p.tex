@@ -1,0 +1,48 @@
+﻿\documentclass[12pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,threeparttable}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{float}
+\usepackage{caption}
+\captionsetup{font=small}
+\setstretch{1.15}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.35em}
+
+\newcommand{\tabdir}{../outputs/tables}
+\graphicspath{{../outputs/figures/}{figures/}}
+
+\title{Diagnostic Inflation Expectations under Uncertainty in China:\
+Identification-First Evidence with Salience-IV, Local Projections, and Bayesian Diagnostics}
+\author{Jingle Fu}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+I study whether Chinese households overreact to salient inflation signals and then generate predictable forecast-error reversals. I build a quarterly dataset from the People's Bank of China depositor survey and macro controls, quantify qualitative expectations with Carlson--Parkin mapping, and estimate an identification-first salience-IV design where media congestion instruments inflation salience. The core chain is operationally testable: salience shifts revisions, revisions predict subsequent forecast errors, and the sign pattern remains in placebo and anticipation checks. Local projections show that revision shocks move forecast errors immediately and then attenuate, while the inflation response is weaker and less persistent. A Bayesian state-space module estimates time variation in the diagnostic coefficient with full posterior workflow diagnostics, and an appendix BVAR provides structural consistency checks without using circular shock definitions. A policy backtest maps estimated coefficients into an implementable forecast-adjustment rule and reports out-of-sample RMSE, MAE, and coverage gains. The evidence supports diagnostic overreaction within the sample 2011Q1--2025Q3, while external validity is limited by national-level aggregation and short-horizon survey design.
+\end{abstract}
+
+\input{sections/01_intro}
+\input{sections/02_institution_measurement}
+\input{sections/03_identification}
+\input{sections/04_results_baseline}
+\input{sections/05_heterogeneity}
+\input{sections/06_mechanism_competition}
+\input{sections/07_policy_counterfactual}
+\input{sections/08_robustness}
+\input{sections/09_conclusion}
+
+\appendix
+\input{sections/A1_bayesian_appendix}
+\input{sections/A2_additional_robustness}
+
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}

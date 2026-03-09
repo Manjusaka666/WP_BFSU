@@ -1,0 +1,27 @@
+﻿\section{Baseline Results}
+
+The baseline regressions ask whether forecast revisions predict next-quarter forecast errors once macro covariates are included. Table~\ref{tab:ols_baseline} reports the coefficient on revision across nested specifications, and the sign remains negative when I add food inflation, money growth, producer-price pressure, and uncertainty controls. The magnitude is economically relevant because a one-point upward revision translates into a sizable subsequent undershoot of realized inflation relative to expectations, which is the overreaction-correction pattern implied by diagnostic expectations instead of a frictionless forecast process.
+
+Model diagnostics in Table~\ref{tab:ols_diagnostics} show residual properties and motivate HAC inference; the substantive coefficient remains stable when I alter control sets in Table~\ref{tab:ols_robustness}. Correlation evidence in Table~\ref{tab:correlation_matrix} aligns with this baseline relation but does not substitute for identification because salience and macro controls are correlated with both revisions and outcomes in levels, which is precisely why the IV and dynamic exercises are necessary.
+
+Dynamic estimates from local projections sharpen the timing margin. Table~\ref{tab:lp_dynamic} and Figures~\ref{fig:lp_fe}--\ref{fig:lp_pi} show that revision shocks move forecast errors quickly and then fade, while realized inflation responses are smaller over the same horizons. That temporal asymmetry matters for mechanism discrimination because under pure information rigidity one expects persistent underreaction and delayed correction, whereas the data show an immediate error response that attenuates rather than accumulates.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{lp_forecast_error.pdf}
+\caption{Local Projections: Forecast Error Response}
+\label{fig:lp_fe}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{lp_inflation.pdf}
+\caption{Local Projections: Realized Inflation Response}
+\label{fig:lp_pi}
+\end{figure}
+
+\input{\tabdir/ols_baseline}
+\input{\tabdir/ols_diagnostics}
+\input{\tabdir/ols_robustness}
+\input{\tabdir/correlation_matrix}
+\input{\tabdir/lp_dynamic}

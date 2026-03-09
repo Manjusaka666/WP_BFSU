@@ -1,0 +1,23 @@
+\begin{table}[!htbp]
+\centering
+\caption{Estimated Policy Rule Parameters}
+\label{tab:policy_rule_formula}
+\begin{threeparttable}
+
+\begin{tabular}{lrrr}
+\toprule
+term & estimate & se & p\_value\\
+\midrule
+(Intercept) & 8.164 & 3.533 & 0.029\\
+FR\_cp & -2.237 & 1.114 & 0.055\\
+Food\_CPI\_YoY\_qavg & -0.230 & 0.139 & 0.111\\
+M2\_YoY & -0.562 & 0.284 & 0.058\\
+PPI\_YoY\_rate & -0.197 & 0.172 & 0.263\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Operational rule: adjusted forecast equals survey expectation plus predicted forecast error.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

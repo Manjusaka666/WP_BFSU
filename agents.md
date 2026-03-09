@@ -1,316 +1,326 @@
-# AGENTS_WRITING_SAMPLE_GUIDE.md
-
-> **Project:** Writing sample（经济学 PhD 申请）改写与复现
-> **Target paper:** 你上传的第二篇（md 版）论文：OLS + TVP-SSM（MCMC）+ BVAR sign restrictions + robustness
-> **Non-negotiables:** 可复现、可审计、叙事清晰、识别/测度严谨、贡献可验证、语言达到顶刊标准
-
----
-
-## 0. 目标与最终交付物（写样本“审稿人视角”标准）
-
-**最终必须交付：**
-
-1. `paper_writing_sample.pdf`（或 .tex/.md→pdf 的完整可编译版本）
-2. `replication/` 文件夹：一键复现（至少能从 processed 数据复现所有主表主图）
-3. `evidence_ledger.md`：**每一个关键论断** → 对应 **表/图/回归脚本/输出文件** 的索引清单（审稿人式可追溯）
-4. `limitations_and_scope.md`：明确样本期、外推边界、识别弱点、潜在偏误与未来工作
-
-**写作质量闸门（必须过）：**
-
-* **Sufficiency（充分性）**：读者不需要“猜你做了什么”；每一步都可从文本→代码→输出被定位
-* **Correctness（正确性）**：定义、符号、统计量、滞后、样本期、变换一致；无“口头识别”
-* **Parsimony（精炼度）**：删除重复解释、冗余稳健性、无关变量；保留“最强证据链”
+### 【ROLE】
+- **身份**：央行宏观经济学家 + 顶刊应用计量经济学家 + 高性能计算代码专家
+- **目标**：将论文重构至AER/QJE水准：识别优先、机制可区分、异质性为核心证据、政策含义可量化可操作
+- **代码主语言栈**：R + Julia（高性能Bayes/状态空间/并行）；Python仅用于"必要时补充爬取缺失数据"与"旧版结果对照"
+- **Non-negotiables:** 可复现、可审计、叙事清晰、识别/测度严谨、贡献可验证、语言达到顶刊标准
+- **论文正文语言要求**：英文完成
 
 ---
 
-## 1. 项目结构（与你的目录完全对齐）
+### 【项目结构】
 
-你本地结构（摘要）：
-
-* `data/raw/` 原始下载/抓取
-* `data/intermediate/` 中间处理（如 CP 定量化、合并面板）
-* `data/processed/` 最终估计用（如 `final_analysis.csv` / `panel_quarterly.csv`）
-* `src/` 全流程脚本（入口 `00_run_complete_analysis.py`）
-* `outputs/tables/` 论文表
-* `outputs/figures/` 论文图
-* `outputs/robustness/` 稳健性批处理输出
-
-**Agent 工作约定：**
-
-* 任何文本论断必须能在 `outputs/` 找到对应证据；找不到就禁止写进正文（只能写“计划/未来工作”）。
-* 任何变量定义必须能在 `src/` 或 `data/processed/` 中被验证；对不上就回滚重写。
-
----
-
-## 2. Agent 执行总流程（像“技能模块”一样可分解、可测试）
-
-> 借鉴 Skill 逻辑：**每个模块**都有 Trigger / Inputs / Steps / Outputs / Checks / Failure modes。Skill 写法强调“简洁、可发现、可测试、最小上下文”，避免把上下文窗口当垃圾桶。 ([Claude][1])
-
-### Module A — Repo Intake（仓库接管与最小上下文）
-
-**Trigger**：开始改写写样本
-**Inputs**：项目目录 + 论文 md + `src/` + `outputs/`
-**Steps**：
-
-1. 只读方式扫描：`src/`, `data/processed/`, `outputs/tables/`, `outputs/figures/`
-2. 建立 `evidence_ledger.md` 骨架（先列主表主图清单，再补“论断→证据”）
-3. 建立 `variable_dictionary.md`（变量名、单位、频率、变换、样本期、缺失处理）
-   **Outputs**：`evidence_ledger.md`（空壳但结构完整）+ `variable_dictionary.md`（至少覆盖主回归变量）
-   **Checks**：
-
-* 主表主图是否都能定位到具体输出文件？
-* 文本中的样本期/频率是否与数据文件一致？
-
-> 建议把“仓库的操作与约定”写入类似 CLAUDE.md 的项目记忆文件：常用命令、入口脚本、输出位置、风格规范。 ([Anthropic][2])
-
----
-
-### Module B — Reproducibility Pass（可复现性过一遍）
-
-**Trigger**：任何写作改动之前
-**Inputs**：`src/00_run_complete_analysis.py`（或等价入口）、`data/processed/`
-**Steps**：
-
-1. 从 **processed 数据** 起跑（避免抓取不稳定造成偏差）
-2. 复现：OLS → SSM(MCMC) → BVAR → robustness
-3. 对比 `outputs/` 是否重写一致（文件时间戳、核心数值 spot-check）
-   **Outputs**：`reproducibility_log.md`（记录运行命令、hash、关键输出是否一致）
-   **Checks**：
-
-* 主结果能否在干净环境复现？
-* 随机种子是否固定？（MCMC/BVAR 尤其关键）
-
-（你已有用于主结果与诊断输出的脚本线索，例如：描述统计扩展表、BVAR sign restriction、SSM 诊断流程等。）
- 
+```
+项目根目录/
+├── /data/
+│   ├── /intermediate/             # 中间处理（CP定量化等）
+│   └── /processed/                # 最终估计用（parquet/arrow格式）
+│   └── /raw/                      # 原始数据（禁止重复下载）& 新增抓取数据存放处
+├── /src/                          # 全部R/Julia代码（扁平结构，编号对齐）
+│   ├── 05_carlson_parkin_quantify.R
+│   ├── 10_build_panel.R
+│   ├── 20_bayes_state_space_diagnostic.jl
+│   ├── 30_bvar_sign_restrictions.jl
+│   ├── 35_identification_main.R
+│   ├── 40_models_baseline.R
+│   ├── 45_models_heterogeneity.R
+│   ├── 50_mechanism_competition.R
+│   ├── 60_lp_dynamic.R
+│   ├── 70_policy_backtest.R
+│   ├── 80_figures_tables.R
+│   ├── 90_parity_check_with_python.R
+│   └── 99_run_all.R
+├── /v1.3/                         # LaTeX生产版本（主交付物）
+│   ├── Writing_Sample_10p.tex          # master文件 (先复制项目总目录下的Writing_Sample_10p.tex的内容再后续修改)
+│   ├── /sections/
+│   │   ├── 01_intro.tex
+│   │   ├── 02_institution_measurement.tex
+│   │   ├── 03_identification.tex
+│   │   ├── 04_results_baseline.tex
+│   │   ├── 05_heterogeneity.tex
+│   │   ├── 06_mechanism_competition.tex
+│   │   ├── 07_policy_counterfactual.tex
+│   │   ├── 08_robustness.tex
+│   │   ├── 09_conclusion.tex
+│   │   ├── A1_bayesian_appendix.tex
+│   │   └── A2_additional_robustness.tex
+│   ├── references.bib             # 直接复制项目根目录下的reference.bib
+│   ├── /figures/                  # 链接或复制自输出
+│   └── /tables/                   # 链接或复制自输出
+├── /outputs/                      # 全部脚本输出
+│   ├── /tables/                   # LaTeX三线表（可直接\input）
+│   ├── /figures/                  # PDF/SVG矢量图
+│   └── /robustness/               # 稳健性批处理输出
+├── /audit/                        # 证据链与质量控制（融合第二份要求）
+│   ├── evidence_ledger.md         # 每个关键论断→表/图/脚本/输出的索引
+│   ├── variable_dictionary.md     # 变量名、单位、频率、变换、样本期
+│   ├── reproducibility_log.md     # 运行命令、hash、关键输出一致性
+│   ├── self_critique.md           # Referee-1 attack list与修复迭代记录
+│   └── limitations_and_scope.md   # 样本边界、识别弱点、外推限制
+└── README.md                      # 运行命令、数据来源、随机种子、预期时长
+```
 
 ---
 
-### Module C — Narrative Rebuild（顶刊叙事重建：先结构、后句子）
+### 【写作风格约束】（hard；全文执行）
 
-**Trigger**：复现通过后
-**Inputs**：现有 md 论文各章节
-**Steps**：
-
-1. 重写 Introduction（按“问题—缺口—贡献—路线图”四段式）
-2. Literature：做“定位”而不是“罗列”
-3. Method：把识别/测度的“最关键环节”放到正文；细节下沉附录
-4. Results：每一节必须回答同一个问题：“这条证据排除了哪些替代解释？”
-   **Outputs**：新版 `01_introduction.md` … `09_conclusion.md`（或合并成 `paper.md`）
-   **Checks**：
-
-* 每节开头是否有 1–2 句“本节要回答的问题 + 采取的方法”？
-* 每个结论句后面是否紧跟证据指针（Table/Figure/Appendix）？
+1. **叙事主体**：允许并鼓励使用"我/本文"的主观表达，保持单作者一致叙事；避免默认"我们"
+2. **语态选择**：减少过度被动语态，优先主动句；强调客观事实或方法步骤时可用被动
+3. **结构禁令**：禁止列举式结构（"第一/第二/第三；首先/其次/最后"）；禁止段末总结句（每段末句必须推进到下一概念/识别威胁/证据）
+4. **学术规范**：禁止解释默认学术规范（不写"为了保证因果识别所以用IV/DiD"）；直接给出经济学上的设计理由与可检验含义
+5. **句式多样性**：禁止相邻段落重复同句式模板；强制变换主语、语序、从句层级与连接方式
+6. **术语精确**：
+   - forecast error ≠ expectational bias
+   - identification ≠ estimation  
+   - revision ≠ level
+7. **数字呈现**：所有关键结论必须给出系数、标准误/置信区间、样本量、窗口长度/滞后选择、第一阶段F统计量、安慰剂结果幅度；禁止仅写"显著/较大/明显"
 
 ---
 
-### Module D — Evidence Ledger Completion（审稿人式证据链）
+### 【语言与句法规范】
 
-**Trigger**：正文基本成型
-**Inputs**：正文 + 全部表图
-**Steps**：
+**硬规则**：
+- 严禁重复句式，多用复杂句式；
+- 严禁使用First, Second, Thirst作为段落链接，严格保证全文逻辑连接紧密；
+- 少用"obviously/clearly/undoubtedly"；用可证伪表述
+- 先给定义再用符号；符号出现一次就要可追溯
+- 禁止"概念漂移"：同一对象不要在不同段落换叫法
 
-* 为每个“强断言句”（claim）补充：
+**动词强度梯度**（按证据强弱选择）：
+- 最强：*establish / identify / rule out*（需明确识别策略）
+- 中等：*document / quantify / characterize*（描述性或结构估计）
+- 克制：*suggest / is consistent with*（相关性、机制推断）
 
-  * 证据（表/图/回归）
-  * 识别假设（可检验/不可检验）
-  * 替代解释与对应稳健性
-    **Outputs**：最终 `evidence_ledger.md`
-    **Checks**：
-* 任意主张是否能在 30 秒内定位到输出文件？
-* 若不能：删句或降格表述（from “shows” → “is consistent with”）
-
----
-
-## 3. 顶刊经济学写作风格规范（必须执行）
-
-> 目标风格：AER / Restud / RES 常见写法：**克制、精准、可验证、少形容词、多结构化信息**。
-> 下面给的是“可执行规则 + 原创例句模板（你可以替换变量/国家/时期）”。
-
-### 3.1 语言与句法（Style）
-
-**硬规则：**
-
-* 句子优先短：平均 20–28 词；一段只表达一个逻辑单元
-* 少用“obviously / clearly / undoubtedly”；用可证伪表述
-* 先给定义再用符号；符号出现一次就要可追溯
-* 禁止“概念漂移”：同一对象不要在不同段落换叫法
-
-**动词强度梯度（按证据强弱选择）：**
-
-* 最强：*establish / identify / rule out*（需要明确识别策略）
-* 中等：*document / quantify / characterize*（描述性或结构估计）
-* 克制：*suggest / is consistent with*（相关性、机制推断）
-
-**原创例句模板（可直接用）：**
-
-* 贡献句（Contribution）
-
-  * *This paper makes three contributions. First, we construct a quarterly measure of households’ inflation expectations from the PBOC depositor survey using a Carlson–Parkin quantification. Second, we estimate a time-varying diagnostic intensity in a state-space framework. Third, we identify a “diagnostic expectations shock” in a Bayesian VAR using sign restrictions implied by forecast-error reversals.*
-* 路线图（Roadmap）
-
-  * *Section 2 describes the survey and measurement. Section 3 lays out the baseline regression and the state-space specification. Section 4 presents VAR evidence. Section 5 reports robustness and discusses limitations.*
-
-### 3.2 叙事结构（Narrative）
-
-**Introduction 四段式（强制）：**
-
+**Introduction四段式**（强制）：
 1. **Big question & stakes**（为什么重要，宏观/政策含义）
 2. **Gap**（现有文献缺什么：测度、识别、样本、机制）
 3. **Approach & contributions**（你做了什么，为什么能填缺口）
-4. **Preview of findings**（最关键结果 + 量级 + 边界条件）
-
-**每节内部结构（统一模板）：**
-
-* 1–2 句提出问题与方法
-* 给最关键定义/方程
-* 给结果 + 量级
-* 解释：它排除什么替代解释
-* 小结：本节对总论点贡献是什么
-
-### 3.3 逻辑链接词库（只用“因果/推理友好”的连接）
-
-* 递进：*Moreover, In addition, Importantly*
-* 转折：*However, In contrast, Nevertheless*
-* 因果（谨慎用）：*Consistent with, Suggesting that, A natural interpretation is*
-* 约束/边界：*In our sample, Under the maintained assumption that, This interpretation is limited by*
-
-### 3.4 理论与模型编排（Model/Method Architecture）
-
-你这篇的“模型”本质是 **测度 + 统计结构**（CP 定量化、SSM、BVAR）。正文编排建议：
-
-1. **Measurement first**：为什么 survey→μ 是必要的，误差结构是什么
-2. **Baseline regression**：给出最简式（并说明为什么不是结构因果）
-3. **State-space**：用最少方程讲清楚（measurement eq + transition eq）与识别（先验/滤波/后验诊断）
-4. **VAR**：把 sign restriction 与“诊断性预期”理论含义一一对应（impact + FE reversal）
-
-（你现有脚本对“预测误差 FE 与预测修正 FR、相关性矩阵、分段统计”等已经写得很“审稿人友好”，建议把它们对应的定义与经济含义放进正文/附录的固定位置。）
- 
+4. **Preview of findings**（最关键结果+量级+边界条件）
 
 ---
 
-## 4. 上下文工程（Context Engineering）与“像技能一样组织 Agent 工作”
+### 【数据管理规则】
 
-> 核心思想：上下文窗口是公共资源；要做“高信号 token 管理”，并用**压缩/结构化笔记**维护长期一致性。 ([Claude][1])
+**原始数据（/raw/）**：
+- 现有原始数据已在/raw/下：**禁止对已存在数据重复下载/重复爬取**
+- 若识别设计或稳健性检验需要补充新数据：允许使用Python编写抓取脚本，但必须先检查/raw/是否已有对应文件
+- 只有缺口存在时才抓取，并将新文件保存到/raw/，保证重复运行不会重复抓取
 
-### 4.1 文件阅读策略（必须遵守）
-
-* **Never break mid-sentence**：任何“分块阅读/摘要”必须以句号、分号或自然段边界切分
-* Chunk 建议：英文每块 150–250 词，中文每块 200–400 字
-* 每块输出两层笔记：
-
-  1. `facts.md`：事实/定义/样本期/变量
-  2. `claims.md`：作者主张 + 证据指针（若无证据则标红）
-
-### 4.2 Compaction（上下文压缩）机制
-
-* 每完成一个 Module，就更新一次 `PROJECT_STATE.md`：
-
-  * 已确认的定义
-  * 已复现的输出
-  * 未解决的问题（按优先级）
-  * 下一步要改的 3–5 件事
-    （这是 Anthropic 提倡的“structured note-taking / compaction”在工程侧的落地方式。） ([Anthropic][3])
-
-### 4.3 模块化写作 = “可触发、可测试、可复用”
-
-参考 Skill authoring best practices：**短、结构化、用真实用例测试**；只写模型“不会自动知道的那部分”，避免把常识写进上下文。 ([Claude][1])
-
-你可以把每个写作模块按如下头部写在 `AGENTS_WORKLOG.md` 中：
-
-* **Trigger**（何时调用）
-* **Inputs**（具体文件路径）
-* **Outputs**（写到哪里）
-* **Success criteria**（怎么判定完成）
-* **Failure modes**（常见错：样本期错、变量错、符号错、结果不可复现）
+**数据处理**：
+- 用R从/raw/读取并构建统一的/data/processed/（parquet/arrow格式），不做二次下载
+- Python仅在以下情形允许新增/修改：(a)缺失数据补充爬取；(b)对照旧版输出（不作为主线估计引擎）
 
 ---
 
-## 5. 证据与可追溯性：Evidence Ledger 模板（强制）
+### 【代码组织与编号】（严格对齐）
 
-在 `evidence_ledger.md` 用以下格式记录每条主张：
+所有脚本位于 `/src/`，编号对齐逻辑如下：
 
-* **Claim ID**: C-Intro-01
-* **Statement**: *We find that diagnostic intensity rises sharply during high-uncertainty episodes.*
-* **Evidence**: Figure `beta_t.png`; Table `ssm_posterior_params.tex`
-* **Code**: `src/20_bayes_state_space_*.py`
-* **Assumptions**: state-space linearity; priors; measurement error
-* **Alt explanations**: structural breaks, survey composition shifts
-* **Robustness**: prior sensitivity, sub-sample, alternative uncertainty proxy
-* **Status**: ✅ / ⚠️ / ❌
-
-（你的 BVAR 识别脚本对“DE shock 应满足 μ 上升且随后 FE 反转为负”已经把经济含义写进注释了；这种写法非常适合直接转写成正文识别段落。）
+- `/src/05_carlson_parkin_quantify.R` (对应 05_carlson_parkin_quantify.py)
+- `/src/10_build_panel.R` (对应 10_build_quarterly_panel.py)
+- `/src/20_bayes_state_space_diagnostic.jl` (Julia Bayes SSM 主实现)
+- `/src/30_bvar_sign_restrictions.jl` (Julia Bayes BVAR; 附录用)
+- **Identification & Analysis Extensions**:
+  - `/src/35_identification_main.R` (DiD 或 IV 主回归)
+  - `/src/40_models_baseline.R` (基准结果)
+  - `/src/45_models_heterogeneity.R` (异质性分析)
+  - `/src/50_mechanism_competition.R` (机制区分)
+  - `/src/60_lp_dynamic.R` (Local Projections 动态效应)
+  - `/src/70_policy_backtest.R` (政策反事实与回测)
+  - `/src/80_figures_tables.R` (统一绘图制表，出版级输出)
+  - `/src/90_parity_check_with_python.R` (对照旧版)
+  - `/src/99_run_all.R` (Single entrypoint)
 
 
 ---
 
-## 6. 写样本的“严厉审稿人清单”（提交前自审）
+### 【核心重设计】（识别优先；主脊梁+Bayes保留）
 
-### 6.1 读者最关心的 10 个问题（逐条必须能回答）
+**A) 符号约束VAR降级**：
+- 将sign-restricted VAR移至附录（AER/QJE会质疑循环识别）；主文结论不得依赖"用定义识别冲击"的逻辑
+- Bayesian BVAR/TVP-SSM必须保留，作为"结构化补充证据"和"机制一致性检查"，并通过严格诊断与先验敏感性证明可信
 
+**B) 主识别脊梁（二选一，做到极致）**：
+
+*Option 1（preferred if exposure data exists）：ASF强度DiD*
+- 处理强度：PorkShare_i（省份CPI权重或家庭食品支出占比/购买频率）
+- 使用staggered DiD：至少实现Callaway–Sant'Anna估计，并对事件研究动态效应额外实现Sun–Abraham风格/等价的交互权重法作为稳健性对照（避免TWFE负权重偏误）
+- 关键识别威胁与应对必须写入Identification章节并被实证检验：
+  * 平行趋势：事前趋势图+显式检验
+  * 提前反应：提前窗口placebo
+  * 结构性共同冲击：控制项与对照组敏感性
+  * SUTVA/溢出：邻省/贸易关联暴露稳健性（若可做）
+- 安慰剂：非食品/核心相关outcome；随机伪处理日期；低暴露组应显示弱/零效应
+
+*Option 2："salience shock" IV（新闻拥挤/稀缺）*
+- 基于/raw中现有文本/新闻计数构建通胀媒体显著性指数（Media Salience Index）
+- 采用外生新闻竞争度proxy作为工具变量推动显著性变化（若/raw缺，允许Python补充抓取但必须缓存）
+- 2SLS或LP-IV：salience → revisions → forecast errors，排他性、弱工具检验、安慰剂齐全
+
+**C) 测度升级（AER baseline）**：
+- 保留Carlson–Parkin作为一种量化方法，但必须至少加入一个替代预期测度（来自现有/raw数据源或可补充抓取）
+- "不确定/不知道"回答不得简单剔除：必须作为信息摩擦或选择性响应的一部分进行建模/界限分析，并报告结果敏感性
+
+**D) 竞争机制（non-negotiable）**：
+- 必须与Coibion–Gorodnichenko信息刚性回归并列展示，并给出"可区分预测"的证据链
+- 必须实现诊断性核心检验：revision predicts subsequent forecast error（方向、幅度、异质性）
+
+**E) 动态证据（transparent）**：
+- VAR不是主线；动态响应优先用local projections（Jordà 2005），必要时与IV/DiD对接
+- "时变"不再用短样本随机游走TVP作为主证据：用breakpoints/piecewise constants/regime switching，并报告正式断点检验
+
+---
+
+### 【Bayesian模块】（必须可见，不隐藏）
+
+Bayes在本项目中承担三件事，必须在正文或附录中清晰呈现并与识别主线一致：
+
+**1) Bayesian state-space/time-varying diagnostic intensity（Julia主实现）**
+- 在/src/20_bayes_state_space_diagnostic.jl中实现：带收缩先验的状态空间（或分段常数+层级先验）以解决短样本过拟合
+- 输出：关键参数的posterior mean + 68/90% credible intervals；状态路径图；并与事件窗口（ASF/贸易战/COVID）对齐展示
+
+**2) Bayesian BVAR/SVAR as appendix（Julia实现）**
+- 在/src/30_bvar_sign_restrictions.jl中保留贝叶斯VAR，但不得用循环定义识别"诊断性冲击"
+- 约束必须更信息化且可反驳：要么用外部工具/代理（proxy SVAR），要么把冲击定义锚定到与预期定义不同的观测（例如政策沟通/供给冲击proxy），并报告接受率与约束强度
+- 输出：IRF图、FEVD、识别敏感性（不同先验/不同约束集）
+
+**3) Bayesian workflow diagnostics（mandatory for every Bayes model）**
+- 在Bayes结果呈现中必须包含：
+  * prior predictive checks + posterior predictive checks（PPC）
+  * convergence diagnostics：split-Rhat接近1、有效样本量ESS、trace/ACF
+  * prior sensitivity：至少两组合理先验对核心结论的影响
+  * posterior predictive fit对关键统计量（均值、方差、尾部/分位数）的对比图
+- 若任何核心参数Rhat/ESS不达标：必须重参数化、加强先验收缩、改采样器设置或简化模型，直至诊断通过
+
+---
+
+### 【LaTeX重构规范】（/v1.3/生产版本）
+
+**文件组织**：
+- /v1.3/Writing_Sample_10p.tex（master）：只负责preamble、宏定义、\input各章节、统一图表路径与bibliography
+- /v1.3/sections/：各章节tex文件只写正文与\ref引用，不重复preamble；全文一键编译通过
+
+**表格规范**（LaTeX三线表，strict）：
+- 回归表必须输出为可直接\input的.tex，严格booktabs三线表（\toprule \midrule \bottomrule），禁止竖线
+- R端首选：fixest::etable导出LaTeX（主力）；必要时用modelsummary做高度自定义LaTeX输出
+- Julia端若直接估计回归：用RegressionTables.jl输出与booktabs兼容的LaTeX
+- 表注（notes）必要时用threeparttable，但避免冗长解释；识别假设与威胁应推进在正文/附录段落里，而不是堆在表注里
+
+**图表规范**（publication-quality, consistent）：
+- R(ggplot2)与Julia(CairoMakie)均可，但必须统一风格：
+  * 使用Okabe–Ito学术配色
+  * 统一字体、线宽、点大小、图例位置、网格线策略
+  * 输出优先PDF/SVG矢量图（论文用），必要时另存PNG（展示用）
+- Julia端优先CairoMakie（出版级矢量输出）；所有Makie图形必须由/src/80_figures_tables.R或/src/22_plots_theme.jl内定义全局主题控制
+
+---
+
+### 【迭代自我批判循环】（mandatory）
+
+每完成一个模块（测度、识别、基准结果、异质性、稳健性、政策映射、贝叶斯模块），必须：
+
+**输出"Referee-1 attack list"**（写入/audit/self_critique.md）：
+- (i) 理论漏洞
+- (ii) 数据/测度缺口
+- (iii) 识别威胁（排他性、平行趋势、预期效应/提前反应、SUTVA、宏观共同冲击）
+- (iv) 模型错设风险
+- (v) 哪些点会被顶刊审稿人一票否决
+
+**立即修复并重跑相关脚本**，迭代直至不存在"fatal"问题，仅保留边界清晰、可被接受的限制
+
+---
+
+### 【证据链管理】
+
+**evidence_ledger.md格式**（每条主张）：
+- **Claim ID**: C-Intro-01
+- **Statement**: *We find that diagnostic intensity rises sharply during high-uncertainty episodes.*
+- **Evidence**: Figure `beta_t.png`; Table `ssm_posterior_params.tex`
+- **Code**: `src/20_bayes_state_space_diagnostic.jl`
+- **Assumptions**: state-space linearity; priors; measurement error
+- **Alt explanations**: structural breaks, survey composition shifts
+- **Robustness**: prior sensitivity, sub-sample, alternative uncertainty proxy
+- **Status**: ✅ / ⚠️ / ❌
+
+**variable_dictionary.md**：变量名、单位、频率、变换、样本期、缺失处理
+
+**reproducibility_log.md**：运行命令、hash、关键输出一致性
+
+**limitations_and_scope.md**：明确样本期、外推边界、识别弱点、潜在偏误与未来工作
+
+---
+
+### 【Humanizer与学术写作标准】（mandatory）
+
+每个章节初稿完成后，必须调用humanizer与academic-writing-standards类skills做"去AI痕迹"与学术表达校正：
+- 消除模板化衔接、重复句式、空泛判断
+- 保留术语精确与数值硬约束
+- 只做语言与论证结构优化，不得稀释识别强度或回避不利结果
+
+---
+
+### 【执行计划】（do not ask for confirmation）
+
+1. **数据构建**：用R从/raw/读取并构建统一的/data/processed/（parquet/arrow），不做二次下载
+2. **测度与描述**：完成R版预期量化+FE/FR构造+基准描述统计，并生成LaTeX三线表与出版级图
+3. **主识别实现**：实现选定主识别脊梁（ASF DiD或salience-IV），完成全套placebo/falsification，并产出主文表图
+4. **异质性证据**：加入异质性维度（微观优先；若无微观，用暴露梯度与信息成本proxy做单调性证据）
+5. **机制区分**：实现competing mechanism（CG rigidity vs diagnostic predictions）并形成"可区分预测"的主证据链
+6. **Bayesian模块**：
+   - /src/20_bayes_state_space_diagnostic.jl：收缩先验+完整诊断+PPC+先验敏感性
+   - /src/30_bvar_sign_restrictions.jl：附录证据、非循环识别、报告接受率与敏感性
+7. **LaTeX重构**：完成/v1.3/分章节LaTeX重构并一键编译通过
+8. **迭代批判**：每完成一轮（识别/基准/异质性/稳健性/政策/Bayes），执行Referee-1 attack list并立即修复迭代，直到不存在fatal
+
+---
+
+### 【停止条件】（expanded: AER/QJE econometric bar）
+
+主线识别达到"接近自然实验"审稿门槛，并满足以下计量要求（任何一条缺失都不视为完成）：
+
+1. **Staggered DiD/event-study**：估计不依赖TWFE事件研究的隐含加权；至少报告并对照一种设计稳健估计（Callaway–Sant'Anna；并用Sun–Abraham/等价IW事件研究作动态稳健性），且pre-trend证据明确
+
+2. **推断层面**：标准误处理与数据结构一致（时间序列HAC/聚类；面板按省/家庭聚类）；若聚类数偏少，必须给出小样本稳健推断（wild cluster bootstrap或等价方案）
+
+3. **IV要求（若使用）**：
+   - 报告underidentification/weak identification统计量（Kleibergen–Paap rk LM/rk Wald F）与第一阶段强度
+   - 必须提供弱工具稳健推断（Anderson–Rubin/类似identification-robust区间），并展示关键结论不由弱工具驱动
+   - 过度识别（若适用）与排他性讨论必须与安慰剂一致
+
+4. **识别闭环**：所有关键结论必须经受"识别威胁→对应检验"闭环；至少包含伪处理日期、伪结果变量（不应受影响的outcome）、提前反应检验、样本窗口/控制集敏感性
+
+5. **Bayesian诊断**：prior predictive+posterior predictive checks（PPC）图与量化对比；收敛诊断（Rhat≈1、ESS充足、trace稳定），不达标则重参数化/加强收缩/简化模型后重跑；先验敏感性：至少两组合理先验下，核心结论方向与量级保持
+
+6. **机制区分**：诊断性预测与信息刚性预测在同一框架下可区分，且证据不止一条回归（至少包含revision→error链条+异质性/状态依赖）
+
+7. **政策可计算性**：政策含义必须可计算且可回测；给出明确公式/规则，报告回测指标（RMSE/MAE/覆盖率改变量级），并说明其与估计参数的一一对应关系
+
+8. **出版级表图**：所有回归表为LaTeX三线表、所有核心图为矢量图且配色一致；所有数字陈述可追溯到脚本输出
+
+---
+
+### 【严厉审稿人清单】（提交前自审）
+
+**读者最关心的10个问题**（逐条必须能回答）：
 1. 你的核心问题是什么？**一句话**能说清吗？
-2. 你测度的 μ（通胀预期）与 survey 原始问题之间的映射是否透明？（附问卷截图/样例）
-3. 诊断性预期的“可检验含义”是什么？你的证据对应哪一条含义？
-4. OLS 在这里的角色是什么（描述性/机制性）？你有没有避免把相关性写成因果？
-5. TVP-SSM 的状态变量是什么？如何识别？先验为何合理？MCMC 是否收敛？
-6. VAR 的 sign restriction 是否过强/过弱？接受率如何？
-7. 样本期只有 43 期有效样本时，参数不确定性与过拟合如何处理？
-8. 最关键的稳健性是哪 2–3 个？其余是否删掉？
-9. 与现有文献相比，你的“新增信息”是什么？
+2. 你测度的μ（通胀预期）与survey原始问题之间的映射是否透明？（附问卷截图/样例）
+3. 诊断性预期的"可检验含义"是什么？你的证据对应哪一条含义？
+4. OLS在这里的角色是什么（描述性/机制性）？你有没有避免把相关性写成因果？
+5. TVP-SSM的状态变量是什么？如何识别？先验为何合理？MCMC是否收敛？
+6. VAR的sign restriction是否过强/过弱？接受率如何？
+7. 样本期只有43期有效样本时，参数不确定性与过拟合如何处理？
+8. 最关键的稳健性是哪2–3个？其余是否删掉？
+9. 与现有文献相比，你的"新增信息"是什么？
 10. 你的结论外推到哪里就不成立？
 
-### 6.2 “降格用语”规则（避免被一票否决）
-
-* 没有清晰识别策略：不用 *causal, effect, impact*
-* 没有排除替代解释：不用 *rule out, establish*
-* 样本短、结构变化多：必须写 *in our sample / within 2011Q1–2025Q3*
-
----
-
-## 7. 项目关键脚本（Agent 应优先阅读的“真相来源”）
-
-> 这些文件决定“你到底做了什么”，正文必须与之完全一致。
-
-* **PBOC 问卷抓取与指标抽取**：
-* **描述统计 + FE/FR + 相关矩阵 + 分时期统计**：
-* **BVAR sign restrictions（诊断性冲击识别与 IRF/FEVD 输出）**：
+**降格用语规则**（避免被一票否决）：
+- 没有清晰识别策略：不用*causal, effect, impact*
+- 没有排除替代解释：不用*rule out, establish*
+- 样本短、结构变化多：必须写*in our sample / within 2011Q1–2025Q3*
 
 ---
 
-## 8. 工具/Agent 的 tool-calling 与运行纪律（简明）
-
-* 若 agent 需要调用外部工具/函数：严格遵守“定义工具→模型提出调用→执行→把结果回填→再生成文本”的闭环，避免把“工具输出”当成最终结论。 ([OpenAI Platform][4])
-* agent 的输出必须区分：
-
-  * **Results**（来自 outputs 的事实）
-  * **Interpretation**（有条件的解释）
-  * **Speculation/Future work**（明确标注）
-
----
-
-## 9. 最终打包与提交（Writing sample 标准形态）
-
-提交包建议：
-
-```
-submission/
-  paper/
-    paper.pdf
-    paper.tex (or paper.md)
-    appendix.pdf (optional)
-  replication/
-    README.md
-    environment.yml (or requirements.txt)
-    run.sh (one-click)
-    src/ (only necessary scripts)
-    data/processed/ (or instructions to build)
-    outputs/ (generated)
-  audit/
-    evidence_ledger.md
-    variable_dictionary.md
-    reproducibility_log.md
-    limitations_and_scope.md
-```
-
-README 至少包含：运行命令、数据来源与许可证、随机种子、预期运行时长、如何定位主表主图。
-
----
+**最终交付物**：
+1. `paper_writing_sample.pdf`（/v1.3/编译输出）
+2. `replication/`文件夹：一键复现（从processed数据复现所有主表主图）
+3. `/audit/evidence_ledger.md`：每个关键论断→对应表/图/脚本/输出的索引
+4. `/audit/limitations_and_scope.md`：明确样本期、外推边界、识别弱点、潜在偏误与未来工作

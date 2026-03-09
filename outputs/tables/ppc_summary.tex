@@ -1,0 +1,22 @@
+\begin{table}[!htbp]
+\centering
+\caption{Prior and posterior predictive checks}
+\label{tab:ppc_summary}
+\begin{threeparttable}
+\begin{tabular}{lcccccccc}
+\toprule
+statistic & observed\_prior & prior\_pred\_mean & prior\_pred\_p05 & prior\_pred\_p95 & observed\_post & post\_pred\_mean & post\_pred\_p05 & post\_pred\_p95 \\
+\midrule
+mean & 1.346 & -0.021 & -17.605 & 17.205 & 1.346 & 1.311 & -0.112 & 2.790 \\
+variance & 11.668 & 1136.837 & 141.779 & 3378.510 & 11.668 & 15.005 & 7.507 & 25.084 \\
+p10 & -3.855 & -35.592 & -77.107 & -4.538 & -3.855 & -3.265 & -5.651 & -1.043 \\
+p90 & 4.447 & 35.472 & 7.215 & 70.161 & 4.447 & 5.942 & 3.936 & 8.408 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Posterior predictive moments align more closely with observed moments than prior predictive moments.
+\item The table reports means and 5-95 percentile envelopes across replicated datasets.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,0 +1,26 @@
+﻿\section{Identification Strategy}
+
+Province-level exposure data needed for staggered treatment-intensity DiD are not observed in the current sample construction, so the main identification spine uses a salience-IV design at quarterly frequency. The endogenous object is the inflation salience index, the instrument is media congestion from geopolitical-news crowding, and the exclusion argument is that congestion shifts attention allocation before it can move household inflation errors except through salience-driven expectation revisions. I do not claim this restriction is self-evident; I evaluate it against explicit threats through first-stage strength, placebo outcomes, anticipation checks, and random-instrument permutation tests.
+
+The estimating equations are
+\begin{align}
+S_t &= \pi_0 + \pi_1 Z_t^{\text{congestion}} + \Pi'W_t + u_t, \\
+\Delta \mu_t &= \alpha_0 + \alpha_1 \widehat{S}_t + A'W_t + e_t, \\
+FE_{t+1} &= \beta_0 + \beta_1 \widehat{\Delta \mu_t} + B'W_t + \varepsilon_t,
+\end{align}
+where $S_t$ is salience, $\Delta\mu_t$ is revision, $FE_{t+1}$ is next-quarter forecast error, and $W_t$ contains macro controls. The diagnostic-expectation prediction is $\beta_1<0$: upward revisions induced by salient signals should be followed by negative forecast errors once realized inflation undershoots the revised belief.
+
+Table~\ref{tab:identification_main} reports the first stage, reduced form, and both second-stage links with Newey--West inference, and Table~\ref{tab:iv_first_stage} reports first-stage strength and weak-IV-robust Anderson--Rubin style intervals. Figure~\ref{fig:first_stage_iv} shows the empirical relevance relation in levels, which is economically interpretable rather than purely statistical because the instrument moves attention scarcity directly.
+
+Threat-specific tests close the loop that referees typically target. If exclusion fails through broad macro shocks, placebo outcomes should move with comparable magnitude; if anticipation dominates, lead revisions should load on current forecast errors; if the instrument only fits by chance in a short sample, permuted instruments should generate similar coefficients. Table~\ref{tab:placebo_tests} rejects those patterns in this dataset, which does not prove universal external validity but keeps the identifying variation coherent within the observed sample window.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\textwidth]{identification_first_stage.pdf}
+\caption{First Stage: Media Congestion and Inflation Salience}
+\label{fig:first_stage_iv}
+\end{figure}
+
+\input{\tabdir/identification_main}
+\input{\tabdir/iv_first_stage}
+\input{\tabdir/placebo_tests}

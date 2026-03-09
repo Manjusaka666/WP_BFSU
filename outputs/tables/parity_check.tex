@@ -1,0 +1,59 @@
+\begin{table}[!htbp]
+\centering
+\caption{Parity Check: New R Pipeline vs Legacy Python Outputs}
+\label{tab:parity_check}
+\begin{threeparttable}
+
+\begin{tabular}{lrrrr}
+\toprule
+variable & n\_overlap & corr & mean\_abs\_diff & max\_abs\_diff\\
+\midrule
+price\_sentiment\_index & 18 & 1.000 & 0.000 & 0.000\\
+infl\_exp\_index & 42 & 0.774 & 1.424 & 6.100\\
+income\_sentiment\_index & 42 & 0.585 & 1.374 & 12.500\\
+income\_confidence\_index & 42 & 0.737 & 1.064 & 7.500\\
+employment\_sentiment\_index & 42 & 0.628 & 1.495 & 7.700\\
+\addlinespace
+employment\_expectation\_index & 42 & 1.000 & 1.183 & 5.300\\
+price\_up\_share & 43 & 0.613 & 7.642 & 43.400\\
+price\_same\_share & 42 & -0.030 & 15.000 & 70.300\\
+price\_down\_share & 42 & 0.389 & 7.807 & 47.000\\
+price\_uncertain\_share & 42 & 0.792 & 4.793 & 39.000\\
+\addlinespace
+infl\_exp\_index\_alt & 42 & 0.623 & 6.205 & 23.800\\
+mu\_cp & 36 & 0.684 & 0.189 & 1.421\\
+sigma\_cp & 36 & 0.377 & 0.597 & 2.881\\
+delta\_used & 47 & NA & 0.000 & 0.000\\
+effective\_sample\_share & 47 & 0.803 & 0.048 & 0.390\\
+\addlinespace
+epu\_qavg & 47 & 1.000 & 0.000 & 0.000\\
+gpr\_qavg & 47 & 1.000 & 0.000 & 0.000\\
+CPI\_YoY & 47 & 1.000 & 0.000 & 0.000\\
+Consumer\_Confidence\_Index & 47 & 1.000 & 0.000 & 0.000\\
+Ind\_Value\_Added\_YoY & 47 & 1.000 & 0.000 & 0.000\\
+\addlinespace
+M2\_YoY & 47 & 1.000 & 0.000 & 0.000\\
+PPI\_YoY & 47 & 1.000 & 0.000 & 0.000\\
+Real\_Estate\_Climate\_Index & 47 & 1.000 & 0.000 & 0.000\\
+CPI\_MoM\_Idx & 47 & 1.000 & 0.000 & 0.000\\
+CPI\_MoM & 47 & 1.000 & 0.000 & 0.000\\
+\addlinespace
+CPI\_Level & 47 & 1.000 & 0.000 & 0.000\\
+PPI\_MoM\_Idx & 47 & 1.000 & 0.000 & 0.000\\
+PPI\_MoM & 47 & 1.000 & 0.000 & 0.000\\
+PPI\_Level & 47 & 1.000 & 0.000 & 0.000\\
+PPI\_YoY\_Rate & 47 & 1.000 & 0.000 & 0.000\\
+\addlinespace
+CPI\_QoQ\_Ann & 47 & 1.000 & 0.000 & 0.000\\
+CPI\_YoY\_from\_Level & 47 & 1.000 & 0.000 & 0.000\\
+GDP\_level & 47 & 1.000 & 0.000 & 0.000\\
+GDP\_yoy\_pct & 47 & 1.000 & 0.000 & 0.000\\
+Food\_CPI\_YoY\_qavg & 47 & 1.000 & 0.000 & 0.000\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item High correlations indicate successful migration consistency.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

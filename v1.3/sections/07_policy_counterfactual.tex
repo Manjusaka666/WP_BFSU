@@ -1,0 +1,17 @@
+﻿\section{Policy Counterfactual and Backtest}
+
+I translate the estimated diagnostic relation into an operational forecast-adjustment rule. Let $\widehat{FE}_{t+1}$ be the model-implied forecast error from revision and controls; the adjusted policy forecast is $\widehat{\pi}^{\,policy}_{t+1}=\mu_t+\widehat{FE}_{t+1}$. This mapping is one-to-one with estimated coefficients in Table~\ref{tab:policy_rule_formula}, so policy interpretation does not rely on qualitative narrative once the regression is estimated.
+
+The backtest uses rolling estimation windows and compares naive survey forecasts with diagnostic-adjusted forecasts. Table~\ref{tab:policy_backtest} reports RMSE, MAE, and interval coverage for both approaches. Improvement in loss metrics implies that the estimated overreaction component carries predictive content that can be exploited in real time rather than only in-sample fit.
+
+Figure~\ref{fig:policy_backtest} plots actual inflation against both forecast paths. The adjusted rule tracks reversals more tightly around large revision episodes and reduces miss magnitude in tails, while residual forecast errors remain non-zero, which is expected in a short sample with aggregate data and evolving shocks. That residual risk defines the practical boundary of the policy mapping and motivates the Bayesian diagnostics and robustness checks that follow.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{policy_backtest_path.pdf}
+\caption{Rolling Backtest: Naive vs Diagnostic-Adjusted Forecasts}
+\label{fig:policy_backtest}
+\end{figure}
+
+\input{\tabdir/policy_rule_formula}
+\input{\tabdir/policy_backtest_metrics}
