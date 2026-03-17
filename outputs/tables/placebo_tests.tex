@@ -1,24 +1,29 @@
-\begin{table}[!htbp]
+\begin{table}[htbp]
 \centering
+\begin{threeparttable}
 \caption{Falsification and Placebo Tests}
 \label{tab:placebo_tests}
-\begin{threeparttable}
-
-\begin{tabular}{lrr}
+{\small
+\begin{tabular}{lcc}
 \toprule
-test & estimate & p\_value\\
+ & Estimate & $p$-value \\
 \midrule
-Permutation placebo IV: mean coefficient & 14.845 & NA\\
-Permutation placebo IV: 2.5 percentile & -129.691 & NA\\
-Permutation placebo IV: 97.5 percentile & 76.854 & NA\\
-Placebo outcome (employment\_expectation\_index) & 986.714 & 0.783\\
-Anticipation test using lead revision & -15.333 & 0.846\\
+\multicolumn{3}{l}{\textit{Panel A: Permutation Placebo IV}} \\
+\addlinespace
+Mean coefficient & 14.845 & \\
+2.5th percentile & $-129.691$ & \\
+97.5th percentile & 76.854 & \\
+\addlinespace
+\multicolumn{3}{l}{\textit{Panel B: Placebo Outcomes and Anticipation}} \\
+\addlinespace
+Employment expectation index & 986.714 & 0.783 \\
+Lead revision (anticipation test) & $-15.333$ & 0.846 \\
 \bottomrule
 \end{tabular}
+}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item Permutation placebo reassigns the instrument across quarters 300 times.
-\item A valid identification design should keep placebo and anticipation estimates near zero.
+\item \textit{Notes:} Permutation placebo reassigns the instrument across quarters 300 times. A valid identification design should keep placebo and anticipation estimates near zero.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

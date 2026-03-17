@@ -1,23 +1,29 @@
 \begin{table}[!htbp]
 \centering
-\caption{Quarterly Sample Construction}
+\small
+\caption{Sample Overview}
 \label{tab:sample_overview}
 \begin{threeparttable}
 
-\begin{tabular}{ll}
+\begin{tabular}{lc}
 \toprule
-item & value\\
+ & Value \\
 \midrule
-main\_sample\_start & 2013Q4\\
-main\_sample\_end & 2022Q3\\
-n\_main\_obs & 32\\
-n\_total\_quarters & 48\\
-has\_alt\_expectation & TRUE\\
+\multicolumn{2}{l}{\textit{Panel A: Sample Coverage}} \\
+\addlinespace
+Main sample start & 2013Q4 \\
+Main sample end & 2022Q3 \\
+Main sample observations & 32 \\
+Total available quarters & 48 \\
+\addlinespace
+\multicolumn{2}{l}{\textit{Panel B: Data Availability}} \\
+\addlinespace
+Alternative expectations measure available & Yes \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item Main sample requires non-missing FE, revision, uncertainty measures, and controls.
+\item \textit{Notes:} The main sample requires non-missing forecast error, forecast revision, uncertainty measures, and macro controls. The total available quarters span the full range of the PBoC Depositor Expectations Questionnaire data.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

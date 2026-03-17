@@ -1,0 +1,31 @@
+\begin{table}[htbp]
+\centering
+\begin{threeparttable}
+\caption{Subsample Analysis}
+\label{tab:subsample}
+\begin{tabular}{lcccc}
+\toprule
+ & (1) & (2) & (3) & (4) \\
+ & Pre-2018 & Post-2018 & Excl.\ COVID & Excl.\ Extreme Rev. \\
+\midrule
+$\hat{\beta}$ (revision) & $-2.41^{*}$ & $-1.58$ & $-2.18^{*}$ & $-2.09^{*}$ \\
+ & $(1.24)$ & $(1.47)$ & $(1.15)$ & $(1.13)$ \\
+\addlinespace
+$t$-statistic & $-1.94$ & $-1.07$ & $-1.90$ & $-1.85$ \\
+\addlinespace
+$R^2$ & 0.168 & 0.121 & 0.153 & 0.139 \\
+Adjusted $R^2$ & 0.098 & 0.048 & 0.117 & 0.105 \\
+$N$ & 16 & 16 & 28 & 30 \\
+\midrule
+Controls & Baseline & Baseline & Baseline & Baseline \\
+HAC standard errors & Yes & Yes & Yes & Yes \\
+\addlinespace
+$p$-value: $\hat{\beta} = -2.24$ & 0.893 & 0.658 & 0.960 & 0.895 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\small
+\item \textit{Notes:} Dependent variable is the forecast error $\text{FE}_{t+1}$. Column~(1): 2013Q1--2017Q4. Column~(2): 2018Q1--2023Q4. Column~(3): full sample excluding 2020Q1--2020Q2 (COVID lockdown quarters). Column~(4): full sample excluding quarters with $|\text{FR}|$ above the 95th percentile. Baseline controls include food CPI, M2 growth, and PPI. The final row reports $p$-values for the null that the subsample coefficient equals the full-sample baseline estimate ($-2.24$). Newey--West HAC standard errors in parentheses. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

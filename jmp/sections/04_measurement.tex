@@ -1,0 +1,155 @@
+\section{Measurement}\label{sec:measurement}
+
+\subsection{Carlson--Parkin quantification}
+
+The PBoC depositor survey reports qualitative response
+shares: the fraction of respondents who expect prices to
+rise ($p^{up}$), stay the same ($p^{same}$), fall
+($p^{down}$), or who are uncertain ($p^{unc}$). To
+construct a quantitative expectation measure, I apply
+the \citet{Carlson1975} method, which assumes that
+individual expected inflation rates are drawn from a
+normal distribution and that each respondent reports
+``up'' if their expected inflation exceeds a perception
+threshold $\delta$, ``down'' if it falls below $-\delta$,
+and ``same'' otherwise.
+
+Under these assumptions, the cumulative normal at the
+upper threshold equals the fraction reporting ``same'' or
+``down,'' and the cumulative normal at the lower threshold
+equals the fraction reporting ``down'' alone. Inverting
+these two conditions yields the mean and standard deviation
+of the latent distribution:
+\begin{align}
+  \mu_t^{CP} &= \delta \cdot
+    \frac{\Phi^{-1}(1 - p_t^{up}) +
+          \Phi^{-1}(p_t^{down})}
+         {\Phi^{-1}(1 - p_t^{up}) -
+          \Phi^{-1}(p_t^{down})}, \label{eq:cp_mean} \\
+  \sigma_t^{CP} &= \frac{2\delta}
+    {\Phi^{-1}(1 - p_t^{up}) -
+     \Phi^{-1}(p_t^{down})}, \label{eq:cp_sd}
+\end{align}
+where $\Phi^{-1}$ is the standard normal quantile function
+and $\delta$ is the indifference threshold, calibrated to
+the sample-average realized inflation rate following
+standard practice.
+
+Two features of this mapping require explicit treatment.
+
+\paragraph{The role of uncertain respondents.}
+The ``hard to say'' response cannot be mechanically assigned
+to either tail without changing the quantified expectation.
+Rather than dropping uncertain respondents as noise---a
+common but problematic choice that assumes
+non-informativeness---I construct three measures. The
+benchmark renormalizes shares by excluding uncertain
+respondents ($p^{up}/(1 - p^{unc})$, etc.), which
+implicitly distributes them in proportion to the
+directional shares. The lower bound allocates all
+uncertain respondents to the ``down'' category, producing
+the most optimistic (lowest) expectation. The upper bound
+allocates them to ``up,'' producing the most pessimistic
+(highest) expectation. The diagnostic coefficient must
+retain its sign across all three measures for the result
+to be credible.
+
+Table~\ref{tab:cp_bounds} reports the expectation series
+under each allocation. The bound spread averages
+approximately 0.8 percentage points and widens in quarters
+where the uncertain share exceeds its median, which
+coincides with high-uncertainty macro states. This
+covariation between measurement precision and economic
+conditions is a feature of the data, not a flaw: it
+means that identification is hardest exactly where the
+economic question is most interesting, and the bound
+analysis makes this tension visible rather than concealing
+it behind a single point estimate.
+
+\paragraph{Sensitivity to the threshold parameter.}
+The threshold $\delta$ determines the scale of quantified
+expectations: higher $\delta$ stretches the distribution
+and produces larger absolute values of $\mu^{CP}$. I
+set $\delta$ equal to the sample-average realized CPI
+inflation rate (approximately 0.5 percentage points per
+quarter, annualized), following the convention that
+respondents report ``same'' if they perceive inflation
+within a half-point of zero. Robustness checks in
+Appendix~\ref{app:data} report results under alternative
+$\delta$ values (0.3, 0.7, 1.0), and the diagnostic
+coefficient is stable across these choices because
+$\delta$ scales both the revision and the forecast error,
+leaving their ratio approximately invariant.
+
+\subsection{CFPS household-level expectations}
+
+The CFPS price-expectation question has a similar
+qualitative structure: respondents report whether they
+expect local commodity prices to rise, stay about the
+same, or fall over the coming year. I apply the
+Carlson--Parkin inversion at the individual level by
+treating each respondent's answer as a draw from a
+Bernoulli distribution over the three categories, then
+aggregating within province-year cells to obtain
+provincial expectation measures with sufficient
+observations per cell for the normal approximation
+to hold.
+
+For household-level analysis that exploits individual
+variation, I construct a simpler ordinal coding:
+$\tilde{\mu}_{it} = 1$ if the respondent expects prices
+to rise, $\tilde{\mu}_{it} = 0$ for ``same,'' and
+$\tilde{\mu}_{it} = -1$ for ``fall.'' This ordinal measure
+cannot be directly compared to the quantified PBoC
+expectation in levels, but it can identify whether the
+probability of overreaction (switching from ``same'' or
+``down'' to ``up'' followed by realized inflation staying
+flat or falling) varies with household characteristics
+in the direction predicted by attention-allocation models.
+
+I define a CFPS-specific diagnostic indicator at the
+household level. For each household observed in consecutive
+waves ($t-1, t$), I classify a revision as positive if
+the household's price expectation moved upward (from ``same''
+to ``up,'' or from ``down'' to ``same'' or ``up''). I then
+check whether realized provincial CPI between wave $t$ and
+wave $t+1$ fell short of the implied expectation direction.
+Because CFPS waves are biennial, this test operates at a
+two-year horizon rather than the quarterly horizon of the
+PBoC analysis, which reduces power but tests whether
+diagnostic behavior persists at longer frequencies.
+
+\subsection{Forecast errors, revisions, and derived objects}
+
+All derived objects in the estimation follow explicit
+definitions tied to survey timing.
+
+\paragraph{Quarterly panel (PBoC).}
+The forecast revision is $FR_t = \mu_t^{CP} - \mu_{t-1}^{CP}$,
+and the forecast error is $FE_{t+1} = \pi_{t+1}^{QoQ} - \mu_t^{CP}$,
+where $\pi_{t+1}^{QoQ}$ is the quarter-on-quarter annualized CPI
+inflation rate in the quarter following the survey.
+
+\paragraph{Household panel (CFPS).}
+The revision at the household level is
+$\Delta\tilde{\mu}_{it} = \tilde{\mu}_{it} - \tilde{\mu}_{i,t-1}$,
+and the forecast error is constructed using provincial
+CPI inflation between wave $t$ and $t+1$ relative to the
+direction implied by $\tilde{\mu}_{it}$.
+
+These definitions ensure that the revision uses only
+information available at time $t$ and that the forecast
+error uses only outcomes realized after $t$, which prevents
+mechanical correlation between the left-hand and right-hand
+sides of the regression. The distinction between revision
+and level matters because diagnostic expectations predict
+that the revision (news) determines the direction of the
+error, not the level of the expectation.
+Table~\ref{tab:desc_extended} reports the joint
+distribution of revisions and subsequent errors in the
+quarterly panel, confirming that the negative association
+visible in Figure~\ref{fig:revision_error_dynamics} holds
+across the full distribution rather than being driven by
+outlier quarters.
+
+\input{\tabdir/desc_stats_extended}

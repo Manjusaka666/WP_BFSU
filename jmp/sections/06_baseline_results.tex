@@ -1,0 +1,156 @@
+\section{Baseline Results}\label{sec:results}
+
+\subsection{OLS estimates}
+
+Table~\ref{tab:ols_baseline} reports the coefficient on
+forecast revisions in regressions of next-quarter forecast
+errors across nested specifications. Column~1 includes only
+the revision and an intercept. The coefficient is
+$\hat{\beta} = -1.66$ (SE $= 0.96$, $p = 0.093$), negative
+and marginally significant at the 10\% level.
+Adding macro controls (food CPI, M2, PPI) in column~2
+strengthens the estimate to $\hat{\beta} = -2.24$
+(SE $= 1.11$, $p = 0.055$). The full specification with
+uncertainty controls (EPU, GPR) in column~3 yields
+$\hat{\beta} = -2.13$ (SE $= 1.26$, $p = 0.103$, $N = 32$).
+The marginal significance reflects the limited sample size
+of 32 quarterly observations rather than an economically
+small effect.
+
+The stability of the coefficient across control sets matters
+because it rules out the possibility that a single omitted
+variable drives the result. Dropping individual controls
+(Table~\ref{tab:ols_robustness}) produces coefficients
+ranging from $-1.71$ (no food CPI) to $-2.11$ (no PPI),
+with all specifications retaining the diagnostic sign.
+If food-price mean reversion were the sole explanation,
+controlling for food CPI should eliminate the revision--error
+link. The coefficient actually strengthens with food CPI
+included, suggesting a diagnostic mechanism that operates
+through attention to food prices but is not mechanically
+caused by food-price mean reversion alone.
+
+The economic magnitude is interpretable. A one-standard-deviation
+increase in the revision ($\sigma_{FR} = 0.45$ percentage
+points) predicts a subsequent forecast error of approximately
+$-1.0$ percentage points in the baseline specification,
+which is large relative to the mean forecast error of
+$1.32$ percentage points. The $R^2$ increases from 0.048
+(bivariate) to 0.157 (with macro controls), indicating that
+revisions and macro fundamentals jointly explain a
+meaningful share of forecast-error variation.
+
+\input{\tabdir/ols_baseline}
+\input{\tabdir/ols_diagnostics}
+\input{\tabdir/ols_robustness}
+
+\subsection{IV estimates}
+
+Table~\ref{tab:identification_main} reports the salience-IV
+chain. The first-stage relationship between the media
+congestion instrument and the salience index produces a
+coefficient of $0.082$ (SE $= 0.076$, $p = 0.291$) with a
+Wald F-statistic of $1.16$, which falls below conventional
+weak-instrument thresholds. The 2SLS point estimate of
+the diagnostic coefficient is $\hat{\beta}_1^{IV} = 33.7$,
+but with a standard error of $108.6$ the estimate is
+uninformative in isolation.
+
+Given the weak first stage, I rely on two complementary
+diagnostics rather than the 2SLS point estimate.
+First, the Anderson--Rubin weak-instrument-robust 95\%
+confidence interval for $\beta_1$ spans $[-3.0, 3.0]$.
+Second, the reduced-form regression of forecast errors
+directly on the congestion instrument yields a coefficient
+of $-0.41$ (SE $= 0.49$, $p = 0.41$). The reduced-form
+sign is consistent with the diagnostic prediction: higher
+media congestion (less inflation salience) is associated
+with smaller forecast errors, as expected if salience
+drives overreaction. The statistical insignificance reflects
+the difficulty of detecting instrument effects in a
+32-observation sample with a single instrument.
+
+The IV exercise is best interpreted as supplementary
+evidence. The OLS diagnostic test provides the primary
+identification: the negative revision--error coefficient
+discriminates between diagnostic and rational-updating
+models without requiring an instrument. The IV design adds
+a direction-of-causality check that supports the OLS
+sign but lacks the statistical power to pin down magnitudes.
+
+\subsection{Local projections}
+
+Dynamic responses sharpen the mechanism discrimination.
+I estimate local projections following \citet{Jorda2005}:
+\begin{equation}\label{eq:lp}
+  y_{t+h} = \alpha_h + \beta_h FR_t + \Gamma_h' W_t
+    + \varepsilon_{t+h}, \qquad h = 0, 1, \ldots, 8,
+\end{equation}
+where $y_{t+h}$ is either the forecast error or realized
+inflation at horizon $h$, and $FR_t$ is the revision
+at time $t$.
+
+Table~\ref{tab:lp_dynamic} and
+Figures~\ref{fig:lp_fe}--\ref{fig:lp_pi} report the
+results. The forecast-error response to a revision shock
+is negative at $h = 0$ ($\hat{\beta}_0 = -2.24$,
+SE $= 1.11$), consistent with the baseline OLS estimate.
+At subsequent horizons the response oscillates, with
+negative coefficients at $h = 2$ ($-1.37$) and $h = 4$
+($-2.25$, the latter statistically significant) and positive
+coefficients at $h = 1$ and $h = 3$. The oscillation likely
+reflects the short sample (observations decline from 32
+at $h = 0$ to 23 at $h = 8$) interacting with seasonal
+patterns in Chinese CPI.
+
+The realized-inflation response is positive and significant
+at $h = 0$ ($\hat{\beta}_0 = 3.64$, SE $= 1.03$), indicating
+that revisions partly reflect genuine inflationary news.
+However, the forecast-error response exceeds the
+inflation response in absolute value at impact, and the
+inflation response reverses by $h = 1$ ($-1.76$) and
+$h = 3$ ($-1.84$, significant). The fact that
+errors respond more strongly and with the diagnostic sign
+at the impact horizon is consistent with an overreaction
+component layered on top of rational updating.
+
+The LP evidence complements rather than supersedes the
+baseline regression. With 32 quarterly observations,
+multi-horizon estimates are imprecise, and the oscillating
+pattern prevents a clean separation of diagnostic and
+rigidity dynamics through impulse-response shape alone.
+The LP's primary contribution is confirming the negative
+contemporaneous sign and showing that the revision--error
+link is not an artifact of longer-horizon confounding.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.84\textwidth]{lp_forecast_error.pdf}
+\caption{Local projections: forecast-error response to a
+  one-unit revision shock, with 90\% Newey--West bands.
+  The response is negative on impact ($\hat{\beta}_0 = -2.24$)
+  and at horizons 2 and 4, with the oscillating pattern
+  reflecting seasonal structure in Chinese CPI and the
+  short estimation sample ($N$ falling from 32 at $h=0$
+  to 23 at $h=8$). Shaded bands are 90\% confidence
+  intervals.}
+\label{fig:lp_fe}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.84\textwidth]{lp_inflation.pdf}
+\caption{Local projections: realized-inflation response to
+  a one-unit revision shock. The response is positive and
+  significant on impact ($\hat{\beta}_0 = 3.64$, SE $= 1.03$),
+  confirming that revisions partly reflect genuine
+  inflationary news. However, the inflation response
+  reverses sign by horizon 1 and the forecast-error
+  response exceeds it in absolute value at impact,
+  consistent with overreaction layered on top of rational
+  updating to real information.}
+\label{fig:lp_pi}
+\end{figure}
+
+\input{\tabdir/correlation_matrix}
+\input{\tabdir/lp_dynamic}

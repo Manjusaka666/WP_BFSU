@@ -1,23 +1,28 @@
-\begin{table}[!htbp]
+\begin{table}[htbp]
 \centering
+\begin{threeparttable}
 \caption{Baseline Forecast-Error Regressions}
 \label{tab:ols_baseline}
-\begin{threeparttable}
-
-\begin{tabular}{lrrrrr}
+{\small
+\begin{tabular}{lcccc}
 \toprule
-spec & beta & se & p\_value & n & r2\\
+ & (1) & (2) & (3) & (4) \\
+ & Bivariate & +Macro & +Uncertainty & Alt.\ Revision \\
 \midrule
-Bivariate & -1.662 & 0.957 & 0.093 & 32 & 0.048\\
-+ Macro controls & -2.237 & 1.114 & 0.055 & 32 & 0.157\\
-+ Uncertainty controls & -2.125 & 1.256 & 0.103 & 32 & 0.186\\
-Alternative expectation revision & 0.535 & 0.080 & 0.000 & 36 & 0.281\\
+$\hat{\beta}$ (revision) & $-1.662^{*}$ & $-2.237^{*}$ & $-2.125$ & $0.535^{***}$ \\
+ & (0.957) & (1.114) & (1.256) & (0.080) \\
+\addlinespace
+Observations & 32 & 32 & 32 & 36 \\
+$R^{2}$ & 0.048 & 0.157 & 0.186 & 0.281 \\
+\addlinespace
+Macro controls & & \checkmark & \checkmark & \checkmark \\
+Uncertainty controls & & & \checkmark & \\
 \bottomrule
 \end{tabular}
+}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item Dependent variable is next-quarter forecast error using Carlson-Parkin expectations.
-\item All standard errors are Newey-West with 4 lags.
+\item \textit{Notes:} Dependent variable is next-quarter forecast error using Carlson--Parkin expectations. All standard errors (in parentheses) are Newey--West with 4 lags. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

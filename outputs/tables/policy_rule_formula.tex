@@ -1,23 +1,35 @@
-\begin{table}[!htbp]
+\begin{table}[htbp]
 \centering
+\begin{threeparttable}
 \caption{Estimated Policy Rule Parameters}
 \label{tab:policy_rule_formula}
-\begin{threeparttable}
-
-\begin{tabular}{lrrr}
+{\small
+\begin{tabular}{lc}
 \toprule
-term & estimate & se & p\_value\\
+ & Forecast Error \\
 \midrule
-(Intercept) & 8.164 & 3.533 & 0.029\\
-FR\_cp & -2.237 & 1.114 & 0.055\\
-Food\_CPI\_YoY\_qavg & -0.230 & 0.139 & 0.111\\
-M2\_YoY & -0.562 & 0.284 & 0.058\\
-PPI\_YoY\_rate & -0.197 & 0.172 & 0.263\\
+Intercept & $8.164^{**}$ \\
+ & (3.533) \\
+\addlinespace
+$\hat{\beta}$ (revision) & $-2.237^{*}$ \\
+ & (1.114) \\
+\addlinespace
+Food CPI (YoY) & $-0.230$ \\
+ & (0.139) \\
+\addlinespace
+M2 growth (YoY) & $-0.562^{*}$ \\
+ & (0.284) \\
+\addlinespace
+PPI (YoY) & $-0.197$ \\
+ & (0.172) \\
+\addlinespace
+Observations & 32 \\
 \bottomrule
 \end{tabular}
+}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item Operational rule: adjusted forecast equals survey expectation plus predicted forecast error.
+\item \textit{Notes:} Operational rule: adjusted forecast equals survey expectation plus predicted forecast error. Standard errors (in parentheses) are Newey--West with 4 lags. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

@@ -1,0 +1,137 @@
+\section{BVAR with Sign-Restricted Identification}\label{app:bvar}
+
+This appendix reports results from a Bayesian VAR with
+sign-restricted identification. The BVAR serves as a
+structural consistency check: it asks whether the
+reduced-form dynamics of the multivariate system are
+compatible with a shock that generates the diagnostic
+overreaction pattern. The BVAR does not provide independent
+identification---the sign restrictions encode the
+diagnostic prediction rather than testing it against
+alternatives---but it verifies that the pattern
+documented in the frequentist baseline is not an artifact
+of single-equation specification.
+
+\subsection{VAR setup}
+
+The five-variable VAR includes inflation expectations
+($\mu_t$), realized CPI inflation ($\pi_t$), industrial
+value-added growth ($IndVA_t$), the EPU index, and
+the GPR index:
+\[
+  y_t = c + A_1 y_{t-1} + A_2 y_{t-2} + \varepsilon_t^y,
+  \qquad \varepsilon_t^y \sim \mathcal{N}(0, \Sigma).
+\]
+
+I estimate the VAR with a Minnesota prior
+\citep{Litterman1986} with overall tightness $\lambda = 0.2$.
+Two lags are selected by BIC given the short sample.
+Posterior draws of $(A_1, A_2, \Sigma)$ are obtained
+through the dummy-observation approach yielding a
+quasi-conjugate Normal-Inverse-Wishart posterior.
+
+\subsection{Sign restrictions}
+
+The identified ``diagnostic expectations shock'' satisfies:
+\begin{itemize}
+  \item $IRF_{\mu}(0) > 0$: the shock raises expectations
+    on impact.
+  \item $IRF_{\pi}(h+1) < IRF_{\mu}(h)$ for
+    $h = 0, 1, 2, 3$: realized inflation undershoots
+    expectations for one year, generating negative
+    forecast errors.
+\end{itemize}
+
+No restrictions are imposed on industrial output, EPU,
+or GPR; their responses are data-determined.
+
+For each of 2,000 posterior draws, I search over random
+orthogonal rotations (up to 200 per draw) for a structural
+matrix satisfying these conditions.
+Table~\ref{tab:bvar_acceptance} reports acceptance
+statistics. The acceptance rate is 99.95\% (1,999 of
+2,000 draws), with an average of 2.45 rotations needed
+per accepted draw. This near-universal acceptance
+confirms that the diagnostic pattern is a robust feature
+of the data's covariance structure rather than a fragile
+configuration that requires specific parameter values.
+
+\input{\tabdir/bvar_acceptance}
+
+\subsection{Impulse responses}
+
+Figure~\ref{fig:bvar_irf_appendix} shows median impulse
+responses with 68\% credible bands for all five variables.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.84\textwidth]{bvar_irf_de_shock.pdf}
+\caption{BVAR impulse responses to the diagnostic expectations
+  shock. Median responses with 68\% credible bands from
+  1,999 accepted draws.}
+\label{fig:bvar_irf_appendix}
+\end{figure}
+
+\paragraph{Expectations.}
+By construction, $\mu_t$ jumps by +1.0 on impact.
+The response remains elevated for 6--8 quarters
+($+0.35$ at $h=1$, $+0.19$ at $h=2$, $+0.07$ at $h=8$)
+before dissipating, consistent with persistent but
+transitory overreaction.
+
+\paragraph{Realized inflation.}
+CPI inflation barely responds on impact ($+0.10$, with
+the 68\% band including zero) and turns slightly negative
+by $h=2$ ($-0.01$). The muted response confirms that the
+shock moves beliefs but not fundamentals.
+
+\paragraph{Forecast-error reversal.}
+The implied forecast error $FE_h = IRF_{\pi}(h+1) - IRF_{\mu}(h)$
+is sharply negative on impact ($-0.91$) and remains
+negative for 6--8 quarters, matching the local-projection
+evidence from the main text.
+
+\paragraph{Real activity.}
+Industrial output rises on impact ($+0.23$) and remains
+positive for two years, suggesting the shock is associated
+with an expansionary environment. The co-movement of rising
+expectations, rising output, and declining uncertainty is
+consistent with an optimism-driven demand interpretation
+of the diagnostic shock.
+
+\paragraph{Uncertainty indices.}
+EPU falls on impact ($-0.16$) and GPR falls ($-0.20$),
+indicating that the shock occurs when uncertainty abates.
+Households in calmer environments may be more prone to
+overreact because salient signals stand out against a
+low-volatility baseline, triggering representativeness.
+
+\input{\tabdir/bvar_irf_summary}
+
+\subsection{Variance decomposition}
+
+Table~\ref{tab:bvar_fevd} reports the forecast error
+variance decomposition. At the one-year horizon, the
+diagnostic shock explains approximately 26\% of the
+variance in inflation expectations, 8\% of CPI inflation
+variance, and 12--19\% of the variance in industrial
+output and uncertainty indices. The large share for
+expectations relative to inflation confirms that the
+shock is primarily a sentiment phenomenon: it moves
+beliefs substantially but underlying price dynamics
+only marginally.
+
+\input{\tabdir/bvar_fevd}
+
+\subsection{Sensitivity}
+
+Table~\ref{tab:bvar_sensitivity} reports results under
+alternative lag orders ($p = 1, 3, 4$), alternative
+Minnesota tightness ($\lambda = 0.1, 0.3$), and
+alternative sign-restriction horizons (restricting
+forecast errors for $h = 0, 1, 2$ only instead of
+$h = 0, 1, 2, 3$). Acceptance rates remain above 97\%
+across all specifications, and the qualitative IRF
+patterns are preserved.
+
+\input{\tabdir/bvar_sensitivity}

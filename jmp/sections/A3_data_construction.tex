@@ -1,0 +1,98 @@
+\section{Data Construction Details}\label{app:data}
+
+\subsection{PBoC depositor survey processing}
+
+The PBoC publishes quarterly survey reports as PDF
+documents in Chinese. I extract response shares from
+68 reports covering 2010Q4 through 2025Q3 using a
+combination of PDF parsing and manual verification.
+Each report contains the fraction of respondents selecting
+``prices will rise,'' ``prices will stay the same,''
+``prices will fall,'' and ``hard to say.'' These shares
+are stored in
+\texttt{data/intermediate/pboc\_depositor\_survey\_quarterly.csv}.
+
+The Carlson--Parkin quantification
+(Section~\ref{sec:measurement}) is implemented in
+\texttt{src/05\_carlson\_parkin\_quantify.R}. The script
+outputs three expectation series (benchmark, lower bound,
+upper bound) and a cross-validated $\delta$ parameter.
+Intermediate outputs are stored in
+\texttt{data/intermediate/pboc\_expected\_inflation\_cp.csv}.
+
+\subsection{Macroeconomic data}
+
+NBS data are downloaded from the National Bureau of
+Statistics official database using the EasyQuery API
+(\texttt{src/04\_download\_nbs\_easyquery.py}). Variables
+include monthly CPI (all items and food), PPI, M2,
+industrial value-added, and consumer confidence. Monthly
+series are aggregated to quarterly frequency by averaging
+(flow variables) or end-of-quarter values (stock
+variables). The processed quarterly panel is stored in
+\texttt{data/processed/panel\_quarterly.csv}.
+
+The EPU index for China is sourced from the
+\citet{Baker2016} website (\texttt{src/01\_download\_gpr.py}
+and \texttt{src/02\_download\_epu.py}). The GPR index
+is from \citet{Caldara2022}. Both are available at
+monthly frequency and averaged to quarters.
+
+\subsection{CFPS data construction}
+
+CFPS data are obtained from the Institute of Social
+Science Survey at Peking University under a data-use
+agreement. Seven waves (2010, 2012, 2014, 2016, 2018,
+2020, 2022) are stored as Stata .dta files in
+\texttt{data/raw/CFPS/}. The processing script
+(\texttt{src/12\_build\_cfps\_panel.R}) performs the
+following steps:
+
+\begin{enumerate}
+  \item \textbf{Variable extraction:} From each wave's
+    adult/person module, extract price-expectation
+    responses, demographic variables (age, education years,
+    gender, hukou status), income, and province identifiers.
+  \item \textbf{Panel linkage:} Use the CFPS cross-year
+    identifier (\texttt{ecfps2022crossyear\_202601.dta})
+    to link individuals across waves, enabling revision
+    construction.
+  \item \textbf{Expectation coding:} Code price
+    expectations as $+1$ (rise), $0$ (same), $-1$ (fall).
+    ``Don't know'' responses are kept as a separate
+    category for the uncertainty analysis.
+  \item \textbf{Provincial CPI merge:} Match each
+    household to its province's CPI inflation between
+    waves to construct the household-level forecast-error
+    proxy.
+  \item \textbf{Sample restrictions:} Restrict to adults
+    aged 18--70 with non-missing price expectations in
+    at least two consecutive waves.
+\end{enumerate}
+
+The output is a household-wave panel stored in
+\texttt{data/processed/cfps\_panel.csv} with approximately
+80,000 household-wave observations.
+
+\subsection{Variable definitions}
+
+Table~\ref{tab:variable_dict} provides a comprehensive
+variable dictionary. All variables, units, transformations,
+and source scripts are documented.
+
+\input{\tabdir/variable_dict}
+
+\subsection{Carlson--Parkin threshold sensitivity}
+
+Table~\ref{tab:delta_sensitivity} reports the diagnostic
+coefficient under alternative perception thresholds
+$\delta \in \{0.3, 0.5, 0.7, 1.0\}$. The baseline
+uses $\delta = 0.5$, equal to the sample-average
+quarterly annualized CPI inflation rate. The sign of
+$\beta_1$ is negative across all thresholds, and the
+magnitude ranges from $-0.44$ ($\delta = 0.3$) to $-0.57$
+($\delta = 1.0$). The insensitivity reflects the fact
+that $\delta$ scales both the revision and the forecast
+error, leaving their ratio approximately invariant.
+
+\input{\tabdir/delta_sensitivity}

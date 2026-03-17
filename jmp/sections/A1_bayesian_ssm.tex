@@ -1,0 +1,153 @@
+\section{Bayesian State-Space Model}\label{app:ssm}
+
+This appendix details the Bayesian state-space model (SSM)
+that estimates time variation in the diagnostic coefficient.
+The SSM serves a diagnostic function: it tracks how
+$\beta_t$ evolves over the sample and verifies that the
+frequentist baseline results are not driven by parameter
+instability or by specific subperiods. The SSM does not
+provide independent causal identification; its role is
+to complement the salience-IV design by showing that
+the diagnostic relation varies in economically
+interpretable ways over time.
+
+\subsection{Model specification}
+
+The measurement equation links observable forecast errors
+to revisions and controls with a time-varying coefficient:
+\begin{align}
+  FE_t &= \alpha + \beta_t FR_t + \gamma' Z_t
+    + \varepsilon_t, \qquad
+    \varepsilon_t \sim \mathcal{N}(0, R),
+    \label{eq:ssm_measurement} \\
+  \beta_t &= \beta_{t-1} + d' X_t + u_t, \qquad
+    u_t \sim \mathcal{N}(0, Q),
+    \label{eq:ssm_state}
+\end{align}
+where $Z_t$ contains macro controls (food CPI, M2 growth,
+PPI inflation), $X_t$ contains the EPU and GPR indices
+as potential drivers of time variation, and $R$, $Q$ are
+scalar variances governing measurement noise and state
+innovation, respectively.
+
+The state equation allows $\beta_t$ to evolve as a random
+walk with drift terms driven by observable uncertainty
+proxies. If $d = 0$, the model reduces to a pure random
+walk in diagnostic intensity. If $Q = 0$, the model
+collapses to a fixed-coefficient regression. The data
+inform the relative importance of drift, external drivers,
+and noise through the posterior distributions of $d$, $Q$,
+and $R$.
+
+\subsection{Prior specification}
+
+I use conjugate priors that encode mild beliefs about
+parameter ranges while letting the data dominate:
+\begin{align*}
+  \beta_0 &\sim \mathcal{N}(-0.5, 0.5^2), \\
+  \alpha, \gamma &\sim \mathcal{N}(0, 10^2), \\
+  d &\sim \mathcal{N}(0, 0.2^2), \\
+  R &\sim \text{Inv-Gamma}(3, 0.001), \\
+  Q &\sim \text{Inv-Gamma}(3, 0.001).
+\end{align*}
+
+The prior for $\beta_0$ is centered at $-0.5$,
+reflecting the OLS point estimate, with a standard
+deviation of $0.5$ that allows the posterior to range
+from approximately $-1.5$ to $+0.5$. The prior for $d$
+(the drift coefficients on EPU and GPR) is tighter,
+reflecting the expectation that external drivers explain
+only modest variation in $\beta_t$ beyond the random-walk
+component. The Inverse-Gamma priors on variances are
+weakly informative with 3 degrees of freedom.
+
+\subsection{Estimation}
+
+Posterior inference uses a Gibbs sampler that alternates
+between three blocks:
+\begin{enumerate}
+  \item \textbf{State path:} Sample $\{\beta_t\}_{t=1}^T$
+    conditional on parameters via Forward Filtering
+    Backward Sampling \citep{CarterKohn1994}.
+  \item \textbf{Regression coefficients:} Sample
+    $(\alpha, \gamma, d)$ from their conditional normal
+    posteriors.
+  \item \textbf{Variances:} Sample $R$ and $Q$ from
+    their conditional Inverse-Gamma posteriors.
+\end{enumerate}
+
+I run 20,000 iterations, discard 5,000 as burn-in, and
+thin every 10th draw to yield 1,500 posterior samples.
+Three independent chains from dispersed starting values
+are used for convergence assessment.
+
+\subsection{Convergence diagnostics}
+
+Table~\ref{tab:mcmc_diagnostics} reports convergence
+statistics. Geweke $Z$-statistics are within $\pm 1.5$
+for all parameters, with $p$-values above 0.05. Gelman--Rubin
+$\hat{R}$ statistics range from 0.9999 to 1.0015, well
+below the 1.05 threshold. Effective sample sizes (ESS)
+range from 411 ($Q$) to 2,665 ($\alpha$), all above the
+400 threshold for reliable inference.
+
+\input{\tabdir/mcmc_diagnostics}
+
+\subsection{Posterior results}
+
+Table~\ref{tab:ssm_posterior_params} reports posterior
+means and 90\% credible intervals for measurement-equation
+parameters. The intercept $\hat{\alpha} = -0.315$
+($[-0.446, -0.188]$) confirms a systematic upward bias
+in expectations even after conditioning on revisions.
+Food CPI and M2 growth carry marginally significant
+negative coefficients, consistent with households
+overreacting to food-price and money-supply signals
+beyond the diagnostic channel.
+
+The state-equation drift coefficients are
+$\hat{d}_{EPU} = +0.067$ ($[-0.15, +0.29]$) and
+$\hat{d}_{GPR} = -0.093$ ($[-0.38, +0.19]$). Neither
+is precisely estimated, which means that the linear
+association between uncertainty indices and $\beta_t$
+is directionally intuitive but statistically fragile.
+The positive sign on EPU (higher policy uncertainty
+associated with less negative $\beta_t$) and negative
+sign on GPR (geopolitical risk associated with more
+negative $\beta_t$) suggest that different types of
+uncertainty may affect diagnostic behavior through
+different channels, but the wide intervals caution
+against over-interpretation.
+
+\input{\tabdir/ssm_posterior_params}
+
+\subsection{Prior sensitivity}
+
+Table~\ref{tab:prior_sensitivity} reports posterior
+results under three prior specifications: baseline
+(as above), loose ($\sigma_{\beta_0} = 1.0$,
+$\sigma_d = 0.5$), and tight ($\sigma_{\beta_0} = 0.25$,
+$\sigma_d = 0.1$). The sign of $\beta_t$ is negative in
+all specifications, and the posterior mean varies by less
+than 15\% across priors. The loose prior widens credible
+intervals without changing the qualitative conclusion,
+while the tight prior shrinks intervals without
+eliminating the negative sign. This stability confirms
+that the diagnostic state is identified by data
+information rather than prior dogma.
+
+\input{\tabdir/prior_sensitivity}
+
+\subsection{Model comparison}
+
+Table~\ref{tab:model_comp} reports information
+criteria across four specifications: frequentist OLS
+with fixed $\beta$, Bayesian SSM with fixed $\beta$,
+TVP-SSM without drift, and full TVP-SSM with EPU/GPR
+drivers. Both TVP models achieve substantially higher
+log-likelihoods than fixed-$\beta$ alternatives
+($-26.9$ and $-25.2$ versus $-35.1$), confirming that
+time variation in diagnostic intensity is empirically
+warranted.
+
+\input{\tabdir/model_comparison}

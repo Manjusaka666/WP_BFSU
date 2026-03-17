@@ -1,21 +1,30 @@
-\begin{table}[!htbp]
+\begin{table}[htbp]
 \centering
+\begin{threeparttable}
 \caption{Policy Backtest: Forecast Accuracy and Coverage}
 \label{tab:policy_backtest}
-\begin{threeparttable}
-
-\begin{tabular}{lrrrrrrr}
+{\small
+\begin{tabular}{lcc}
 \toprule
-model & RMSE & MAE & Coverage68 & Coverage90 & N & RMSE\_gain & MAE\_gain\\
+ & (1) & (2) \\
+ & Na\"ive & Diagnostic-Adjusted \\
 \midrule
-Naive expectation & 4.120 & 3.584 & 0.417 & 0.833 & 12 & 0.000 & 0.000\\
-Diagnostic-adjusted policy rule & 4.523 & 3.409 & 0.667 & 0.750 & 12 & -0.404 & 0.174\\
+RMSE & 4.120 & 4.523 \\
+MAE & 3.584 & 3.409 \\
+\addlinespace
+68\% Coverage & 0.417 & 0.667 \\
+90\% Coverage & 0.833 & 0.750 \\
+\addlinespace
+RMSE gain & --- & $-0.404$ \\
+MAE gain & --- & 0.174 \\
+\addlinespace
+Observations & 12 & 12 \\
 \bottomrule
 \end{tabular}
+}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item The policy rule adjusts survey expectations by predicted diagnostic forecast errors.
-\item Positive RMSE/MAE gains indicate improvement relative to naive forecasts.
+\item \textit{Notes:} The policy rule adjusts survey expectations by predicted diagnostic forecast errors. Positive RMSE/MAE gains indicate improvement relative to na\"ive forecasts.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

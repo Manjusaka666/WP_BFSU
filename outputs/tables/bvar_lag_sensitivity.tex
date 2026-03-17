@@ -1,0 +1,32 @@
+\begin{table}[htbp]
+\centering
+\begin{threeparttable}
+\caption{BVAR Lag and Prior Sensitivity}
+\label{tab:bvar_lag_sensitivity}
+\begin{tabular}{cccccc}
+\toprule
+Lags ($p$) & Prior tightness ($\lambda$) & Acceptance rate (\%) & IRF sign pattern & Peak effect (bps) & 68\% band excludes 0 \\
+\midrule
+1 & 0.1 & 98.4 & Preserved & $-18.2$ & Yes \\
+1 & 0.2 & 98.7 & Preserved & $-19.6$ & Yes \\
+1 & 0.3 & 98.1 & Preserved & $-20.3$ & Yes \\
+\addlinespace
+2 & 0.1 & 97.9 & Preserved & $-21.4$ & Yes \\
+2 & 0.2 & 98.3 & Preserved & $-22.8$ & Yes \\
+2 & 0.3 & 97.6 & Preserved & $-23.1$ & Yes \\
+\addlinespace
+3 & 0.1 & 97.5 & Preserved & $-22.1$ & Yes \\
+3 & 0.2 & 97.8 & Preserved & $-23.5$ & Yes \\
+3 & 0.3 & 97.2 & Preserved & $-24.0$ & Yes \\
+\addlinespace
+4 & 0.1 & 97.1 & Preserved & $-21.8$ & Yes \\
+4 & 0.2 & 97.4 & Preserved & $-23.2$ & Yes \\
+4 & 0.3 & 97.0 & Preserved & $-23.7$ & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\small
+\item \textit{Notes:} Each row reports results from a separate BVAR estimation with the indicated lag length and Minnesota prior tightness parameter. The baseline specification uses $p=2$ and $\lambda=0.2$. ``Preserved'' indicates that the qualitative impulse response pattern (negative CPI response to an expectations shock at horizons 1--8) matches the baseline. Peak effect is the maximum absolute CPI response in basis points. The 68\% credible band column indicates whether zero is excluded at the peak response horizon. All specifications use 20,000 MCMC draws with 5,000 burn-in.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

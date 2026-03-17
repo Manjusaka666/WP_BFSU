@@ -1,0 +1,164 @@
+\section{Heterogeneity}\label{sec:heterogeneity}
+
+Diagnostic behavior should not be constant across
+households or across macroeconomic states. The attention
+mechanism underlying representativeness predicts that
+overreaction intensifies when cognitive resources are
+more constrained relative to the complexity of the
+information environment. I test this prediction along
+two dimensions: aggregate state dependence using the
+PBoC quarterly panel, and household-level heterogeneity
+using CFPS microdata.
+
+\subsection{Aggregate state dependence}
+
+I estimate interaction models where the revision
+coefficient is allowed to vary with macro-state indicators:
+\begin{equation}\label{eq:heterogeneity_interaction}
+  FE_{t+1} = \beta_0 + \beta_1 FR_t
+    + \beta_2 (FR_t \times D_t^{high}) + \gamma' W_t
+    + \varepsilon_t,
+\end{equation}
+where $D_t^{high}$ is an indicator for high-EPU states
+(above-median EPU), high-GPR states (above-median GPR),
+or low effective survey-response shares (below-median
+fraction of directional respondents in the PBoC survey).
+
+Table~\ref{tab:heterogeneity_interactions} reports results.
+The interaction coefficients carry mixed signs and are
+imprecisely estimated, consistent with the limited
+statistical power of 32 quarterly observations. In the EPU
+interaction, the base coefficient is $\hat{\beta}_1 = -2.37$
+and the interaction $\hat{\beta}_2 = 0.18$ ($p = 0.94$),
+producing a total effect in high-EPU states of $-2.19$.
+The GPR interaction shows a similar pattern:
+$\hat{\beta}_1 = -2.29$ with $\hat{\beta}_2 = -0.22$
+($p = 0.94$), yielding a total high-GPR effect of $-2.51$.
+The low effective-sample interaction is the most interesting
+channel: $\hat{\beta}_2 = -1.38$ ($p = 0.57$), with the
+implied coefficient in low-response states reaching $-2.83$.
+
+Though none of the individual interactions achieves
+conventional significance, the direction is consistent
+with the theoretical prediction: the diagnostic slope is
+more negative when survey quality is lower (fewer
+directional responses). The imprecision reflects the
+fundamental tension between testing state dependence and
+maintaining statistical power in a short time series.
+
+\paragraph{Monotonicity across salience terciles.}
+A sharper test splits salience into terciles and estimates
+the revision coefficient within each group.
+Table~\ref{tab:heterogeneity_monotonicity} and
+Figure~\ref{fig:heterogeneity_salience} reveal a pattern
+where the diagnostic coefficient is large and negative in
+the low-salience tercile ($\hat{\beta} = -4.04$,
+SE $= 0.94$) and mid-salience tercile ($\hat{\beta} = -3.76$,
+SE $= 2.51$), but positive and insignificant in the
+high-salience tercile ($\hat{\beta} = +2.24$, SE $= 2.34$).
+
+This non-monotone pattern warrants interpretation. One
+reading is that overreaction is strongest in
+moderate-salience environments where households pay enough
+attention to notice price signals but not enough to process
+them accurately. In the highest-salience tercile, the media
+environment is so saturated with inflation news that
+additional revision carries less predictive content for
+errors, or that high-salience periods coincide with genuine
+inflationary episodes where revisions are rational. The
+small sample within each tercile ($N \approx 11$) limits
+the precision of these subsample estimates, and the
+confidence intervals overlap across all three groups.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.76\textwidth]{heterogeneity_salience.pdf}
+\caption{Diagnostic coefficient across salience terciles
+  with 95\% confidence intervals. The coefficient is most
+  negative in low- and mid-salience environments and
+  attenuates (becomes positive) in the highest tercile.
+  Confidence intervals overlap across all groups, reflecting
+  the imprecision of within-tercile estimates with
+  $N \approx 11$ per group.}
+\label{fig:heterogeneity_salience}
+\end{figure}
+
+\input{\tabdir/heterogeneity_interactions}
+\input{\tabdir/heterogeneity_monotonicity}
+
+\subsection{Household-level heterogeneity from CFPS}
+
+The aggregate state-dependence analysis cannot distinguish
+whether overreaction varies across households or merely
+across time periods. The CFPS household panel addresses
+this limitation by exploiting cross-sectional variation
+in demographic characteristics within a given macro
+environment.
+
+I estimate household-level regressions of the form:
+\begin{equation}\label{eq:cfps_hetero}
+  \text{Error}_{ipt} = \alpha + \beta_1 \text{Revision}_{ipt}
+    + \beta_2 (\text{Revision}_{ipt} \times X_i)
+    + \gamma X_i + \delta_p + \delta_t + \varepsilon_{ipt},
+\end{equation}
+where $\text{Error}_{ipt}$ is the household-level
+forecast-error proxy for household $i$ in province $p$ at
+CFPS wave $t$, $\text{Revision}_{ipt}$ is the change in
+price expectations between consecutive waves, $X_i$ is a
+household characteristic (education, income, urban/rural
+status), and $\delta_p$, $\delta_t$ are province and wave
+fixed effects. Standard errors are clustered at the
+province level.
+
+The CFPS results confirm diagnostic overreaction at the
+household level. The base revision coefficient is
+$\hat{\beta}_1 \approx -0.55$ ($p < 0.001$) across all
+specifications, indicating that households revising
+expectations upward by one unit tend to make forecast
+errors approximately half a unit in the opposite direction.
+This household-level estimate complements the aggregate
+finding from the PBoC panel and confirms that diagnostic
+behavior is not an artifact of aggregation.
+
+The interaction terms $\hat{\beta}_2$ for education,
+income, and urban/rural status carry the predicted signs
+but are small and statistically insignificant
+(Table~\ref{tab:cfps_interactions}). The education
+interaction is $-0.002$ ($p = 0.85$), the income
+interaction is $+0.040$ ($p = 0.69$), and the urban
+interaction is $+0.019$ ($p = 0.18$). The imprecision
+likely reflects measurement limitations: the forecast-error
+proxy is a coarse directional variable (rise/same/fall
+matched against national CPI), which attenuates
+cross-sectional variation in diagnostic intensity.
+Province-level CPI data, unavailable for the full
+CFPS panel period, would sharpen these interaction
+estimates.
+
+Province and wave fixed effects absorb all variation
+common within a province or survey wave, so the identifying
+variation comes from differences across households
+within the same province-wave cell. The strong base
+coefficient indicates that overreaction is pervasive
+across demographic groups rather than concentrated
+among particular subpopulations.
+
+Sorting households into terciles of a composite attention
+index (combining education years, income rank, and
+urban status) and estimating the diagnostic coefficient
+within each tercile produces a weakly monotone pattern:
+the bottom tercile (most constrained) shows
+$\hat{\beta} = -0.525$, the middle tercile
+$\hat{\beta} = -0.524$, and the top tercile
+$\hat{\beta} = -0.521$
+(Table~\ref{tab:cfps_monotonicity}). The ordering
+is consistent with the attention-allocation prediction,
+but the differences are small (0.004 units across
+terciles). This compression suggests that all
+demographic groups overreact to a similar degree,
+with the coarse measurement of household-level
+forecast errors limiting the ability to detect
+finer heterogeneity.
+
+\input{\tabdir/cfps_interactions}
+\input{\tabdir/cfps_monotonicity}

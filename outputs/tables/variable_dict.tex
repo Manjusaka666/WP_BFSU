@@ -1,0 +1,43 @@
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\footnotesize
+\begin{threeparttable}
+\caption{Variable Dictionary}
+\label{tab:variable_dict}
+\begin{tabular}{@{}l p{7cm} l l@{}}
+\toprule
+Variable & Description & Source & Frequency \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel A: Macro Variables}} \\
+\addlinespace
+\texttt{CPI\_YoY} & Consumer Price Index, year-on-year growth (\%) & NBS & Monthly \\
+\texttt{food\_CPI} & Food component of CPI, year-on-year growth (\%) & NBS & Monthly \\
+\texttt{PPI} & Producer Price Index, year-on-year growth (\%) & NBS & Monthly \\
+\texttt{M2\_growth} & Broad money supply (M2), year-on-year growth (\%) & PBoC & Monthly \\
+\texttt{IndVA} & Industrial value added, year-on-year growth (\%) & NBS & Monthly \\
+\texttt{EPU} & Economic Policy Uncertainty Index for China & Baker et al. & Monthly \\
+\texttt{GPR} & Geopolitical Risk Index, China-specific & Caldara \& Iacoviello & Monthly \\
+\addlinespace
+\multicolumn{4}{l}{\textit{Panel B: Expectations Variables}} \\
+\addlinespace
+\texttt{expected\_inflation\_cp} & Carlson--Parkin point estimate of expected inflation (\%) & PBoC DEQ, authors' calc. & Quarterly \\
+\texttt{FE} & Forecast error: realized CPI $-$ expected inflation & Authors' calc. & Quarterly \\
+\texttt{FR} & Forecast revision: $\mathbb{E}_t[\pi_{t+1}] - \mathbb{E}_{t-1}[\pi_t]$ & Authors' calc. & Quarterly \\
+\addlinespace
+\multicolumn{4}{l}{\textit{Panel C: CFPS Micro Variables}} \\
+\addlinespace
+\texttt{price\_exp} & Categorical price expectation (rise / same / fall / DK) & CFPS & Biennial \\
+\texttt{edu\_years} & Years of completed schooling & CFPS & Biennial \\
+\texttt{income\_tercile} & Household income tercile (1 = bottom, 3 = top) & CFPS & Biennial \\
+\texttt{urban} & Indicator for urban hukou or urban residence & CFPS & Biennial \\
+\texttt{attention\_index} & Self-reported attention to economic news (0--10 scale) & CFPS & Biennial \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Notes:} NBS = National Bureau of Statistics of China. PBoC = People's Bank of China. DEQ = Depositor Expectations Questionnaire. CFPS = China Family Panel Studies. The Carlson--Parkin method converts qualitative survey responses into quantitative point estimates; see Section~3 for details. All macro series are seasonally adjusted where applicable.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}

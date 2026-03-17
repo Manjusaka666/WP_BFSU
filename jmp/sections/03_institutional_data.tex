@@ -1,0 +1,232 @@
+\section{Institutional Setting and Data}\label{sec:data}
+
+\subsection{The PBoC Urban Depositor Survey}
+
+The People's Bank of China has conducted the Urban
+Depositor Survey (城镇储户问卷调查) quarterly since 1999,
+sampling approximately 20,000 respondents across 50 cities
+in each wave. The survey asks households about their
+perceptions and expectations of prices, income, employment,
+and economic conditions. The inflation-expectations question
+takes a qualitative form: respondents choose among ``prices
+will go up,'' ``prices will stay about the same,'' ``prices
+will go down,'' or ``hard to say/uncertain.''
+
+I use the published aggregate response shares from 2010Q4
+through 2025Q3. Table~\ref{tab:sample_overview} reports
+the estimation window and usable observations after
+aligning survey timing with realized inflation outcomes.
+The survey is fielded in the last month of each quarter,
+so respondents form expectations before the next quarter's
+CPI is released. This timing structure is essential for
+forecast-error construction: the expectation $\mu_t$ is
+measured at time $t$, and the forecast error
+$FE_{t+1} = \pi_{t+1} - \mu_t$ uses the realized inflation
+from the subsequent quarter.
+
+The qualitative format has both advantages and limitations.
+On the advantage side, respondents do not need to produce
+a point estimate of future inflation, which reduces the
+cognitive burden and likely increases the truthfulness of
+responses relative to open-ended numerical questions that
+many households cannot answer precisely. On the limitation
+side, mapping qualitative shares into a quantitative
+expectation requires assumptions about the response
+threshold and the treatment of ``uncertain'' answers, which
+I address in Section~\ref{sec:measurement}.
+
+\subsection{The China Family Panel Studies (CFPS)}
+
+The China Family Panel Studies is a nationally
+representative longitudinal household survey administered
+by the Institute of Social Science Survey at Peking
+University \citep{Xie2014, Xie2022}. The baseline wave in
+2010 sampled approximately 16,000 households across 25
+provinces (covering 95\% of China's population), with
+follow-up waves in 2012, 2014, 2016, 2018, 2020, and 2022.
+
+The CFPS adult questionnaire contains several items
+relevant to inflation expectations and household economic
+decisions. The price-expectation question asks respondents
+to assess whether local commodity prices will rise, stay
+the same, or fall over the next year. Because this question
+mirrors the PBoC depositor survey's qualitative format,
+I can construct household-level expectation measures using
+the same Carlson--Parkin methodology applied to individual
+responses rather than aggregate shares.
+
+Beyond price expectations, the CFPS collects detailed
+information on household finances, demographics, and
+subjective assessments. On the financial side, the survey
+records total household income and consumption expenditure
+broken into food, housing, education, and medical
+components, as well as savings flows and holdings of bank
+deposits, stocks, bonds, and other financial assets,
+together with borrowing and debt structure. On the
+demographic side, it records education in years and degree
+attained, age, gender, urban or rural hukou status, and
+geographic location at province and county level. Subjective
+items include life satisfaction, income expectations for the
+coming year, and confidence in the local and national
+economy.
+
+The biennial frequency limits the time-series dimension
+for household-level analysis but provides rich
+cross-sectional variation that the PBoC aggregate survey
+cannot deliver. I use the CFPS for three purposes: testing
+whether diagnostic behavior varies with household
+characteristics, examining whether expectation errors
+predict subsequent consumption and savings adjustments,
+and validating the aggregate Carlson--Parkin quantification
+against individual-level responses.
+
+Table~\ref{tab:cfps_summary} reports the sample sizes by
+wave after dropping observations with missing
+price-expectation responses and applying the household
+panel identifier for tracking across waves. The attrition
+rate across waves is approximately 15\% per wave,
+concentrated among migrant households and those in
+rapidly urbanizing areas, which I address through inverse
+probability weighting in the heterogeneity analysis.
+
+\input{\tabdir/cfps_summary}
+
+\subsection{Macro controls and uncertainty indices}
+
+I merge the survey data with quarterly macroeconomic
+series from official National Bureau of Statistics (NBS)
+releases and standard uncertainty indices. The key
+variables are:
+
+\paragraph{Inflation measures.}
+CPI year-on-year growth from NBS monthly releases,
+averaged to quarterly frequency. I construct both
+year-on-year and quarter-on-quarter annualized measures
+because the PBoC survey question refers to ``prices over
+the next quarter,'' making quarter-on-quarter the more
+appropriate mapping for forecast errors. Food CPI
+year-on-year enters as a separate control because
+food-price dynamics in China operate on different cycles
+than core inflation. PPI year-on-year captures upstream
+price pressure that may influence household expectations
+through news coverage even if direct CPI transmission
+is slow.
+
+\paragraph{Monetary and real-activity indicators.}
+M2 year-on-year growth proxies the monetary stance.
+Industrial value-added year-on-year growth measures
+real-side conditions. Both enter control sets because
+households may form inflation expectations partly through
+real-activity signals and monetary-policy narratives
+rather than through direct observation of consumer prices.
+
+\paragraph{Uncertainty indices.}
+The Economic Policy Uncertainty index for China
+\citep{Baker2016} captures newspaper-based policy
+uncertainty at monthly frequency, averaged to quarters.
+The Geopolitical Risk index \citep{Caldara2022} measures
+global geopolitical threats from automated text analysis
+of major news sources. Both indices enter the analysis
+as state variables in heterogeneity interactions and as
+components of the salience-IV design.
+
+Table~\ref{tab:desc_stats} reports descriptive statistics
+for all variables in the estimation sample. The mean
+forecast error is $-0.31$ percentage points, indicating
+that households on average expected higher inflation than
+was realized, consistent with an upward bias in expectations
+that is separate from the diagnostic overreaction pattern
+(which concerns the relation between revisions and errors,
+not the level of errors). The standard deviation of
+forecast revisions ($0.43$ percentage points) is
+economically meaningful: a one-standard-deviation revision
+translates into a predicted forecast-error change of
+approximately $0.22$ percentage points through the baseline
+diagnostic coefficient.
+
+\input{\tabdir/sample_overview}
+\input{\tabdir/desc_stats}
+
+\subsection{Geographic coverage}
+
+Figure~\ref{fig:china_cfps_map} maps the two data
+sources against China's provincial geography. The 25
+provinces in the CFPS sample cover the densely populated
+coastal and central regions where household income and
+price dynamics are most representative of the national
+aggregate. The PBoC depositor survey spans 50 cities
+concentrated in the same geography. The overlap means
+that aggregate and household-level analyses describe
+the same expectation environment.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\textwidth]{china_cfps_map.pdf}
+\caption{Geographic coverage of the two data sources.
+  Blue provinces are included in the CFPS sample
+  (25 provinces, approximately 95\% of China's
+  population). Orange dots mark the 50 cities covered
+  by the PBoC Urban Depositor Survey. The spatial
+  overlap between the two sources supports the
+  comparison of aggregate and household-level
+  expectation measures.}
+\label{fig:china_cfps_map}
+\end{figure}
+
+\subsection{Data timeline and coverage}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{expectations_vs_realized.pdf}
+\caption{Carlson--Parkin quantified expectations (solid)
+  versus realized quarter-on-quarter CPI inflation (dashed),
+  2011Q1--2025Q3. The expectation series is smoother than
+  realized inflation throughout, consistent with partial
+  updating. Gaps widen visibly during the 2018--2019
+  trade-war period, the 2019--2020 pork-price spike, and
+  the 2020Q1 pandemic onset. The level gap reflects an
+  upward bias in survey expectations that the diagnostic
+  test controls for through the intercept.}
+\label{fig:expectations_vs_realized}
+\end{figure}
+
+Figure~\ref{fig:expectations_vs_realized} plots quantified
+expectations and realized inflation over the sample period.
+Three features stand out. The expectation series is smoother
+than realized inflation, consistent with partial updating
+rather than full-information rational expectations. The gap
+widens during episodes of high uncertainty, where either
+overreaction or rigidity could dominate depending on the
+direction. And the expectation series tends to overstate
+inflation on average, which is captured by the negative
+intercept in the measurement equation rather than by the
+time-varying diagnostic coefficient.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{revision_error_dynamics.pdf}
+\caption{Forecast revision (bars, left axis) and subsequent
+  one-quarter-ahead forecast error (line, right axis),
+  2011Q1--2025Q3. Shaded episodes mark quarters where a
+  large positive revision preceded a negative forecast
+  error---the visible signature of the revision--error
+  covariance that Section~\ref{sec:results} estimates
+  formally. The association holds in both high- and
+  low-uncertainty periods, though it is more pronounced
+  when uncertainty is elevated.}
+\label{fig:revision_error_dynamics}
+\end{figure}
+
+Figure~\ref{fig:revision_error_dynamics} shows the
+revision--error dynamics that motivate the formal
+identification. Quarters with large positive revisions
+(households sharply raising expectations) are followed
+by negative forecast errors (realized inflation
+undershooting the revised expectation). The association
+is visible in the raw data but requires formal testing
+because macro controls, salience variation, and timing
+structure could generate the same pattern through
+channels other than diagnostic overreaction.
+
+\input{\tabdir/cp_coverage}
+\input{\tabdir/cp_bounds}

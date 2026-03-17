@@ -1,0 +1,25 @@
+\begin{table}[!htbp]
+\centering
+\caption{CFPS Diagnostic Coefficient by Attention Tercile}
+\label{tab:cfps_monotonicity}
+\begin{threeparttable}
+\begin{tabular}{lccccc}
+\toprule
+Attention tercile & $\hat{\beta}$ & SE & $t$-stat & $N$ & 95\% CI \\
+\midrule
+Bottom (most constrained) & -0.525*** & 0.005 & -113.28 & 6,800 & [-0.534, -0.515] \\
+Middle & -0.524*** & 0.004 & -126.32 & 9,086 & [-0.532, -0.516] \\
+Top (least constrained) & -0.521*** & 0.005 & -98.22 & 11,369 & [-0.532, -0.511] \\
+\midrule
+Province FE & \multicolumn{5}{c}{Yes} \\
+Wave FE & \multicolumn{5}{c}{Yes} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Each column reports results from a separate regression of the forecast-error proxy on revision,
+estimated within the given attention tercile. Standard errors clustered at the province level.
+\item $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.1$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

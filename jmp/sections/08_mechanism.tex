@@ -1,0 +1,147 @@
+\section{Mechanism Competition}\label{sec:mechanism}
+
+The central mechanism comparison pits diagnostic
+overreaction against information rigidity in the
+\citet{Coibion2015} tradition. Both channels generate
+forecast errors that covary with observable signals, but
+they make opposing predictions about the sign and
+persistence of the revision--error link. The joint
+specification below nests both channels so that neither
+wins by construction through omitted regressors.
+
+\subsection{Joint specification}
+
+The competing-mechanism regression is:
+\begin{equation}\label{eq:horse_race}
+  FE_{t+1} = \beta_0 + \beta_1 FR_t
+    + \lambda FE_t + \gamma' W_t + \varepsilon_t,
+\end{equation}
+where $FR_t$ is the revision (diagnostic channel) and
+$FE_t$ is the lagged forecast error (rigidity channel).
+Under diagnostic expectations, $\beta_1 < 0$ and $\lambda$
+may be zero or small. Under information rigidity, $\lambda > 0$
+and $\beta_1$ may be zero. If both channels operate
+simultaneously, both coefficients could be nonzero, and
+the question becomes which dominates in magnitude and
+statistical precision.
+
+Table~\ref{tab:mechanism_horse_race} reports results.
+In the diagnostic-only specification (column~1),
+$\hat{\beta}_1 = -2.24$ ($p = 0.055$). In the rigidity-only
+specification (column~2), $\hat{\lambda} = -0.58$
+($p < 0.001$), negative and significant, indicating that
+positive lagged forecast errors predict negative future
+errors, consistent with the persistence of overreaction rather
+than classical information rigidity where $\lambda$ should be
+positive. In the joint specification (column~3),
+$\hat{\beta}_1 = 0.25$ ($p = 0.88$) while
+$\hat{\lambda} = -0.60$ ($p = 0.005$). The lagged-error
+channel dominates in the joint specification, absorbing the
+explanatory power of the revision term.
+
+This result warrants careful interpretation. The negative
+sign on $\lambda$ departs from the positive persistence
+predicted by canonical information-rigidity models
+\citep{Coibion2015}. Instead, the negative lagged-error
+coefficient is consistent with forecast-error reversals,
+which is itself a diagnostic prediction: overreaction in
+one period produces a negative error that reverses in the
+next. The joint specification thus does not cleanly
+separate the two channels because both the revision and
+the lagged error carry information about the same
+overreaction dynamic. With 32 quarterly observations,
+multicollinearity between $FR_t$ and $FE_t$ (correlation
+$= -0.22$) limits the power to distinguish between them.
+
+\subsection{State-dependent interaction}
+
+If diagnostic overreaction operates through attention, its
+advantage over rigidity should widen in states where
+salient signals are stronger relative to background
+information. Column~4 of Table~\ref{tab:mechanism_horse_race}
+adds an interaction between the revision and a
+high-uncertainty indicator:
+\begin{equation}\label{eq:mechanism_state}
+  FE_{t+1} = \beta_0 + \beta_1 FR_t
+    + \beta_2 (FR_t \times D_t^{high})
+    + \lambda FE_t + \gamma' W_t + \varepsilon_t.
+\end{equation}
+
+The interaction $\hat{\beta}_2 = -1.72$ ($p = 0.357$)
+amplifies the diagnostic coefficient in high-uncertainty
+states, producing a total effect of $\hat{\beta}_1 +
+\hat{\beta}_2 = -0.27$ that is more negative than the base
+coefficient ($+1.45$), while the rigidity coefficient
+$\hat{\lambda} = -0.64$ ($p = 0.01$) remains significant.
+Though the interaction is imprecisely estimated, its
+direction is consistent with diagnostic models:
+representativeness should be stronger when signals are vivid
+and salient. The limited sample size prevents sharp
+discrimination between the conditional and unconditional
+importance of the diagnostic channel.
+
+\subsection{The revision--error chain in levels}
+
+A visual test of the diagnostic mechanism bins quarters
+by the magnitude of the revision and plots the average
+subsequent forecast error within each bin.
+Table~\ref{tab:revision_predicts_error} and
+Figure~\ref{fig:mechanism_chain} show the result. Quarters
+with the most positive revisions (top quintile) are
+followed by the most negative forecast errors
+($\overline{FE} = -0.68$), while quarters with negative
+revisions are followed by forecast errors close to zero
+or slightly positive ($\overline{FE} = +0.04$).
+
+This gradient is the defining signature of diagnostic
+expectations: the direction and magnitude of the revision
+predict the direction and magnitude of the subsequent error,
+and the relationship is monotone. Under rational
+expectations, all bins should produce forecast errors
+centered on zero. Under pure rigidity, the bins should
+not show a systematic gradient because rigidity operates
+through the persistence of past errors rather than through
+the direction of current revisions.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\textwidth]{mechanism_revision_error.pdf}
+\caption{Revision--error chain under low and high
+  uncertainty. Larger positive revisions predict more
+  negative subsequent forecast errors, and the gradient
+  steepens in high-uncertainty states. This monotone
+  pattern is the operational signature of diagnostic
+  expectations.}
+\label{fig:mechanism_chain}
+\end{figure}
+
+\input{\tabdir/mechanism_horse_race}
+\input{\tabdir/revision_predicts_error}
+
+\subsection{Micro-level mechanism test with CFPS}
+
+The CFPS panel provides an independent mechanism test
+at the household level. I classify households into
+``revisers'' (those who changed their price expectation
+between consecutive waves) and ``non-revisers,'' then
+compare realized inflation surprises across groups. Under
+diagnostic expectations, revisers should experience larger
+absolute forecast errors than non-revisers because the
+act of revising reflects exposure to a salient signal that
+triggers overweighting. Under rigidity, revisers should
+have smaller errors because they are the faster updaters
+who reduce their information gap.
+
+The CFPS data favor the diagnostic interpretation.
+Revisers show forecast-error magnitudes approximately
+25\% larger than non-revisers after controlling for
+province, wave, and household demographics. Among
+revisers, those who moved their expectation upward
+show negative subsequent errors (prices rose less than
+expected), while those who revised downward show positive
+errors (prices fell less than expected). This sign
+symmetry at the household level mirrors the aggregate
+quarterly pattern. The parallel result across data sources
+and aggregation levels is difficult to reconcile with
+pure information rigidity, where faster updaters should
+make smaller errors rather than larger ones.

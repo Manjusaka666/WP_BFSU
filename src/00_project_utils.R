@@ -85,22 +85,65 @@ write_booktabs_table <- function(df, out_file, caption = "", label = "", notes =
   writeLines(lines, con = out_file, useBytes = TRUE)
 }
 
-theme_pub <- function(base_size = 11) {
-  theme_minimal(base_size = base_size, base_family = "serif") +
+# AER/QJE publication theme.
+# Key conventions: no vertical gridlines, no minor gridlines, serif font,
+# thin axis lines, bottom legend, restrained title.
+theme_pub <- function(base_size = 10) {
+  theme_minimal(base_size = base_size, base_family = "serif") %+replace%
     theme(
-      panel.grid.minor = element_blank(),
+      # Grid: only horizontal major lines, light grey, thin
+      panel.grid.minor   = element_blank(),
       panel.grid.major.x = element_blank(),
-      legend.position = "bottom",
-      legend.title = element_blank(),
-      plot.title = element_text(face = "bold", hjust = 0),
-      plot.subtitle = element_text(hjust = 0),
-      axis.title = element_text(face = "bold")
+      panel.grid.major.y = element_line(colour = "grey90", linewidth = 0.3),
+      # Axis
+      axis.line          = element_line(colour = "grey30", linewidth = 0.35),
+      axis.ticks         = element_line(colour = "grey30", linewidth = 0.3),
+      axis.ticks.length  = unit(1.5, "pt"),
+      axis.title.x       = element_text(size = rel(0.95), margin = margin(t = 6)),
+      axis.title.y       = element_text(size = rel(0.95), margin = margin(r = 6)),
+      axis.text          = element_text(colour = "grey20", size = rel(0.85)),
+      # Legend
+      legend.position    = "bottom",
+      legend.title       = element_blank(),
+      legend.text        = element_text(size = rel(0.85)),
+      legend.key.size    = unit(12, "pt"),
+      legend.margin      = margin(t = 2, b = 0),
+      # Title / subtitle / caption
+      plot.title         = element_text(size = rel(1.05), face = "plain",
+                                        hjust = 0, margin = margin(b = 4)),
+      plot.subtitle      = element_text(size = rel(0.88), hjust = 0,
+                                        colour = "grey30", margin = margin(b = 6)),
+      plot.caption       = element_text(size = rel(0.72), hjust = 0, colour = "grey50"),
+      plot.margin        = margin(8, 8, 6, 6),
+      # Strip (for facets)
+      strip.text         = element_text(size = rel(0.9), face = "plain")
     )
 }
 
-save_plot_pair <- function(p, file_stub, width = 8, height = 5) {
-  ggsave(filename = paste0(file_stub, ".pdf"), plot = p, width = width, height = height)
-  ggsave(filename = paste0(file_stub, ".png"), plot = p, width = width, height = height, dpi = 300)
+save_plot_pair <- function(p, file_stub, width = 6.5, height = 4) {
+  ggsave(filename = paste0(file_stub, ".pdf"), plot = p,
+         width = width, height = height, device = cairo_pdf)
+  ggsave(filename = paste0(file_stub, ".png"), plot = p,
+         width = width, height = height, dpi = 300)
+}
+
+# Significance stars for p-values.
+stars <- function(p) {
+  ifelse(is.na(p), "",
+  ifelse(p < 0.01, "^{***}",
+  ifelse(p < 0.05, "^{**}",
+  ifelse(p < 0.10, "^{*}", ""))))
+}
+
+# Format a coefficient with stars: "$-2.237^{**}$"
+fmt_coef <- function(b, p = NA, digits = 3) {
+  s <- stars(p)
+  paste0("$", formatC(b, digits = digits, format = "f"), s, "$")
+}
+
+# Format a standard error in parentheses: "$(1.114)$"
+fmt_se <- function(se, digits = 3) {
+  paste0("$(", formatC(se, digits = digits, format = "f"), ")$")
 }
 
 newey_west_se <- function(model, lag = 4) {

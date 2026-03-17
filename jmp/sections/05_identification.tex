@@ -1,0 +1,209 @@
+\section{Identification Strategy}\label{sec:identification}
+
+\subsection{Identification challenge}
+
+An OLS regression of forecast errors on revisions
+establishes a descriptive association but cannot separate
+diagnostic overreaction from confounders that move both
+revisions and errors simultaneously. A common macro shock---a
+food-price spike, a monetary-policy announcement---can shift
+expectations upward and independently depress realized
+inflation through a supply channel; the resulting negative
+revision--error correlation then reflects omitted-variable
+bias rather than overreaction. The identification problem
+sharpens in the short sample: with 32 quarterly observations,
+the number of potential confounders is large relative to
+degrees of freedom, and conventional control strategies
+risk overfitting.
+
+\subsection{Salience-IV design}
+
+The solution is to isolate variation in expectation revisions
+that originates from attention reallocation rather than from
+direct inflation determinants. I construct a two-stage design
+where the endogenous object is the inflation salience index,
+the instrument is media congestion from geopolitical-news
+crowding, and the exclusion argument is that congestion shifts
+attention allocation before it moves household inflation
+forecast errors through any channel other than
+salience-driven revisions.
+
+\paragraph{Media Salience Index (MSI).}
+The salience index combines two components: a standardized
+measure of economic-policy uncertainty (EPU) that captures
+the intensity of economic news in domestic media, and a
+survey-based measure of the fraction of respondents who
+express directional expectations (as opposed to uncertainty),
+which proxies for household engagement with price information.
+The index is
+\begin{equation}\label{eq:msi}
+  MSI_t = 0.6 \cdot z(EPU_t) + 0.4 \cdot z(\text{ExpIndex}_t),
+\end{equation}
+where $z(\cdot)$ denotes standardization to zero mean and
+unit variance. The weights reflect the relative importance of
+supply-side (media-generated) versus demand-side
+(household-reported) attention, but the diagnostic coefficient
+is not sensitive to moderate variations in weights
+(Appendix~\ref{app:robustness}).
+
+\paragraph{Media Congestion Instrument.}
+The instrument is constructed as the negative standardized
+Geopolitical Risk index:
+\begin{equation}\label{eq:iv}
+  Z_t^{cong} = -z(GPR_t).
+\end{equation}
+The economic logic is that geopolitical events (territorial
+disputes, military threats, trade-war escalation) crowd media
+attention toward non-economic news, reducing the bandwidth
+available for inflation-related coverage. When GPR is high,
+media capacity is absorbed by geopolitical coverage, and
+inflation signals receive less attention even if actual
+price pressures are unchanged. The instrument therefore
+shifts salience through the supply side of media attention
+rather than through the demand side of household preferences
+or through direct inflation channels.
+
+The negative sign ensures that the instrument is positively
+related to media congestion (less space for inflation
+coverage when geopolitical risk is high, hence lower
+salience). The instrument captures an attention-reallocation
+mechanism that is independent of domestic inflation
+determinants as long as geopolitical events do not
+simultaneously cause price changes through commodity or
+exchange-rate channels---a threat I evaluate explicitly below.
+
+\subsection{Estimating equations}
+
+The three-equation chain traces the path from instrument to
+outcome:
+\begin{align}
+  S_t &= \pi_0 + \pi_1 Z_t^{cong} + \Pi' W_t + u_t,
+    \label{eq:first_stage} \\
+  \Delta\mu_t &= \alpha_0 + \alpha_1 \hat{S}_t + A' W_t + e_t,
+    \label{eq:second_stage_revision} \\
+  FE_{t+1} &= \beta_0 + \beta_1 \widehat{\Delta\mu}_t + B' W_t
+    + \varepsilon_t, \label{eq:second_stage_fe}
+\end{align}
+where $S_t$ is salience, $\Delta\mu_t$ is the expectation
+revision, $FE_{t+1}$ is the next-quarter forecast error,
+$W_t$ is a vector of macro controls (food CPI, M2 growth,
+PPI inflation), and hats denote fitted values from the
+preceding stage.
+
+The diagnostic-expectation prediction is $\beta_1 < 0$:
+salience-induced upward revisions generate negative subsequent
+forecast errors because the revision overshoots the
+information content of the salient signal. Under rational
+expectations, $\beta_1 = 0$. Under information rigidity with
+no overreaction, $\beta_1$ could be positive (underreaction
+to news implies that revisions are too small and subsequent
+errors reflect the remaining adjustment).
+
+Inference uses Newey--West standard errors with bandwidth
+selected by the Bartlett kernel to account for potential
+serial correlation and heteroskedasticity in the short panel.
+I also report weak-instrument-robust confidence intervals
+from the Anderson--Rubin procedure, which remains valid
+regardless of first-stage strength and does not require
+asymptotic normality of the 2SLS estimator.
+
+\subsection{First-stage strength}
+
+Table~\ref{tab:iv_first_stage} reports first-stage results.
+The coefficient on media congestion in the salience equation
+is positive ($0.082$, SE $= 0.076$, $p = 0.29$): a
+one-standard-deviation decrease in GPR (more bandwidth for
+inflation coverage) increases salience, though the
+relationship is imprecise. The first-stage Wald F-statistic
+is $1.16$, well below the \citet{Stock2005} threshold of
+$10$ for ruling out weak-instrument concern. This weakness
+motivates the Anderson--Rubin weak-IV-robust inference
+reported in the results section and the reduced-form
+strategy that bypasses the first stage entirely.
+
+Figure~\ref{fig:first_stage_iv} plots the first-stage
+relationship in levels. The association is economically
+interpretable: quarters where geopolitical events consumed
+media attention (2016Q1 South China Sea tensions, 2018Q3
+trade-war escalation, 2020Q1 pandemic onset, 2022Q1
+Russia-Ukraine conflict) correspond to low salience for
+inflation, while calmer geopolitical periods leave more
+media space for economic coverage and higher inflation
+salience.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{identification_first_stage.pdf}
+\caption{First stage: media congestion and inflation salience.
+  Each point is a quarter. Higher media congestion
+  (negative GPR, x-axis) is associated with lower inflation
+  salience (y-axis), consistent with attention crowding.}
+\label{fig:first_stage_iv}
+\end{figure}
+
+\subsection{Threats to exclusion and falsification}
+
+The exclusion restriction requires that geopolitical news
+affects household inflation forecast errors only through
+salience-driven revisions. Four threats merit explicit
+evaluation.
+
+\paragraph{Threat 1: Commodity-price channels.}
+Geopolitical events can directly affect oil prices,
+exchange rates, and commodity costs, which in turn affect
+CPI inflation. If GPR shocks move both salience and
+realized inflation, the instrument violates exclusion
+because the forecast error reflects a genuine inflation
+change rather than overreaction to a salient signal.
+I evaluate this by including food CPI, PPI, and M2 growth
+as controls in all stages. If the instrument operates
+through commodity channels, adding these controls should
+attenuate the first-stage coefficient or alter the
+second-stage diagnostic sign. Neither occurs in the
+data: the diagnostic coefficient is stable across nested
+control sets (Table~\ref{tab:ols_robustness}).
+
+\paragraph{Threat 2: Broad macro shocks.}
+If geopolitical events cause generalized economic disruption
+that moves all expectations simultaneously, the instrument
+may capture a recession or uncertainty effect rather than
+an attention-reallocation mechanism. The placebo test for
+this threat uses outcomes that should not respond to
+inflation salience: I estimate the same IV chain with
+non-inflation forecast errors (industrial output surprise,
+employment gap) as dependent variables. If the instrument
+picks up broad macro shocks, these placebo outcomes should
+show comparable coefficients.
+Table~\ref{tab:placebo_tests} reports that placebo effects
+are small relative to the main effect and statistically
+indistinguishable from zero.
+
+\paragraph{Threat 3: Anticipation.}
+If households anticipate geopolitical events before they
+occur and adjust expectations in advance, the timing
+structure of the instrument is contaminated. The
+anticipation test regresses current forecast errors on
+lead (future) revisions: if anticipation is present,
+tomorrow's revision should predict today's forecast error
+because the information is already incorporated. The lead
+coefficient is null (Table~\ref{tab:placebo_tests},
+column~3), supporting the timing assumption.
+
+\paragraph{Threat 4: Finite-sample fragility.}
+With 32 observations, a single influential quarter could
+drive the entire result. The permutation test randomly
+reassigns the instrument across quarters 300 times and
+re-estimates the diagnostic coefficient under each
+permutation. The permutation distribution has a mean of
+$14.8$ with a 95\% range of $[-129.7, 76.9]$
+(Table~\ref{tab:placebo_tests}), which includes the
+estimated coefficient. The wide permutation distribution
+reflects the imprecision of the 2SLS estimates given
+the weak first stage, rather than evidence against the
+diagnostic hypothesis per se. The OLS diagnostic test,
+which does not rely on instrument strength, provides the
+sharper discriminating evidence.
+
+\input{\tabdir/identification_main}
+\input{\tabdir/iv_first_stage}
+\input{\tabdir/placebo_tests}

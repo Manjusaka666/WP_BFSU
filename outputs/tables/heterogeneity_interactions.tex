@@ -1,22 +1,28 @@
-\begin{table}[!htbp]
+\begin{table}[htbp]
 \centering
+\begin{threeparttable}
 \caption{Heterogeneity in Diagnostic Coefficients}
 \label{tab:heterogeneity_interactions}
-\begin{threeparttable}
-
-\begin{tabular}{lrrrrr}
+{\small
+\begin{tabular}{lccc}
 \toprule
-channel & beta\_base & beta\_interaction & p\_interaction & implied\_beta\_high & n\\
+ & (1) & (2) & (3) \\
+ & High EPU & High GPR & Low Eff.\ Sample \\
 \midrule
-high\_epu & -2.371 & 0.183 & 0.939 & -2.188 & 32\\
-high\_gpr & -2.292 & -0.215 & 0.943 & -2.507 & 32\\
-low\_effective\_sample & -1.448 & -1.377 & 0.570 & -2.825 & 32\\
+$\hat{\beta}$ (revision) & $-2.371$ & $-2.292$ & $-1.448$ \\
+\addlinespace
+Revision $\times$ Indicator & $0.183$ & $-0.215$ & $-1.377$ \\
+ & $[0.939]$ & $[0.943]$ & $[0.570]$ \\
+\addlinespace
+Implied $\hat{\beta}$ (high state) & $-2.188$ & $-2.507$ & $-2.825$ \\
+\addlinespace
+Observations & 32 & 32 & 32 \\
 \bottomrule
 \end{tabular}
+}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item implied\_beta\_high is the diagnostic coefficient under the high-state indicator.
-\item Low effective sample share proxies larger information frictions from uncertain responses.
+\item \textit{Notes:} Implied $\hat{\beta}$ (high state) is the diagnostic coefficient under the high-state indicator. $p$-values of interaction terms in brackets. Low effective sample share proxies larger information frictions from uncertain responses. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

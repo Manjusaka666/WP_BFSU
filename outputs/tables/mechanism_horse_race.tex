@@ -1,23 +1,30 @@
-\begin{table}[!htbp]
+\begin{table}[htbp]
 \centering
-\caption{Competing Mechanisms: Diagnostic Expectations vs Information Rigidity}
-\label{tab:mechanism_horse_race}
 \begin{threeparttable}
-
-\begin{tabular}{lrrrrrrr}
+\caption{Competing Mechanisms: Diagnostic Expectations vs.\ Information Rigidity}
+\label{tab:mechanism_horse_race}
+{\small
+\begin{tabular}{lcccc}
 \toprule
-specification & beta\_revision & p\_revision & beta\_lag\_error & p\_lag\_error & beta\_revision\_high\_epu & p\_revision\_high\_epu & n\\
+ & (1) & (2) & (3) & (4) \\
+ & Diagnostic & Rigidity & Joint & Joint + State \\
 \midrule
-Diagnostic-only & -2.237 & 0.055 & NA & NA & NA & NA & 32\\
-Information-rigidity-only & NA & NA & -0.583 & 0.000 & NA & NA & 32\\
-Horse race & 0.246 & 0.880 & -0.604 & 0.005 & NA & NA & 32\\
-Horse race + state dependence & 1.450 & 0.517 & -0.643 & 0.010 & -1.721 & 0.357 & 32\\
+$\hat{\beta}$ (revision) & $-2.237^{*}$ & & $0.246$ & $1.450$ \\
+ & $[0.055]$ & & $[0.880]$ & $[0.517]$ \\
+\addlinespace
+Lagged forecast error & & $-0.583^{***}$ & $-0.604^{***}$ & $-0.643^{**}$ \\
+ & & $[0.000]$ & $[0.005]$ & $[0.010]$ \\
+\addlinespace
+Revision $\times$ High EPU & & & & $-1.721$ \\
+ & & & & $[0.357]$ \\
+\addlinespace
+Observations & 32 & 32 & 32 & 32 \\
 \bottomrule
 \end{tabular}
+}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item Diagnostic mechanism predicts a negative coefficient on revision.
-\item Information-rigidity mechanism predicts positive persistence from lagged forecast errors.
+\item \textit{Notes:} Diagnostic mechanism predicts a negative coefficient on revision. Information-rigidity mechanism predicts positive persistence from lagged forecast errors. $p$-values in brackets; Newey--West standard errors with 4 lags. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

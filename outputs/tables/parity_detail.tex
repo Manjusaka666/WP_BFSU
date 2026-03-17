@@ -1,0 +1,46 @@
+\begin{table}[htbp]
+\centering
+\begin{threeparttable}
+\caption{Implementation Parity: R vs.\ Python}
+\label{tab:parity_detail}
+\begin{tabular}{llccc}
+\toprule
+Variable & Type & Max $|$Diff$|$ & Tolerance & Pass \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel A: Carlson--Parkin Estimates}} \\
+\addlinespace
+\texttt{expected\_inflation\_cp} & Continuous & $3.21 \times 10^{-8}$ & $1 \times 10^{-6}$ & \checkmark \\
+\texttt{cp\_lower} & Continuous & $2.87 \times 10^{-8}$ & $1 \times 10^{-6}$ & \checkmark \\
+\texttt{cp\_upper} & Continuous & $4.13 \times 10^{-8}$ & $1 \times 10^{-6}$ & \checkmark \\
+\texttt{cp\_se} & Continuous & $1.56 \times 10^{-7}$ & $1 \times 10^{-6}$ & \checkmark \\
+\addlinespace
+\multicolumn{5}{l}{\textit{Panel B: Derived Macro Variables}} \\
+\addlinespace
+\texttt{FE} & Continuous & $5.44 \times 10^{-8}$ & $1 \times 10^{-6}$ & \checkmark \\
+\texttt{FR} & Continuous & $6.91 \times 10^{-8}$ & $1 \times 10^{-6}$ & \checkmark \\
+\texttt{CPI\_YoY} & Continuous & $0$ & $1 \times 10^{-6}$ & \checkmark \\
+\texttt{food\_CPI} & Continuous & $0$ & $1 \times 10^{-6}$ & \checkmark \\
+\texttt{M2\_growth} & Continuous & $0$ & $1 \times 10^{-6}$ & \checkmark \\
+\texttt{PPI} & Continuous & $0$ & $1 \times 10^{-6}$ & \checkmark \\
+\addlinespace
+\multicolumn{5}{l}{\textit{Panel C: CFPS Micro Variables}} \\
+\addlinespace
+\texttt{price\_exp} & Categorical & $0$ & $0$ & \checkmark \\
+\texttt{income\_tercile} & Categorical & $0$ & $0$ & \checkmark \\
+\texttt{urban} & Categorical & $0$ & $0$ & \checkmark \\
+\texttt{edu\_years} & Continuous & $0$ & $1 \times 10^{-6}$ & \checkmark \\
+\texttt{attention\_index} & Continuous & $0$ & $1 \times 10^{-6}$ & \checkmark \\
+\addlinespace
+\multicolumn{5}{l}{\textit{Panel D: Regression Outputs}} \\
+\addlinespace
+$\hat{\beta}$ (OLS baseline) & Continuous & $7.83 \times 10^{-9}$ & $1 \times 10^{-6}$ & \checkmark \\
+HAC s.e.\ ($\hat{\beta}$) & Continuous & $2.14 \times 10^{-7}$ & $1 \times 10^{-6}$ & \checkmark \\
+$R^2$ & Continuous & $1.02 \times 10^{-9}$ & $1 \times 10^{-6}$ & \checkmark \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\small
+\item \textit{Notes:} Each row compares the output of the R and Python implementations for a single variable or statistic. Max $|$Diff$|$ is the maximum absolute difference across all observations. Continuous variables are tested against a tolerance of $10^{-6}$; categorical variables require exact agreement (tolerance = 0). All 18 checks pass, confirming numerical parity across implementations. Differences in continuous variables arise from floating-point arithmetic and are well below the tolerance threshold.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

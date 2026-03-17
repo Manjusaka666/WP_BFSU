@@ -1,0 +1,211 @@
+\section{Conceptual Framework and Related Literature}\label{sec:literature}
+
+The diagnostic-expectations hypothesis rests on a
+specific cognitive mechanism. When agents receive news
+that shifts the likelihood of some state of the world,
+they overweight that state in forming beliefs relative to
+an objective Bayesian benchmark. \citet{Kahneman1972}
+identify this as representativeness: recent or vivid
+information receives disproportionate attention because
+it comes to mind more readily than base rates.
+\citet{Gennaioli2010} formalize this intuition in a
+model where the probability of a state is inflated by a
+factor that depends on how much its likelihood has
+increased relative to a reference distribution. The
+distortion is multiplicative: states that have become much
+more likely are overweighted by more, and the degree of
+overweighting is governed by a single parameter $\theta$
+that indexes diagnostic intensity.
+
+\citet{Bordalo2018} apply this framework to credit
+markets and show that diagnostic beliefs generate
+predictable boom-bust cycles in credit spreads.
+\citet{Bordalo2020b} extend the test to macroeconomic
+expectations using the Survey of Professional
+Forecasters and the Michigan Survey of Consumers,
+documenting that consensus forecast revisions predict
+subsequent forecast errors with a negative sign across
+multiple variables. Their test exploits a clean
+implication of the model: if agents overreact to news,
+then positive revisions should be followed by negative
+forecast errors as realized outcomes fall short of inflated
+beliefs. Under rational expectations, revisions and
+subsequent errors are orthogonal. Under information
+rigidity in the \citet{Coibion2015} tradition, revisions
+and errors should be positively correlated at the
+aggregate level because sluggish updaters incorporate
+old news slowly, generating persistent underreaction
+rather than overreaction.
+
+\subsection{The revision--error link as a discriminating test}
+
+The econometric distinction between diagnostic and
+rigidity models reduces to the sign of a single
+coefficient. Define the one-step-ahead forecast error as
+$FE_{t+1} = \pi_{t+1} - \mu_t$, where $\pi_{t+1}$ is
+realized inflation and $\mu_t$ is the quantified
+expectation formed at time $t$. Define the revision as
+$FR_t = \mu_t - \mu_{t-1}$. The diagnostic prediction is
+\begin{equation}\label{eq:diagnostic_prediction}
+  \E[FE_{t+1} \mid FR_t > 0] < 0,
+\end{equation}
+which states that upward revisions are followed by
+negative forecast errors because the revision overshoots
+the warranted Bayesian update. The information-rigidity
+prediction, following the Coibion--Gorodnichenko
+regression of forecast errors on lagged consensus
+forecast changes, is
+\begin{equation}\label{eq:rigidity_prediction}
+  \E[FE_{t+1} \mid FE_t > 0] > 0,
+\end{equation}
+reflecting persistent undershoot of the full-information
+rational expectation.
+
+These predictions are not mutually exclusive in principle:
+a household could simultaneously underreact to some
+signals and overreact to others, depending on salience and
+attention allocation. The empirical design in this paper
+tests both channels in the same specification, so that
+neither wins by omission of the other. What matters for
+mechanism discrimination is not whether each channel
+has non-zero explanatory power in isolation, but which
+dominates conditional on the other and whether the
+dominant channel exhibits the state dependence that its
+theory predicts.
+
+\subsection{Diagnostic expectations beyond professional forecasters}
+
+Most empirical tests of diagnostic expectations use
+professional forecaster panels, where the maintained
+assumption of approximate rationality is more defensible
+and where long histories enable power. \citet{Bordalo2020b}
+use the SPF and Michigan Survey; subsequent work applies
+similar tests to credit analysts, macroeconomic
+forecasters in other countries, and equity analysts. The
+extension to household surveys is less developed for
+two reasons. Household expectations are noisier,
+reflecting heterogeneous information sets and survey
+comprehension, which inflates measurement error in
+both revisions and forecast errors. And household
+surveys in most countries are either qualitative
+(requiring quantification through methods like
+Carlson--Parkin) or available only at low frequency
+with irregular panels, making the time-series dimension
+short relative to the number of parameters.
+
+These measurement challenges do not invalidate the
+diagnostic test; they change the identification burden.
+With noisier data, an OLS revision--error regression
+will attenuate the diagnostic coefficient toward zero,
+making a significant negative estimate more rather
+than less informative. The Carlson--Parkin quantification
+introduces a separate layer of measurement error whose
+direction depends on the sensitivity parameter $\delta$
+(the threshold within which respondents report ``same'').
+I handle this through bound analysis: allocating uncertain
+responses to pessimistic and optimistic extremes
+generates lower and upper bounds on the quantified
+expectation, and the diagnostic sign must hold across
+bounds to be credible.
+
+\subsection{Expectations in the Chinese context}
+
+The Chinese institutional environment amplifies both
+the diagnostic and rigidity channels. On the diagnostic
+side, food-price volatility is substantially higher than
+in OECD economies because pork-cycle dynamics, weather
+shocks, and African Swine Fever outbreaks generate
+large, sudden price movements that saturate media
+coverage and conversation. When pork prices rose by
+over 100\% year-on-year in late 2019, the salience of
+inflation was impossible for any urban household to
+ignore, regardless of whether they tracked CPI statistics.
+This is exactly the environment where representativeness
+should dominate base-rate reasoning: a vivid, recent
+price signal that is easy to recall and hard to calibrate
+against historical distributions.
+
+On the rigidity side, the PBoC's communication
+infrastructure is less developed than the Federal
+Reserve's or the ECB's. Forward guidance is limited,
+press conferences are infrequent, and the monetary-policy
+framework has shifted multiple times between quantity-based
+and price-based targets during the sample period
+\citep{Chen2022}. Information asymmetry between the
+central bank and households may therefore be larger in
+China than in economies with more transparent communication,
+which could generate sticky updating even in the absence
+of cognitive biases.
+
+The empirical question is which channel dominates when
+both are present. If diagnostic overreaction is the primary
+source of forecast errors, the policy implication is that
+communication should counteract vivid narratives rather
+than simply releasing more information. If rigidity
+dominates, the implication is that more frequent and
+clearer communication will reduce errors by closing the
+information gap. These are different prescriptions for the
+same central bank, and distinguishing between them
+requires an identification strategy that separates salience
+from information provision.
+
+\subsection{Household heterogeneity and attention allocation}
+
+Diagnostic behavior should not be uniform across households.
+Attention is a scarce resource, and households with lower
+education, less financial literacy, or tighter cognitive
+budgets should be more susceptible to representativeness
+because they rely more heavily on the most salient signal
+rather than integrating multiple information sources
+\citep{Lusardi2014, Reis2006}. \citet{Malmendier2016}
+show that experienced inflation shapes beliefs persistently,
+with stronger effects among demographics that process
+statistical information less fluently. \citet{DAutume2024}
+document that inflation expectations are more dispersed
+among less-educated respondents in both U.S. and European
+surveys.
+
+The CFPS microdata allow a direct test of this heterogeneity
+prediction. By interacting the revision--error slope with
+household characteristics---education, income, urban/rural
+registration, financial-asset holdings---I can test whether
+diagnostic intensity is monotonically increasing in proxies
+for attention constraints. This test goes beyond the
+aggregate state dependence documented in the time-series
+analysis, because it uses cross-sectional variation within
+a given information environment rather than comparing
+different macro states that may confound attention with
+other time-varying factors.
+
+\subsection{Relation to the macro-expectations literature}
+
+The broader macroeconomic-expectations literature provides
+context for interpreting the diagnostic coefficient.
+\citet{Mankiw2002} show that sticky information can
+replicate many features of observed inflation dynamics,
+and \citet{Mankiw2003} document substantial cross-sectional
+disagreement in expectations that is inconsistent with
+homogeneous rational updating. \citet{Sims2003} derives
+optimal attention allocation under capacity constraints,
+predicting that agents attend to the most volatile or most
+relevant signals rather than forming fully rational
+expectations about all variables.
+\citet{Mackowiak2009} extend this framework to price
+setting with rational inattention. \citet{Gabaix2020}
+embeds behavioral inattention into a New Keynesian model,
+showing that bounded rationality in expectations can
+resolve several macro puzzles including the forward-guidance
+puzzle \citep{Angeletos2018} and excess sensitivity of
+consumption to anticipated income changes.
+
+This paper does not propose a new theoretical framework.
+Instead, it takes the \citet{Bordalo2020b} diagnostic
+model as the maintained hypothesis and asks whether the
+testable predictions survive in a setting where information
+frictions are larger, food-price salience is more volatile,
+and institutional communication is less transparent than in
+the U.S. surveys where the model was originally validated.
+The CFPS household dimension adds a margin that the existing
+literature has not exploited: individual-level heterogeneity
+in diagnostic intensity, which can discipline the attention
+parameters that theoretical models treat as free.

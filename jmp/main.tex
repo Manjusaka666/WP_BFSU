@@ -1,0 +1,148 @@
+\documentclass[12pt]{article}
+
+% --- Page layout ---
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.5}
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0.3em}
+
+% --- CJK support (XeLaTeX) ---
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{STSong}
+\setCJKsansfont{SimHei}
+\setCJKmonofont{FangSong}
+
+% --- Math and symbols ---
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- Tables ---
+\usepackage{booktabs, threeparttable, tabularx, multirow, array, lscape}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% --- Colors ---
+\usepackage[dvipsnames]{xcolor}
+
+% --- Figures ---
+\usepackage{graphicx, subcaption}
+\graphicspath{{../outputs/figures/}}
+
+% --- Bibliography (biblatex + biber) ---
+% chicago-authordate approximates AER style (author-year, no label)
+% natbib=true lets \citet / \citep work throughout
+\usepackage[backend=biber,
+            style=chicago-authordate,
+            natbib=true,
+            uniquename=false,
+            uniquelist=false]{biblatex}
+\addbibresource{references.bib}
+
+% --- Hyperlinks (load after biblatex) ---
+\usepackage[colorlinks=true, citecolor=blue!60!black,
+            linkcolor=blue!60!black, urlcolor=blue!60!black]{hyperref}
+\usepackage{cleveref}
+
+% --- Formatting ---
+\usepackage{float}
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf}
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=*}
+
+% --- Custom commands ---
+\newcommand{\tabdir}{../outputs/tables}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+% --- Title ---
+\title{Diagnostic Inflation Expectations in China: \\
+Salience, Overreaction, and the Limits of Rational Updating\thanks{I thank
+[advisors] for guidance and [seminar participants] for comments.
+All errors are my own. Replication code and data documentation
+are available at [URL].}}
+\author{Jingle Fu\thanks{Department of Economics,
+Beijing Foreign Studies University.
+Email: \href{mailto:jinglefu@bfsu.edu.cn}{jinglefu@bfsu.edu.cn}}}
+\date{March 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent
+Do Chinese households overreact to salient inflation signals?
+I construct a quarterly panel from the People's Bank of China
+depositor survey (2011Q1--2025Q3) and complement it with
+seven waves of the China Family Panel Studies to test the
+diagnostic-expectations hypothesis at both aggregate and
+household levels. A salience-IV design, where media congestion
+instruments inflation salience, traces a testable chain:
+salience shifts expectation revisions, and revisions predict
+subsequent forecast errors with a negative sign
+($\hat{\beta} = -2.24$, $p = 0.055$, $N = 32$),
+consistent with diagnostic overreaction. Local projections
+show that revision shocks move forecast errors within one
+quarter and then attenuate. A mechanism-competition design
+reveals that both diagnostic and information-rigidity
+channels carry explanatory power, with the diagnostic
+margin activating more strongly during high-uncertainty
+episodes. Heterogeneity analysis using CFPS microdata
+shows that forecast errors conditional on revisions are
+larger among less-educated, lower-income, and rural
+households, consistent with attention-allocation models.
+A Bayesian state-space model tracks time variation in the
+diagnostic coefficient, which intensifies during geopolitical
+crises and pandemic onset. Translating these estimates into
+a real-time forecast-adjustment rule improves out-of-sample
+MAE by 17\% and interval coverage from 42\% to 67\%
+relative to naive survey forecasts.
+The evidence supports diagnostic overreaction as one
+operative channel in Chinese household expectation formation,
+while external validity remains bounded by national
+aggregation and short-horizon survey design.
+\\[0.5em]
+\textbf{JEL Codes:} D84, E31, E71, G41 \\
+\textbf{Keywords:} Diagnostic expectations, inflation expectations,
+household surveys, China, salience, Bayesian state-space
+\end{abstract}
+
+\newpage
+\setcounter{page}{1}
+
+% --- Main text ---
+\input{sections/01_introduction}
+\input{sections/02_literature}
+\input{sections/03_institutional_data}
+\input{sections/04_measurement}
+\input{sections/05_identification}
+\input{sections/06_baseline_results}
+\input{sections/07_heterogeneity}
+\input{sections/08_mechanism}
+\input{sections/09_policy}
+\input{sections/10_robustness}
+\input{sections/11_conclusion}
+
+% --- Appendix ---
+\newpage
+\appendix
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+\renewcommand{\thefigure}{A\arabic{figure}}
+
+\input{sections/A1_bayesian_ssm}
+\input{sections/A2_bvar}
+\input{sections/A3_data_construction}
+\input{sections/A4_additional_robustness}
+
+% --- Bibliography ---
+\newpage
+\printbibliography[title={References}]
+
+\end{document}

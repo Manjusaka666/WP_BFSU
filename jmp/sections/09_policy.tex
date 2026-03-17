@@ -1,0 +1,117 @@
+\section{Policy Counterfactual and Backtest}\label{sec:policy}
+
+\subsection{From estimates to a forecast-adjustment rule}
+
+The diagnostic relation maps directly into an operational
+forecast-adjustment tool. Let $\hat{FE}_{t+1}$ denote the
+model-implied forecast error from the baseline regression:
+\begin{equation}\label{eq:policy_rule}
+  \hat{FE}_{t+1} = \hat{\beta}_0 + \hat{\beta}_1 FR_t
+    + \hat{\gamma}' W_t.
+\end{equation}
+The adjusted policy forecast is then
+\begin{equation}\label{eq:adjusted_forecast}
+  \hat{\pi}_{t+1}^{adj} = \mu_t + \hat{FE}_{t+1},
+\end{equation}
+which corrects the raw survey expectation by subtracting
+the estimated overreaction component. If $\hat{\beta}_1 < 0$
+and $FR_t > 0$, the adjustment lowers the forecast
+relative to the survey expectation, reflecting the
+prediction that realized inflation will undershoot the
+inflated belief.
+
+This mapping is one-to-one with estimated coefficients
+in Table~\ref{tab:policy_rule_formula}. The adjustment
+requires no free parameters beyond those already estimated,
+no structural model of the inflation process, and no
+assumptions about household decision rules. A central
+bank that observes survey expectations and the same macro
+controls used in estimation can compute the adjusted
+forecast in real time.
+
+\input{\tabdir/policy_rule_formula}
+
+\subsection{Rolling backtest design}
+
+I evaluate the forecast-adjustment rule through a rolling
+backtest that mimics real-time implementability. At each
+quarter $t$ in the evaluation window, the model is
+estimated using data from 2011Q1 through $t-1$ only,
+and the adjusted forecast for quarter $t+1$ is computed
+from the revision and controls observed at $t$. The
+expanding estimation window ensures that no future
+information enters the forecast, and the one-step-ahead
+structure matches the horizon of the survey question.
+
+The naive forecast is the raw Carlson--Parkin quantified
+expectation $\mu_t$. The diagnostic-adjusted forecast is
+$\hat{\pi}_{t+1}^{adj} = \mu_t + \hat{FE}_{t+1}$, where
+$\hat{FE}_{t+1}$ uses the rolling coefficient estimates
+from the preceding window.
+
+Performance metrics are root mean squared error (RMSE),
+mean absolute error (MAE), and interval coverage
+(fraction of quarters where realized inflation falls
+within the forecast $\pm$ one posterior standard deviation
+of the residual). Each metric is computed over the
+evaluation window, which starts after a minimum training
+period of 12 quarters to ensure coefficient stability.
+
+\subsection{Backtest results}
+
+Table~\ref{tab:policy_backtest} reports performance over 12
+evaluation quarters. The diagnostic-adjusted forecast reduces
+MAE by 17\% (from 3.58 to 3.41) relative to the naive survey
+forecast. RMSE increases modestly (from 4.12 to 4.52),
+reflecting higher sensitivity to the extreme COVID-period
+observations in 2020Q1, where both forecasts miss by a large
+margin but in opposite directions. The 68\% interval coverage
+improves from 42\% to 67\%, meaning that the adjusted forecast
+produces uncertainty intervals that contain realized inflation
+in two-thirds of quarters compared to fewer than half under
+the naive approach. The improvement is concentrated in
+quarters where the model's revision-based correction shifts
+the forecast toward the eventual realization.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\textwidth]{policy_backtest_path.pdf}
+\caption{Rolling backtest: naive versus diagnostic-adjusted
+  forecasts against realized inflation. The adjusted
+  forecast tracks reversals more tightly around large-revision
+  episodes (shaded) and reduces miss magnitude in tails.}
+\label{fig:policy_backtest}
+\end{figure}
+
+Figure~\ref{fig:policy_backtest} plots realized inflation
+alongside both forecast paths. The naive forecast
+systematically overshoots during food-price spikes
+(2019Q4--2020Q1) and undershoots during deflationary
+episodes (2015Q1--Q2), while the adjusted forecast
+attenuates both types of misses by incorporating the
+estimated diagnostic correction.
+
+\input{\tabdir/policy_backtest_metrics}
+
+\subsection{Limitations of the backtest}
+
+The out-of-sample gains are real but bounded. The
+evaluation window is short (12 quarters after the training
+period), so the performance advantage could reflect
+parameter stability rather than genuine forecasting skill. The rule uses aggregate survey data
+and cannot incorporate household-level heterogeneity from
+CFPS, which limits its precision in periods where the
+composition of over-reactors changes.
+
+More fundamentally, the backtest evaluates point-forecast
+accuracy and interval coverage but does not evaluate the
+welfare consequences of acting on the adjusted forecast.
+A central bank that uses the rule to calibrate
+communication strategy faces a Lucas critique concern: if
+communication successfully reduces diagnostic behavior,
+the estimated coefficients will shift, and the rule will
+need re-estimation. The rule is best interpreted as a
+real-time diagnostic tool---a warning system for when
+survey expectations are most likely to overstate
+near-term inflation---rather than as a permanent
+forecasting model.

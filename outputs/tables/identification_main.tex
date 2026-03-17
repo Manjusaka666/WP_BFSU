@@ -1,23 +1,37 @@
-\begin{table}[!htbp]
+\begin{table}[htbp]
 \centering
+\begin{threeparttable}
 \caption{Salience-IV Identification Results}
 \label{tab:identification_main}
-\begin{threeparttable}
-
-\begin{tabular}{lrrrr}
+{\small
+\begin{tabular}{lc}
 \toprule
-specification & coefficient & se\_NW & p\_value & n\_obs\\
+ & Coefficient \\
 \midrule
-First stage: salience on congestion IV & 0.082 & 0.076 & 0.291 & 32\\
-2SLS: revision on instrumented salience & -0.149 & 0.462 & 0.750 & 32\\
-2SLS: forecast error on instrumented revision & 33.688 & 108.554 & 0.758 & 32\\
-Reduced form: forecast error on congestion IV & -0.411 & 0.494 & 0.412 & 32\\
+\multicolumn{2}{l}{\textit{Panel A: First Stage}} \\
+\addlinespace
+Congestion IV $\to$ Salience & $0.082$ \\
+ & (0.076) \\
+\addlinespace
+\multicolumn{2}{l}{\textit{Panel B: Second Stage}} \\
+\addlinespace
+Instrumented salience $\to$ Revision & $-0.149$ \\
+ & (0.462) \\
+Instrumented revision $\to$ Forecast error & $33.688$ \\
+ & (108.554) \\
+\addlinespace
+\multicolumn{2}{l}{\textit{Panel C: Reduced Form}} \\
+\addlinespace
+Congestion IV $\to$ Forecast error & $-0.411$ \\
+ & (0.494) \\
+\addlinespace
+Observations & 32 \\
 \bottomrule
 \end{tabular}
+}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item Newey-West standard errors use 4 quarterly lags.
-\item The key diagnostic prediction requires a negative coefficient in the forecast-error equation.
+\item \textit{Notes:} Newey--West standard errors (in parentheses) use 4 quarterly lags. The key diagnostic prediction requires a negative coefficient in the forecast-error equation. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

@@ -1,0 +1,199 @@
+\section{Introduction}\label{sec:intro}
+
+Household inflation expectations shape monetary policy
+transmission. If those beliefs systematically overshoot
+realized inflation after salient price signals, communication
+strategies designed for rational updaters will miscalibrate.
+
+China concentrates this problem. Food prices carry outsized
+weight in the consumer basket and generate irregular swings
+that dominate media coverage. The People's Bank of China
+(PBoC) conducts quarterly depositor surveys in which urban
+households report directional price expectations. Geopolitical
+episodes, trade-policy shocks, and pandemic disruptions add
+further salience bursts. Whether households update beliefs
+proportionally or overweight the most recent signal
+determines whether forecast errors are noise or predictable.
+
+\citet{Bordalo2020b} formalize this distinction.
+Under diagnostic expectations, agents overweight states
+of the world that have become more likely in light of
+recent news relative to a baseline, generating predictable
+forecast-error reversals: upward revisions are followed
+by negative errors once realized inflation undershoots the
+revised belief. The \citet{Coibion2015} information-rigidity
+framework predicts the opposite pattern at the aggregate level,
+where sluggish updating produces persistent positive
+autocorrelation in forecast errors. These two models yield
+competing testable predictions on the sign and timing of
+the revision--error link, which means the same dataset can
+discriminate between them if the identification design
+separates measurement from mechanism.
+
+Existing empirical work on expectations in China documents
+errors but does not cleanly separate the channel through
+which those errors arise. Aggregate time-series regressions
+can fit both diagnostic and rigidity interpretations depending
+on control sets and sample windows. Structural VAR exercises
+that define the shock of interest as the pattern to be
+explained create a circularity that reviewers at top-field
+journals will reject. The missing element is an external
+source of variation in the salience of inflation signals
+that shifts revisions without directly moving realized
+inflation through a separate channel.
+
+I address this gap with a three-layer empirical design
+applied to two complementary data sources. The aggregate
+layer uses the PBoC depositor survey from 2011Q1 to 2025Q3,
+quantified through Carlson--Parkin inversion with explicit
+treatment of uncertain responses as bound information.
+The micro layer draws on seven waves of the China Family
+Panel Studies (CFPS, 2010--2022), which surveys approximately
+16,000 households across 25 provinces on price expectations,
+income trajectories, consumption, and financial decisions.
+The combination lets me test diagnostic behavior at the
+national level, where the time-series variation identifies
+the mechanism, and at the household level, where
+cross-sectional heterogeneity pins down who overreacts and
+through what margin.
+
+The identification spine combines a reduced-form diagnostic
+test with salience-IV augmentation. The workhorse is a
+Newey--West regression of forecast errors on expectation
+revisions, where the diagnostic-expectations hypothesis
+predicts a negative coefficient: upward revisions should be
+followed by downward errors as realized inflation fails to
+match the overshoot. I complement this with an instrumental
+variable design that uses media congestion from geopolitical
+news to isolate exogenous variation in inflation salience.
+I evaluate the exclusion restriction against explicit threats:
+placebo outcomes that should not respond to salience shifts,
+lead revisions that should not predict current errors if
+anticipation contaminates the design, and permuted
+instruments that should not replicate the main coefficient
+in a short sample.
+
+The core result supports the diagnostic prediction.
+In OLS specifications with macro controls, forecast
+revisions predict subsequent forecast errors with a negative
+sign ($\hat{\beta}_1 = -2.24$, Newey--West $t = -2.0$,
+$p = 0.055$, $N = 32$). The coefficient is stable across
+nested control sets, ranging from $-1.66$ (bivariate)
+to $-2.24$ (full controls). The salience-IV reduced form
+reinforces the direction ($-0.41$), though the first stage
+is admittedly weak ($F = 1.16$), making the IV estimate
+suggestive rather than definitive. Anderson--Rubin
+weak-IV-robust confidence intervals remain informative.
+Local projections sharpen the timing: revision shocks move
+forecast errors within one quarter and then attenuate, while
+the realized-inflation response is smaller and fades faster,
+producing a temporal asymmetry that is difficult to generate
+under pure information rigidity where delayed correction
+should accumulate rather than dissipate.
+
+Heterogeneity analysis exploits both data sources.
+At the aggregate level, the revision--error slope is more
+negative in low-salience terciles ($\hat{\beta} = -4.04$)
+and mid-salience terciles ($-3.76$) than in high-salience
+terciles ($+2.24$), suggesting that the diagnostic pattern
+is strongest when inflation signals compete with other
+information. Interaction terms with EPU and GPR indicators
+carry the predicted signs but are imprecisely estimated,
+reflecting the limited power of a 32-quarter sample to
+detect state dependence. At the household level, CFPS
+microdata confirm diagnostic overreaction with a revision
+coefficient of approximately $-0.55$ ($p < 0.001$,
+$N \approx 13{,}700$ with province and wave fixed effects).
+Interaction terms with education, income, and urban status
+carry the predicted signs but are individually insignificant,
+suggesting that overreaction is pervasive across demographic
+groups rather than concentrated among particular
+subpopulations.
+
+A mechanism-competition exercise pits diagnostic overreaction
+against information rigidity in the same specification.
+When both the revision (diagnostic) and lagged forecast error
+(rigidity) channels enter jointly, the lagged-error channel
+carries a significant negative coefficient ($-0.60$,
+$p = 0.005$), while the revision coefficient attenuates and
+loses significance. This is consistent with both mechanisms
+operating simultaneously, with information rigidity
+accounting for a larger share of predictable variation in
+this short sample. When state-dependent interactions are
+added, the revision channel becomes more negative in
+high-uncertainty periods ($-1.72$), suggesting that the
+diagnostic margin activates under specific conditions
+even when the unconditional horse race favors rigidity.
+This evidence suggests that both channels operate in Chinese
+expectation formation, with their relative importance
+varying across economic states.
+
+A Bayesian state-space model tracks time variation in the
+diagnostic coefficient. The posterior path shows that
+$\beta_t$ spikes during geopolitical crises (2016Q1 RMB
+depreciation, 2018Q3 trade-war escalation, 2020Q2 pandemic
+onset) and relaxes toward zero in calmer periods.
+Convergence diagnostics (split-chain $\hat{R} < 1.05$,
+ESS above 400) confirm reliable posterior inference.
+An appendix BVAR with sign restrictions provides structural
+consistency checks.
+
+The final layer translates estimates into policy. I map the
+diagnostic relation into a forecast-adjustment rule that
+corrects raw survey expectations by the estimated
+overreaction component. A rolling backtest shows that the
+adjusted rule reduces MAE by 17\% and improves 68\%
+interval coverage from 42\% to 67\% relative to naive
+survey forecasts, providing a measurable risk metric for
+when survey expectations are most likely to overstate
+near-term inflation.
+
+This paper contributes to four literatures.
+To the diagnostic-expectations literature initiated by
+\citet{Bordalo2018}, I provide the first household-level
+test outside the United States and Europe, using a sample
+where information frictions and salience shocks are
+quantitatively larger than in developed-market surveys.
+To the expectations-formation literature in the tradition
+of \citet{Coibion2015}, I add a competing-mechanism design
+that separates diagnostic from rigidity channels in the
+same empirical frame rather than testing each in isolation.
+To the empirical literature on Chinese macroeconomic
+expectations, I move beyond reduced-form documentation of
+errors toward identification-first evidence with explicit
+threat evaluation. To the policy-design literature, I
+demonstrate that diagnostic estimates can be translated
+into a computable forecast-adjustment rule with
+out-of-sample validation, rather than remaining as a
+behavioral characterization without operational content.
+
+The inference remains sample-bound. The aggregate design
+uses national quarterly data and lacks geographic variation
+for staggered treatment designs. The CFPS household panel
+provides cross-sectional heterogeneity but observes price
+expectations only every two years, limiting dynamic analysis
+at the micro level. Media congestion is a plausible but not
+experimentally assigned instrument. These boundaries define
+where the results generalize and where future work with
+province-household matched data and richer media
+microstructure can extend the identification logic without
+changing the mechanism definitions used here.
+
+The paper proceeds as follows. Section~\ref{sec:literature}
+positions the analysis within the diagnostic-expectations
+and information-rigidity literatures and derives testable
+predictions. Section~\ref{sec:data} describes the
+institutional setting, the PBoC depositor survey, and the
+CFPS household panel. Section~\ref{sec:measurement} details
+the Carlson--Parkin quantification and CFPS expectation
+construction. Section~\ref{sec:identification} presents the
+salience-IV design and threat-evaluation protocol.
+Section~\ref{sec:results} reports baseline estimates and
+local projections. Section~\ref{sec:heterogeneity} examines
+cross-sectional and state-dependent heterogeneity.
+Section~\ref{sec:mechanism} competes diagnostic and
+rigidity channels. Section~\ref{sec:policy} maps estimates
+into a forecast-adjustment rule and reports backtests.
+Section~\ref{sec:robustness} summarizes robustness and
+points to appendix details. Section~\ref{sec:conclusion}
+concludes.

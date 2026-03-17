@@ -1,0 +1,30 @@
+\begin{table}[!htbp]
+\centering
+\caption{CFPS Household-Level Interaction Regressions}
+\label{tab:cfps_interactions}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+ & Education & Income & Urban \\
+ & (High) & (Below Median) & \\
+\midrule
+Revision & -0.546*** & -0.547*** & -0.560*** \\
+ & (0.009) & (0.009) & (0.015) \\
+$X_i$ & 0.029 & 0.181 & -0.163*** \\
+ & (0.020) & (0.142) & (0.036) \\
+Revision $\times$ $X_i$ & -0.002 & 0.040 & 0.019 \\
+ & (0.011) & (0.098) & (0.014) \\
+\midrule
+Observations & 13,740 & 13,740 & 13,740 \\
+$R^2$ & 0.412 & 0.411 & 0.418 \\
+Province FE & Yes & Yes & Yes \\
+Wave FE & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Standard errors clustered at the province level in parentheses.
+\item $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.1$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

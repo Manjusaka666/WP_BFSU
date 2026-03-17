@@ -1,0 +1,108 @@
+\section{Additional Robustness}\label{app:robustness}
+
+This appendix collects robustness checks that support
+the main-text analysis but are not central to the
+identification chain.
+
+\subsection{Alternative expectations measures}
+
+Column~1 of Table~\ref{tab:alt_measures} replaces the
+Carlson--Parkin quantified expectation with the raw PBoC
+expectation index. The revision--error coefficient is
+negative, preserving the diagnostic sign. Column~2 uses the
+Carlson--Parkin lower bound (all uncertain respondents
+allocated to ``prices will fall''), and column~3 uses the
+upper bound (all uncertain respondents to ``prices will
+rise''). Both bounds yield negative coefficients, confirming
+that the diagnostic result is not an artifact of how
+uncertain responses are treated. Magnitudes vary with the
+measurement choice, as expected when the quantification
+procedure rescales both revision and error.
+
+\input{\tabdir/alt_measures}
+
+\subsection{Alternative control sets}
+
+Table~\ref{tab:control_sensitivity} reports the
+diagnostic coefficient across seven control specifications:
+no controls (revision only), food CPI only, M2 only,
+PPI only, food CPI + M2, food CPI + M2 + PPI
+(baseline), and baseline + EPU + GPR. The coefficient
+ranges from $-1.66$ to $-2.24$, with no specification
+yielding a sign change. Statistical significance is marginal
+across specifications, reflecting the 32-observation sample
+rather than an economically small effect.
+
+\input{\tabdir/control_sensitivity}
+
+\subsection{Subsample analysis}
+
+Table~\ref{tab:subsample} reports results for three
+subsample splits:
+\begin{itemize}
+  \item Pre-2018 versus post-2018: both subsamples retain
+    the negative diagnostic sign. The post-2018 coefficient
+    is larger in absolute value, consistent with heightened
+    salience during the trade-war and pandemic periods.
+  \item Excluding COVID (dropping 2020Q1--2020Q4):
+    the coefficient remains negative, confirming that the
+    baseline result is not driven by pandemic-era outliers.
+  \item Excluding extreme revisions (dropping quarters
+    where $|FR_t| > 2\sigma$): the coefficient retains
+    the diagnostic sign, confirming that the result
+    is not driven by a few extreme quarters.
+\end{itemize}
+Statistical significance weakens in the smaller subsamples,
+as expected when splitting a 32-quarter sample.
+
+\input{\tabdir/subsample}
+
+\subsection{BVAR lag and prior sensitivity}
+
+Table~\ref{tab:bvar_lag_sensitivity} reports BVAR
+results under alternative lag orders ($p = 1, 2, 3, 4$)
+and Minnesota tightness values
+($\lambda = 0.1, 0.2, 0.3$). The acceptance rate
+exceeds 97\% in all specifications. IRF patterns are
+qualitatively preserved: expectations surge on impact
+while realized inflation is muted, generating negative
+forecast errors for 4--8 quarters depending on the
+specification.
+
+\input{\tabdir/bvar_lag_sensitivity}
+
+\subsection{Uncertainty-state interaction details}
+
+Table~\ref{tab:uncertainty_details} reports the
+full interaction model with EPU, GPR, and
+effective-response-share indicators simultaneously.
+The joint F-test for the three interaction terms rejects
+the null of no state dependence ($F = 3.2$, $p = 0.034$).
+The EPU interaction is the strongest individual channel
+($t = -2.3$), followed by GPR ($t = -1.9$) and
+response share ($t = -1.5$).
+
+\input{\tabdir/uncertainty_details}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.84\textwidth]{uncertainty_salience_states.pdf}
+\caption{Uncertainty and salience states over the sample
+  period. High-uncertainty episodes (shaded) coincide
+  with more negative diagnostic coefficients in the
+  Bayesian state-space model.}
+\label{fig:uncertainty_states}
+\end{figure}
+
+\subsection{Implementation parity with legacy code}
+
+Table~\ref{tab:parity_detail} reports variable-by-variable
+comparison between the R pipeline
+(\texttt{src/99\_run\_all.R}) and the legacy Python
+pipeline. All shared quantities agree to within numerical
+tolerance ($< 10^{-6}$) for continuous variables and
+exactly for categorical variables. This check ensures
+that the transition from Python to R as the primary
+estimation engine introduced no specification drift.
+
+\input{\tabdir/parity_detail}

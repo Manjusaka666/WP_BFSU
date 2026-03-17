@@ -1,31 +1,35 @@
 \begin{table}[!htbp]
 \centering
-\caption{Descriptive Statistics of Core Variables}
+\small
+\caption{Descriptive Statistics}
 \label{tab:desc_stats}
 \begin{threeparttable}
 
-\begin{tabular}{lrrrrrr}
+\begin{tabular}{lcccccc}
 \toprule
-variable & n & mean & sd & p25 & median & p75\\
+ & $N$ & Mean & Std.\ Dev. & P25 & Median & P75 \\
 \midrule
-mu\_cp & 38 & 0.373 & 1.248 & 0.226 & 0.530 & 0.783\\
-mu\_alt\_index & 42 & 62.879 & 3.371 & 60.450 & 62.700 & 64.300\\
-FR\_cp & 33 & -0.068 & 0.447 & -0.310 & -0.037 & 0.305\\
-FE\_next\_cp & 37 & 1.324 & 3.449 & -0.710 & 1.836 & 3.786\\
-epu\_qavg & 48 & 208.864 & 115.347 & 105.304 & 165.907 & 306.312\\
+\multicolumn{7}{l}{\textit{Panel A: Expectations}} \\
 \addlinespace
-gpr\_qavg & 48 & 97.994 & 26.012 & 84.643 & 89.276 & 105.502\\
-CPI\_QoQ\_Ann & 48 & 2.257 & 3.536 & -0.100 & 2.862 & 4.494\\
-CPI\_YoY\_rate & 48 & 0.183 & 0.291 & -0.008 & 0.238 & 0.369\\
-Food\_CPI\_YoY\_qavg & 48 & 4.631 & 5.275 & 2.034 & 3.224 & 7.090\\
-M2\_YoY & 48 & 11.530 & 2.663 & 9.008 & 11.267 & 13.300\\
+Expected inflation ($\mu^{CP}$) & 38 & 0.373 & 1.248 & 0.226 & 0.530 & 0.783 \\
+Alternative expectations index ($\mu^{alt}$) & 42 & 62.879 & 3.371 & 60.450 & 62.700 & 64.300 \\
+Forecast revision ($FR$) & 33 & $-$0.068 & 0.447 & $-$0.310 & $-$0.037 & 0.305 \\
+Forecast error ($FE$) & 37 & 1.324 & 3.449 & $-$0.710 & 1.836 & 3.786 \\
 \addlinespace
-PPI\_YoY\_rate & 48 & 1.359 & 4.554 & -1.803 & -0.226 & 5.708\\
+\multicolumn{7}{l}{\textit{Panel B: Macro Controls}} \\
+\addlinespace
+Economic Policy Uncertainty (EPU) & 48 & 208.864 & 115.347 & 105.304 & 165.907 & 306.312 \\
+Geopolitical Risk (GPR) & 48 & 97.994 & 26.012 & 84.643 & 89.276 & 105.502 \\
+CPI inflation, QoQ annualized (\%) & 48 & 2.257 & 3.536 & $-$0.100 & 2.862 & 4.494 \\
+CPI inflation, YoY (\%) & 48 & 0.183 & 0.291 & $-$0.008 & 0.238 & 0.369 \\
+Food CPI, YoY (\%) & 48 & 4.631 & 5.275 & 2.034 & 3.224 & 7.090 \\
+M2 growth, YoY (\%) & 48 & 11.530 & 2.663 & 9.008 & 11.267 & 13.300 \\
+PPI inflation, YoY (\%) & 48 & 1.359 & 4.554 & $-$1.803 & $-$0.226 & 5.708 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item All inflation-related variables are in percentage points.
+\item \textit{Notes:} Sample period is 2012Q1--2023Q4 (48 quarters); $N$ varies by data availability. All inflation-related variables are in percentage points. $\mu^{CP}$ denotes the Carlson--Parkin point estimate of expected inflation. $FR = \mathbb{E}_t[\pi_{t+1}] - \mathbb{E}_{t-1}[\pi_t]$. $FE = \pi_{t+1} - \mathbb{E}_t[\pi_{t+1}]$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

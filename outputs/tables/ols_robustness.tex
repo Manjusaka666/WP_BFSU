@@ -1,21 +1,24 @@
-\begin{table}[!htbp]
+\begin{table}[htbp]
 \centering
+\begin{threeparttable}
 \caption{Baseline Robustness to Control Sets}
 \label{tab:ols_robustness}
-\begin{threeparttable}
-
-\begin{tabular}{lrrrr}
+{\small
+\begin{tabular}{lccc}
 \toprule
-model & beta & se & p\_value & n\\
+ & (1) & (2) & (3) \\
+ & No Food CPI & No Money Growth & No PPI \\
 \midrule
-No Food CPI & -1.708 & 0.883 & 0.063 & 32\\
-No Money Growth & -2.081 & 1.269 & 0.112 & 32\\
-No PPI & -2.112 & 1.096 & 0.064 & 32\\
+$\hat{\beta}$ (revision) & $-1.708^{*}$ & $-2.081$ & $-2.112^{*}$ \\
+ & (0.883) & (1.269) & (1.096) \\
+\addlinespace
+Observations & 32 & 32 & 32 \\
 \bottomrule
 \end{tabular}
+}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item The diagnostic coefficient remains the coefficient on forecast revision.
+\item \textit{Notes:} The diagnostic coefficient remains the coefficient on forecast revision. Standard errors (in parentheses) are Newey--West with 4 lags. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

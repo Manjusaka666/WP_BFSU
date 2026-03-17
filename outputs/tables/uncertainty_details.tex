@@ -1,0 +1,45 @@
+\begin{table}[htbp]
+\centering
+\begin{threeparttable}
+\caption{Uncertainty State Interaction Details}
+\label{tab:uncertainty_details}
+\begin{tabular}{lcccc}
+\toprule
+ & (1) & (2) & (3) & (4) \\
+ & EPU only & GPR only & Response share & Full interaction \\
+\midrule
+$\hat{\beta}$ (revision) & $-0.524^{***}$ & $-0.511^{***}$ & $-0.498^{***}$ & $-0.537^{***}$ \\
+ & $(0.112)$ & $(0.115)$ & $(0.118)$ & $(0.109)$ \\
+\addlinespace
+FR $\times$ EPU$^{\text{high}}$ & $-0.187^{**}$ & & & $-0.153^{*}$ \\
+ & $(0.089)$ & & & $(0.091)$ \\
+\addlinespace
+FR $\times$ GPR$^{\text{high}}$ & & $-0.142^{*}$ & & $-0.098$ \\
+ & & $(0.082)$ & & $(0.086)$ \\
+\addlinespace
+FR $\times$ DK share$^{\text{high}}$ & & & $-0.164^{**}$ & $-0.127^{*}$ \\
+ & & & $(0.076)$ & $(0.078)$ \\
+\addlinespace
+EPU$^{\text{high}}$ & $0.312$ & & & $0.278$ \\
+ & $(0.241)$ & & & $(0.253)$ \\
+\addlinespace
+GPR$^{\text{high}}$ & & $0.198$ & & $0.143$ \\
+ & & $(0.217)$ & & $(0.228)$ \\
+\addlinespace
+DK share$^{\text{high}}$ & & & $0.256$ & $0.189$ \\
+ & & & $(0.193)$ & $(0.207)$ \\
+\midrule
+$R^2$ & 0.338 & 0.319 & 0.327 & 0.372 \\
+Adjusted $R^2$ & 0.304 & 0.284 & 0.293 & 0.318 \\
+$N$ & 43 & 43 & 43 & 43 \\
+\addlinespace
+Joint $F$-test (interactions) & & & & $3.84^{**}$ \\
+$p$-value & & & & $[0.018]$ \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\small
+\item \textit{Notes:} Dependent variable is the forecast error $\text{FE}_{t+1}$. EPU$^{\text{high}}$ and GPR$^{\text{high}}$ are indicator variables equal to one when the respective index exceeds its sample median. DK share$^{\text{high}}$ equals one when the ``don't know'' response share in the PBoC survey exceeds its sample median. Column~(4) includes all three interaction terms simultaneously; the joint $F$-test evaluates whether the three interaction coefficients are jointly zero. Baseline controls (food CPI, M2, PPI) included in all columns. Newey--West HAC standard errors in parentheses; $p$-values in brackets. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

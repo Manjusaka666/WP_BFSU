@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(humanizer)",
+      "Skill(humanizer:*)",
+      "Bash(Rscript src/13_china_cfps_map.R)",
+      "Bash(Rscript -e \"install.packages\\(''''rnaturalearthhires'''', repos=''''https://ropensci.r-universe.dev''''\\)\")",
+      "Bash(xelatex -interaction=nonstopmode main.tex)",
+      "Bash(Rscript -e \":*)",
+      "Bash(Rscript -e \"cat\\(getwd\\(\\)\\)\")",
+      "Bash(python src/13_china_cfps_map.py)",
+      "Bash(python -c \"import cartopy; print\\(''cartopy OK''\\)\")",
+      "Bash(python -c \"import geopandas; print\\(geopandas.__version__\\)\")",
+      "Bash(pip install:*)",
+      "Bash(grep -v \"^$\")",
+      "Bash(grep -c \"^\\\\\\\\bibitem\" \"e:/研究生/WP_BFSU/jmp/main.bbl\")",
+      "Bash(biber --version)",
+      "Bash(kpsewhich biblatex.sty)",
+      "Bash(kpsewhich biblatex-chicago.sty)",
+      "Bash(fc-list :lang=zh)",
+      "Bash(biber main:*)",
+      "Bash(ls \"e:/研究生/WP_BFSU/outputs/tables/\"*.tex)",
+      "Bash(Rscript src/81_regenerate_figures.R)",
+      "Bash(find e:/研究生/WP_BFSU -name *backtest*path* -o -name *backtest*csv)"
+    ]
+  }
+}
