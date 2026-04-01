@@ -1,8 +1,8 @@
 ---
 active: true
-iteration: 10
+iteration: 3
 session_id: 
-max_iterations: 0
+max_iterations: 5
 completion_promise: null
 started_at: "2026-03-16T23:37:07Z"
 ---

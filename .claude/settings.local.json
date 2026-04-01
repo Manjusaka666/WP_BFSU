@@ -3,6 +3,7 @@
     "allow": [
       "Skill(humanizer)",
       "Skill(humanizer:*)",
+      "Skill(econ-writing-standard)",
       "Bash(Rscript src/13_china_cfps_map.R)",
       "Bash(Rscript -e \"install.packages\\(''''rnaturalearthhires'''', repos=''''https://ropensci.r-universe.dev''''\\)\")",
       "Bash(xelatex -interaction=nonstopmode main.tex)",

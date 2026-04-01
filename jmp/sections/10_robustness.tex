@@ -1,71 +1,74 @@
 \section{Robustness}\label{sec:robustness}
 
-Robustness checks are organized around falsifiable threats
-to the main result rather than table accumulation. Each
-check targets a specific concern, and I report whether the
+I organize robustness checks around four falsifiable
+threats to the baseline diagnostic result: measurement
+artifacts, sample dependence, time variation in the
+coefficient, and structural consistency. Each subsection
+targets a specific concern and reports whether the
 diagnostic coefficient retains its sign, magnitude, and
 significance under the alternative specification.
 
-\subsection{Measurement robustness}
+\subsection{Measurement}
 
 The Carlson--Parkin quantification depends on the
 perception threshold $\delta$ and the treatment of
-uncertain respondents.
-Table~\ref{tab:delta_sensitivity} in Appendix~\ref{app:robustness}
-reports the diagnostic coefficient under three
-alternative $\delta$ values (0.3, 0.5, 0.7). The sign
-is stable across all values; the magnitude varies by less
-than 20\% from the baseline, confirming that the result is
+uncertain respondents. Table~\ref{tab:delta_sensitivity}
+in Appendix~\ref{app:robustness} reports the diagnostic
+coefficient under three alternative threshold values
+($\delta \in \{0.3, 0.5, 0.7\}$). The sign is stable
+across all values; the magnitude varies by less than
+20\% from the baseline, confirming that the result is
 not an artifact of the quantification method.
 
-Using the raw PBoC expectation index (an alternative
-measure that does not require Carlson--Parkin inversion)
-as the expectation variable produces a qualitatively
-identical diagnostic pattern: positive revisions in the
-index predict negative subsequent forecast errors
-(Table~\ref{tab:alt_measures}). This alternative measure
-has a different scale and different measurement error
-structure, so agreement across measures provides
-independent corroboration.
+Replacing the Carlson--Parkin measure with the raw PBoC
+expectation index, which has a different scale and
+measurement error structure, produces the same qualitative
+pattern: positive revisions predict negative subsequent
+forecast errors (Table~\ref{tab:alt_measures}). Agreement
+across two independently constructed expectation measures
+provides corroboration that the diagnostic finding reflects
+household behavior rather than a quantification artifact.
 
-\subsection{Sample robustness}
+\subsection{Sample stability}
 
-Dropping the COVID period (2020Q1--2020Q4), which
-represents an extreme macro environment, reduces the
-sample and attenuates the coefficient while preserving
-the diagnostic sign (Table~\ref{tab:subsample}). The sign
-retention confirms that the result is not driven by
-pandemic-era outliers, though significance weakens in
-smaller subsamples as expected.
+Dropping the COVID period (2020Q1--2020Q4) attenuates
+the coefficient but preserves its sign
+(Table~\ref{tab:subsample}). The sign retention confirms
+that the result is not driven by pandemic-era outliers,
+though significance weakens in the smaller sample as
+expected.
 
 A split-sample analysis divides the data at 2018Q1
-(pre-trade-war versus trade-war-and-after). Both subsamples
-retain the negative diagnostic sign. The post-period
-estimate is larger in absolute value, consistent with the
-heterogeneity result: diagnostic behavior may have
-intensified during the high-uncertainty period from 2018
-onward. The smaller subsample sizes ($N \approx 16$ each)
-limit the precision of these split-sample estimates.
+(pre-trade-war versus trade-war-and-after). Both
+subsamples retain the negative diagnostic sign. The
+post-2018 estimate is larger in absolute value, consistent
+with the heterogeneity results in
+Section~\ref{sec:heterogeneity}: diagnostic behavior
+intensified during the high-uncertainty period. The
+smaller subsample sizes ($N \approx 16$ each) limit
+precision, so I treat the sign stability as the
+informative margin rather than the point estimates.
 
-\subsection{Bayesian diagnostics}
+\subsection{Time-varying coefficient: Bayesian
+  state-space model}
 
-The Bayesian state-space model provides a complementary
-robustness layer. Appendix~\ref{app:ssm} reports
-posterior estimates, convergence diagnostics, and prior
-sensitivity. The key result is that the time-varying
-diagnostic coefficient $\beta_t$ is negative in 91\% of
-quarters at the 90\% credible level. Prior sensitivity
-shows that the sign and approximate magnitude of $\beta_t$
-are stable across baseline, loose, and tight prior
-specifications (Table~\ref{tab:prior_sensitivity}).
+The Bayesian SSM (Appendix~\ref{app:ssm}) provides a
+complementary identification strategy by allowing the
+diagnostic coefficient to vary each quarter. The key
+result is that $\beta_t$ is negative in 91\% of quarters
+at the 90\% credible level. Prior sensitivity analysis
+shows that the sign and approximate magnitude of
+$\beta_t$ are stable across baseline, loose, and tight
+prior specifications
+(Table~\ref{tab:prior_sensitivity}).
 
 Figure~\ref{fig:beta_t_path} plots the posterior mean
 and 90\% credible interval of $\beta_t$ over the sample
-period. The path shows clear intensification during
-geopolitical episodes (2016Q1, 2018Q3, 2020Q2) and
-relaxation toward zero in calmer periods, corroborating
-the aggregate state dependence documented in the
-heterogeneity section.
+period. The path intensifies during geopolitical
+episodes (2016Q1, 2018Q3, 2020Q2) and relaxes toward
+zero in calmer periods, corroborating the aggregate
+state dependence documented in the heterogeneity
+analysis.
 
 \begin{figure}[H]
 \centering
@@ -77,19 +80,19 @@ heterogeneity section.
 \label{fig:beta_t_path}
 \end{figure}
 
-\subsection{Structural consistency from BVAR}
+\subsection{Structural consistency: BVAR}
 
-The appendix BVAR (Appendix~\ref{app:bvar}) provides
-structural consistency checks. With sign restrictions
+The BVAR in Appendix~\ref{app:bvar} identifies a
+diagnostic-expectations shock using sign restrictions
 anchored to the salience proxy rather than circular
-definitions, the acceptance rate is 99.95\%, confirming
+definitions. The acceptance rate is 99.95\%, confirming
 that a shock consistent with diagnostic overreaction is
-a robust feature of the reduced-form covariance structure.
-Impulse responses show that the identified shock raises
-expectations substantially while actual inflation barely
-moves (Figure~\ref{fig:bvar_irf}), and the implied
-forecast-error reversal pattern matches the local-projection
-evidence from the main analysis.
+a robust feature of the reduced-form covariance
+structure. Impulse responses show that the identified
+shock raises expectations substantially while realized
+inflation barely moves (Figure~\ref{fig:bvar_irf}),
+and the implied forecast-error reversal matches the
+local-projection evidence from the baseline analysis.
 
 \begin{figure}[H]
 \centering
@@ -104,12 +107,8 @@ evidence from the main analysis.
 
 \subsection{Replication parity}
 
-Appendix~\ref{app:robustness} (Table~\ref{tab:parity_detail})
-confirms that the R-based analytical pipeline reproduces
-all Python-based legacy quantities where variable
-definitions overlap, with maximum absolute differences
-below $10^{-6}$ for continuous quantities and exact
-agreement on categorical constructs. This cross-language
-check prevents silent specification drift and keeps
-every empirical claim in the main text auditable across
-implementations.
+The R-based analytical pipeline reproduces all
+Python-based legacy quantities with maximum absolute
+differences below $10^{-6}$
+(Appendix~\ref{app:robustness},
+Table~\ref{tab:parity_detail}).
