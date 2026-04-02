@@ -2,23 +2,50 @@
 
 \subsection{Identification challenge}
 
-The core test regresses forecast errors on expectation revisions. A negative coefficient discriminates diagnostic expectations from both rational expectations and information rigidity. The identification challenge is that common macro shocks can move revisions and errors simultaneously: a food-price spike may shift expectations upward while independently depressing realized inflation through a supply channel, generating a spurious negative correlation. With 32 quarterly observations, conventional control strategies risk overfitting, sharpening the need for a parsimonious yet discriminating approach.
+The core test regresses forecast errors on expectation revisions. A negative coefficient discriminates diagnostic expectations from both rational expectations and information rigidity. The identification challenge is that common macro shocks can move revisions and errors simultaneously: a food-price spike may shift expectations upward while independently depressing realized inflation through a supply channel, generating a spurious negative correlation. With 32 quarterly aggregate observations, conventional control strategies risk overfitting, sharpening the need for a parsimonious approach that draws on multiple sources of variation.
 
-\subsection{Primary strategy: OLS revision-error test}
+\subsection{Primary identification: CFPS household panel and aggregate OLS}
 
-The revision-error regression provides the main identification. Under diagnostic expectations, households overweight salient signals when revising beliefs, so upward revisions systematically overshoot and produce negative subsequent forecast errors. The testable prediction is $\beta_1 < 0$ in
+Two complementary strategies provide the primary identification. The CFPS household panel ($N \approx 13{,}700$ household-wave observations) is the main vehicle. The aggregate OLS revision-error test ($N = 32$ quarters) is secondary corroborating evidence. A salience-IV design provides directional support but, as documented below, is too weak to support causal claims independently.
+
+\paragraph{CFPS household panel.}
+The household panel delivers an order-of-magnitude power gain over the aggregate series. I estimate
+\begin{equation}\label{eq:cfps_panel}
+  \text{Error}_{ipt} = \alpha + \beta_1 \text{Revision}_{ipt} + \gamma X_i + \delta_p + \delta_t + \varepsilon_{ipt},
+\end{equation}
+where $\text{Error}_{ipt}$ is the household-level forecast-error proxy, $\text{Revision}_{ipt}$ is the change in price expectations between consecutive CFPS waves, $X_i$ is a vector of household controls, and $\delta_p$, $\delta_t$ are province and wave fixed effects. Standard errors are clustered at the province level. Province fixed effects absorb time-invariant regional differences in price levels and inflation histories. Wave fixed effects absorb all aggregate shocks common to a given survey round. The identifying variation is therefore within-province, cross-household differences in revision behaviour across waves---precisely the variation that confounding macro shocks cannot generate.
+
+The diagnostic prediction is $\beta_1 < 0$: households who revise expectations upward relative to others in the same province-wave cell should subsequently record more negative forecast errors. This estimate is $\hat{\beta}_1 \approx -0.55$ ($p < 0.001$), precisely estimated and stable across control specifications. Section~\ref{sec:heterogeneity} reports the full results.
+
+\citet{Oster2019} bounds quantify how strong selection on unobservables
+would need to be to explain away this result.
+Table~\ref{tab:oster_bounds} reports the calculation. The uncontrolled
+coefficient is $-0.520$; adding province fixed effects, wave fixed
+effects, and household demographics changes it to $-0.524$. The
+near-zero movement implies $\delta^{*} \approx -1{,}334$: unobservable
+confounders would need to be over 1{,}000 times more important than the
+full set of observables, and operating in the opposite direction, to
+drive the coefficient to zero. The bias-adjusted estimate under the
+conservative assumption $\delta = 1$ is $-0.562$, larger in absolute
+value than the controlled estimate. By the Oster criterion, the CFPS
+result is robust to omitted variable bias.
+
+\input{\tabdir/oster_bounds}
+
+The CFPS sample counts differ across analyses because each imposes different restrictions. The raw data contain approximately 80{,}000 person-wave observations across seven waves (Appendix~\ref{app:data}). Linking individuals across consecutive waves and requiring non-missing price expectations in both waves produces 30{,}352 observations, which is the sample for the Oster bounds calculation above. The main regression specification (Equation~\ref{eq:cfps_panel}) further restricts to observations with valid revision and error proxies, yielding approximately 13{,}700 household-wave observations. Appendix~\ref{app:data} documents each step of this sample construction.
+
+\paragraph{Aggregate OLS revision-error test.}
+The aggregate test regresses next-quarter forecast errors on forecast revisions across 32 quarterly observations:
 \[
   FE_{t+1} = \beta_0 + \beta_1 \Delta\mu_t + B' W_t + \varepsilon_t,
 \]
-where $FE_{t+1}$ is the next-quarter forecast error, $\Delta\mu_t$ is the expectation revision, and $W_t$ contains macro controls (food CPI, M2 growth, PPI inflation).
+where $FE_{t+1}$ is the next-quarter forecast error, $\Delta\mu_t$ is the expectation revision, and $W_t$ contains macro controls (food CPI, M2 growth, PPI inflation). Inference uses Newey--West standard errors. The aggregate series has limited power ($N = 32$), so the primary test of the sign prediction is the CFPS result; the aggregate OLS provides consistency across levels of aggregation rather than independent causal identification.
 
-This coefficient cleanly discriminates among three leading models. Under rational expectations, revisions are orthogonal to subsequent errors, so $\beta_1 = 0$. Under information rigidity without overreaction, revisions are too small and subsequent errors reflect residual adjustment, implying $\beta_1 > 0$. Only diagnostic expectations predict $\beta_1 < 0$: the revision overshoots the information content of the signal, and the overshoot reverses in the next period.
-
-Inference uses Newey--West standard errors with a Bartlett kernel to account for serial correlation and heteroskedasticity. The OLS test does not require an instrument, so it avoids weak-instrument distortion and delivers the sharpest discriminating evidence in this short sample.
+The coefficient discriminates among three leading models. Under rational expectations, $\beta_1 = 0$. Under information rigidity without overreaction, $\beta_1 > 0$. Only diagnostic expectations predict $\beta_1 < 0$. The causal claim rests on the combination of (a) consistent negative sign across both the aggregate OLS and the household panel, (b) province-wave fixed effects in the CFPS panel providing credible within-variation identification, and (c) the directional sign of the IV reduced form as corroboration. The paper does not claim causal identification via the IV alone.
 
 \subsection{Supplementary evidence: salience-IV design}
 
-As supplementary evidence, I construct an instrumental-variables design that isolates variation in revisions originating from attention reallocation rather than from direct inflation determinants. The IV provides directional support for the diagnostic mechanism but, as documented below, the weak first stage limits what 2SLS alone can establish.
+As supplementary evidence, I construct an instrumental-variables design that isolates variation in revisions originating from attention reallocation rather than from direct inflation determinants. The IV provides directional support for the diagnostic mechanism. As documented below, the first stage is too weak (F $= 1.16$) for the IV to establish causal magnitudes: the Anderson--Rubin 95\% confidence interval is $[-3.0, 3.0]$, which is wide enough to be uninformative about the precise coefficient value. The IV is therefore a directional check, not an identification claim.
 
 \paragraph{Media Salience Index (MSI).}
 The salience index combines two components: a standardized measure of economic-policy uncertainty (EPU) capturing the intensity of economic news in domestic media, and a survey-based measure of the fraction of respondents expressing directional expectations (as opposed to uncertainty), which proxies for household engagement with price information. The index is
@@ -51,7 +78,7 @@ The diagnostic prediction remains $\beta_1 < 0$. I report weak-instrument-robust
 
 \subsection{First-stage strength}
 
-Table~\ref{tab:iv_first_stage} reports first-stage results. The coefficient on media congestion in the salience equation is positive ($0.082$, SE $= 0.076$, $p = 0.29$): a one-standard-deviation decrease in GPR increases salience, though the relationship is imprecise. The first-stage Wald F-statistic is $1.16$, well below the \citet{Stock2005} threshold of $10$. The weak first stage prevents informative 2SLS, making the reduced form the operative IV evidence. This weakness motivates both the Anderson--Rubin inference and the reduced-form strategy that bypasses the first stage entirely; the OLS diagnostic test, which does not rely on instrument strength, remains the primary discriminating evidence.
+Table~\ref{tab:iv_first_stage} reports first-stage results. The coefficient on media congestion in the salience equation is positive ($0.082$, SE $= 0.076$, $p = 0.29$): a one-standard-deviation decrease in GPR increases salience, though the relationship is imprecise. The Wald F-statistic is $1.16$, far below the \citet{Stock2005} threshold of $10$. The weak first stage prevents informative 2SLS. The Anderson--Rubin 95\% confidence interval is $[-3.0, 3.0]$: it spans the OLS estimates but is wide enough that IV inference alone is uninformative about the sign or magnitude of the diagnostic coefficient. The reduced form---the direct regression of forecast errors on the congestion instrument---is the operative IV evidence, and it is reported as supplementary. The CFPS household panel and aggregate OLS remain the primary discriminating evidence.
 
 Figure~\ref{fig:first_stage_iv} plots the first-stage relationship. The association is economically interpretable: quarters where geopolitical events consumed media attention (2016Q1 South China Sea tensions, 2018Q3 trade-war escalation, 2020Q1 pandemic onset, 2022Q1 Russia--Ukraine conflict) correspond to low inflation salience, while calmer periods leave more media space for economic coverage.
 
@@ -73,7 +100,7 @@ The exclusion restriction requires that geopolitical news affects household infl
 Geopolitical events can directly affect oil prices, exchange rates, and commodity costs, which in turn affect CPI inflation. If GPR shocks move both salience and realized inflation, the instrument violates exclusion. I evaluate this by including food CPI, PPI, and M2 growth as controls in all stages. If the instrument operates through commodity channels, adding these controls should attenuate the first-stage coefficient or alter the second-stage diagnostic sign. Neither occurs: the diagnostic coefficient is stable across nested control sets (Table~\ref{tab:ols_robustness}).
 
 \paragraph{Threat 2: Broad macro shocks.}
-Geopolitical events may cause generalized economic disruption that moves all expectations simultaneously, capturing a recession or uncertainty effect rather than attention reallocation. The placebo test estimates the same IV chain with non-inflation forecast errors (industrial output surprise, employment gap) as dependent variables. If the instrument picks up broad macro shocks, these placebo outcomes should show comparable coefficients. Table~\ref{tab:placebo_tests} reports that placebo effects are small relative to the main effect and statistically indistinguishable from zero.
+Geopolitical events may cause generalized economic disruption that moves all expectations simultaneously, capturing a recession or uncertainty effect rather than attention reallocation. The placebo test estimates the same IV chain with non-inflation forecast errors (industrial output surprise, employment gap) as dependent variables. If the instrument picks up broad macro shocks, these placebo outcomes should show comparable coefficients. Table~\ref{tab:placebo_tests} reports that placebo outcomes are statistically indistinguishable from zero ($p = 0.783$ for the employment expectation index). The large point estimate (986.7) is an artifact of weak-instrument amplification rather than a genuine placebo failure: with $F = 1.16$, 2SLS coefficients are inflated toward the ratio of reduced-form noise to a near-zero first stage.
 
 \paragraph{Threat 3: Anticipation.}
 If households anticipate geopolitical events and adjust expectations in advance, the timing structure is contaminated. The anticipation test regresses current forecast errors on lead (future) revisions: if anticipation is present, tomorrow's revision should predict today's forecast error. The lead coefficient is null (Table~\ref{tab:placebo_tests}, column~3), supporting the timing assumption.

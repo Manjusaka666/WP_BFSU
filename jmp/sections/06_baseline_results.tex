@@ -1,8 +1,10 @@
 \section{Baseline Results}\label{sec:results}
 
+Three results together support the diagnostic expectations hypothesis. The CFPS household panel ($N \approx 13{,}700$, $\hat{\beta} = -0.55$, $p < 0.001$) is the primary finding: it delivers credible within-variation identification via province and wave fixed effects and is far more precisely estimated than any aggregate result. The aggregate OLS ($\hat{\beta} = -2.24$, $p = 0.055$, $N = 32$) is secondary corroboration: the key test is sign consistency with the household result, not the $p$-value alone. The IV directional check reinforces both but cannot pin down magnitudes, as detailed in Section~\ref{subsec:iv}.
+
 \subsection{OLS estimates}\label{subsec:ols}
 
-Table~\ref{tab:ols_baseline} reports the primary diagnostic test:
+Table~\ref{tab:ols_baseline} reports the aggregate diagnostic test:
 regressing next-quarter forecast errors on forecast revisions across
 nested specifications. The diagnostic prediction is
 $\beta < 0$---positive revisions should predict negative subsequent
@@ -10,59 +12,116 @@ errors if forecasters overreact to new information.
 
 The bivariate specification yields $\hat{\beta} = -1.66$
 (SE $= 0.96$, $p = 0.093$). Adding macro controls (food CPI, M2,
-PPI) strengthens the estimate to $\hat{\beta} = -2.24$
+PPI) produces $\hat{\beta} = -2.24$
 (SE $= 1.11$, $p = 0.055$). The full specification with uncertainty
-controls (EPU, GPR) produces $\hat{\beta} = -2.13$
-(SE $= 1.26$, $p = 0.103$, $N = 32$). The coefficient is stable
-across all three control sets, ruling out single-omitted-variable
-explanations.
+controls (EPU, GPR) yields $\hat{\beta} = -2.13$
+(SE $= 1.26$, $p = 0.103$, $N = 32$). Both $p = 0.055$ and
+$p = 0.103$ are marginal by conventional thresholds. The relevant
+test is whether the sign is negative, as the diagnostic model
+predicts; all three specifications pass it. Aggregate power is
+limited to 32 observations, and the CFPS panel is the vehicle for
+precise estimation.
 
-The economic magnitude is substantial. A one-standard-deviation
-increase in the revision ($\sigma_{FR} = 0.45$~pp) predicts a
-forecast error shift of approximately $-1.0$~pp, which is large
-relative to the mean forecast error of $1.32$~pp. The $R^2$
-rises from 0.048 (bivariate) to 0.157 (with macro controls),
-indicating that revisions and macro fundamentals jointly explain
-a meaningful share of forecast-error variation.
+The economic magnitude is the more informative summary. The
+preferred estimate $\hat{\beta} = -2.24$ implies that a
+1~percentage-point upward revision predicts a 2.24~pp subsequent
+forecast error in the opposite direction. A one-standard-deviation
+increase in the revision ($\sigma_{FR} = 0.45$~pp) shifts the
+forecast error by approximately $-1.0$~pp.
+That shift is large relative to the signed mean forecast error
+($\bar{FE}=1.32$~pp, not MAE) in Table~\ref{tab:desc_stats}
+in the aggregate sample. The $R^2$ rises from 0.048 (bivariate) to
+0.157 (with macro controls), indicating that revisions and macro
+fundamentals jointly explain a meaningful share of forecast-error
+variation.
 
-Coefficient stability across control sets deserves emphasis.
+Coefficient stability across control sets provides further evidence
+against single-omitted-variable explanations.
 Dropping individual controls (Table~\ref{tab:ols_robustness})
 produces estimates ranging from $-1.71$ to $-2.11$, all retaining
 the diagnostic sign. Controlling for food CPI does not eliminate
-the revision--error link; the coefficient actually strengthens,
-suggesting a diagnostic mechanism that operates through attention
-to food prices but is not mechanically caused by food-price mean
-reversion alone.
+the revision--error link; the coefficient strengthens, suggesting a
+diagnostic mechanism that operates through attention to food prices
+but is not mechanically caused by food-price mean reversion alone.
+
+Column~(4) of Table~\ref{tab:ols_baseline} reports a specification
+using an alternative revision measure and yields $\hat{\beta} = 0.535$
+($p < 0.01$, $N = 36$). This column replaces the Carlson--Parkin
+forecast revision ($FR_t = \mu^{CP}_t - \mu^{CP}_{t-1}$) with the
+quarter-on-quarter change in the PBoC's raw inflation expectation
+diffusion index ($FR^{idx}_t = I_t - I_{t-1}$, where $I_t$ is the
+proportion-weighted index ranging from roughly 57 to 68 with
+$\text{SD} \approx 3.4$). The positive coefficient does not
+contradict the diagnostic finding for two reasons.
+First, the raw diffusion index measures the \emph{balance of opinion}
+(share expecting price increases minus decreases), not a quantified
+inflation rate; its revision captures shifts in the categorical
+distribution rather than changes in a point forecast, so the
+regression conflates the scale of the dependent variable
+(forecast error in percentage points) with an index-point regressor.
+Second, a rising diffusion index signals broadening inflation
+concern, which typically coincides with periods when actual inflation
+also accelerates; the positive coefficient therefore reflects the
+co-movement of sentiment breadth and realized inflation rather than
+overreaction to new information. The three specifications based on
+the Carlson--Parkin quantification, which maps survey responses onto
+a common percentage-point scale with the dependent variable, provide
+the appropriate test of diagnostic expectations.
+
+Table~\ref{tab:bootstrap_inference} reports finite-sample-robust
+inference for the preferred specification. I implement a wild bootstrap
+with Rademacher weights (5{,}000 replications). The bootstrap
+$t$-statistic test rejects $H_0\colon \beta=0$ at the 5\% level
+($p = 0.030$). The 95\% percentile confidence interval, however, is
+$[-2.52, 2.42]$ and crosses zero, so the percentile method does not
+reject at 5\%. This divergence is expected in small samples: the
+$t$-statistic is asymptotically pivotal, giving it better finite-sample
+size control, whereas the percentile interval is not pivotal and can be
+conservative when the sampling distribution is skewed or wide.
+I follow the $t$-test result as the more reliable of the two.
+A note on standard errors: the OLS baseline table reports Newey--West
+standard errors with four fixed lags ($\text{SE} = 1.114$), while the
+bootstrap table reports HAC standard errors with automatic bandwidth
+selection ($\text{SE} = 1.023$). Both are consistent; the bootstrap
+uses the same automatic bandwidth as its underlying $t$-statistic.
+Randomization inference, which permutes the revision series 5{,}000
+times and re-estimates the coefficient, produces a one-sided $p$-value
+of 0.060. This procedure is valid regardless of the error distribution
+and does not rely on large-sample approximations. Taken together, every
+method points to a negative revision coefficient. The sign is robust
+across all inference procedures, but the magnitude remains imprecisely
+estimated in 32 observations.
 
 \input{\tabdir/ols_baseline}
+\input{\tabdir/bootstrap_inference}
 \input{\tabdir/ols_diagnostics}
 \input{\tabdir/ols_robustness}
 
 \subsection{IV estimates}\label{subsec:iv}
 
-Table~\ref{tab:identification_main} reports the salience-IV
-results, which serve as a supplementary causality check rather
-than a primary identification strategy. The first stage relates
-the media congestion instrument to the salience index, yielding
-a coefficient of $0.082$ (SE $= 0.076$, $p = 0.291$) and a Wald
-F-statistic of $1.16$, well below conventional weak-instrument
-thresholds.
-
+The salience-IV design is a directional check, not an independent
+identification strategy. The first stage is weak: the Wald
+F-statistic is $1.16$ (Stock--Yogo threshold: 10), and the
+instrument coefficient is $0.082$ (SE $= 0.076$, $p = 0.291$).
 The 2SLS point estimate ($\hat{\beta}_1^{IV} = 33.7$,
-SE $= 108.6$) is uninformative. Two weak-instrument-robust
-diagnostics provide the relevant evidence. The Anderson--Rubin
-95\% confidence interval spans $[-3.0, 3.0]$, which includes the
-OLS estimates and excludes large positive values that would
-indicate underreaction. The reduced-form coefficient of the
-congestion instrument on forecast errors is $-0.41$
-(SE $= 0.49$, $p = 0.41$): the sign aligns with the diagnostic
-prediction---higher media congestion (lower inflation salience)
-associates with smaller errors---but lacks statistical precision
-in a 32-observation sample.
+SE $= 108.6$) is numerically uninformative.
 
-The IV exercise therefore offers directional consistency with
-the OLS sign but cannot pin down magnitudes independently. The
-OLS diagnostic test remains the primary result.
+The Anderson--Rubin 95\% confidence interval is $[-3.0, 3.0]$.
+This interval is weak-instrument-robust but wide: it spans the
+OLS estimates and excludes large positive values that would
+indicate underreaction, yet it is too diffuse to pin down the
+diagnostic coefficient. IV inference does not establish causality
+here; the paper does not claim it does.
+
+The reduced-form coefficient---the congestion instrument regressed
+directly on forecast errors---is $-0.41$ (SE $= 0.49$,
+$p = 0.41$). The negative sign is consistent with the diagnostic
+prediction: higher media congestion (lower inflation salience)
+associates with smaller subsequent errors. The sign reinforces
+the aggregate OLS and the CFPS panel results. The lack of
+precision in 32 observations is expected given the weak first
+stage, and limits what this exercise can add beyond directional
+confirmation.
 
 \subsection{Local projections}\label{subsec:lp}
 

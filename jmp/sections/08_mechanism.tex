@@ -1,14 +1,20 @@
 \section{Mechanism Competition}\label{sec:mechanism}
 
-The joint horse-race specification statistically favors
-the lagged-error channel over the revision channel, but
-this result supports rather than undermines the diagnostic
-interpretation. The negative sign on the lagged-error
-coefficient implies forecast-error reversals, the opposite
-of the positive persistence that information-rigidity
-models predict. I present four pieces of evidence: a joint
-regression, a state-dependent interaction, a monotone
-revision-error gradient, and a micro-level CFPS test.
+The horse-race specification in this section does not cleanly
+discriminate between diagnostic overreaction and information
+rigidity. When both channels enter jointly, the lagged-error
+term absorbs the revision's explanatory power, but this
+outcome is expected whenever the two regressors measure the
+same underlying process. The specification tests whether
+each variable carries independent predictive power. It cannot
+assign that power to a causal mechanism. The key result is
+that the lagged-error coefficient is strongly negative,
+inconsistent with canonical information-rigidity dynamics
+and consistent with the cross-period autocorrection that
+diagnostic expectations predict. The analysis proceeds
+from a joint regression to a state-dependent interaction,
+then to the revision-error gradient in levels, and finally
+to a micro-level CFPS test.
 
 \subsection{Joint specification}\label{subsec:horse_race}
 
@@ -47,13 +53,18 @@ its dominance in the joint regression reflects the fact
 that $FE_t$ is a more efficient summary of past
 overreaction than $FR_t$ alone.
 
-Two limitations deserve note. Multicollinearity between
+Two limitations deserve note. First, multicollinearity between
 $FR_t$ and $FE_t$ (correlation $= -0.22$) with $N = 32$
-limits discrimination power; both variables carry
-information about the same overreaction process. The
-revision coefficient's sign flip in the joint model is a
-classic symptom of collinear regressors rather than
-evidence that revisions are uninformative.
+means the joint specification cannot assign explanatory power
+to either channel independently; both carry information about
+the same overreaction process. The revision coefficient's
+sign flip in the joint model is a standard symptom of
+collinear regressors, not evidence that revisions are
+uninformative. Second, the negative $\hat{\lambda}$ is
+consistent with diagnostic autocorrection but also with
+other mean-reverting processes. The sign alone does not
+identify the mechanism. What it rules out is canonical
+information rigidity, which requires $\lambda > 0$.
 
 \subsection{State-dependent interaction}%
 \label{subsec:mechanism_state}
@@ -79,6 +90,18 @@ the lagged-error coefficient $\hat{\lambda} = -0.64$
 with representativeness operating through signal salience,
 but the sample size prevents sharp inference on the
 interaction alone.
+
+The time-varying diagnostic coefficient $\hat{\beta}_t$
+from the Bayesian state-space model provides complementary
+evidence on state dependence. $\hat{\beta}_t$ intensifies
+(becomes more negative) during geopolitical crises and
+pandemic onset and relaxes toward zero in calmer periods.
+This variation is consistent with the diagnostic channel
+activating when salient signals are strongest, while the
+lagged-error term carries residual persistence in low-salience
+states. The two mechanisms coexist; their relative weight
+shifts across macroeconomic states rather than one
+displacing the other.
 
 \subsection{The revision--error chain in levels}%
 \label{subsec:mechanism_chain}
@@ -142,3 +165,27 @@ household level mirrors the aggregate quarterly gradient
 and is difficult to reconcile with pure information
 rigidity, where faster updaters should produce smaller
 errors rather than larger ones.
+
+\subsection{What would sharpen mechanism discrimination}%
+\label{subsec:mechanism_future}
+
+The current evidence is consistent with diagnostic
+overreaction but cannot rule out all competing
+interpretations. Three data structures would sharpen the
+identification. First, eliciting higher-order beliefs
+would test whether households know they revised: under
+diagnostic expectations, overreacting households
+underestimate how much they changed their forecast,
+because the salient signal feels like new information rather
+than reweighting. Second, media blackout quasi-experiments
+(for example, broadcast interruptions during major
+political events) provide exogenous variation in salience
+that an IV design could exploit without relying on the weak
+geopolitical congestion instrument used here. Third,
+within-household revision data at higher frequency than
+the biennial CFPS would permit tests for asymmetric
+overreaction: diagnostic expectations predict larger
+deviations for positive salience shocks (salient inflation
+spikes) than for negative ones. Each of these tests would
+discriminate diagnostic overreaction from informational
+frictions with a precision the current design cannot reach.

@@ -1,0 +1,28 @@
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Small-Sample Robust Inference for Forecast Revision Coefficient}
+\label{tab:bootstrap_inference}
+\begin{threeparttable}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Statistic & Value \\
+\midrule
+OLS Estimate ($\hat{\beta}_{FR}$) & -2.237** \\
+HAC Standard Error & (1.023) \\
+Asymptotic $p$-value (HAC) & 0.0288 \\
+Wild Bootstrap $p$-value (Rademacher, $B=5000$) & 0.0302 \\
+Bootstrap 95\% CI & [-2.520,\ 2.421] \\
+Randomization $p$-value ($B=5000$) & 0.0600 \\
+Observations & 32 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Preferred specification: $FE_t = \alpha + \beta\, FR_t + \gamma_1\, \text{Food CPI}_{t} + \gamma_2\, M2_{t} + \gamma_3\, PPI_{t} + \varepsilon_t$.
+\item Wild bootstrap uses Rademacher weights ($\pm 1$) with restricted residuals under $H_0\!: \beta = 0$.
+\item Randomization $p$-value: fraction of 5,000 permutations yielding $\hat{\beta} \leq$ observed $\hat{\beta}$.
+\item *** $p<0.01$, ** $p<0.05$, * $p<0.1$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

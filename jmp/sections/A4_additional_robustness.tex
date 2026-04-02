@@ -6,17 +6,31 @@ supplement the main-text analysis.
 \subsection{Alternative expectations measures}
 
 Column~1 of Table~\ref{tab:alt_measures} replaces the
-Carlson--Parkin quantified expectation with the raw
-PBoC expectation index; the revision--error coefficient
-remains negative. Column~2 uses the Carlson--Parkin
-lower bound (all uncertain respondents allocated to
-``prices will fall'') and column~3 the upper bound (all
-uncertain respondents to ``prices will rise''). Both
-bounds yield negative coefficients, confirming that the
-diagnostic result does not depend on how uncertain
-responses are treated. Magnitudes vary across
-measurement choices, as expected when the quantification
-rescales both revision and error.
+Carlson--Parkin quantification with the raw PBoC
+diffusion index for \emph{both} the revision measure and
+the forecast-error construction, so that regressor and
+dependent variable share the same index-point scale. The
+estimated coefficient is $-0.85^{**}$ ($p < 0.05$),
+confirming the diagnostic over-reaction sign. A reader
+comparing this result with Column~4 of
+Table~\ref{tab:ols_baseline} will notice that the latter
+reports a \emph{positive} coefficient ($+0.535^{***}$).
+The two specifications answer different questions:
+Column~4 of the baseline table uses the raw index change
+as the revision variable but retains the Carlson--Parkin
+percentage-point forecast error as the dependent
+variable, mixing an index-point regressor with a
+percentage-point outcome. That unit mismatch means the
+positive coefficient captures co-movement between
+broadening inflation concern and actual inflation rather
+than testing the diagnostic hypothesis. Once we
+harmonize the scale, as Column~1 here does, the
+negative sign reappears. Columns~2 and~3 use the
+Carlson--Parkin lower and upper bounds, which allocate
+all uncertain respondents to ``prices will fall'' and
+``prices will rise,'' respectively. Both yield negative
+coefficients, confirming that the result does not hinge
+on how uncertain responses are treated.
 
 \input{\tabdir/alt_measures}
 

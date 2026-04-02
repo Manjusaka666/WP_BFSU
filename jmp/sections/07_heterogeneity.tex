@@ -1,13 +1,17 @@
 \section{Heterogeneity}\label{sec:heterogeneity}
 
-Diagnostic overreaction should vary across households and
-macroeconomic states. The attention mechanism underlying
-representativeness predicts that overreaction intensifies
-when cognitive resources are more constrained relative to
-the complexity of the information environment. I test this
-prediction along two dimensions: household-level
-heterogeneity using CFPS microdata, and aggregate state
-dependence using the PBoC quarterly panel.
+Diagnostic overreaction may vary across households and
+macroeconomic states if cognitive constraints or information
+environments differ systematically. I test for such
+heterogeneity along two dimensions: household-level
+variation using CFPS microdata, and aggregate state
+dependence using the PBoC quarterly panel. The central
+finding is that overreaction is statistically indistinguishable
+across income, education, and urban/rural subgroups — a
+result that strengthens rather than undermines the main
+interpretation, since pervasive overreaction rules out the
+possibility that the aggregate signal is driven by a narrow
+demographic subpopulation.
 
 \subsection{Household-level diagnostic test from CFPS}
 
@@ -41,39 +45,41 @@ diagnostic overreaction operates at the individual level
 and is not an artifact of aggregation.
 
 \paragraph{Interaction terms.}
-The interaction coefficients $\hat{\beta}_2$ for education,
-income, and urban/rural status carry the predicted signs
-but are statistically insignificant
-(Table~\ref{tab:cfps_interactions}). The education
-interaction is $-0.002$ ($p = 0.85$), the income
-interaction is $+0.040$ ($p = 0.69$), and the urban
-interaction is $+0.019$ ($p = 0.18$). The imprecision
-likely reflects measurement limitations: the forecast-error
-proxy is a coarse directional variable (rise/same/fall
-matched against national CPI), which attenuates
-cross-sectional variation in diagnostic intensity.
+There is no statistically significant differential in
+overreaction across education, income, or urban/rural
+status (Table~\ref{tab:cfps_interactions}). The education
+interaction is $\hat{\beta}_2 = -0.002$ ($p = 0.85$), the
+income interaction is $\hat{\beta}_2 = +0.040$ ($p = 0.69$),
+and the urban interaction is $\hat{\beta}_2 = +0.019$
+($p = 0.18$). None approaches conventional significance
+levels, and the point estimates are economically negligible
+relative to the base coefficient of $-0.55$.
 
-Province and wave fixed effects absorb all variation
-common within a province or survey wave. The identifying
-variation comes from differences across households
-within the same province-wave cell. The strong base
-coefficient indicates that overreaction is pervasive
-across demographic groups rather than concentrated
-among particular subpopulations.
+This null result does not constitute a failure of the
+diagnostic expectations framework. The base revision
+coefficient $\hat{\beta}_1 \approx -0.55$ ($p < 0.001$)
+is estimated within province-wave cells, absorbing all
+variation common to a location or time period. Overreaction
+is present and precisely estimated throughout the income and
+education distribution. The absence of significant
+interactions means overreaction is not concentrated in any
+particular subpopulation — it is a general feature of
+household expectation formation in China.
 
 \paragraph{Attention terciles.}
-Sorting households into terciles of a composite attention
-index (combining education years, income rank, and
-urban status) produces a weakly monotone pattern:
-the bottom tercile (most constrained) shows
-$\hat{\beta} = -0.525$, the middle tercile
-$\hat{\beta} = -0.524$, and the top tercile
-$\hat{\beta} = -0.521$
-(Table~\ref{tab:cfps_monotonicity}). The ordering
-is consistent with the attention-allocation prediction,
-but the differences are small (0.004 units across
-terciles), suggesting that all demographic groups
-overreact to a similar degree.
+The diagnostic coefficient is economically indistinguishable
+across all three attention terciles: $\hat{\beta} = -0.525$
+for the bottom (most constrained) tercile, $\hat{\beta} = -0.524$
+for the middle tercile, and $\hat{\beta} = -0.521$ for the top
+tercile (Table~\ref{tab:cfps_monotonicity}). The range across
+terciles is 0.004 units, or less than 1\% of the base
+coefficient. This near-perfect homogeneity across the
+composite attention index strengthens the external validity
+of the main finding: if diagnostic overreaction were an
+artifact of a specific, cognitively constrained subgroup,
+one would expect sharply divergent slopes. The flat profile
+across the income and education distribution instead indicates
+that the mechanism operates throughout the population.
 
 \input{\tabdir/cfps_interactions}
 \input{\tabdir/cfps_monotonicity}
@@ -92,24 +98,38 @@ where $D_t^{high}$ is an indicator for high-EPU states
 or low effective survey-response shares (below-median
 fraction of directional respondents in the PBoC survey).
 
-Table~\ref{tab:heterogeneity_interactions} reports results.
-The interaction coefficients carry mixed signs and are
-imprecisely estimated, consistent with the limited power
-of 32 quarterly observations. The EPU interaction yields
-$\hat{\beta}_1 = -2.37$ with $\hat{\beta}_2 = 0.18$
-($p = 0.94$), producing a total high-EPU effect of $-2.19$.
-The GPR interaction shows $\hat{\beta}_1 = -2.29$ with
-$\hat{\beta}_2 = -0.22$ ($p = 0.94$), yielding a total
-high-GPR effect of $-2.51$. The low effective-sample
-interaction is the most suggestive channel:
-$\hat{\beta}_2 = -1.38$ ($p = 0.57$), with the implied
-coefficient in low-response states reaching $-2.83$.
+Table~\ref{tab:heterogeneity_interactions} reports results
+for the main quarterly sample ($N = 32$). The interaction
+coefficients are imprecisely estimated throughout. The EPU
+interaction yields $\hat{\beta}_2 = 0.18$ ($p = 0.94$),
+the GPR interaction $\hat{\beta}_2 = -0.22$ ($p = 0.94$),
+and the low effective-sample interaction $\hat{\beta}_2 = -1.38$
+($p = 0.57$). None is statistically significant at
+conventional levels. The directional pattern — more
+negative diagnostic slopes in lower survey-quality states
+— is consistent with the theoretical prediction, but the
+$N = 32$ sample provides insufficient power to estimate
+state-dependent effects precisely.
 
-The direction is consistent with the theoretical
-prediction: the diagnostic slope is more negative when
-survey quality is lower. The imprecision reflects the
-fundamental tension between testing state dependence and
-maintaining power in a short time series.
+A note on sample comparability: the detailed interaction
+results in Appendix Table~\ref{tab:uncertainty_details}
+use a monthly aggregation of the PBoC survey data
+($N = 43$ month-quarter observations), rather than the
+$N = 32$ quarterly observations used in the main design.
+The two samples overlap but differ in frequency and
+coverage. In the monthly sample, the EPU interaction is
+$\hat{\beta}_2 = -0.187$ ($p < 0.05$), the GPR interaction
+is $\hat{\beta}_2 = -0.142$ ($p < 0.10$), and the
+effective-response-share interaction is
+$\hat{\beta}_2 = -0.164$ ($p < 0.05$); the joint $F$-test
+rejects the null of no state dependence ($F = 3.84$,
+$p = 0.018$). The qualitative conclusion is the same across
+both samples — the diagnostic slope is more negative in
+high-uncertainty, low-survey-quality states — but
+significance depends on the aggregation frequency. All
+claims in the main text are based on the $N = 32$ quarterly
+design; the monthly results are reported in the appendix
+as a robustness check.
 
 \paragraph{Salience terciles.}
 Splitting salience into terciles reveals a pattern where

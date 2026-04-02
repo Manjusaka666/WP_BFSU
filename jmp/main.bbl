@@ -90,6 +90,47 @@
       \field{pages}{1593\bibrangedash 1636}
       \range{pages}{44}
     \endentry
+    \entry{BianchiIlutSaijo2024}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=c1b2db44b96cfcd50ea936948eaa511e}{%
+           family={Bianchi},
+           familyi={B\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+        {{hash=c63e223c5e30b1f98a6f56783da988b5}{%
+           family={Ilut},
+           familyi={I\bibinitperiod},
+           given={Cosmin},
+           giveni={C\bibinitperiod}}}%
+        {{hash=212f2c9e11ee3393aebd64e00a3b7040}{%
+           family={Saijo},
+           familyi={S\bibinitperiod},
+           given={Hikaru},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{f65e70c206661fffb39dc84a62fe68ef}
+      \strng{fullhash}{f65e70c206661fffb39dc84a62fe68ef}
+      \strng{fullhashraw}{f65e70c206661fffb39dc84a62fe68ef}
+      \strng{bibnamehash}{f65e70c206661fffb39dc84a62fe68ef}
+      \strng{authorbibnamehash}{f65e70c206661fffb39dc84a62fe68ef}
+      \strng{authornamehash}{f65e70c206661fffb39dc84a62fe68ef}
+      \strng{authorfullhash}{f65e70c206661fffb39dc84a62fe68ef}
+      \strng{authorfullhashraw}{f65e70c206661fffb39dc84a62fe68ef}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Review of Economic Studies}
+      \field{number}{1}
+      \field{title}{Diagnostic business cycles}
+      \field{volume}{91}
+      \field{year}{2024}
+      \field{pages}{129\bibrangedash 162}
+      \range{pages}{34}
+      \verb{doi}
+      \verb 10.1093/restud/rdad024
+      \endverb
+    \endentry
     \entry{Bordalo2018}{article}{}{}
       \name{author}{3}{}{%
         {{hash=754ef93ac5f9e9323e8d410ace8d947b}{%
@@ -692,6 +733,37 @@
       \field{year}{2003}
       \field{pages}{209\bibrangedash 248}
       \range{pages}{40}
+    \endentry
+    \entry{Oster2019}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=f5272ac5d8e6a7827453045453181571}{%
+           family={Oster},
+           familyi={O\bibinitperiod},
+           given={Emily},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{f5272ac5d8e6a7827453045453181571}
+      \strng{fullhash}{f5272ac5d8e6a7827453045453181571}
+      \strng{fullhashraw}{f5272ac5d8e6a7827453045453181571}
+      \strng{bibnamehash}{f5272ac5d8e6a7827453045453181571}
+      \strng{authorbibnamehash}{f5272ac5d8e6a7827453045453181571}
+      \strng{authornamehash}{f5272ac5d8e6a7827453045453181571}
+      \strng{authorfullhash}{f5272ac5d8e6a7827453045453181571}
+      \strng{authorfullhashraw}{f5272ac5d8e6a7827453045453181571}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Journal of Business \& Economic Statistics}
+      \field{number}{2}
+      \field{title}{Unobservable selection and coefficient stability: Theory and evidence}
+      \field{volume}{37}
+      \field{year}{2019}
+      \field{pages}{187\bibrangedash 204}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1080/07350015.2016.1227711
+      \endverb
     \endentry
     \entry{Reis2006}{article}{}{}
       \name{author}{1}{}{%

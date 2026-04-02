@@ -1,54 +1,15 @@
 \section{Conclusion}\label{sec:conclusion}
 
-Chinese households overreact to salient inflation signals,
-and the resulting forecast errors are predictable.
+Chinese households overreact to salient inflation signals, and the resulting forecast errors are predictable.
 
-This paper makes two contributions. First, it provides the
-first geographic extension of the diagnostic-expectations
-test of \citet{Bordalo2020b} to China, using both
-aggregate quarterly data from the PBoC depositor survey
-(2011Q1--2025Q3) and household-level data from seven waves
-of the CFPS (2010--2022). Second, it introduces a
-competing-mechanism design that nests diagnostic
-overreaction and information-rigidity channels in a single
-specification, allowing the data to adjudicate between them.
+This paper makes two contributions. First, it provides, to my knowledge, the first household-level test of the diagnostic-expectations hypothesis in China, using both aggregate quarterly data from the PBoC depositor survey (2011Q1--2025Q3) and seven waves of the CFPS (2010--2022). Second, it introduces a competing-mechanism design that nests diagnostic overreaction and information-rigidity channels in a single specification, allowing the data to adjudicate between them.
 
-The aggregate OLS revision--error coefficient is
-$\hat{\beta}_1 = -2.24$ ($p = 0.055$, $N = 32$): upward
-revisions in inflation expectations predict negative
-subsequent forecast errors. CFPS microdata confirm the
-pattern at the household level, with $\hat{\beta} \approx
--0.55$ ($p < 0.001$, $N \approx 13{,}700$) and no
-detectable demographic heterogeneity. A mechanism horse
-race finds that the lagged-error channel dominates in joint
-estimation ($\hat{\lambda} = -0.60$, $p = 0.005$), but the
-sign-reversal pattern in consecutive forecast errors is
-itself a diagnostic prediction, so this result reinforces
-rather than contradicts the overreaction hypothesis. A
-forecast-adjustment rule exploiting the estimated
-overreaction component reduces out-of-sample MAE by 17\%
-and improves 68\% interval coverage from 42\% to 67\%.
+The CFPS household panel is the primary result: the revision--error coefficient is $\hat{\beta} \approx -0.55$ ($p < 0.001$, $N \approx 13{,}700$) with province and wave fixed effects, and it is statistically indistinguishable across income terciles, education groups, and urban/rural status. Overreaction is pervasive across the household distribution, not concentrated among particular subpopulations. The aggregate OLS corroborates the sign ($\hat{\beta}_1 = -2.24$, $p = 0.055$, $N = 32$) with a noisier estimate given the short time series. A mechanism horse race finds that the lagged-error channel dominates in joint estimation ($\hat{\lambda} = -0.60$, $p = 0.005$), but the sign-reversal pattern in consecutive forecast errors is itself a diagnostic prediction, so both channels are active and neither fully displaces the other. A forecast-adjustment rule exploiting the estimated overreaction component reduces out-of-sample MAE by 17\% and improves 68\% interval coverage from 42\% to 67\%.
 
-Three limitations bound what the evidence can establish.
-First, the aggregate sample of $N = 32$ quarters limits
-statistical power for mechanism discrimination; the horse
-race point estimates are suggestive but imprecisely
-estimated. Second, the CFPS biennial frequency compresses
-detectable heterogeneity by limiting the time-series
-dimension at the individual level, so the null on
-demographic interactions may reflect measurement
-constraints rather than true homogeneity. Third, the media
-congestion instrument is plausible but not experimentally
-assigned, and the weak first stage ($F = 1.16$) prevents
-an informative 2SLS estimate; the reduced-form sign
-($-0.41$) provides directional corroboration only.
+The welfare implication is concrete. Households that overestimate near-term inflation during salient episodes make suboptimal consumption and savings decisions: they bring forward spending or misallocate liquid savings in response to an inflation overshoot that does not fully materialize. The overreaction wedge is an allocative distortion that scales with the household distribution. Because the distortion is pervasive rather than confined to a low-sophistication tail, aggregate consumption and portfolio allocation are both affected, and the macroeconomic consequence is not diversifiable.
 
-Two extensions would sharpen identification.
-Province-household matched data at higher frequency would
-enable staggered treatment-intensity designs exploiting
-regional variation in media markets. Richer media
-microstructure data---article counts, headline placement,
-social-media engagement---could strengthen the first stage
-and tighten the exclusion restriction. The diagnostic
-prediction that salient signals generate overreaction and
-predictable error reversals is portable to both settings.
+The finding has a direct implication for forward guidance design. A central bank aware of diagnostic overreaction can lean against salience-driven expectation spikes by communicating the expected mean-reversion in inflation explicitly, rather than treating all upward expectation shifts as signals that need separate confirmation. The de-biasing rule derived in Section~\ref{sec:policy} gives a quantitative benchmark: when the PBoC observes a survey expectation spike following a salient price event, adjusting the raw survey reading by the estimated overreaction component ($\hat{\beta} \approx -0.55$ at the household level, $\hat{\beta}_1 \approx -2.24$ at the aggregate level) produces a more accurate near-term inflation forecast. Forward guidance calibrated to this de-biased reading avoids ratifying an overreaction and amplifying the very expectation dynamics that generate the wedge.
+
+Four limitations bound what the evidence can establish. The aggregate sample of $N = 32$ quarters limits statistical power for mechanism discrimination; the horse race point estimates are suggestive but carry wide standard errors. The CFPS biennial frequency compresses the time-series dimension at the individual level, so the null finding on demographic interactions may reflect measurement constraints rather than true homogeneity in overreaction intensity. The media congestion instrument is plausible but not experimentally assigned, and the weak first stage ($F = 1.16$) means the 2SLS estimate is uninformative; the reduced-form sign ($-0.41$) provides directional corroboration only. Finally, the mechanism horse race can establish that both channels are jointly significant but cannot cleanly attribute any single episode's forecast error to one channel exclusively.
+
+Two extensions would sharpen identification. Province-household matched data at quarterly or monthly frequency would enable staggered treatment-intensity designs exploiting regional variation in media exposure to salient price events, separating the diagnostic channel from aggregate time trends more cleanly than the current biennial CFPS design allows. Richer media microstructure data---article counts disaggregated by topic, headline placement, social-media engagement at the provincial level---could strengthen the first stage of the salience instrument and narrow the exclusion restriction. Both extensions are feasible with existing administrative data in China, and the diagnostic prediction---salient signals generate overreaction and predictable error reversals---is directly portable to those settings.
