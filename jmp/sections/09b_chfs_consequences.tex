@@ -1,0 +1,83 @@
+\subsection{Household-level consequences of overreaction}%
+%\label{subsec:chfs_consequences}
+
+The welfare cost calculation in Section~\ref{sec:policy} is
+model-calibrated: I feed the estimated overreaction parameter into a
+three-equation New Keynesian model and compute the implied loss. This
+approach disciplines the magnitude but says nothing about whether
+individual households who overreact actually behave differently. The
+CHFS panel provides direct, if limited, evidence.
+
+\paragraph{Classifying overreactors.}
+I residualize the 2011 A4008 inflation-expectation measure on province
+fixed effects and controls (log income, urban indicator). The residual
+captures the household-specific component of inflation expectations
+that is not explained by location or observables. I define
+$Overreactor_{i,2011}$ as an indicator for households in the top
+quartile of this residual distribution. These are households whose
+inflation expectations in 2011 were substantially higher than what
+their province and demographics would predict, the operational
+signature of diagnostic overweighting of salient price signals.
+
+\paragraph{Forward-tracking specification.}
+I link the 2011 belief classification to income changes observed in
+subsequent waves:
+\begin{equation}%\label{eq:chfs_income}
+  \Delta \log Y_{i,t} = \alpha + \beta \cdot Overreactor_{i,2011}
+    + \gamma X_{i,2011} + \delta_p + \varepsilon_i,
+\end{equation}
+where $\Delta \log Y_{i,t}$ is the change in log total household
+income between 2011 and wave $t \in \{2013, 2015\}$, $X_{i,2011}$
+includes log income and an urban indicator, and $\delta_p$ denotes
+province fixed effects. Consumption data are not consistently
+available across CHFS waves, so I use income growth as the outcome.
+The prediction follows from standard consumption-savings theory under
+diagnostic beliefs: households who overestimate inflation in 2011
+may front-load consumption or misallocate savings, and these
+suboptimal decisions could depress subsequent income growth through
+reduced human-capital or business investment.
+
+\paragraph{Results.}
+Table~\ref{tab:chfs_consumption_consequences} reports the estimates
+at two horizons. At the 2011--2013 horizon, $\hat{\beta} = 0.022$
+(SE $= 0.051$, $N = 6{,}640$), small and statistically
+indistinguishable from zero. At the 2011--2015 horizon,
+$\hat{\beta} = 0.106$ (SE $= 0.060$, $N = 5{,}550$), marginally
+significant at the 10\% level. The positive sign at longer horizons
+is unexpected under the simple front-loading prediction, which implies
+a negative coefficient. One interpretation is that overreactors
+in 2011 were disproportionately drawn from households experiencing
+genuine local price pressure, and the residualization on province
+fixed effects and observables does not fully absorb this. Higher
+inflation expectations in 2011 may proxy partly for local economic
+dynamism that also predicts faster income growth through 2015.
+
+\input{\tabdir/chfs_consumption_consequences}
+
+\paragraph{Interpretation and limitations.}
+The forward-tracking evidence is suggestive rather than dispositive.
+The null result at the two-year horizon and the marginally significant
+positive coefficient at the four-year horizon do not confirm the
+simple Euler-equation prediction that overreactors experience
+consumption or income declines. Several factors limit statistical
+power. First, the CHFS panel uses income rather than consumption as
+the outcome, and income is a noisier proxy for the welfare channel.
+Second, the overreactor classification relies on a single
+cross-sectional wave with a coarse 5-point expectation scale, which
+attenuates the signal. Third, sample attrition between 2011 and 2015
+reduces the estimation sample from 6,640 to 5,550 households,
+potentially introducing selection.
+
+\paragraph{Connection to the NK welfare calculation.}
+The model-calibrated welfare loss in Section~\ref{sec:policy} implies
+that diagnostic overreaction at $\theta = 0.55$ raises the consumption
+variance component of welfare loss by 37.6\% relative to rational
+expectations. The household-level evidence here does not contradict
+that calibration, but it does not independently confirm it either.
+The forward-tracking test lacks statistical power to detect the
+income effects that the model predicts. The model provides the
+aggregation logic through general-equilibrium amplification; the
+household data confirm that overreaction is a measurable
+cross-sectional phenomenon (Section~\ref{subsec:chfs_info_channel})
+even if its forward consequences are imprecisely estimated with the
+available panel structure.

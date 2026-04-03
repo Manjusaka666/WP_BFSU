@@ -1,54 +1,55 @@
-\begin{table}[!htbp]
+\begin{table}[htbp]
 \centering
-\small
 \caption{Local Projections: Dynamic Effects of Forecast Revision Shocks}
 \label{tab:lp_dynamic}
 \begin{threeparttable}
-
-\begin{tabular}{lcccccc}
+{\small
+\begin{tabular}{lccccc}
 \toprule
- & \multicolumn{5}{c}{Horizon ($h$, quarters)} & \\
-\cmidrule(lr){2-6}
- & (1) & (2) & (3) & (4) & (5) & \\
- & $h=0$ & $h=1$ & $h=2$ & $h=3$ & $h=4$ & \\
+ & (1) & (2) & (3) & (4) & (5) \\
+ & $h=0$ & $h=1$ & $h=2$ & $h=3$ & $h=4$ \\
 \midrule
-\multicolumn{7}{l}{\textit{Panel A: OLS Local Projections}} \\
+\multicolumn{6}{l}{\textit{Panel A: OLS Local Projections}} \\
 \addlinespace
-\multicolumn{7}{l}{\quad Dependent variable: Forecast error ($FE_{t+h}$)} \\
+\multicolumn{6}{l}{\quad Dependent variable: Forecast error ($FE_{t+h}$)} \\
 \addlinespace
-Forecast revision ($FR_t$) & $-$2.237$^{**}$ & 1.543 & $-$1.369 & 0.866 & $-$2.254$^{**}$ & \\
- & (1.114) & (1.445) & (0.852) & (1.115) & (0.950) & \\
+Forecast revision ($FR_t$) & $-2.237^{**}$ & $1.543$ & $-1.369$ & $0.866$ & $-2.254^{**}$ \\
+ & $(1.114)$ & $(1.445)$ & $(0.852)$ & $(1.115)$ & $(0.950)$ \\
 \addlinespace
-$N$ & 32 & 29 & 28 & 27 & 26 & \\
+$N$ & $32$ & $29$ & $28$ & $27$ & $26$ \\
 \addlinespace
-\multicolumn{7}{l}{\quad Dependent variable: Realized inflation ($\pi_{t+h}$)} \\
+\multicolumn{6}{l}{\quad Dependent variable: Realized inflation ($\pi_{t+h}$)} \\
 \addlinespace
-Forecast revision ($FR_t$) & 3.637$^{***}$ & $-$1.761 & 1.980 & $-$1.838$^{**}$ & 1.255 & \\
- & (1.027) & (1.125) & (1.591) & (0.738) & (0.941) & \\
+Forecast revision ($FR_t$) & $3.637^{***}$ & $-1.761$ & $1.980$ & $-1.838^{**}$ & $1.255$ \\
+ & $(1.027)$ & $(1.125)$ & $(1.591)$ & $(0.738)$ & $(0.941)$ \\
 \addlinespace
-$N$ & 33 & 32 & 31 & 30 & 29 & \\
+$N$ & $33$ & $32$ & $31$ & $30$ & $29$ \\
 \addlinespace
 \midrule
-\multicolumn{7}{l}{\textit{Panel B: IV Local Projections}} \\
+\multicolumn{6}{l}{\textit{Panel B: IV Local Projections}} \\
 \addlinespace
-\multicolumn{7}{l}{\quad Dependent variable: Forecast error ($FE_{t+h}$)} \\
+\multicolumn{6}{l}{\quad Dependent variable: Forecast error ($FE_{t+h}$)} \\
 \addlinespace
-Forecast revision ($FR_t$) & 0.031 & 6.147 & $-$7.831$^{*}$ & 24.534 & $-$20.921 & \\
- & (7.058) & (6.928) & (4.176) & (319.151) & (74.340) & \\
+Forecast revision ($FR_t$) & $0.031$ & $6.147$ & $-7.831^{*}$ & $24.534$ & $-20.921$ \\
+ & $(7.058)$ & $(6.928)$ & $(4.176)$ & $(319.151)$ & $(74.340)$ \\
 \addlinespace
-$N$ & 32 & 29 & 28 & 27 & 26 & \\
+$N$ & $32$ & $29$ & $28$ & $27$ & $26$ \\
 \addlinespace
-\multicolumn{7}{l}{\quad Dependent variable: Realized inflation ($\pi_{t+h}$)} \\
+\multicolumn{6}{l}{\quad Dependent variable: Realized inflation ($\pi_{t+h}$)} \\
 \addlinespace
-Forecast revision ($FR_t$) & 9.530$^{**}$ & 0.294 & 7.910 & $-$8.964$^{*}$ & 9.425 & \\
- & (3.789) & (6.425) & (7.755) & (4.867) & (23.359) & \\
+Forecast revision ($FR_t$) & $9.530^{**}$ & $0.294$ & $7.910$ & $-8.964^{*}$ & $9.425$ \\
+ & $(3.789)$ & $(6.425)$ & $(7.755)$ & $(4.867)$ & $(23.359)$ \\
 \addlinespace
-$N$ & 33 & 32 & 31 & 30 & 29 & \\
+$N$ & $33$ & $32$ & $31$ & $30$ & $29$ \\
+\addlinespace
+Controls & Yes & Yes & Yes & Yes & Yes \\
+Fixed effects & No & No & No & No & No \\
 \bottomrule
 \end{tabular}
+}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} Each column reports the coefficient on forecast revision ($FR_t$) from a separate local projection at horizon $h$. Standard errors in parentheses. Panel B instruments $FR_t$ with the media-congestion salience shock. All regressions include a constant and lagged controls. $^{***}\,p<0.01$; $^{**}\,p<0.05$; $^{*}\,p<0.10$.
+\item \textit{Notes:} Each column reports the coefficient on forecast revision ($FR_t$) from a separate local projection at horizon $h$. Standard errors are in parentheses. Panel B instruments $FR_t$ with the media-congestion salience shock. All regressions include lagged macro controls. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

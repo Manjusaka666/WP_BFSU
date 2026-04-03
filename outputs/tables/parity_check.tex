@@ -1,12 +1,13 @@
 \begin{table}[!htbp]
 \centering
+\small
 \caption{Parity Check: New R Pipeline vs Legacy Python Outputs}
 \label{tab:parity_check}
 \begin{threeparttable}
 
 \begin{tabular}{lrrrr}
 \toprule
-variable & n\_overlap & corr & mean\_abs\_diff & max\_abs\_diff\\
+Variable & Overlap $N$ & Corr. & Mean abs.\ diff. & Max abs.\ diff. \\
 \midrule
 price\_sentiment\_index & 18 & 1.000 & 0.000 & 0.000\\
 infl\_exp\_index & 42 & 0.774 & 1.424 & 6.100\\
@@ -53,7 +54,7 @@ Food\_CPI\_YoY\_qavg & 47 & 1.000 & 0.000 & 0.000\\
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item High correlations indicate successful migration consistency.
+\item \textit{Notes:} High correlations indicate successful migration consistency.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

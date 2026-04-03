@@ -117,51 +117,63 @@ if (nrow(ant) > 20) {
   ant_p <- NA_real_
 }
 
-# Main identification table.
-id_tab <- data.table(
-  specification = c(
-    "First stage: salience on congestion IV",
-    "2SLS: revision on instrumented salience",
-    "2SLS: forecast error on instrumented revision",
-    "Reduced form: forecast error on congestion IV"
-  ),
-  coefficient = c(
-    fs_beta,
-    iv_rev_ct[iv_rev_row, "Estimate"],
-    iv_fe_ct[iv_fe_row, "Estimate"],
-    rf_ct["media_congestion_iv", "Estimate"]
-  ),
-  se_NW = c(
-    fs_se,
-    iv_rev_ct[iv_rev_row, "Std. Error"],
-    iv_fe_ct[iv_fe_row, "Std. Error"],
-    rf_ct["media_congestion_iv", "Std. Error"]
-  ),
-  p_value = c(
-    fs_p,
-    iv_rev_ct[iv_rev_row, "Pr(>|t|)"],
-    iv_fe_ct[iv_fe_row, "Pr(>|t|)"],
-    rf_ct["media_congestion_iv", "Pr(>|t|)"]
-  ),
-  n_obs = c(nrow(use), nrow(use), nrow(use), nrow(use))
-)
+# Main identification table in top-field regression style:
+# coefficient with stars + standard error row; no p-value rows.
+coef_cell <- function(b, p) if (is.na(b)) "" else fmt_coef(b, p, digits = 3)
+se_cell <- function(s) if (is.na(s)) "" else fmt_se(s, digits = 3)
 
-write_booktabs_table(
-  id_tab,
-  file.path(project_paths$tables, "identification_main.tex"),
-  caption = "Salience-IV Identification Results",
-  label = "tab:identification_main",
-  notes = c(
-    "Newey-West standard errors use 4 quarterly lags.",
-    "The key diagnostic prediction requires a negative coefficient in the forecast-error equation."
-  ),
-  digits = 3,
-  escape = FALSE
-)
+iv_rev_beta <- iv_rev_ct[iv_rev_row, "Estimate"]
+iv_rev_se <- iv_rev_ct[iv_rev_row, "Std. Error"]
+iv_rev_p <- iv_rev_ct[iv_rev_row, "Pr(>|t|)"]
 
+iv_fe_beta <- iv_fe_ct[iv_fe_row, "Estimate"]
+iv_fe_se <- iv_fe_ct[iv_fe_row, "Std. Error"]
+iv_fe_p <- iv_fe_ct[iv_fe_row, "Pr(>|t|)"]
+
+rf_beta <- rf_ct["media_congestion_iv", "Estimate"]
+rf_se <- rf_ct["media_congestion_iv", "Std. Error"]
+rf_p <- rf_ct["media_congestion_iv", "Pr(>|t|)"]
+
+id_lines <- c(
+  "\\begin{table}[htbp]",
+  "\\centering",
+  "\\begin{threeparttable}",
+  "\\caption{Salience-IV Identification: Main Coefficients}",
+  "\\label{tab:identification_main}",
+  "{\\small",
+  "\\begin{tabular}{lcccc}",
+  "\\toprule",
+  " & \\multicolumn{1}{c}{(1)} & \\multicolumn{1}{c}{(2)} & \\multicolumn{1}{c}{(3)} & \\multicolumn{1}{c}{(4)} \\\\",
+  " & $S_t$ on $Z_t^{cong}$ & $\\Delta\\mu_t$ on $\\widehat{S}_t$ & $FE_{t+1}$ on $\\widehat{\\Delta\\mu}_t$ & $FE_{t+1}$ on $Z_t^{cong}$ \\\\",
+  "\\midrule",
+  paste0("$Z_t^{cong}$ & ", coef_cell(fs_beta, fs_p), " &  &  & ", coef_cell(rf_beta, rf_p), " \\\\"),
+  paste0(" & ", se_cell(fs_se), " &  &  & ", se_cell(rf_se), " \\\\"),
+  "\\addlinespace",
+  paste0("$\\widehat{S}_t$ &  & ", coef_cell(iv_rev_beta, iv_rev_p), " &  &  \\\\"),
+  paste0(" &  & ", se_cell(iv_rev_se), " &  &  \\\\"),
+  "\\addlinespace",
+  paste0("$\\widehat{\\Delta\\mu}_t$ &  &  & ", coef_cell(iv_fe_beta, iv_fe_p), " &  \\\\"),
+  paste0(" &  &  & ", se_cell(iv_fe_se), " &  \\\\"),
+  "\\addlinespace",
+  paste0("Observations & ", nrow(use), " & ", nrow(use), " & ", nrow(use), " & ", nrow(use), " \\\\"),
+  "Macro controls & $\\checkmark$ & $\\checkmark$ & $\\checkmark$ & $\\checkmark$ \\\\",
+  "\\bottomrule",
+  "\\end{tabular}",
+  "}",
+  "\\begin{tablenotes}[flushleft]",
+  "\\footnotesize",
+  "\\item \\textit{Notes:} Newey--West HAC standard errors (4 lags) are in parentheses. Coefficients carry significance stars only; no standalone $p$-value rows are reported.",
+  "\\item $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.",
+  "\\end{tablenotes}",
+  "\\end{threeparttable}",
+  "\\end{table}"
+)
+writeLines(id_lines, file.path(project_paths$tables, "identification_main.tex"), useBytes = TRUE)
+
+# Weak-IV diagnostics table (no t-statistic reporting).
 weak_tab <- data.table(
-  metric = c("First-stage t-stat (NW)", "First-stage Wald F (t^2)", "Approx. KP rk Wald F", "AR-type 95% CI lower", "AR-type 95% CI upper"),
-  value = c(fs_t, fs_F, fs_F, ar_ci[1], ar_ci[2])
+  statistic = c("First-stage Wald $F$", "Kleibergen--Paap rk Wald $F$", "AR-type 95\\% CI (lower)", "AR-type 95\\% CI (upper)"),
+  value = c(fs_F, fs_F, ar_ci[1], ar_ci[2])
 )
 write_booktabs_table(
   weak_tab,
@@ -176,49 +188,52 @@ write_booktabs_table(
   escape = FALSE
 )
 
-placebo_tab <- data.table(
-  test = c(
-    "Permutation placebo IV: mean coefficient",
-    "Permutation placebo IV: 2.5 percentile",
-    "Permutation placebo IV: 97.5 percentile",
-    paste0("Placebo outcome (", placebo_outcome, ")"),
-    "Anticipation test using lead revision"
-  ),
-  estimate = c(
-    mean(placebo_beta, na.rm = TRUE),
-    quantile(placebo_beta, 0.025, na.rm = TRUE),
-    quantile(placebo_beta, 0.975, na.rm = TRUE),
-    pbo_beta,
-    ant_beta
-  ),
-  p_value = c(NA_real_, NA_real_, NA_real_, pbo_p, ant_p)
-)
+# Placebo table without p-value columns.
+placebo_mean <- mean(placebo_beta, na.rm = TRUE)
+placebo_q025 <- quantile(placebo_beta, 0.025, na.rm = TRUE)
+placebo_q975 <- quantile(placebo_beta, 0.975, na.rm = TRUE)
 
-write_booktabs_table(
-  placebo_tab,
-  file.path(project_paths$tables, "placebo_tests.tex"),
-  caption = "Falsification and Placebo Tests",
-  label = "tab:placebo_tests",
-  notes = c(
-    "Permutation placebo reassigns the instrument across quarters 300 times.",
-    "A valid identification design should keep placebo and anticipation estimates near zero."
-  ),
-  digits = 3,
-  escape = FALSE
+placebo_lines <- c(
+  "\\begin{table}[htbp]",
+  "\\centering",
+  "\\begin{threeparttable}",
+  "\\caption{Falsification and Placebo Checks}",
+  "\\label{tab:placebo_tests}",
+  "{\\small",
+  "\\begin{tabular}{lcc}",
+  "\\toprule",
+  " & Coefficient & Std. error \\\\",
+  "\\midrule",
+  paste0("$\\text{Permuted IV mean}$ & $", formatC(placebo_mean, format = "f", digits = 3), "$ &  \\\\"),
+  paste0("$\\text{Permuted IV }2.5\\%$ & $", formatC(placebo_q025, format = "f", digits = 3), "$ &  \\\\"),
+  paste0("$\\text{Permuted IV }97.5\\%$ & $", formatC(placebo_q975, format = "f", digits = 3), "$ &  \\\\"),
+  "\\addlinespace",
+  paste0("$\\text{Placebo outcome}$ & ", coef_cell(pbo_beta, pbo_p), " & ", se_cell(pbo_se), " \\\\"),
+  paste0("$\\text{Lead revision (anticipation)}$ & ", coef_cell(ant_beta, ant_p), " &  \\\\"),
+  "\\bottomrule",
+  "\\end{tabular}",
+  "}",
+  "\\begin{tablenotes}[flushleft]",
+  "\\footnotesize",
+  "\\item \\textit{Notes:} Permutation placebo reassigns the instrument across quarters (300 draws). Coefficients carry significance stars only.",
+  "\\item $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.",
+  "\\end{tablenotes}",
+  "\\end{threeparttable}",
+  "\\end{table}"
 )
+writeLines(placebo_lines, file.path(project_paths$tables, "placebo_tests.tex"), useBytes = TRUE)
 
 # Plot first-stage relation.
 p <- ggplot(use, aes(x = media_congestion_iv, y = msi_raw)) +
   geom_point(color = okabe_ito[["blue"]], size = 2.2, alpha = 0.8) +
   geom_smooth(method = "lm", se = TRUE, color = okabe_ito[["vermillion"]], fill = okabe_ito[["orange"]], alpha = 0.2) +
   labs(
-    title = "First Stage: Media Congestion as Instrument for Salience",
     x = "News Congestion Instrument (higher = lower inflation salience)",
     y = "Inflation Salience Index"
   ) +
   theme_pub()
 
-save_plot_pair(p, file.path(project_paths$figures, "identification_first_stage"), width = 7.5, height = 5)
+save_plot_pair(p, file.path(project_paths$figures, "identification_first_stage"), width = 6.5, height = 5)
 
 cat("[35] Identification module complete.\n")
 

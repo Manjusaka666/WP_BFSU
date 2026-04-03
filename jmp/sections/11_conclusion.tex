@@ -1,15 +1,59 @@
 \section{Conclusion}\label{sec:conclusion}
 
-Chinese households overreact to salient inflation signals, and the resulting forecast errors are predictable.
+Chinese households overreact to salient inflation signals, and this
+overreaction generates predictable forecast errors. In both aggregate and
+micro data, upward revisions are followed by negative forecast errors,
+which is the sign pattern implied by diagnostic expectations. The
+household panel provides the main quantitative anchor
+($\hat{\beta} \approx -0.55$, $p < 0.001$, $N \approx 13{,}700$; Table~\ref{tab:oster_bounds}), while
+the aggregate series confirms the direction with lower precision
+($\hat{\beta}_1 = -2.24$, $p = 0.055$, $N = 32$; Table~\ref{tab:ols_baseline}, column~2).
 
-This paper makes two contributions. First, it provides, to my knowledge, the first household-level test of the diagnostic-expectations hypothesis in China, using both aggregate quarterly data from the PBoC depositor survey (2011Q1--2025Q3) and seven waves of the CFPS (2010--2022). Second, it introduces a competing-mechanism design that nests diagnostic overreaction and information-rigidity channels in a single specification, allowing the data to adjudicate between them.
+The paper makes three contributions. First, it establishes household-level
+evidence for diagnostic inflation expectations in China using CFPS panel
+variation with province and wave fixed effects. Second, it estimates a
+joint mechanism specification that places revision dynamics and lagged
+forecast errors in the same regression, showing that error reversals are
+empirically central and hard to reconcile with canonical sluggish
+updating alone. Third, it links estimation to implementation by building
+a transparent de-biasing rule that can be computed in real time from
+survey revisions and observed controls. Taken together, these
+contributions connect behavioral evidence, mechanism tests, and policy
+implementation in one empirical framework.
 
-The CFPS household panel is the primary result: the revision--error coefficient is $\hat{\beta} \approx -0.55$ ($p < 0.001$, $N \approx 13{,}700$) with province and wave fixed effects, and it is statistically indistinguishable across income terciles, education groups, and urban/rural status. Overreaction is pervasive across the household distribution, not concentrated among particular subpopulations. The aggregate OLS corroborates the sign ($\hat{\beta}_1 = -2.24$, $p = 0.055$, $N = 32$) with a noisier estimate given the short time series. A mechanism horse race finds that the lagged-error channel dominates in joint estimation ($\hat{\lambda} = -0.60$, $p = 0.005$), but the sign-reversal pattern in consecutive forecast errors is itself a diagnostic prediction, so both channels are active and neither fully displaces the other. A forecast-adjustment rule exploiting the estimated overreaction component reduces out-of-sample MAE by 17\% and improves 68\% interval coverage from 42\% to 67\%.
+The policy implication is operational. A central bank can treat the raw
+household survey as an informative but biased signal and publish an
+adjusted short-horizon inflation path alongside it. In the backtest, the
+adjusted rule can reduce MAE by 17\% (3.58 to 3.41) and increases 68\%
+coverage from 42\% to 67\%, although RMSE rises from 4.12 to 4.52
+(Table~\ref{tab:policy_backtest_metrics}). In the
+calibrated three-equation New Keynesian benchmark, welfare losses are
+37.6\% above the rational benchmark at $\theta = 0.55$ and 78.3\% above
+benchmark at $\theta = 1.0$ (Table~\ref{tab:nk_welfare}), so reducing overreaction has first-order
+value even when correction is incomplete. This makes the case for using
+the adjusted path as a communication supplement, not as a stand-alone
+replacement for structural inflation forecasting.
 
-The welfare implication is concrete. Households that overestimate near-term inflation during salient episodes make suboptimal consumption and savings decisions: they bring forward spending or misallocate liquid savings in response to an inflation overshoot that does not fully materialize. The overreaction wedge is an allocative distortion that scales with the household distribution. Because the distortion is pervasive rather than confined to a low-sophistication tail, aggregate consumption and portfolio allocation are both affected, and the macroeconomic consequence is not diversifiable.
+The evidence has clear limits. The aggregate time series is short, so
+mechanism discrimination in macro data is inherently low power. The IV
+exercise is weakly identified (first-stage $F = 1.16$; Table~\ref{tab:identification_main}, Panel~A), so it supports
+directional checks rather than causal magnitudes. The household panel is
+biennial, which restricts timing resolution for expectation updating, and
+the cross-sectional media test is informative about broad channels but
+cannot recover high-frequency salience shocks. In addition, any reduced-
+form policy rule is subject to Lucas critique once communication changes
+belief formation itself. For that reason, this paper treats the policy
+rule as a practical interim device conditional on the current belief
+formation regime.
 
-The finding has a direct implication for forward guidance design. A central bank aware of diagnostic overreaction can lean against salience-driven expectation spikes by communicating the expected mean-reversion in inflation explicitly, rather than treating all upward expectation shifts as signals that need separate confirmation. The de-biasing rule derived in Section~\ref{sec:policy} gives a quantitative benchmark: when the PBoC observes a survey expectation spike following a salient price event, adjusting the raw survey reading by the estimated overreaction component ($\hat{\beta} \approx -0.55$ at the household level, $\hat{\beta}_1 \approx -2.24$ at the aggregate level) produces a more accurate near-term inflation forecast. Forward guidance calibrated to this de-biased reading avoids ratifying an overreaction and amplifying the very expectation dynamics that generate the wedge.
-
-Four limitations bound what the evidence can establish. The aggregate sample of $N = 32$ quarters limits statistical power for mechanism discrimination; the horse race point estimates are suggestive but carry wide standard errors. The CFPS biennial frequency compresses the time-series dimension at the individual level, so the null finding on demographic interactions may reflect measurement constraints rather than true homogeneity in overreaction intensity. The media congestion instrument is plausible but not experimentally assigned, and the weak first stage ($F = 1.16$) means the 2SLS estimate is uninformative; the reduced-form sign ($-0.41$) provides directional corroboration only. Finally, the mechanism horse race can establish that both channels are jointly significant but cannot cleanly attribute any single episode's forecast error to one channel exclusively.
-
-Two extensions would sharpen identification. Province-household matched data at quarterly or monthly frequency would enable staggered treatment-intensity designs exploiting regional variation in media exposure to salient price events, separating the diagnostic channel from aggregate time trends more cleanly than the current biennial CFPS design allows. Richer media microstructure data---article counts disaggregated by topic, headline placement, social-media engagement at the provincial level---could strengthen the first stage of the salience instrument and narrow the exclusion restriction. Both extensions are feasible with existing administrative data in China, and the diagnostic prediction---salient signals generate overreaction and predictable error reversals---is directly portable to those settings.
+Two extensions are the natural next step. One is higher-frequency
+household expectation data matched to regional information shocks, which
+would allow sharper identification of state-dependent overreaction and its
+persistence. The other is a structural model with endogenous belief
+updating under alternative communication regimes, estimated to match both
+the revision--error moments and the distribution of household responses.
+Together, these extensions would turn the current reduced-form rule into a
+fully policy-invariant communication design problem. A related empirical
+extension is to evaluate whether de-biased guidance reduces forecast
+dispersion across households, which would directly test whether policy
+communication improves coordination as well as point-forecast accuracy.

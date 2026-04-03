@@ -3,6 +3,50 @@
 This appendix collects robustness checks that
 supplement the main-text analysis.
 
+\subsection{IV Construction and Diagnostics}\label{app:iv_details}
+
+This subsection moves technical IV construction details from the main
+text, so Section~\ref{sec:identification} can focus on identification
+logic rather than implementation mechanics.
+
+\paragraph{Media salience index and instrument.}
+The salience index is
+\begin{equation}\label{eq:msi}
+  MSI_t = 0.6 \cdot z(EPU_t) + 0.4 \cdot z(\text{ExpIndex}_t),
+\end{equation}
+where $z(\cdot)$ standardizes each component. The instrument is media
+congestion, defined as
+\begin{equation}\label{eq:iv}
+  Z_t^{cong} = -z(GPR_t).
+\end{equation}
+Higher geopolitical-risk coverage is interpreted as crowding out media
+bandwidth for inflation reporting.
+
+\paragraph{Three-equation chain.}
+The IV mapping from congestion to forecast errors is
+\begin{align}
+  S_t &= \pi_0 + \pi_1 Z_t^{cong} + \Pi' W_t + u_t,
+    \label{eq:first_stage} \\
+  \Delta\mu_t &= \alpha_0 + \alpha_1 \hat{S}_t + A' W_t + e_t,
+    \label{eq:second_stage_revision} \\
+  FE_{t+1} &= \beta_0 + \beta_1 \widehat{\Delta\mu}_t + B' W_t
+    + \varepsilon_t, \label{eq:second_stage_fe}
+\end{align}
+where $S_t$ is salience, $\Delta\mu_t$ is the revision, and $FE_{t+1}$
+is the next-quarter forecast error.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\textwidth]{identification_first_stage.pdf}
+\caption{First stage: media congestion and inflation salience.
+  Each point is a quarter. Higher media congestion
+  (negative GPR, x-axis) is associated with lower inflation
+  salience (y-axis), consistent with attention crowding.}
+\label{fig:first_stage_iv}
+\end{figure}
+
+\input{\tabdir/placebo_tests}
+
 \subsection{Alternative expectations measures}
 
 Column~1 of Table~\ref{tab:alt_measures} replaces the
@@ -47,6 +91,19 @@ significance is marginal throughout, reflecting the
 effect.
 
 \input{\tabdir/control_sensitivity}
+
+\subsection{Baseline OLS diagnostics moved from main text}
+
+This subsection reports supplementary aggregate diagnostics that were
+removed from Section~\ref{sec:results} to keep the main results focused
+on the evidence hierarchy (CFPS primary, aggregate corroboration, IV
+directional). These diagnostics are informative about time-series
+dependence and pairwise comovement but are not central to the first-order
+magnitude comparisons in the main text.
+
+\input{\tabdir/ols_diagnostics}
+\input{\tabdir/ols_robustness}
+\input{\tabdir/correlation_matrix}
 
 \subsection{Subsample analysis}
 
@@ -95,7 +152,7 @@ GPR ($t = -1.9$) and response share ($t = -1.5$).
 
 \input{\tabdir/uncertainty_details}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.84\textwidth]{uncertainty_salience_states.pdf}
 \caption{Uncertainty and salience states over the sample

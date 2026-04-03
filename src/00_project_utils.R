@@ -62,7 +62,7 @@ write_booktabs_table <- function(df, out_file, caption = "", label = "", notes =
     booktabs = TRUE,
     digits = digits,
     align = align,
-    escape = TRUE,
+    escape = escape,
     longtable = FALSE
   )
 
@@ -85,23 +85,23 @@ write_booktabs_table <- function(df, out_file, caption = "", label = "", notes =
   writeLines(lines, con = out_file, useBytes = TRUE)
 }
 
-# AER/QJE publication theme.
-# Key conventions: no vertical gridlines, no minor gridlines, serif font,
-# thin axis lines, bottom legend, restrained title.
+# JPE-Macro publication theme.
+# Key conventions: no gridlines, serif font, thin axis lines,
+# bottom legend, no in-figure title.
 theme_pub <- function(base_size = 10) {
   theme_minimal(base_size = base_size, base_family = "serif") %+replace%
     theme(
-      # Grid: only horizontal major lines, light grey, thin
+      # Grid: none
       panel.grid.minor   = element_blank(),
       panel.grid.major.x = element_blank(),
-      panel.grid.major.y = element_line(colour = "grey90", linewidth = 0.3),
+      panel.grid.major.y = element_blank(),
       # Axis
       axis.line          = element_line(colour = "grey30", linewidth = 0.35),
       axis.ticks         = element_line(colour = "grey30", linewidth = 0.3),
       axis.ticks.length  = unit(1.5, "pt"),
       axis.title.x       = element_text(size = rel(0.95), margin = margin(t = 6)),
-      axis.title.y       = element_text(size = rel(0.95), margin = margin(r = 6)),
-      axis.text          = element_text(colour = "grey20", size = rel(0.85)),
+      axis.title.y       = element_text(size = rel(0.95), angle = 90, margin = margin(r = 6)),
+      axis.text          = element_text(colour = "grey20", size = rel(0.9)),
       # Legend
       legend.position    = "bottom",
       legend.title       = element_blank(),
@@ -109,8 +109,7 @@ theme_pub <- function(base_size = 10) {
       legend.key.size    = unit(12, "pt"),
       legend.margin      = margin(t = 2, b = 0),
       # Title / subtitle / caption
-      plot.title         = element_text(size = rel(1.05), face = "plain",
-                                        hjust = 0, margin = margin(b = 4)),
+      plot.title         = element_blank(),
       plot.subtitle      = element_text(size = rel(0.88), hjust = 0,
                                         colour = "grey30", margin = margin(b = 6)),
       plot.caption       = element_text(size = rel(0.72), hjust = 0, colour = "grey50"),
@@ -153,4 +152,3 @@ newey_west_se <- function(model, lag = 4) {
 quarter_order <- function(x) {
   order(parse_quarter(x))
 }
-

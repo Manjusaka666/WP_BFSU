@@ -3,45 +3,22 @@
 \caption{BVAR impulse responses to identified diagnostic shock}
 \label{tab:bvar_irf_summary}
 \begin{threeparttable}
-\begin{tabular}{lcccc}
+\begin{tabular}{lccccc}
 \toprule
-horizon & variable & q16 & q50 & q84 \\
+variable & h = 0 & h = 1 & h = 4 & h = 8 & h = 12 \\
 \midrule
-0 & msi\_raw & 0.031 & 0.123 & 0.267 \\
-0 & mu\_cp & 0.127 & 0.265 & 0.424 \\
-0 & CPI\_QoQ\_Ann & -0.227 & -0.032 & 0.188 \\
-0 & Ind\_Value\_Added\_YoY & -0.011 & 0.279 & 0.477 \\
-0 & epu\_qavg & -0.145 & -0.022 & 0.125 \\
-0 & gpr\_qavg & -0.460 & -0.210 & 0.077 \\
-1 & msi\_raw & -0.060 & 0.069 & 0.198 \\
-1 & mu\_cp & 0.066 & 0.156 & 0.265 \\
-1 & CPI\_QoQ\_Ann & -0.088 & 0.032 & 0.147 \\
-1 & Ind\_Value\_Added\_YoY & -0.058 & 0.097 & 0.238 \\
-1 & epu\_qavg & -0.115 & -0.005 & 0.108 \\
-1 & gpr\_qavg & -0.304 & -0.090 & 0.137 \\
-4 & msi\_raw & -0.196 & -0.089 & 0.004 \\
-4 & mu\_cp & -0.035 & 0.064 & 0.155 \\
-4 & CPI\_QoQ\_Ann & -0.130 & -0.049 & 0.023 \\
-4 & Ind\_Value\_Added\_YoY & -0.015 & 0.081 & 0.176 \\
-4 & epu\_qavg & -0.211 & -0.119 & -0.037 \\
-4 & gpr\_qavg & -0.134 & -0.020 & 0.073 \\
-8 & msi\_raw & -0.135 & -0.053 & 0.004 \\
-8 & mu\_cp & -0.000 & 0.049 & 0.118 \\
-8 & CPI\_QoQ\_Ann & -0.080 & -0.023 & 0.016 \\
-8 & Ind\_Value\_Added\_YoY & -0.015 & 0.037 & 0.101 \\
-8 & epu\_qavg & -0.164 & -0.077 & -0.015 \\
-8 & gpr\_qavg & -0.041 & 0.009 & 0.068 \\
-12 & msi\_raw & -0.115 & -0.035 & 0.005 \\
-12 & mu\_cp & -0.003 & 0.031 & 0.097 \\
-12 & CPI\_QoQ\_Ann & -0.061 & -0.018 & 0.011 \\
-12 & Ind\_Value\_Added\_YoY & -0.005 & 0.027 & 0.081 \\
-12 & epu\_qavg & -0.138 & -0.049 & -0.004 \\
-12 & gpr\_qavg & -0.032 & 0.001 & 0.038 \\
+$S_t$ (salience index) & $0.123\,[0.031,\,0.267]$ & $0.069\,[-0.060,\,0.198]$ & $-0.089\,[-0.196,\,0.004]$ & $-0.053\,[-0.135,\,0.004]$ & $-0.035\,[-0.115,\,0.005]$ \\
+$\mu_t$ (expected inflation) & $0.265\,[0.127,\,0.424]$ & $0.156\,[0.066,\,0.265]$ & $0.064\,[-0.035,\,0.155]$ & $0.049\,[-0.000,\,0.118]$ & $0.031\,[-0.003,\,0.097]$ \\
+$\pi_t$ (realized inflation) & $-0.032\,[-0.227,\,0.188]$ & $0.032\,[-0.088,\,0.147]$ & $-0.049\,[-0.130,\,0.023]$ & $-0.023\,[-0.080,\,0.016]$ & $-0.018\,[-0.061,\,0.011]$ \\
+$y_t$ (industrial output growth) & $0.279\,[-0.011,\,0.477]$ & $0.097\,[-0.058,\,0.238]$ & $0.081\,[-0.015,\,0.176]$ & $0.037\,[-0.015,\,0.101]$ & $0.027\,[-0.005,\,0.081]$ \\
+$\mathrm{EPU}_t$ & $-0.022\,[-0.145,\,0.125]$ & $-0.005\,[-0.115,\,0.108]$ & $-0.119\,[-0.211,\,-0.037]$ & $-0.077\,[-0.164,\,-0.015]$ & $-0.049\,[-0.138,\,-0.004]$ \\
+$\mathrm{GPR}_t$ & $-0.210\,[-0.460,\,0.077]$ & $-0.090\,[-0.304,\,0.137]$ & $-0.020\,[-0.134,\,0.073]$ & $0.009\,[-0.041,\,0.068]$ & $0.001\,[-0.032,\,0.038]$ \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item Reported quantiles are across accepted draws after sign restrictions and salience anchoring.
+\item Each cell reports posterior median with 68\% band in brackets (q16, q84).
+\item No panel splitting is used; horizons are shown directly as multicolumn-style headers.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

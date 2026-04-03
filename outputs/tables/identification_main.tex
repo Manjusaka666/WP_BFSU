@@ -1,37 +1,32 @@
 \begin{table}[htbp]
 \centering
 \begin{threeparttable}
-\caption{Salience-IV Identification Results}
+\caption{Salience-IV Identification: Main Coefficients}
 \label{tab:identification_main}
 {\small
-\begin{tabular}{lc}
+\begin{tabular}{lcccc}
 \toprule
- & Coefficient \\
+ & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)} & \multicolumn{1}{c}{(4)} \\
+ & $S_t$ on $Z_t^{cong}$ & $\Delta\mu_t$ on $\widehat{S}_t$ & $FE_{t+1}$ on $\widehat{\Delta\mu}_t$ & $FE_{t+1}$ on $Z_t^{cong}$ \\
 \midrule
-\multicolumn{2}{l}{\textit{Panel A: First Stage}} \\
+$Z_t^{cong}$ & $0.082$ &  &  & $-0.411$ \\
+ & $(0.076)$ &  &  & $(0.494)$ \\
 \addlinespace
-Congestion IV $\to$ Salience & $0.082$ \\
- & (0.076) \\
+$\widehat{S}_t$ &  & $-0.149$ &  &  \\
+ &  & $(0.462)$ &  &  \\
 \addlinespace
-\multicolumn{2}{l}{\textit{Panel B: Second Stage}} \\
+$\widehat{\Delta\mu}_t$ &  &  & $33.688$ &  \\
+ &  &  & $(108.554)$ &  \\
 \addlinespace
-Instrumented salience $\to$ Revision & $-0.149$ \\
- & (0.462) \\
-Instrumented revision $\to$ Forecast error & $33.688$ \\
- & (108.554) \\
-\addlinespace
-\multicolumn{2}{l}{\textit{Panel C: Reduced Form}} \\
-\addlinespace
-Congestion IV $\to$ Forecast error & $-0.411$ \\
- & (0.494) \\
-\addlinespace
-Observations & 32 \\
+Observations & 32 & 32 & 32 & 32 \\
+Macro controls & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
 \bottomrule
 \end{tabular}
 }
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} Newey--West standard errors (in parentheses) use 4 quarterly lags. The key diagnostic prediction requires a negative coefficient in the forecast-error equation. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
+\item \textit{Notes:} Newey--West HAC standard errors (4 lags) are in parentheses. Coefficients carry significance stars only; no standalone $p$-value rows are reported.
+\item $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

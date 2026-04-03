@@ -39,7 +39,7 @@ $R^2$ & Continuous & $1.02 \times 10^{-9}$ & $1 \times 10^{-6}$ & \checkmark \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
-\small
+\footnotesize
 \item \textit{Notes:} Each row compares the output of the R and Python implementations for a single variable or statistic. Max $|$Diff$|$ is the maximum absolute difference across all observations. Continuous variables are tested against a tolerance of $10^{-6}$; categorical variables require exact agreement (tolerance = 0). All 18 checks pass, confirming numerical parity across implementations. Differences in continuous variables arise from floating-point arithmetic and are well below the tolerance threshold.
 \end{tablenotes}
 \end{threeparttable}

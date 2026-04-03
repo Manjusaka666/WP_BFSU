@@ -1,7 +1,9 @@
 \begin{table}[htbp]
 \centering
+\begin{threeparttable}
 \caption{Welfare Costs of Diagnostic Inflation Expectations}
 \label{tab:nk_welfare}
+{\small
 \begin{tabular}{ccccc}
 \toprule
 $\theta$ & $\mathrm{Var}(\pi)$ & $\mathrm{Var}(x)$ & Loss $\mathcal{L}(\theta)$ & Welfare Cost (\%) \\
@@ -16,11 +18,13 @@ $\theta$ & $\mathrm{Var}(\pi)$ & $\mathrm{Var}(x)$ & Loss $\mathcal{L}(\theta)$ 
   1.50 & 106.8967 & 34.1741 & 107.1815 & 134.01 \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}
-\small
+}
+\begin{tablenotes}[flushleft]
+\footnotesize
 \item \textit{Notes:} Welfare loss $\mathcal{L}(\theta) = \mathrm{Var}(\pi) + \lambda \, \mathrm{Var}(x)$ with $\lambda = \kappa/\varepsilon = 0.05/6 \approx 0.0083$.
 \item Calibration: $\beta=0.99$, $\kappa=0.05$, $\sigma=2$, $\phi_\pi=1.5$, $\phi_x=0.5$, $\rho_u=0.8$.
 \item Welfare cost is the percentage increase in loss relative to rational benchmark ($\theta=0$).
 \item $^{\dagger}$ Household survey estimate ($\hat{\beta}_{\mathrm{rev}} \approx -0.55$). $^{\ddagger}$ Aggregate implied ($\hat{\beta}_{\mathrm{rev}} \approx -2.24$).
 \end{tablenotes}
+\end{threeparttable}
 \end{table}

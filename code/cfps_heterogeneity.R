@@ -170,14 +170,14 @@ tex_int <- c(
   "\\begin{threeparttable}",
   "\\begin{tabular}{lccc}",
   "\\toprule",
-  " & Education & Income & Urban \\\\",
-  " & (High) & (Below Median) & \\\\",
+  " & (1) & (2) & (3) \\\\",
+  " & High education & Below-median income & Urban \\\\",
   "\\midrule"
 )
 
 # Row: Revision
 tex_int <- c(tex_int, sprintf(
-  "Revision & %s & %s & %s \\\\",
+  "$\\Delta \\mu_{it}$ & %s & %s & %s \\\\",
   sprintf("%.3f%s", int_tab$beta_revision[1], stars(int_tab$p_revision[1])),
   sprintf("%.3f%s", int_tab$beta_revision[2], stars(int_tab$p_revision[2])),
   sprintf("%.3f%s", int_tab$beta_revision[3], stars(int_tab$p_revision[3]))
@@ -201,7 +201,7 @@ tex_int <- c(tex_int, sprintf(
 
 # Row: Revision x X_i
 tex_int <- c(tex_int, sprintf(
-  "Revision $\\times$ $X_i$ & %s & %s & %s \\\\",
+  "$\\Delta \\mu_{it} \\times X_i$ & %s & %s & %s \\\\",
   sprintf("%.3f%s", int_tab$beta_interact[1], stars(int_tab$p_interact[1])),
   sprintf("%.3f%s", int_tab$beta_interact[2], stars(int_tab$p_interact[2])),
   sprintf("%.3f%s", int_tab$beta_interact[3], stars(int_tab$p_interact[3]))
@@ -244,19 +244,18 @@ tex_mon <- c(
   "\\caption{CFPS Diagnostic Coefficient by Attention Tercile}",
   "\\label{tab:cfps_monotonicity}",
   "\\begin{threeparttable}",
-  "\\begin{tabular}{lccccc}",
+  "\\begin{tabular}{lcccc}",
   "\\toprule",
-  "Attention tercile & $\\hat{\\beta}$ & SE & $t$-stat & $N$ & 95\\% CI \\\\",
+  "Attention tercile & $\\hat{\\beta}$ on $\\Delta \\mu_{it}$ & SE & $N$ & 95\\% CI \\\\",
   "\\midrule"
 )
 
 for (i in seq_len(nrow(att_tab))) {
   tex_mon <- c(tex_mon, sprintf(
-    "%s & %.3f%s & %.3f & %.2f & %s & [%.3f, %.3f] \\\\",
+    "%s & %.3f%s & %.3f & %s & [%.3f, %.3f] \\\\",
     tercile_labels[i],
     att_tab$beta[i], stars(att_tab$p_value[i]),
     att_tab$se[i],
-    att_tab$t_stat[i],
     formatC(att_tab$n[i], format = "d", big.mark = ","),
     att_tab$ci_low[i], att_tab$ci_high[i]
   ))
@@ -264,8 +263,8 @@ for (i in seq_len(nrow(att_tab))) {
 
 tex_mon <- c(tex_mon,
   "\\midrule",
-  "Province FE & \\multicolumn{5}{c}{Yes} \\\\",
-  "Wave FE & \\multicolumn{5}{c}{Yes} \\\\",
+  "Province FE & \\multicolumn{4}{c}{Yes} \\\\",
+  "Wave FE & \\multicolumn{4}{c}{Yes} \\\\",
   "\\bottomrule",
   "\\end{tabular}",
   "\\begin{tablenotes}[flushleft]",

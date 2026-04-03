@@ -1,28 +1,29 @@
 \begin{table}[htbp]
 \centering
 \begin{threeparttable}
-\caption{Heterogeneity in Diagnostic Coefficients}
+\caption{State-Dependent Heterogeneity in the Diagnostic Slope}
 \label{tab:heterogeneity_interactions}
 {\small
 \begin{tabular}{lccc}
 \toprule
- & (1) & (2) & (3) \\
- & High EPU & High GPR & Low Eff.\ Sample \\
+ & (1) High-EPU state & (2) High-GPR state & (3) Low effective sample share \\
 \midrule
-$\hat{\beta}$ (revision) & $-2.371$ & $-2.292$ & $-1.448$ \\
+$\beta_1$ on $FR_t$ & $-2.371^{*}$ & $-2.292$ & $-1.448$ \\
+ & $(1.326)$ & $(1.812)$ & $(2.222)$ \\
 \addlinespace
-Revision $\times$ Indicator & $0.183$ & $-0.215$ & $-1.377$ \\
- & $[0.939]$ & $[0.943]$ & $[0.570]$ \\
+$\beta_2$ on $FR_t \times D_t^{high}$ & $0.183$ & $-0.215$ & $-1.377$ \\
+ & $(2.367)$ & $(2.999)$ & $(2.395)$ \\
 \addlinespace
-Implied $\hat{\beta}$ (high state) & $-2.188$ & $-2.507$ & $-2.825$ \\
-\addlinespace
+$\beta_1 + \beta_2$ (high state) & -2.188 & -2.507 & -2.825 \\
 Observations & 32 & 32 & 32 \\
 \bottomrule
 \end{tabular}
 }
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} Implied $\hat{\beta}$ (high state) is the diagnostic coefficient under the high-state indicator. $p$-values of interaction terms in brackets. Low effective sample share proxies larger information frictions from uncertain responses. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
+\item \textit{Notes:} Newey--West HAC standard errors (4 lags) are in parentheses. Coefficients carry significance stars only; no standalone $p$-value rows are reported.
+\item Low effective sample share proxies larger information frictions from uncertain responses.
+\item $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

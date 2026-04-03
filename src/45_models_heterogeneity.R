@@ -40,7 +40,10 @@ run_interaction <- function(flag) {
   data.table(
     channel = flag,
     beta_base = ct["FR_cp", "Estimate"],
+    se_base = ct["FR_cp", "Std. Error"],
+    p_base = ct["FR_cp", "Pr(>|t|)"],
     beta_interaction = ct[paste0("FR_cp:", flag), "Estimate"],
+    se_interaction = ct[paste0("FR_cp:", flag), "Std. Error"],
     p_interaction = ct[paste0("FR_cp:", flag), "Pr(>|t|)"],
     implied_beta_high = ct["FR_cp", "Estimate"] + ct[paste0("FR_cp:", flag), "Estimate"],
     n = nobs(m)
@@ -53,18 +56,53 @@ het_tab <- rbindlist(list(
   run_interaction("low_effective_sample")
 ))
 
-write_booktabs_table(
-  het_tab,
-  file.path(project_paths$tables, "heterogeneity_interactions.tex"),
-  caption = "Heterogeneity in Diagnostic Coefficients",
-  label = "tab:heterogeneity_interactions",
-  notes = c(
-    "`implied_beta_high` is the diagnostic coefficient under the high-state indicator.",
-    "Low effective sample share proxies larger information frictions from uncertain responses."
-  ),
-  digits = 3,
-  escape = FALSE
+coef_cell <- function(b, p) if (is.na(b)) "" else fmt_coef(b, p, digits = 3)
+se_cell <- function(s) if (is.na(s)) "" else fmt_se(s, digits = 3)
+
+col_labels <- c("High-EPU state", "High-GPR state", "Low effective sample share")
+
+het_lines <- c(
+  "\\begin{table}[htbp]",
+  "\\centering",
+  "\\begin{threeparttable}",
+  "\\caption{State-Dependent Heterogeneity in the Diagnostic Slope}",
+  "\\label{tab:heterogeneity_interactions}",
+  "{\\small",
+  "\\begin{tabular}{lccc}",
+  "\\toprule",
+  paste0(" & ", paste(sprintf("(%d) %s", seq_along(col_labels), col_labels), collapse = " & "), " \\\\"),
+  "\\midrule",
+  paste0("$\\beta_1$ on $FR_t$ & ",
+         paste(mapply(coef_cell, het_tab$beta_base, het_tab$p_base), collapse = " & "),
+         " \\\\"),
+  paste0(" & ",
+         paste(mapply(se_cell, het_tab$se_base), collapse = " & "),
+         " \\\\"),
+  "\\addlinespace",
+  paste0("$\\beta_2$ on $FR_t \\times D_t^{high}$ & ",
+         paste(mapply(coef_cell, het_tab$beta_interaction, het_tab$p_interaction), collapse = " & "),
+         " \\\\"),
+  paste0(" & ",
+         paste(mapply(se_cell, het_tab$se_interaction), collapse = " & "),
+         " \\\\"),
+  "\\addlinespace",
+  paste0("$\\beta_1 + \\beta_2$ (high state) & ",
+         paste(formatC(het_tab$implied_beta_high, format = "f", digits = 3), collapse = " & "),
+         " \\\\"),
+  paste0("Observations & ", paste(het_tab$n, collapse = " & "), " \\\\"),
+  "\\bottomrule",
+  "\\end{tabular}",
+  "}",
+  "\\begin{tablenotes}[flushleft]",
+  "\\footnotesize",
+  "\\item \\textit{Notes:} Newey--West HAC standard errors (4 lags) are in parentheses. Coefficients carry significance stars only; no standalone $p$-value rows are reported.",
+  "\\item Low effective sample share proxies larger information frictions from uncertain responses.",
+  "\\item $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.",
+  "\\end{tablenotes}",
+  "\\end{threeparttable}",
+  "\\end{table}"
 )
+writeLines(het_lines, file.path(project_paths$tables, "heterogeneity_interactions.tex"), useBytes = TRUE)
 
 # Monotonicity check across salience terciles.
 use[, salience_tercile := cut(msi_raw,

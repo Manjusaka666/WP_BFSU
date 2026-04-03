@@ -1,0 +1,75 @@
+\subsection{China Household Finance Survey (CHFS)}%\label{subsec:chfs_data}
+
+The China Household Finance Survey (CHFS) provides a third data source
+that addresses two limitations of the PBoC and CFPS designs. The CHFS
+elicits inflation expectations on a five-point scale rather than the
+three-point scale used by the PBoC and CFPS, and it records household
+information channels, enabling direct tests of whether the source of
+price signals shapes the degree of overreaction.
+
+The CHFS is a biennial nationally representative household survey
+administered by the Survey and Research Center for China Household
+Finance at Southwestern University of Finance and Economics (SWUFE)
+since 2011 \citep{Gan2014}. The 2011 baseline wave sampled
+approximately 8,400 households across 25 provinces and 80 counties. By
+2021 the sample had expanded to over 40,000 households. The survey
+collects detailed data on household assets, liabilities, income,
+consumption, and financial attitudes, making it the most granular
+source of household balance-sheet information available for China.
+
+\paragraph{Inflation expectations (A4008).}
+The 2011 wave asks respondents: ``Over the next year, how do you expect
+commodity prices to change?'' with five response categories: rise a
+lot, rise a little, no change, reduce a little, reduce a lot. This
+five-point scale is richer than the three-point PBoC and CFPS measures.
+The additional gradations in the tails allow me to distinguish
+households who expect moderate price increases from those who expect
+large ones, a distinction that maps directly onto the intensity of
+diagnostic overreaction. The price-expectation question appears only in
+the 2011 wave; subsequent waves dropped it in favor of questions on
+housing-price expectations.
+
+\paragraph{Information channels (A4001).}
+The same wave asks households to identify their primary sources of
+economic and financial information from six categories: newspapers, TV,
+radio, internet, SMS alerts, and family or friends. This variable is
+central to the mechanism test in Section~\ref{subsec:chfs_info_channel}.
+Media-intensive channels (TV, internet, newspapers) expose households
+to salient price narratives that the diagnostic model predicts will
+amplify overreaction. Interpersonal channels (family, friends) transmit
+more diffuse and less narrative-driven signals.
+
+\paragraph{Risk attitude (A4003).}
+A self-reported risk-attitude measure on a five-point scale from very
+risk-averse to very risk-loving is a placebo in the mechanism
+test. If overreaction operates through salience rather than risk
+preferences, the information-channel interaction should predict
+forecast errors while risk attitude should not.
+
+\paragraph{Panel structure.}
+Although the expectation question is available only in 2011, the CHFS
+master files track the same households through 2013, 2015, 2017, 2019,
+and 2021. I link the 2011 belief measure forward to subsequent waves
+using the household identifier. This panel linkage enables tests of
+whether households classified as overreactors in 2011 display
+systematically different income trajectories in later years.
+Consumption data are not consistently available across waves, so the
+forward-tracking analysis uses household income growth as the outcome.
+
+Table~\ref{tab:chfs_2011_summary} reports summary statistics for the
+2011 wave variables used in this paper.
+
+\input{\tabdir/chfs_2011_summary}
+
+\paragraph{Limitations.}
+Two constraints shape how the CHFS enters the analysis. First, because
+the expectation question appears only in 2011, I cannot construct
+within-household expectation revisions across waves. All
+cross-sectional tests in Section~\ref{subsec:chfs_info_channel} exploit
+between-household variation in a single wave rather than the
+within-household panel variation available in the CFPS. Second, the
+2011 wave predates many of the high-salience episodes that drive the
+aggregate results (trade war, pork-price spike, pandemic). The CHFS
+evidence therefore complements rather than replicates the time-series
+and CFPS tests. Its value lies in the information-channel variation and
+the richer expectation scale, not in temporal coverage.

@@ -1,0 +1,130 @@
+\subsection{Information-channel test with CHFS}%
+%\label{subsec:chfs_info_channel}
+
+The aggregate horse race in Section~\ref{subsec:horse_race} operates
+with 32 quarterly observations and cannot cleanly separate diagnostic
+overreaction from information rigidity. Both channels predict a
+negative revision-error coefficient, and multicollinearity between the
+revision and lagged-error terms makes the joint specification
+indeterminate at this sample size. The CHFS 2011 wave provides a
+different discriminating test that does not require time-series
+variation: it exploits cross-sectional differences in how households
+acquire price information.
+
+\paragraph{Discriminating logic.}
+The diagnostic model predicts that overreaction intensifies when
+households receive information through high-salience channels.
+Television news, newspaper headlines, and internet portals frame price
+movements as narratives with emotional valence, exactly the type of
+signal that triggers representativeness-based overweighting
+\citep{Bordalo2018}. Households who rely instead on family, friends, or
+SMS alerts receive more diffuse signals with weaker narrative framing.
+The prediction is that media-intensive households overreact more.
+
+Information rigidity makes the opposite prediction. If the primary
+friction is that households update too slowly because they pay
+insufficient attention to public signals, then households with better
+access to media should update more completely and make smaller forecast
+errors. Media exposure reduces the information gap. The two models
+therefore generate opposing signs on the interaction between
+expectations and media intensity.
+
+\paragraph{Specification.}
+I estimate three specifications with increasing stringency. The
+baseline tests whether media exposure predicts the level of inflation
+expectations:
+\begin{equation}%\label{eq:chfs_info_channel}
+  Exp_{ip} = \alpha + \beta_1 HighMedia_i
+    + \gamma X_i + \delta_p + \varepsilon_{ip},
+\end{equation}
+where $Exp_{ip}$ is the inflation expectation for household $i$ in
+province $p$ on the five-point A4008 scale (recoded so higher values
+indicate more inflationary beliefs). $HighMedia_i$ is an indicator
+equal to one if the household reports above-median use of TV, internet,
+or newspapers as information sources in A4001, and zero otherwise.
+$X_i$ includes log household income and an urban/rural indicator.
+$\delta_p$ denotes province fixed effects.
+
+The key coefficient is $\beta_1$. In 2011, when actual CPI inflation
+was elevated at approximately 5.4\% but moderating, the rational
+expectation maps to ``rise a little'' (ordinal value 4 on the recoded
+scale). Diagnostic expectations predict $\beta_1 > 0$: households
+exposed to high-salience media channels form more inflationary beliefs
+that overshoot the rational benchmark. Information rigidity predicts
+$\beta_1 \leq 0$: media-exposed households receive more information
+and therefore hold more moderate, accurate beliefs.
+
+A second specification replaces the level with expectation extremity
+(absolute deviation from the province mean), testing whether media
+exposure amplifies the dispersion of beliefs. A third uses a binary
+indicator for the most extreme category (``rise a lot'') as the
+dependent variable.
+
+\paragraph{Results.}
+Table~\ref{tab:chfs_mechanism_info_channel} reports the estimates.
+Across all three dependent variables, the high-media coefficient is
+small and statistically indistinguishable from zero. Column~1 shows
+$\hat{\beta}_1 = -0.005$ (SE $= 0.022$) for the expectation level.
+Column~2 shows $-0.001$ (SE $= 0.015$) for extremity. Column~3 shows
+$-0.004$ (SE $= 0.012$) for the over-prediction binary. None
+approaches conventional significance. Column~4 reports the risk
+attitude coefficient, which is also null ($-0.010$, SE $= 0.008$).
+Column~5 enters both media and risk attitude jointly; neither is
+significant.
+
+\input{\tabdir/chfs_mechanism_info_channel}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.75\textwidth]{chfs_info_channel_gradient}
+  \caption{Mean inflation expectations by media-exposure group,
+    CHFS 2011. Higher values indicate more inflationary beliefs
+    (5-point scale). The unconditional gap between high-media and
+    low-media households is small and largely absorbed by province
+    fixed effects.}
+  %\label{fig:chfs_info_channel}
+\end{figure}
+
+The null result has a clear interpretation. Province fixed effects
+absorb the dominant source of variation in inflation expectations:
+local price conditions. Within provinces, media exposure does not
+predict belief intensity. Figure~\ref{fig:chfs_info_channel} confirms
+this visually: the unconditional gap in mean expectations between
+high-media and low-media households (4.14 versus 4.08) is small and
+largely explained by geographic sorting.
+
+\paragraph{Why the cross-sectional test is null and the panel test is not.}
+The CFPS panel result ($\hat{\beta} \approx -0.55$, $p < 0.001$)
+identifies overreaction through within-household \textit{temporal}
+variation: the same household revises expectations and then
+overshoots. The CHFS cross-sectional test asks a different question:
+whether households with different \textit{persistent} information
+environments hold systematically different beliefs. The null answer
+is consistent with the diagnostic model if overreaction is triggered
+by salient \textit{events} rather than by the household's general
+media diet. A household that watches TV every day does not overreact
+more than one that does not, but a household that revises its
+expectation after a salient food-price spike overshoots regardless of
+its information channel. This distinction aligns with the
+representativeness mechanism in \citet{Bordalo2018}: the bias is
+event-driven, not channel-driven.
+
+The CHFS test does rule out one specific version of the diagnostic
+story: that persistent differences in media access generate
+persistent cross-sectional differences in overreaction intensity.
+It does not rule out the event-driven version that the CFPS panel
+identifies. The two results are complementary, not contradictory.
+
+\input{\tabdir/chfs_risk_placebo}
+
+\paragraph{Interpretation and caveats.}
+The CHFS information-channel test is cross-sectional. With a single
+wave, it captures persistent household differences in information
+environment but cannot isolate the temporal salience shocks that drive
+the CFPS panel result. The 2011 wave was fielded during a period of
+elevated but moderating inflation, when virtually all households
+expected prices to rise. This ceiling effect compresses the
+distribution and reduces the scope for media channels to generate
+differential beliefs. A richer test would exploit within-household
+variation in media exposure to salient events at higher frequency,
+which the current data do not support.

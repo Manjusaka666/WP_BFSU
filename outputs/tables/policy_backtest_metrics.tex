@@ -6,25 +6,22 @@
 {\small
 \begin{tabular}{lcc}
 \toprule
- & (1) & (2) \\
- & Na\"ive & Diagnostic-Adjusted \\
+Metric & Naive forecast & Diagnostic-adjusted forecast \\
 \midrule
-RMSE & 4.120 & 4.523 \\
-MAE & 3.584 & 3.409 \\
+$\mathrm{RMSE}$ & 4.120 & 4.523 \\
+$\mathrm{MAE}$ & 3.584 & 3.409 \\
+$\mathrm{Coverage}_{68\%}$ & 0.417 & 0.667 \\
+$\mathrm{Coverage}_{90\%}$ & 0.833 & 0.750 \\
 \addlinespace
-68\% Coverage & 0.417 & 0.667 \\
-90\% Coverage & 0.833 & 0.750 \\
-\addlinespace
-RMSE gain & --- & $-0.404$ \\
-MAE gain & --- & 0.174 \\
-\addlinespace
+$\Delta\mathrm{RMSE}$ (naive $-$ adjusted) &  & -0.404 \\
+$\Delta\mathrm{MAE}$ (naive $-$ adjusted) &  & 0.174 \\
 Observations & 12 & 12 \\
 \bottomrule
 \end{tabular}
 }
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} The policy rule adjusts survey expectations by predicted diagnostic forecast errors. Positive RMSE/MAE gains indicate improvement relative to na\"ive forecasts.
+\item \textit{Notes:} The policy rule adjusts survey expectations by predicted diagnostic forecast errors. This is a deterministic backtest table, so no hypothesis-test rows are reported.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

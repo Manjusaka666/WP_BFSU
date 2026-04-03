@@ -1,22 +1,23 @@
 \begin{table}[htbp]
 \centering
 \begin{threeparttable}
-\caption{Competing Mechanisms: Diagnostic Expectations vs.\ Information Rigidity}
+\caption{Mechanism Competition: Diagnostic Expectations vs Information Rigidity}
 \label{tab:mechanism_horse_race}
 {\small
 \begin{tabular}{lcccc}
 \toprule
- & (1) & (2) & (3) & (4) \\
- & Diagnostic & Rigidity & Joint & Joint + State \\
+ & \multicolumn{4}{c}{Dependent variable: $FE_{t+1}$} \\
+\cmidrule(lr){2-5}
+ & (1) Diagnostic & (2) Rigidity & (3) Joint & (4) Joint + state \\
 \midrule
-$\hat{\beta}$ (revision) & $-2.237^{*}$ & & $0.246$ & $1.450$ \\
- & $[0.055]$ & & $[0.880]$ & $[0.517]$ \\
+$\beta_1$ on $FR_t$ & $-2.237^{*}$ &  & $0.246$ & $1.450$ \\
+ & $(1.114)$ &  & $(1.607)$ & $(2.202)$ \\
 \addlinespace
-Lagged forecast error & & $-0.583^{***}$ & $-0.604^{***}$ & $-0.643^{**}$ \\
- & & $[0.000]$ & $[0.005]$ & $[0.010]$ \\
+$\lambda$ on $FE_t$ &  & $-0.583^{***}$ & $-0.604^{***}$ & $-0.643^{***}$ \\
+ &  & $(0.086)$ & $(0.195)$ & $(0.229)$ \\
 \addlinespace
-Revision $\times$ High EPU & & & & $-1.721$ \\
- & & & & $[0.357]$ \\
+$\beta_2$ on $FR_t \times D_t^{high}$ &  &  &  & $-1.721$ \\
+ &  &  &  & $(1.832)$ \\
 \addlinespace
 Observations & 32 & 32 & 32 & 32 \\
 \bottomrule
@@ -24,7 +25,8 @@ Observations & 32 & 32 & 32 & 32 \\
 }
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} Diagnostic mechanism predicts a negative coefficient on revision. Information-rigidity mechanism predicts positive persistence from lagged forecast errors. $p$-values in brackets; Newey--West standard errors with 4 lags. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
+\item \textit{Notes:} Newey--West HAC standard errors (4 lags) are in parentheses. Coefficients carry significance stars only; no standalone $p$-value rows are reported.
+\item $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

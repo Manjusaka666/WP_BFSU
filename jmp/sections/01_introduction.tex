@@ -1,33 +1,70 @@
 \section{Introduction}\label{sec:intro}
 
-Do Chinese households overreact to salient inflation signals? This paper shows they do: using a household panel of roughly 13,700 CFPS respondents, I estimate a revision--error coefficient of approximately $-0.55$ ($p < 0.001$) with province and wave fixed effects, and I find this overreaction is pervasive across demographic groups rather than confined to any particular subpopulation.
+A one-point upward revision in household inflation expectations predicts a 0.55-point
+more negative forecast error at the next interview, a slope that is economically large
+for any model that maps survey beliefs into near-term household demand, credit choices,
+and durable-goods timing. I ask a direct question: when salient inflation signals hit China, do households update close to a
+rational benchmark, or do they overshoot and then correct? I show clear overreaction.
+Using seven CFPS waves from 2010 to 2022, I estimate $\beta=-0.55$ (Table~\ref{tab:oster_bounds}) with $p<0.001$
+and about $N\approx13{,}700$ household observations after province and wave fixed
+effects. This elasticity does not come from one narrow subgroup; it appears across
+income, education, age, and urban-rural cells, so the wedge between expected and
+realized inflation is broad rather than idiosyncratic. The magnitude also implies a
+practical forecasting consequence: many expectation revisions contain predictable mean
+reversion at the relevant horizon, so raw revisions can overstate true inflation pressure
+in real time, especially after salient food and energy news shocks. I therefore treat
+overreaction as a first-order measurement problem for macroeconomists, not a side
+detail, because the coefficient size is large enough to change inference about household
+sentiment, policy credibility, policy reaction calibration, and short-run welfare losses
+from misallocated intertemporal choices when transitory price spikes are mistaken for persistent inflation.
 
-The primary evidence comes from seven waves of the China Family Panel Studies (CFPS, 2010--2022). Within province-wave cells, households that revise their inflation expectations upward by one unit between survey waves subsequently report forecast errors that are $0.55$ units more negative, on average. The result is precisely estimated ($p < 0.001$, $N \approx 13{,}700$) and robust to province fixed effects, wave fixed effects, and a battery of demographic controls. Aggregate data from the People's Bank of China Urban Depositor Survey (2011Q1--2025Q3) corroborate the sign: the quarterly revision--error coefficient is $\hat{\beta}_1 = -2.24$ (Newey--West $p = 0.055$, $N = 32$). The aggregate estimate is noisier given the short time series, but it points in the same direction and is inconsistent with the rational-expectations null of zero. Both estimates match the diagnostic-expectations prediction of \citet{Bordalo2020b}: overweighting of salient recent signals causes systematic overshooting followed by correction.
+I make three contributions that move beyond a baseline correlation. First, I provide a
+household diagnostic test in a large emerging economy where salience shocks and
+information frictions are both quantitatively important. This is micro evidence at the
+unit that forms expectations: I observe revisions and subsequent errors for the same
+households, and I recover a stable negative revision-error elasticity in within-cell
+variation after rich fixed effects, alternative survey weights, and multiple coding
+choices for qualitative responses. The contribution is external validity with discipline:
+the mechanism survives in a setting with different inflation composition, media ecology,
+and policy communication institutions from the environments where this framework was
+first studied. Second, I run a mechanism competition that places diagnostic overreaction
+and information-rigidity dynamics in one empirical system and asks which channel
+explains forecast errors conditional on the other. I find coexistence instead of a single
+winner; persistence terms matter, but revision-driven overshooting remains central when
+salience is high, which means channel weight is state dependent and policy-relevant
+nonlinearity is empirically present. This matters for policy design because communication
+should damp short-run spikes exactly when salience intensifies, not only re-anchor long-run beliefs. Third, I run a CHFS null channel test
+that asks whether persistent differences in media access alone generate stronger belief
+levels in cross section. The estimated channel slope is $\beta=-0.005$ (Table~\ref{tab:chfs_mechanism_info_channel}, column~1) with $SE=0.022$,
+which is economically tiny and statistically close to zero even under flexible controls.
+I interpret this null as a useful boundary condition: the large CFPS overreaction
+pattern is more consistent with event-triggered salience shocks than with a time-invariant ranking of households by habitual information channel or fixed attention
+gaps tied to media technology alone.
 
-The identification strategy has three layers. The CFPS household panel is the primary source, where province and wave fixed effects absorb regional price-level differences and macroeconomic time trends, leaving within-cell covariation between revisions and subsequent errors as the identifying variation. The aggregate OLS serves as a time-series corroboration using an independent data source; its limitations (short sample, no geographic variation, reliance on Carlson--Parkin quantification of qualitative responses) are addressed through bound estimates that allocate uncertain respondents to optimistic and pessimistic extremes, with the diagnostic sign holding across all bounds. A salience-IV design instruments inflation salience with media congestion from geopolitical news, exploiting the logic that geopolitical events crowd media bandwidth away from inflation coverage. The reduced-form sign is consistent with the diagnostic prediction ($-0.41$), but the first stage is weak ($F = 1.16$, Anderson--Rubin confidence interval $[-3, 3]$). The IV provides directional corroboration, not causal identification; the wide AR interval is uninformative about magnitudes. The primary causal interpretation rests on the CFPS province-wave design.
+I also state the limits clearly so claims match evidence. The aggregate corroboration
+sample is short, with $N=32$ quarterly observations, so aggregate regressions can
+confirm sign and timing but cannot pin down precise macro elasticities under many
+controls or discriminate tightly across nearby models. The CFPS expectation variable is biennial, which restricts high-frequency dynamic tracing and compresses adjustment into longer windows than the mechanism likely
+operates. My salience IV has conceptual appeal but weak power in this sample: the
+first-stage statistic is $F=1.16$ (Table~\ref{tab:identification_main}, Panel~A), so IV magnitudes are not a credible basis for sharp
+causal parameter claims and I treat them as directional checks only. The CHFS test is
+a single cross-section, so I cannot follow within-household revisions over time there or
+separate persistent unobserved heterogeneity from channel exposure with panel leverage
+or test dynamic channel switching after shocks.
+These constraints narrow interpretation but do not overturn the core fact: the CFPS
+panel repeatedly shows a large, negative revision-error elasticity with robust precision.
+The limits instead define what I can and cannot claim. I can claim economically
+meaningful household overreaction in reduced form, state-dependent mechanism coexistence
+from direct horse races, and a rejected channel-only interpretation in CHFS. I cannot
+claim point-identified deep structural primitives from the weak-IV aggregate design or
+from one CHFS cross section. That disciplined boundary keeps the contribution strong on
+magnitudes, explicit about uncertainty, transparent on identification, and useful for designing richer next-wave data collection.
 
-The mechanism analysis is honest about what it can and cannot establish. A specification that nests both the diagnostic channel (forecast revision) and the information-rigidity channel \citep{Coibion2015} (lagged forecast error) finds a significant negative lagged-error coefficient ($\hat{\lambda} = -0.60$, $p = 0.005$) and attenuation of the revision coefficient in joint estimation. The negative $\hat{\lambda}$ implies error reversals, which is itself a diagnostic signature: overreaction in one period generates a correction in the next, not the gradual persistence that rigidity predicts. The horse race reveals that both channels carry explanatory power, with their relative weight varying across economic states. A Bayesian state-space model tracks the time-varying diagnostic coefficient $\beta_t$, which intensifies during geopolitical crises and pandemic onset and relaxes toward zero in calmer periods. Local projections confirm the timing: revision shocks move forecast errors within one quarter and then attenuate, matching the diagnostic profile and sitting awkwardly with pure information rigidity, which predicts gradual accumulation rather than fast overshoot and partial reversal.
+Section~\ref{sec:literature} lays out the framework. Section~\ref{sec:data}
+presents the data, and Section~\ref{sec:identification} details the empirical
+strategy. Section~\ref{sec:results} reports the baseline results.
+Section~\ref{sec:mechanism}, Section~\ref{sec:heterogeneity}, and
+Section~\ref{sec:policy} cover mechanism, heterogeneity, and policy
+implications. Section~\ref{sec:conclusion} concludes, and additional
+robustness checks are reported in the online appendix.
 
-The findings have two policy-relevant implications. First, the forecast-adjustment rule derived from the overreaction estimates reduces out-of-sample mean absolute error by 17\% and improves 68\% interval coverage from 42\% to 67\% in rolling backtests. This rule requires no structural model of the inflation process; it needs only the estimated revision coefficient, which is stable across the sample. The PBoC can apply it as a real-time de-biasing filter when survey expectations spike on salient inflation news. Second, the pervasiveness of overreaction across income, education, and urban/rural groups implies that the expectation wedge is an aggregate phenomenon, not a tail driven by a narrow subpopulation. Households at all points in the distribution make consumption and savings decisions on inflation beliefs that systematically overshoot near-term realizations during salient episodes. This is an allocative distortion with macroeconomic scale, and it motivates forward guidance that leans against salience-driven expectation spikes rather than simply re-anchoring long-run inflation.
-
-This paper makes two concrete contributions. First, it provides, to my knowledge, the first household-level test of the diagnostic-expectations hypothesis in China, a setting where information frictions and food-price salience are quantitatively larger than in developed-market surveys. The CFPS result ($\beta \approx -0.55$, $p < 0.001$) extends the Bordalo--Gennaioli--Shleifer framework beyond the US and European samples where it was originally documented, and the generalizability across demographic groups strengthens the external validity of the mechanism. Second, it introduces a competing-mechanism design that nests diagnostic overreaction and information rigidity in the same specification, applied to both aggregate and micro data. The design reveals coexistence rather than dominance: both channels are active, with their relative importance shifting across macroeconomic states, and the state-dependent activation is captured by the time-varying $\beta_t$.
-
-Three limits define where the results generalize and where they do not. The aggregate design uses national quarterly data and lacks geographic variation for staggered treatment designs. The CFPS panel observes price expectations biennially, which limits dynamic analysis at the micro level and means the null on demographic heterogeneity may partly reflect measurement constraints rather than true homogeneity. The media congestion instrument is plausible but not experimentally assigned, and the weak first stage prevents informative IV-based causal claims. These constraints are explicit throughout the analysis and define where future work with province-household matched data at higher frequency and richer media microstructure can extend the identification.
-
-The paper proceeds as follows.
-Section~\ref{sec:literature} derives testable predictions
-from the diagnostic-expectations and information-rigidity
-frameworks. Section~\ref{sec:data} describes the PBoC
-depositor survey, the CFPS household panel, and macro
-controls. Section~\ref{sec:measurement} details the
-Carlson--Parkin quantification and CFPS expectation
-construction. Section~\ref{sec:identification} presents the
-identification strategy and threat evaluation.
-Section~\ref{sec:results} reports baseline estimates.
-Section~\ref{sec:heterogeneity} examines household-level
-and state-dependent heterogeneity.
-Section~\ref{sec:mechanism} competes diagnostic and
-rigidity channels. Section~\ref{sec:policy} maps estimates
-into a forecast-adjustment rule.
-Section~\ref{sec:robustness} summarizes robustness.
-Section~\ref{sec:conclusion} concludes.

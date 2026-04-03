@@ -23,7 +23,6 @@ p1 <- ggplot(df1, aes(x = qdate)) +
   geom_line(aes(y = CPI_QoQ_Ann, color = "Realized inflation"), linewidth = 1, linetype = "dashed") +
   scale_color_manual(values = c("Quantified expectation" = okabe_ito[["blue"]], "Realized inflation" = okabe_ito[["vermillion"]])) +
   labs(
-    title = "Inflation Expectations and Realized Inflation",
     x = "Quarter",
     y = "Percentage points",
     color = NULL
@@ -39,7 +38,6 @@ p2 <- ggplot(df2, aes(x = qdate)) +
   scale_fill_manual(values = c("Revision" = okabe_ito[["sky_blue"]])) +
   scale_color_manual(values = c("Next-quarter error" = okabe_ito[["vermillion"]])) +
   labs(
-    title = "Revision-Error Dynamics",
     x = "Quarter",
     y = "Percentage points",
     fill = NULL,
@@ -64,7 +62,6 @@ p3 <- ggplot(df3, aes(x = qdate)) +
     "Salience index (z-score)" = okabe_ito[["black"]]
   )) +
   labs(
-    title = "Uncertainty and Salience States",
     x = "Quarter",
     y = "Standardized units",
     color = NULL

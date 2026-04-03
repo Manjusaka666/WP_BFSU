@@ -24,6 +24,10 @@ end
 
 function tex_escape(x)
     s = string(x)
+    # Keep explicitly provided LaTeX/math strings untouched.
+    if occursin('$', s) || occursin('\\', s) || occursin('{', s)
+        return s
+    end
     replace(s, "_" => "\\_")
 end
 
@@ -359,13 +363,52 @@ function main()
     irf_rows, arr = summarize_irf(acc_shock, vars)
     CSV.write(joinpath(FIG_DIR, "bvar_irf_median.csv"), irf_rows)
 
-    # IRF summary at selected horizons.
-    sel_h = Set([0, 1, 4, 8, 12])
-    irf_sel = filter(row -> row.horizon in sel_h, irf_rows)
-    write_tex_table(irf_sel, joinpath(TAB_DIR, "bvar_irf_summary.tex"),
+    # IRF summary at selected horizons in compact top-field style:
+    # one row per variable, columns by horizon with median [q16, q84].
+    var_tex = Dict(
+        "msi_raw" => raw"$S_t$ (salience index)",
+        "mu_cp" => raw"$\mu_t$ (expected inflation)",
+        "CPI_QoQ_Ann" => raw"$\pi_t$ (realized inflation)",
+        "Ind_Value_Added_YoY" => raw"$y_t$ (industrial output growth)",
+        "epu_qavg" => raw"$\mathrm{EPU}_t$",
+        "gpr_qavg" => raw"$\mathrm{GPR}_t$"
+    )
+    sel_h = [0, 1, 4, 8, 12]
+    irf_wide = DataFrame(variable=String[])
+    for h in sel_h
+        irf_wide[!, Symbol("h$h")] = String[]
+    end
+
+    for v in vars
+        row = DataFrame(variable=[get(var_tex, v, v)])
+        for h in sel_h
+            r = filter(x -> x.variable == v && x.horizon == h, irf_rows)
+            if nrow(r) == 1
+                cell_core = @sprintf("%.3f\\,[%.3f,\\,%.3f]", r.q50[1], r.q16[1], r.q84[1])
+                cell = string(Char(36), cell_core, Char(36))
+            else
+                cell = ""
+            end
+            row[!, Symbol("h$h")] = [cell]
+        end
+        append!(irf_wide, row)
+    end
+
+    rename!(irf_wide, Dict(
+        :h0 => "h = 0",
+        :h1 => "h = 1",
+        :h4 => "h = 4",
+        :h8 => "h = 8",
+        :h12 => "h = 12"
+    ))
+
+    write_tex_table(irf_wide, joinpath(TAB_DIR, "bvar_irf_summary.tex"),
         caption="BVAR impulse responses to identified diagnostic shock",
         label="tab:bvar_irf_summary",
-        notes=["Reported quantiles are across accepted draws after sign restrictions and salience anchoring."])
+        notes=[
+            "Each cell reports posterior median with 68\\% band in brackets (q16, q84).",
+            "No panel splitting is used; horizons are shown directly as multicolumn-style headers."
+        ])
 
     # FEVD from accepted full rotations.
     fevd_med = compute_fevd(acc_full, 1)
@@ -400,26 +443,42 @@ function main()
         label="tab:bvar_sensitivity",
         notes=["Core sign pattern remains under alternative priors and lag order when accepted draws exist."])
 
-    # Plot IRFs.
+    # Plot IRFs: 3x2 layout with bands and cleaner journal styling.
     q16 = mapslices(x -> quantile(x, 0.16), arr; dims=1)
     q50 = mapslices(x -> quantile(x, 0.50), arr; dims=1)
     q84 = mapslices(x -> quantile(x, 0.84), arr; dims=1)
 
     n = length(vars)
-    p_irf = plot(layout=(n, 1), size=(760, 220 * n), legend=false)
+    nrow_layout = Int(ceil(n / 2))
+    p_irf = plot(
+        layout=(nrow_layout, 2),
+        size=(1120, 300 * nrow_layout),
+        legend=false,
+        background_color=:white,
+        foreground_color_subplot=:black
+    )
     horizons = 0:H
     for j in 1:n
         med = vec(q50[1, :, j])
         lo = vec(q16[1, :, j])
         hi = vec(q84[1, :, j])
-        plot!(p_irf[j], horizons, med, color=:steelblue, linewidth=2)
-        plot!(p_irf[j], horizons, lo, color=:gray40, linestyle=:dash, linewidth=1)
-        plot!(p_irf[j], horizons, hi, color=:gray40, linestyle=:dash, linewidth=1)
+        plot!(
+            p_irf[j], horizons, med,
+            color=:steelblue, linewidth=2,
+            ribbon=(med .- lo, hi .- med),
+            fillalpha=0.18, fillcolor=:steelblue
+        )
         hline!(p_irf[j], [0.0], color=:black, linestyle=:dot, linewidth=1)
-        title!(p_irf[j], vars[j])
-        xlabel!(p_irf[j], "h")
-        ylabel!(p_irf[j], "IRF")
+        xlabel!(p_irf[j], "Horizon (quarters)")
+        ylabel!(p_irf[j], get(var_tex, vars[j], vars[j]))
+        plot!(p_irf[j], framestyle=:box)
     end
+
+    # Hide empty subplot when n is odd.
+    if isodd(n)
+        plot!(p_irf[n + 1], axis=nothing, framestyle=:none)
+    end
+
     savefig(p_irf, joinpath(FIG_DIR, "bvar_irf_de_shock.png"))
     savefig(p_irf, joinpath(FIG_DIR, "bvar_irf_de_shock.pdf"))
 

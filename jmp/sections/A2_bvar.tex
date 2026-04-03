@@ -1,14 +1,14 @@
 \section{BVAR with Sign-Restricted Identification}\label{app:bvar}
 
-This appendix reports results from a Bayesian VAR with sign-restricted identification. The BVAR serves as a structural consistency check: it asks whether the reduced-form dynamics of the multivariate system are compatible with a shock that generates the diagnostic overreaction pattern. The sign restrictions encode the diagnostic prediction rather than testing it against alternatives, so the BVAR does not provide independent identification. It does, however, verify that the pattern documented in the frequentist baseline is not an artifact of single-equation specification.
+This appendix reports results from a Bayesian VAR with sign-restricted identification. The BVAR is a structural consistency check: it asks whether the reduced-form dynamics of the multivariate system are compatible with a shock that generates the diagnostic overreaction pattern. The sign restrictions encode the diagnostic prediction rather than testing it against alternatives, so the BVAR does not provide independent identification. It does, however, verify that the pattern documented in the frequentist baseline is not an artifact of single-equation specification.
 
 \subsection{VAR setup}
 
 The five-variable VAR includes inflation expectations ($\mu_t$), realized CPI inflation ($\pi_t$), industrial value-added growth ($IndVA_t$), the EPU index, and the GPR index:
-\[
+\begin{equation*}
   y_t = c + A_1 y_{t-1} + A_2 y_{t-2} + \varepsilon_t^y,
   \qquad \varepsilon_t^y \sim \mathcal{N}(0, \Sigma).
-\]
+\end{equation*}
 I estimate the VAR with a Minnesota prior \citep{Litterman1986} at overall tightness $\lambda = 0.2$. BIC selects two lags given the short sample. Posterior draws of $(A_1, A_2, \Sigma)$ come from the dummy-observation approach, yielding a quasi-conjugate Normal-Inverse-Wishart posterior.
 
 \subsection{Sign restrictions}
@@ -32,7 +32,7 @@ For each of 2,000 posterior draws, I search over random orthogonal rotations (up
 
 Figure~\ref{fig:bvar_irf_appendix} shows median impulse responses with 68\% credible bands for all five variables.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.84\textwidth]{bvar_irf_de_shock.pdf}
 \caption{BVAR impulse responses to the diagnostic expectations

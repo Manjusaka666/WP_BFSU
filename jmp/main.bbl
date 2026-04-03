@@ -19,39 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
-    \entry{Angeletos2018}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=ce2ee51fca046db0bd9dd3b4a6fa24a0}{%
-           family={Angeletos},
-           familyi={A\bibinitperiod},
-           given={George-Marios},
-           giveni={G\bibinithyphendelim M\bibinitperiod}}}%
-        {{hash=abc6b09906000e8a7faffc09a690bbcb}{%
-           family={Lian},
-           familyi={L\bibinitperiod},
-           given={Chen},
-           giveni={C\bibinitperiod}}}%
-      }
-      \strng{namehash}{d4f5a20e5686465ef9f4ef258e5b8f27}
-      \strng{fullhash}{d4f5a20e5686465ef9f4ef258e5b8f27}
-      \strng{fullhashraw}{d4f5a20e5686465ef9f4ef258e5b8f27}
-      \strng{bibnamehash}{d4f5a20e5686465ef9f4ef258e5b8f27}
-      \strng{authorbibnamehash}{d4f5a20e5686465ef9f4ef258e5b8f27}
-      \strng{authornamehash}{d4f5a20e5686465ef9f4ef258e5b8f27}
-      \strng{authorfullhash}{d4f5a20e5686465ef9f4ef258e5b8f27}
-      \strng{authorfullhashraw}{d4f5a20e5686465ef9f4ef258e5b8f27}
-      \field{sortinit}{A}
-      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{American Economic Review}
-      \field{number}{9}
-      \field{title}{Forward guidance without the forward guidance puzzle}
-      \field{volume}{108}
-      \field{year}{2018}
-      \field{pages}{2477\bibrangedash 2512}
-      \range{pages}{36}
-    \endentry
     \entry{Baker2016}{article}{}{}
       \name{author}{3}{}{%
         {{hash=44c1fb654911b2846ca5c9262f750497}{%
@@ -89,47 +56,6 @@
       \field{year}{2016}
       \field{pages}{1593\bibrangedash 1636}
       \range{pages}{44}
-    \endentry
-    \entry{BianchiIlutSaijo2024}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=c1b2db44b96cfcd50ea936948eaa511e}{%
-           family={Bianchi},
-           familyi={B\bibinitperiod},
-           given={Francesco},
-           giveni={F\bibinitperiod}}}%
-        {{hash=c63e223c5e30b1f98a6f56783da988b5}{%
-           family={Ilut},
-           familyi={I\bibinitperiod},
-           given={Cosmin},
-           giveni={C\bibinitperiod}}}%
-        {{hash=212f2c9e11ee3393aebd64e00a3b7040}{%
-           family={Saijo},
-           familyi={S\bibinitperiod},
-           given={Hikaru},
-           giveni={H\bibinitperiod}}}%
-      }
-      \strng{namehash}{f65e70c206661fffb39dc84a62fe68ef}
-      \strng{fullhash}{f65e70c206661fffb39dc84a62fe68ef}
-      \strng{fullhashraw}{f65e70c206661fffb39dc84a62fe68ef}
-      \strng{bibnamehash}{f65e70c206661fffb39dc84a62fe68ef}
-      \strng{authorbibnamehash}{f65e70c206661fffb39dc84a62fe68ef}
-      \strng{authornamehash}{f65e70c206661fffb39dc84a62fe68ef}
-      \strng{authorfullhash}{f65e70c206661fffb39dc84a62fe68ef}
-      \strng{authorfullhashraw}{f65e70c206661fffb39dc84a62fe68ef}
-      \field{sortinit}{B}
-      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{Review of Economic Studies}
-      \field{number}{1}
-      \field{title}{Diagnostic business cycles}
-      \field{volume}{91}
-      \field{year}{2024}
-      \field{pages}{129\bibrangedash 162}
-      \range{pages}{34}
-      \verb{doi}
-      \verb 10.1093/restud/rdad024
-      \endverb
     \endentry
     \entry{Bordalo2018}{article}{}{}
       \name{author}{3}{}{%
@@ -376,72 +302,52 @@
       \field{pages}{2644\bibrangedash 2678}
       \range{pages}{35}
     \endentry
-    \entry{DAutume2024}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=b6d78f908ee72260b0edbae3b2adc02d}{%
-           family={D'Acunto},
-           familyi={D\bibinitperiod},
-           given={Francesco},
-           giveni={F\bibinitperiod}}}%
-        {{hash=8aa18a368bc348e862adc290be119dd3}{%
-           family={Malmendier},
-           familyi={M\bibinitperiod},
-           given={Ulrike},
-           giveni={U\bibinitperiod}}}%
-        {{hash=e9659ef13f1f7bd1fe161b20f30aaefd}{%
-           family={Weber},
-           familyi={W\bibinitperiod},
-           given={Michael},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Elsevier}%
-      }
-      \strng{namehash}{405ba46d2ff700e82b8eba50d6b4ce91}
-      \strng{fullhash}{405ba46d2ff700e82b8eba50d6b4ce91}
-      \strng{fullhashraw}{405ba46d2ff700e82b8eba50d6b4ce91}
-      \strng{bibnamehash}{405ba46d2ff700e82b8eba50d6b4ce91}
-      \strng{authorbibnamehash}{405ba46d2ff700e82b8eba50d6b4ce91}
-      \strng{authornamehash}{405ba46d2ff700e82b8eba50d6b4ce91}
-      \strng{authorfullhash}{405ba46d2ff700e82b8eba50d6b4ce91}
-      \strng{authorfullhashraw}{405ba46d2ff700e82b8eba50d6b4ce91}
-      \field{sortinit}{D}
-      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{Handbook of Economic Expectations}
-      \field{title}{What do the data tell us about inflation expectations?}
-      \field{year}{2023}
-      \field{pages}{133\bibrangedash 161}
-      \range{pages}{29}
-    \endentry
-    \entry{Gabaix2020}{article}{}{}
-      \name{author}{1}{}{%
-        {{hash=b53634e8226ff6b3b6e290047a5cb42c}{%
-           family={Gabaix},
+    \entry{Gan2014}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=5cb0251710e6620e5c264d6c31f054f4}{%
+           family={Gan},
            familyi={G\bibinitperiod},
-           given={Xavier},
-           giveni={X\bibinitperiod}}}%
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+        {{hash=55437985a0a4c7d0c436f174a61d8f0c}{%
+           family={Yin},
+           familyi={Y\bibinitperiod},
+           given={Zhichao},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=eec658e8a898a201071f44da12990749}{%
+           family={Jia},
+           familyi={J\bibinitperiod},
+           given={Nan},
+           giveni={N\bibinitperiod}}}%
+        {{hash=2dfaba43f02a594f43bc7bc1152e76ed}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Shu},
+           giveni={S\bibinitperiod}}}%
+        {{hash=7d0cf29e879c2786639686cd147221ed}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Shuang},
+           giveni={S\bibinitperiod}}}%
       }
-      \strng{namehash}{b53634e8226ff6b3b6e290047a5cb42c}
-      \strng{fullhash}{b53634e8226ff6b3b6e290047a5cb42c}
-      \strng{fullhashraw}{b53634e8226ff6b3b6e290047a5cb42c}
-      \strng{bibnamehash}{b53634e8226ff6b3b6e290047a5cb42c}
-      \strng{authorbibnamehash}{b53634e8226ff6b3b6e290047a5cb42c}
-      \strng{authornamehash}{b53634e8226ff6b3b6e290047a5cb42c}
-      \strng{authorfullhash}{b53634e8226ff6b3b6e290047a5cb42c}
-      \strng{authorfullhashraw}{b53634e8226ff6b3b6e290047a5cb42c}
+      \strng{namehash}{117de37261e47a0daebaadceddee674a}
+      \strng{fullhash}{bc49759bb9380b933f96c29945158df1}
+      \strng{fullhashraw}{bc49759bb9380b933f96c29945158df1}
+      \strng{bibnamehash}{117de37261e47a0daebaadceddee674a}
+      \strng{authorbibnamehash}{117de37261e47a0daebaadceddee674a}
+      \strng{authornamehash}{117de37261e47a0daebaadceddee674a}
+      \strng{authorfullhash}{bc49759bb9380b933f96c29945158df1}
+      \strng{authorfullhashraw}{bc49759bb9380b933f96c29945158df1}
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{author}
-      \field{journaltitle}{American Economic Review}
-      \field{number}{8}
-      \field{title}{A behavioral {N}ew {K}eynesian model}
-      \field{volume}{110}
-      \field{year}{2020}
-      \field{pages}{2271\bibrangedash 2327}
-      \range{pages}{57}
+      \field{journaltitle}{Springer}
+      \field{title}{Data You Need to Know About {China}: Research Report of {China} Household Finance Survey}
+      \field{year}{2014}
+      \verb{doi}
+      \verb 10.1007/978-3-642-38151-5
+      \endverb
     \endentry
     \entry{Gennaioli2010}{article}{}{}
       \name{author}{2}{}{%
@@ -475,34 +381,6 @@
       \field{year}{2010}
       \field{pages}{1399\bibrangedash 1433}
       \range{pages}{35}
-    \endentry
-    \entry{Jorda2005}{article}{}{}
-      \name{author}{1}{}{%
-        {{hash=3e5c33a3778b8b654ea5cbde29d38d07}{%
-           family={Jordà},
-           familyi={J\bibinitperiod},
-           given={Òscar},
-           giveni={Ò\bibinitperiod}}}%
-      }
-      \strng{namehash}{3e5c33a3778b8b654ea5cbde29d38d07}
-      \strng{fullhash}{3e5c33a3778b8b654ea5cbde29d38d07}
-      \strng{fullhashraw}{3e5c33a3778b8b654ea5cbde29d38d07}
-      \strng{bibnamehash}{3e5c33a3778b8b654ea5cbde29d38d07}
-      \strng{authorbibnamehash}{3e5c33a3778b8b654ea5cbde29d38d07}
-      \strng{authornamehash}{3e5c33a3778b8b654ea5cbde29d38d07}
-      \strng{authorfullhash}{3e5c33a3778b8b654ea5cbde29d38d07}
-      \strng{authorfullhashraw}{3e5c33a3778b8b654ea5cbde29d38d07}
-      \field{sortinit}{J}
-      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{American Economic Review}
-      \field{number}{1}
-      \field{title}{Estimation and inference of impulse responses by local projections}
-      \field{volume}{95}
-      \field{year}{2005}
-      \field{pages}{161\bibrangedash 182}
-      \range{pages}{22}
     \endentry
     \entry{Kahneman1972}{article}{}{}
       \name{author}{2}{}{%
@@ -565,175 +443,6 @@
       \field{pages}{25\bibrangedash 38}
       \range{pages}{14}
     \endentry
-    \entry{Lusardi2014}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=ba5a24c936886ef3d4455e5ebacb53f5}{%
-           family={Lusardi},
-           familyi={L\bibinitperiod},
-           given={Annamaria},
-           giveni={A\bibinitperiod}}}%
-        {{hash=0ee1555f2d719e4fe036aeeb269697aa}{%
-           family={Mitchell},
-           familyi={M\bibinitperiod},
-           given={Olivia\bibnamedelima S.},
-           giveni={O\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-      }
-      \strng{namehash}{10996b2eb34f1c22e4f4a8dda324c72d}
-      \strng{fullhash}{10996b2eb34f1c22e4f4a8dda324c72d}
-      \strng{fullhashraw}{10996b2eb34f1c22e4f4a8dda324c72d}
-      \strng{bibnamehash}{10996b2eb34f1c22e4f4a8dda324c72d}
-      \strng{authorbibnamehash}{10996b2eb34f1c22e4f4a8dda324c72d}
-      \strng{authornamehash}{10996b2eb34f1c22e4f4a8dda324c72d}
-      \strng{authorfullhash}{10996b2eb34f1c22e4f4a8dda324c72d}
-      \strng{authorfullhashraw}{10996b2eb34f1c22e4f4a8dda324c72d}
-      \field{sortinit}{L}
-      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{Journal of Economic Literature}
-      \field{number}{1}
-      \field{title}{The economic importance of financial literacy: Theory and evidence}
-      \field{volume}{52}
-      \field{year}{2014}
-      \field{pages}{5\bibrangedash 44}
-      \range{pages}{40}
-    \endentry
-    \entry{Mackowiak2009}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=8ad7f8a8b8882e21e0aec9e248685221}{%
-           family={Maćkowiak},
-           familyi={M\bibinitperiod},
-           given={Bartosz},
-           giveni={B\bibinitperiod}}}%
-        {{hash=1bbb7d40c56850dfed1e9ed6faeb788c}{%
-           family={Wiederholt},
-           familyi={W\bibinitperiod},
-           given={Mirko},
-           giveni={M\bibinitperiod}}}%
-      }
-      \strng{namehash}{0774dba26463f8f82b6c3e9eb58bd799}
-      \strng{fullhash}{0774dba26463f8f82b6c3e9eb58bd799}
-      \strng{fullhashraw}{0774dba26463f8f82b6c3e9eb58bd799}
-      \strng{bibnamehash}{0774dba26463f8f82b6c3e9eb58bd799}
-      \strng{authorbibnamehash}{0774dba26463f8f82b6c3e9eb58bd799}
-      \strng{authornamehash}{0774dba26463f8f82b6c3e9eb58bd799}
-      \strng{authorfullhash}{0774dba26463f8f82b6c3e9eb58bd799}
-      \strng{authorfullhashraw}{0774dba26463f8f82b6c3e9eb58bd799}
-      \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{American Economic Review}
-      \field{number}{3}
-      \field{title}{Optimal sticky prices under rational inattention}
-      \field{volume}{99}
-      \field{year}{2009}
-      \field{pages}{769\bibrangedash 803}
-      \range{pages}{35}
-    \endentry
-    \entry{Malmendier2016}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=8aa18a368bc348e862adc290be119dd3}{%
-           family={Malmendier},
-           familyi={M\bibinitperiod},
-           given={Ulrike},
-           giveni={U\bibinitperiod}}}%
-        {{hash=3e3b96d363a3296b8845dc3004816b5a}{%
-           family={Nagel},
-           familyi={N\bibinitperiod},
-           given={Stefan},
-           giveni={S\bibinitperiod}}}%
-      }
-      \strng{namehash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
-      \strng{fullhash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
-      \strng{fullhashraw}{8c50e2a471f324b8fa0ebc49a51f5ee3}
-      \strng{bibnamehash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
-      \strng{authorbibnamehash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
-      \strng{authornamehash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
-      \strng{authorfullhash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
-      \strng{authorfullhashraw}{8c50e2a471f324b8fa0ebc49a51f5ee3}
-      \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{The Quarterly Journal of Economics}
-      \field{number}{1}
-      \field{title}{Learning from inflation experiences}
-      \field{volume}{131}
-      \field{year}{2016}
-      \field{pages}{53\bibrangedash 87}
-      \range{pages}{35}
-    \endentry
-    \entry{Mankiw2002}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=474cb51282bc298228df113afdfd755f}{%
-           family={Mankiw},
-           familyi={M\bibinitperiod},
-           given={N.\bibnamedelimi Gregory},
-           giveni={N\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
-        {{hash=e01ab5989b7c5a875443a0ab19f121e4}{%
-           family={Reis},
-           familyi={R\bibinitperiod},
-           given={Ricardo},
-           giveni={R\bibinitperiod}}}%
-      }
-      \strng{namehash}{a48613d09ff66004f4f5bd31b426f63a}
-      \strng{fullhash}{a48613d09ff66004f4f5bd31b426f63a}
-      \strng{fullhashraw}{a48613d09ff66004f4f5bd31b426f63a}
-      \strng{bibnamehash}{a48613d09ff66004f4f5bd31b426f63a}
-      \strng{authorbibnamehash}{a48613d09ff66004f4f5bd31b426f63a}
-      \strng{authornamehash}{a48613d09ff66004f4f5bd31b426f63a}
-      \strng{authorfullhash}{a48613d09ff66004f4f5bd31b426f63a}
-      \strng{authorfullhashraw}{a48613d09ff66004f4f5bd31b426f63a}
-      \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{The Quarterly Journal of Economics}
-      \field{number}{4}
-      \field{title}{Sticky information versus sticky prices: a proposal to replace the {N}ew {K}eynesian {P}hillips {C}urve}
-      \field{volume}{117}
-      \field{year}{2002}
-      \field{pages}{1295\bibrangedash 1328}
-      \range{pages}{34}
-    \endentry
-    \entry{Mankiw2003}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=474cb51282bc298228df113afdfd755f}{%
-           family={Mankiw},
-           familyi={M\bibinitperiod},
-           given={N.\bibnamedelimi Gregory},
-           giveni={N\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
-        {{hash=e01ab5989b7c5a875443a0ab19f121e4}{%
-           family={Reis},
-           familyi={R\bibinitperiod},
-           given={Ricardo},
-           giveni={R\bibinitperiod}}}%
-        {{hash=22e89001d0a128a8b110c57c90e2c403}{%
-           family={Wolfers},
-           familyi={W\bibinitperiod},
-           given={Justin},
-           giveni={J\bibinitperiod}}}%
-      }
-      \strng{namehash}{f0dd3e0b81dc835327ef24354cba92e7}
-      \strng{fullhash}{f0dd3e0b81dc835327ef24354cba92e7}
-      \strng{fullhashraw}{f0dd3e0b81dc835327ef24354cba92e7}
-      \strng{bibnamehash}{f0dd3e0b81dc835327ef24354cba92e7}
-      \strng{authorbibnamehash}{f0dd3e0b81dc835327ef24354cba92e7}
-      \strng{authornamehash}{f0dd3e0b81dc835327ef24354cba92e7}
-      \strng{authorfullhash}{f0dd3e0b81dc835327ef24354cba92e7}
-      \strng{authorfullhashraw}{f0dd3e0b81dc835327ef24354cba92e7}
-      \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{NBER Macroeconomics Annual}
-      \field{title}{Disagreement about inflation expectations}
-      \field{volume}{18}
-      \field{year}{2003}
-      \field{pages}{209\bibrangedash 248}
-      \range{pages}{40}
-    \endentry
     \entry{Oster2019}{article}{}{}
       \name{author}{1}{}{%
         {{hash=f5272ac5d8e6a7827453045453181571}{%
@@ -765,34 +474,6 @@
       \verb 10.1080/07350015.2016.1227711
       \endverb
     \endentry
-    \entry{Reis2006}{article}{}{}
-      \name{author}{1}{}{%
-        {{hash=e01ab5989b7c5a875443a0ab19f121e4}{%
-           family={Reis},
-           familyi={R\bibinitperiod},
-           given={Ricardo},
-           giveni={R\bibinitperiod}}}%
-      }
-      \strng{namehash}{e01ab5989b7c5a875443a0ab19f121e4}
-      \strng{fullhash}{e01ab5989b7c5a875443a0ab19f121e4}
-      \strng{fullhashraw}{e01ab5989b7c5a875443a0ab19f121e4}
-      \strng{bibnamehash}{e01ab5989b7c5a875443a0ab19f121e4}
-      \strng{authorbibnamehash}{e01ab5989b7c5a875443a0ab19f121e4}
-      \strng{authornamehash}{e01ab5989b7c5a875443a0ab19f121e4}
-      \strng{authorfullhash}{e01ab5989b7c5a875443a0ab19f121e4}
-      \strng{authorfullhashraw}{e01ab5989b7c5a875443a0ab19f121e4}
-      \field{sortinit}{R}
-      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{Journal of Monetary Economics}
-      \field{number}{8}
-      \field{title}{Inattentive consumers}
-      \field{volume}{53}
-      \field{year}{2006}
-      \field{pages}{1761\bibrangedash 1800}
-      \range{pages}{40}
-    \endentry
     \entry{Sims2003}{article}{}{}
       \name{author}{1}{}{%
         {{hash=6ea5ed711258737020e21f785822b8e5}{%
@@ -820,40 +501,6 @@
       \field{year}{2003}
       \field{pages}{665\bibrangedash 690}
       \range{pages}{26}
-    \endentry
-    \entry{Stock2005}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=2d01c3b46f4061430cc9eb2a1f6408a4}{%
-           family={Stock},
-           familyi={S\bibinitperiod},
-           given={James\bibnamedelima H.},
-           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
-        {{hash=e9a1907a19f18dcbfb0a2e56ce35939c}{%
-           family={Yogo},
-           familyi={Y\bibinitperiod},
-           given={Motohiro},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Cambridge University Press}%
-      }
-      \strng{namehash}{d2afa551707a38446f1e5d11ef0e997b}
-      \strng{fullhash}{d2afa551707a38446f1e5d11ef0e997b}
-      \strng{fullhashraw}{d2afa551707a38446f1e5d11ef0e997b}
-      \strng{bibnamehash}{d2afa551707a38446f1e5d11ef0e997b}
-      \strng{authorbibnamehash}{d2afa551707a38446f1e5d11ef0e997b}
-      \strng{authornamehash}{d2afa551707a38446f1e5d11ef0e997b}
-      \strng{authorfullhash}{d2afa551707a38446f1e5d11ef0e997b}
-      \strng{authorfullhashraw}{d2afa551707a38446f1e5d11ef0e997b}
-      \field{sortinit}{S}
-      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{Identification and Inference for Econometric Models}
-      \field{title}{Testing for weak instruments in linear {IV} regression}
-      \field{year}{2005}
-      \field{pages}{80\bibrangedash 108}
-      \range{pages}{29}
     \endentry
     \entry{Xie2014}{article}{}{}
       \name{author}{2}{}{%

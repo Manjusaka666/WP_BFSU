@@ -1,11 +1,11 @@
 \begin{table}[!htbp]
 \centering
-\caption{MCMC diagnostics for state-space model}
-\label{tab:mcmc_diagnostics}
 \begin{threeparttable}
+ \caption{MCMC Diagnostics for the State-Space Model}
+ \label{tab:mcmc_diagnostics}
 \begin{tabular}{lcc}
 \toprule
-parameter & rhat & ess \\
+Parameter & $\widehat{R}$ & ESS \\
 \midrule
 alpha & 1.000 & 1385.291 \\
 gamma\_Food\_CPI\_YoY\_qavg & 1.000 & 1439.165 \\
@@ -13,14 +13,16 @@ gamma\_M2\_YoY & 1.000 & 1594.724 \\
 gamma\_PPI\_YoY\_rate & 1.000 & 1520.815 \\
 d\_epu\_qavg & 1.001 & 561.551 \\
 d\_gpr\_qavg & 1.006 & 63.447 \\
+\addlinespace
 R & 1.000 & 1294.069 \\
 Q & 1.001 & 201.251 \\
+\addlinespace
 beta\_draw\_mean & 1.000 & 896.728 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item Rhat close to 1 and large ESS indicate stable posterior simulation.
+\item \textit{Notes:} $\widehat{R}$ values close to 1 and large ESS indicate stable posterior simulation.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

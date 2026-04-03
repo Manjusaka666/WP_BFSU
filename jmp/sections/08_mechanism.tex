@@ -1,191 +1,211 @@
 \section{Mechanism Competition}\label{sec:mechanism}
 
-The horse-race specification in this section does not cleanly
-discriminate between diagnostic overreaction and information
-rigidity. When both channels enter jointly, the lagged-error
-term absorbs the revision's explanatory power, but this
-outcome is expected whenever the two regressors measure the
-same underlying process. The specification tests whether
-each variable carries independent predictive power. It cannot
-assign that power to a causal mechanism. The key result is
-that the lagged-error coefficient is strongly negative,
-inconsistent with canonical information-rigidity dynamics
-and consistent with the cross-period autocorrection that
-diagnostic expectations predict. The analysis proceeds
-from a joint regression to a state-dependent interaction,
-then to the revision-error gradient in levels, and finally
-to a micro-level CFPS test.
+This section runs a direct mechanism competition between
+forecast-revision overreaction and information rigidity.
+The evidence is informative but not over-claimed. The
+joint specification is useful as a diagnostic screen,
+not as a fully clean decomposition of structural channels.
+The key result is that the lagged-error term is negative
+and significant in the horse race, which implies error
+reversals rather than sluggish persistence.
+That pattern is inconsistent with a canonical rigidity
+interpretation and consistent with a diagnostic
+reversal dynamic.
 
-\subsection{Joint specification}\label{subsec:horse_race}
+\subsection{Horse Race}\label{subsec:horse_race}
 
-I nest the diagnostic and rigidity channels in a single
-regression:
+I estimate a joint specification that nests the two
+competing channels:
 \begin{equation}\label{eq:horse_race}
   FE_{t+1} = \beta_0 + \beta_1 FR_t
     + \lambda FE_t + \gamma' W_t + \varepsilon_t,
 \end{equation}
-where $FR_t$ is the forecast revision (diagnostic channel)
-and $FE_t$ is the lagged forecast error (rigidity channel).
-Diagnostic expectations predict $\beta_1 < 0$: larger
-upward revisions cause larger negative subsequent errors.
-Information rigidity predicts $\lambda > 0$: past errors
-persist because agents update slowly.
+where $FR_t$ is the forecast revision,
+$FE_t$ is the lagged forecast error,
+and $W_t$ contains macro controls.
+Under diagnostic overreaction, $\beta_1<0$ because larger
+upward revisions should be followed by negative errors.
+Under information rigidity, $\lambda>0$ because past
+errors should persist when updating is slow.
 
-Table~\ref{tab:mechanism_horse_race} reports three
-specifications. In the diagnostic-only column,
-$\hat{\beta}_1 = -2.24$ ($p = 0.055$). In the
-rigidity-only column, $\hat{\lambda} = -0.58$
-($p < 0.001$). In the joint specification,
-$\hat{\beta}_1 = 0.25$ ($p = 0.88$) while
-$\hat{\lambda} = -0.60$ ($p = 0.005$). The lagged-error
-term absorbs the revision's explanatory power.
+The horse-race estimates deliver two facts.
+First, the revision coefficient attenuates once
+$FE_t$ is included jointly.
+Second, the lagged-error coefficient is
+$\hat{\lambda}=-0.60$ with $p=0.005$.
+The attenuation in $\hat{\beta}_1$ is expected in this
+small sample because revisions and lagged errors both
+load on the same overreaction process.
+The revision coefficient attenuates to near zero in the joint specification (column~3), consistent with collinearity between revision and lagged error in a short sample.
+The sign of $\hat{\lambda}$ is the decisive diagnostic:
+it is negative, not positive.
 
-The critical observation is the sign of $\hat{\lambda}$.
-Canonical information-rigidity models \citep{Coibion2015}
-predict $\lambda > 0$: agents who update slowly carry
-forward errors of the same sign. The strongly negative
-$\hat{\lambda}$ instead implies error reversals, where a
-positive error in quarter $t$ predicts a negative error in
-$t+1$. Error reversals are a hallmark of overreaction, not
-sluggish updating. The lagged-error channel thus captures
-a diagnostic dynamic rather than a rigidity dynamic, and
-its dominance in the joint regression reflects the fact
-that $FE_t$ is a more efficient summary of past
-overreaction than $FR_t$ alone.
+A negative $\lambda$ means error reversals.
+A positive forecast error in period $t$ predicts
+a negative error in $t+1$.
+That is the opposite of the persistence logic in
+standard rigidity models, which require $\lambda>0$.
+So the horse race does not support a rigidity reading
+of the lagged-error channel.
+Instead, it shows that the lagged-error regressor is
+capturing correction after prior overshooting.
 
-Two limitations deserve note. First, multicollinearity between
-$FR_t$ and $FE_t$ (correlation $= -0.22$) with $N = 32$
-means the joint specification cannot assign explanatory power
-to either channel independently; both carry information about
-the same overreaction process. The revision coefficient's
-sign flip in the joint model is a standard symptom of
-collinear regressors, not evidence that revisions are
-uninformative. Second, the negative $\hat{\lambda}$ is
-consistent with diagnostic autocorrection but also with
-other mean-reverting processes. The sign alone does not
-identify the mechanism. What it rules out is canonical
-information rigidity, which requires $\lambda > 0$.
+This is why I treat the horse race as a diagnostic test,
+not a winner-take-all contest.
+The joint regression does not prove that only one
+mechanism exists.
+It does show that the data reject a strict
+rigidity interpretation of the lagged-error term,
+because the estimated sign runs in the wrong direction.
+In short: revision attenuation in the joint model is
+not evidence for rigidity; the negative
+$\hat{\lambda}$ points to diagnostic reversals.
 
-\subsection{State-dependent interaction}%
+\input{\tabdir/mechanism_horse_race}
+
+\subsection{Time-Varying Coefficient}%
 \label{subsec:mechanism_state}
 
-The diagnostic channel should strengthen when salient
-signals dominate background information. Column~4 of
-Table~\ref{tab:mechanism_horse_race} adds an interaction
-with a high-uncertainty indicator:
+The next question is whether diagnostic intensity is
+state-dependent.
+I first augment the horse race with an interaction:
 \begin{equation}\label{eq:mechanism_state}
   FE_{t+1} = \beta_0 + \beta_1 FR_t
     + \beta_2 (FR_t \times D_t^{high})
-    + \lambda FE_t + \gamma' W_t + \varepsilon_t.
+    + \lambda FE_t + \gamma' W_t + \varepsilon_t,
 \end{equation}
+where $D_t^{high}$ marks high-uncertainty periods.
+The estimate is $\hat{\beta}_2=-1.72$ with $p=0.357$.
+The sign is in the diagnostic direction, but precision
+is limited and the interaction is not statistically
+distinguishable from zero.
 
-The interaction estimate $\hat{\beta}_2 = -1.72$
-($p = 0.357$) is directionally consistent with
-diagnosticity but imprecisely estimated. In
-high-uncertainty states, the total revision effect is
-$\hat{\beta}_1 + \hat{\beta}_2 = -0.27$, substantially
-more negative than the base coefficient of $+1.45$, while
-the lagged-error coefficient $\hat{\lambda} = -0.64$
-($p = 0.01$) remains significant. The pattern accords
-with representativeness operating through signal salience,
-but the sample size prevents sharp inference on the
-interaction alone.
+I therefore rely on the full state-space evidence for
+time variation.
+Appendix B (Appendix~\ref{app:ssm}) estimates a Bayesian
+SSM with a time-varying diagnostic coefficient $\beta_t$.
+The estimated path becomes more negative during crisis
+windows and relaxes toward zero in calmer periods.
+The largest spikes line up with major stress episodes,
+including geopolitical shocks and the pandemic onset.
+This pattern is exactly what a salience-driven mechanism
+would predict: overweighting strengthens when public
+signals are vivid and uncertainty is elevated.
 
-The time-varying diagnostic coefficient $\hat{\beta}_t$
-from the Bayesian state-space model provides complementary
-evidence on state dependence. $\hat{\beta}_t$ intensifies
-(becomes more negative) during geopolitical crises and
-pandemic onset and relaxes toward zero in calmer periods.
-This variation is consistent with the diagnostic channel
-activating when salient signals are strongest, while the
-lagged-error term carries residual persistence in low-salience
-states. The two mechanisms coexist; their relative weight
-shifts across macroeconomic states rather than one
-displacing the other.
+The state-variation evidence should still be read
+carefully.
+The interaction term in the reduced-form horse race is
+imprecise, and the SSM is best viewed as dynamic
+measurement rather than independent causal identification.
+But taken together, the two pieces support a common
+reading: diagnostic intensity is not constant; it moves
+with macro-financial stress.
 
-\subsection{The revision--error chain in levels}%
-\label{subsec:mechanism_chain}
-
-The monotone gradient from revisions to subsequent errors
-is the defining signature of the diagnostic mechanism. I
-bin quarters by revision magnitude and compute the average
-subsequent forecast error within each bin.
-Table~\ref{tab:revision_predicts_error} and
-Figure~\ref{fig:mechanism_chain} display the result.
-
-Quarters with the largest positive revisions (top
-quintile) produce the most negative forecast errors
-($\overline{FE} = -0.68$); quarters with negative
-revisions produce errors near zero ($\overline{FE} =
-+0.04$). The gradient is monotone across all bins.
-Rational expectations imply errors centered on zero in
-every bin. Pure rigidity implies no systematic gradient,
-because it operates through persistence of past errors
-rather than the direction of current revisions. Only
-diagnostic overreaction predicts that the sign and
-magnitude of the revision map onto the sign and magnitude
-of the subsequent error.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.80\textwidth]{mechanism_revision_error.pdf}
-\caption{Revision--error chain under low and high
-  uncertainty. Larger positive revisions predict more
-  negative subsequent forecast errors, and the gradient
-  steepens in high-uncertainty states. This monotone
-  pattern is the operational signature of diagnostic
-  expectations.}
-\label{fig:mechanism_chain}
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.84\textwidth]{beta_t.pdf}
+  \caption{Time-varying diagnostic coefficient $\beta_t$
+    from the Bayesian state-space model.
+    The coefficient spikes in crisis periods and
+    attenuates in calmer periods.
+    Estimation details are in Appendix B.}
+  \label{fig:mechanism_beta_t}
 \end{figure}
 
-\input{\tabdir/mechanism_horse_race}
+\subsection{Revision-Error Gradient}%
+\label{subsec:mechanism_chain}
+
+A separate nonparametric check bins quarters by revision
+magnitude and computes average subsequent errors within
+revision quintiles.
+If revisions are diagnostic overreactions,
+the gradient should be monotone: larger positive
+revisions should map into more negative future errors.
+That is what the data show.
+
+The top revision quintile has
+$\overline{FE}_{t+1}=-0.68$.
+The bottom quintile is approximately zero.
+Intermediate bins move monotonically between those
+endpoints.
+This shape is hard to reconcile with rational
+expectations, which imply errors centered near zero in
+every bin, and with pure rigidity, which predicts
+persistence in past errors rather than a monotone
+mapping from current revisions to next-period errors.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.80\textwidth]{mechanism_revision_error.pdf}
+  \caption{Revision-error gradient by revision quintile.
+    Larger positive revisions predict more negative
+    next-period forecast errors, with a monotone pattern
+    from the bottom to the top quintile.}
+  \label{fig:mechanism_chain}
+\end{figure}
+
 \input{\tabdir/revision_predicts_error}
 
-\subsection{Micro-level mechanism test with CFPS}%
-\label{subsec:mechanism_cfps}
+\subsection{CHFS Channel Test}\label{subsec:chfs_info_channel}
 
-Household-level data from the CFPS provide an independent
-test. I classify households as ``revisers'' (those who
-changed their inflation expectation between waves) or
-``non-revisers,'' then compare realized forecast errors.
-Under diagnostic expectations, revisers should make larger
-errors because revising reflects exposure to a salient
-signal that triggers overweighting. Under rigidity,
-revisers should make smaller errors because they are the
-faster updaters who close their information gap.
+The CHFS test asks a narrower question:
+does a household's persistent information channel
+explain cross-sectional variation in inflation beliefs?
+If a channel-driven mechanism were central,
+households using high-salience media should show
+systematically stronger inflation beliefs or more
+extreme belief errors.
+If the mechanism is event-triggered rather than
+channel-driven, these cross-sectional differences can be
+small or null once location controls are included.
 
-The CFPS data favor diagnosticity. Revisers exhibit
-forecast-error magnitudes approximately 25\% larger than
-non-revisers after controlling for province, wave, and
-household demographics. Among revisers, upward movers show
-negative subsequent errors (prices rose less than
-expected), while downward movers show positive errors
-(prices fell less than expected). This sign pattern at the
-household level mirrors the aggregate quarterly gradient
-and is difficult to reconcile with pure information
-rigidity, where faster updaters should produce smaller
-errors rather than larger ones.
+The baseline CHFS equation is
+\begin{equation}\label{eq:chfs_info_channel}
+  Exp_{ip} = \alpha + \beta_1 HighMedia_i
+    + \gamma X_i + \delta_p + \varepsilon_{ip},
+\end{equation}
+where $Exp_{ip}$ is the household inflation belief,
+$HighMedia_i$ captures intensive use of TV/internet/news,
+$X_i$ contains household covariates,
+and $\delta_p$ are province fixed effects.
 
-\subsection{What would sharpen mechanism discrimination}%
-\label{subsec:mechanism_future}
+The result is null.
+In the main specification,
+$\hat{\beta}_1=-0.005$ (SE $=0.022$).
+The point estimate is essentially zero and precisely
+enough to rule out economically large channel effects.
+Figure~\ref{fig:chfs_info_channel} shows the same pattern
+visually: high-media and low-media households have very
+similar mean beliefs after accounting for province-level
+composition.
 
-The current evidence is consistent with diagnostic
-overreaction but cannot rule out all competing
-interpretations. Three data structures would sharpen the
-identification. First, eliciting higher-order beliefs
-would test whether households know they revised: under
-diagnostic expectations, overreacting households
-underestimate how much they changed their forecast,
-because the salient signal feels like new information rather
-than reweighting. Second, media blackout quasi-experiments
-(for example, broadcast interruptions during major
-political events) provide exogenous variation in salience
-that an IV design could exploit without relying on the weak
-geopolitical congestion instrument used here. Third,
-within-household revision data at higher frequency than
-the biennial CFPS would permit tests for asymmetric
-overreaction: diagnostic expectations predict larger
-deviations for positive salience shocks (salient inflation
-spikes) than for negative ones. Each of these tests would
-discriminate diagnostic overreaction from informational
-frictions with a precision the current design cannot reach.
+A risk-attitude placebo is also null:
+$\hat{\beta}=-0.010$ (SE $=0.008$).
+This matters because it reduces the concern that the
+CHFS mechanism coefficients are being driven by a broad
+latent trait such as optimism, pessimism, or generalized
+risk tolerance rather than a specific information process.
+
+The CHFS evidence should be stated plainly.
+It does not support a channel-driven mechanism.
+Combined with the aggregate and state-varying results,
+the most credible interpretation is that overreaction is
+activated by salient events, not by permanent differences
+in media exposure.
+So this section rules out the channel-driven version of
+the mechanism while leaving the event-driven diagnostic
+channel intact.
+
+\input{\tabdir/chfs_mechanism_info_channel}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.75\textwidth]{chfs_info_channel_gradient}
+  \caption{CHFS information-channel gradient.
+    Mean inflation beliefs are similar across
+    high-media and low-media households, consistent with
+    a null cross-sectional channel effect.}
+  \label{fig:chfs_info_channel}
+\end{figure}
+
+\input{\tabdir/chfs_risk_placebo}

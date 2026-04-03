@@ -30,7 +30,13 @@ run_lp <- function(data, outcome, horizons = 0:8, iv = FALSE, label = "") {
     req <- c(y_name, "FR_cp", if (iv) "media_congestion_iv", controls)
     dt <- dt[complete.cases(dt[, ..req])]
     if (nrow(dt) < 20) {
-      return(data.table(h = h, beta = NA_real_, se = NA_real_, ci_low = NA_real_, ci_high = NA_real_, n = nrow(dt), model = label))
+      return(data.table(
+        h = h, beta = NA_real_, se = NA_real_,
+        ci_low = NA_real_, ci_high = NA_real_,
+        ci_low90 = NA_real_, ci_high90 = NA_real_,
+        ci_low95 = NA_real_, ci_high95 = NA_real_,
+        n = nrow(dt), model = label
+      ))
     }
 
     if (!iv) {
@@ -48,7 +54,17 @@ run_lp <- function(data, outcome, horizons = 0:8, iv = FALSE, label = "") {
       se <- ct[row, "Std. Error"]
     }
 
-    data.table(h = h, beta = beta, se = se, ci_low = beta - 1.96 * se, ci_high = beta + 1.96 * se, n = nrow(dt), model = label)
+    ci_low90 <- beta - 1.645 * se
+    ci_high90 <- beta + 1.645 * se
+    ci_low95 <- beta - 1.96 * se
+    ci_high95 <- beta + 1.96 * se
+    data.table(
+      h = h, beta = beta, se = se,
+      ci_low = ci_low90, ci_high = ci_high90,
+      ci_low90 = ci_low90, ci_high90 = ci_high90,
+      ci_low95 = ci_low95, ci_high95 = ci_high95,
+      n = nrow(dt), model = label
+    )
   }))
 
   out
@@ -81,22 +97,22 @@ write_booktabs_table(
   escape = FALSE
 )
 
-plot_lp <- function(df, title, file_stub) {
+plot_lp <- function(df, file_stub) {
   p <- ggplot(df, aes(x = h, y = beta, color = model, fill = model)) +
     geom_hline(yintercept = 0, color = okabe_ito[["black"]], linetype = "dashed") +
-    geom_ribbon(aes(ymin = ci_low, ymax = ci_high), alpha = 0.16, color = NA) +
+    geom_ribbon(aes(ymin = ci_low90, ymax = ci_high90), alpha = 0.20, color = NA) +
     geom_line(linewidth = 1.1) +
     geom_point(size = 2) +
     scale_color_manual(values = c("OLS LP" = okabe_ito[["blue"]], "IV LP" = okabe_ito[["vermillion"]])) +
     scale_fill_manual(values = c("OLS LP" = okabe_ito[["sky_blue"]], "IV LP" = okabe_ito[["orange"]])) +
-    labs(title = title, x = "Horizon (quarters)", y = "Response coefficient") +
+    labs(x = "Horizon (quarters)", y = "Response coefficient", color = NULL, fill = NULL) +
     theme_pub()
 
-  save_plot_pair(p, file.path(project_paths$figures, file_stub), width = 7.8, height = 5)
+  save_plot_pair(p, file.path(project_paths$figures, file_stub), width = 6.5, height = 5)
 }
 
-plot_lp(lp_all[outcome == "Forecast error"], "Local Projections: Forecast Error Response", "lp_forecast_error")
-plot_lp(lp_all[outcome == "Realized inflation"], "Local Projections: Realized Inflation Response", "lp_inflation")
+plot_lp(lp_all[outcome == "Forecast error"], "lp_forecast_error")
+plot_lp(lp_all[outcome == "Realized inflation"], "lp_inflation")
 
 cat("[60] Local projection module complete.\n")
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # 81_regenerate_figures.R
-# Regenerate ALL main-text figures with AER/QJE publication theme.
+# Regenerate ALL main-text figures with JPE-Macro publication theme.
 # Fixes: LP IV-dominated scale, beta_t clipped title, axis labels,
 #        line weights, font sizes, legend placement.
 
@@ -21,11 +21,11 @@ panel[, q_order := NULL]
 panel[, qdate := as.Date(parse_quarter(quarter), frac = 1)]
 
 # ── Colour palette (Okabe-Ito, colour-blind safe) ──────────────
-col_blue   <- "#0072B2"
-col_red    <- "#D55E00"
-col_sky    <- "#56B4E9"
-col_orange <- "#E69F00"
-col_grey   <- "grey50"
+col_blue   <- okabe_ito[["blue"]]
+col_red    <- okabe_ito[["vermillion"]]
+col_sky    <- okabe_ito[["sky_blue"]]
+col_orange <- okabe_ito[["orange"]]
+col_black  <- okabe_ito[["black"]]
 
 # ================================================================
 # Figure 1: Expectations vs realized inflation
@@ -41,7 +41,7 @@ p1 <- ggplot(df1, aes(x = qdate)) +
   scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
   labs(x = NULL, y = "Percentage points", colour = NULL) +
   theme_pub()
-save_plot_pair(p1, file.path(project_paths$figures, "expectations_vs_realized"))
+save_plot_pair(p1, file.path(project_paths$figures, "expectations_vs_realized"), width = 8.2)
 cat("  [1] expectations_vs_realized\n")
 
 # ================================================================
@@ -58,7 +58,7 @@ p2 <- ggplot(df2, aes(x = qdate)) +
   scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
   labs(x = NULL, y = "Percentage points", fill = NULL, colour = NULL) +
   theme_pub()
-save_plot_pair(p2, file.path(project_paths$figures, "revision_error_dynamics"))
+save_plot_pair(p2, file.path(project_paths$figures, "revision_error_dynamics"), width = 8.2)
 cat("  [2] revision_error_dynamics\n")
 
 # ================================================================
@@ -79,7 +79,7 @@ p3 <- ggplot(df3, aes(x = qdate)) +
   scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
   labs(x = NULL, y = "Standardised z-score", colour = NULL) +
   theme_pub()
-save_plot_pair(p3, file.path(project_paths$figures, "uncertainty_salience_states"))
+save_plot_pair(p3, file.path(project_paths$figures, "uncertainty_salience_states"), width = 8.2)
 cat("  [3] uncertainty_salience_states\n")
 
 # ================================================================
@@ -88,31 +88,45 @@ cat("  [3] uncertainty_salience_states\n")
 lp_file <- file.path(project_paths$robustness, "lp_dynamic_coefficients.csv")
 if (file.exists(lp_file)) {
   lp <- fread(lp_file)
+  if (!("ci_low90" %in% names(lp)) || !("ci_high90" %in% names(lp))) {
+    if (all(c("ci_low", "ci_high") %in% names(lp))) {
+      lp[, se_tmp := (ci_high - ci_low) / (2 * 1.96)]
+      lp[, ci_low90 := beta - 1.645 * se_tmp]
+      lp[, ci_high90 := beta + 1.645 * se_tmp]
+    } else if ("se" %in% names(lp)) {
+      lp[, ci_low90 := beta - 1.645 * se]
+      lp[, ci_high90 := beta + 1.645 * se]
+    } else {
+      lp[, ci_low90 := NA_real_]
+      lp[, ci_high90 := NA_real_]
+    }
+    if ("se_tmp" %in% names(lp)) lp[, se_tmp := NULL]
+  }
 
   # OLS forecast-error response only (IV bands dominate scale)
   lp_fe_ols <- lp[outcome == "Forecast error" & model == "OLS LP"]
   p4 <- ggplot(lp_fe_ols, aes(x = h, y = beta)) +
-    geom_hline(yintercept = 0, linetype = "dashed", colour = col_grey, linewidth = 0.3) +
-    geom_ribbon(aes(ymin = ci_low, ymax = ci_high), fill = col_sky, alpha = 0.25) +
+    geom_hline(yintercept = 0, linetype = "dashed", colour = col_black, linewidth = 0.3) +
+    geom_ribbon(aes(ymin = ci_low90, ymax = ci_high90), fill = col_sky, alpha = 0.20) +
     geom_line(colour = col_blue, linewidth = 0.75) +
     geom_point(colour = col_blue, size = 1.8) +
     scale_x_continuous(breaks = 0:8) +
     labs(x = "Horizon (quarters)", y = expression(hat(beta)[h])) +
     theme_pub()
-  save_plot_pair(p4, file.path(project_paths$figures, "lp_forecast_error"))
+  save_plot_pair(p4, file.path(project_paths$figures, "lp_forecast_error"), width = 6.5)
   cat("  [4] lp_forecast_error\n")
 
   # OLS inflation response only
   lp_pi_ols <- lp[outcome == "Realized inflation" & model == "OLS LP"]
   p5 <- ggplot(lp_pi_ols, aes(x = h, y = beta)) +
-    geom_hline(yintercept = 0, linetype = "dashed", colour = col_grey, linewidth = 0.3) +
-    geom_ribbon(aes(ymin = ci_low, ymax = ci_high), fill = col_orange, alpha = 0.20) +
+    geom_hline(yintercept = 0, linetype = "dashed", colour = col_black, linewidth = 0.3) +
+    geom_ribbon(aes(ymin = ci_low90, ymax = ci_high90), fill = col_orange, alpha = 0.20) +
     geom_line(colour = col_red, linewidth = 0.75) +
     geom_point(colour = col_red, size = 1.8) +
     scale_x_continuous(breaks = 0:8) +
     labs(x = "Horizon (quarters)", y = expression(hat(beta)[h])) +
     theme_pub()
-  save_plot_pair(p5, file.path(project_paths$figures, "lp_inflation"))
+  save_plot_pair(p5, file.path(project_paths$figures, "lp_inflation"), width = 6.5)
   cat("  [5] lp_inflation\n")
 } else {
   cat("  SKIP LP figures (no coefficient file)\n")
@@ -130,7 +144,7 @@ if (all(c("msi_raw", "media_congestion_iv") %in% names(panel))) {
     labs(x = "Media congestion instrument (standardised)",
          y = "Inflation salience index (standardised)") +
     theme_pub()
-  save_plot_pair(p6, file.path(project_paths$figures, "identification_first_stage"))
+  save_plot_pair(p6, file.path(project_paths$figures, "identification_first_stage"), width = 6.5)
   cat("  [6] identification_first_stage\n")
 }
 
@@ -154,13 +168,13 @@ if ("salience_tercile" %in% names(panel)) {
     labels = c("Low salience", "Mid salience", "High salience"))]
 
   p7 <- ggplot(het_results, aes(x = label, y = beta)) +
-    geom_hline(yintercept = 0, linetype = "dashed", colour = col_grey, linewidth = 0.3) +
+    geom_hline(yintercept = 0, linetype = "dashed", colour = col_black, linewidth = 0.3) +
     geom_errorbar(aes(ymin = ci_lo, ymax = ci_hi), width = 0.15,
                   colour = col_blue, linewidth = 0.5) +
     geom_point(size = 3, colour = col_blue) +
     labs(x = "Salience tercile", y = expression(hat(beta)~"(revision coefficient)")) +
     theme_pub()
-  save_plot_pair(p7, file.path(project_paths$figures, "heterogeneity_salience"))
+  save_plot_pair(p7, file.path(project_paths$figures, "heterogeneity_salience"), width = 6.5)
   cat("  [7] heterogeneity_salience\n")
 }
 
@@ -178,7 +192,7 @@ if (all(c("FR_cp", "FE_next_cp", "epu_qavg") %in% names(panel))) {
     labs(x = "Forecast revision", y = "Next-quarter forecast error",
          colour = NULL) +
     theme_pub()
-  save_plot_pair(p8, file.path(project_paths$figures, "mechanism_revision_error"))
+  save_plot_pair(p8, file.path(project_paths$figures, "mechanism_revision_error"), width = 6.5)
   cat("  [8] mechanism_revision_error\n")
 }
 
@@ -204,7 +218,7 @@ if (file.exists(bt_file)) {
     scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
     labs(x = NULL, y = "Annualised quarterly inflation (pp)", colour = NULL) +
     theme_pub()
-  save_plot_pair(p9, file.path(project_paths$figures, "policy_backtest_path"))
+  save_plot_pair(p9, file.path(project_paths$figures, "policy_backtest_path"), width = 8.2)
   cat("  [9] policy_backtest_path\n")
 }
 
@@ -244,12 +258,12 @@ if (file.exists(beta_file)) {
                                 fill = col_sky, alpha = 0.35)
     }
     p10 <- p10 +
-      geom_hline(yintercept = 0, linetype = "dotted", colour = col_grey, linewidth = 0.3) +
+      geom_hline(yintercept = 0, linetype = "dotted", colour = col_black, linewidth = 0.3) +
       geom_line(aes_string(y = mean_col), colour = col_blue, linewidth = 0.7) +
       labs(x = x_lab, y = expression(beta[t]~"(posterior mean)")) +
       theme_pub()
     if (!is.null(x_scale)) p10 <- p10 + x_scale
-    save_plot_pair(p10, file.path(project_paths$figures, "beta_t"))
+    save_plot_pair(p10, file.path(project_paths$figures, "beta_t"), width = 6.5)
     cat("  [10] beta_t\n")
   }
 }

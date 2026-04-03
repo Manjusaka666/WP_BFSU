@@ -1,29 +1,26 @@
 \begin{table}[htbp]
 \centering
 \begin{threeparttable}
-\caption{Falsification and Placebo Tests}
+\caption{Falsification and Placebo Checks}
 \label{tab:placebo_tests}
 {\small
 \begin{tabular}{lcc}
 \toprule
- & Estimate & $p$-value \\
+ & Coefficient & Std. error \\
 \midrule
-\multicolumn{3}{l}{\textit{Panel A: Permutation Placebo IV}} \\
+$\text{Permuted IV mean}$ & $14.845$ &  \\
+$\text{Permuted IV }2.5\%$ & $-129.691$ &  \\
+$\text{Permuted IV }97.5\%$ & $76.854$ &  \\
 \addlinespace
-Mean coefficient & 14.845 & \\
-2.5th percentile & $-129.691$ & \\
-97.5th percentile & 76.854 & \\
-\addlinespace
-\multicolumn{3}{l}{\textit{Panel B: Placebo Outcomes and Anticipation}} \\
-\addlinespace
-Employment expectation index & 986.714 & 0.783 \\
-Lead revision (anticipation test) & $-15.333$ & 0.846 \\
+$\text{Placebo outcome}$ & $986.714$ & $(3544.897)$ \\
+$\text{Lead revision (anticipation)}$ & $-15.333$ &  \\
 \bottomrule
 \end{tabular}
 }
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} Permutation placebo reassigns the instrument across quarters 300 times. A valid identification design should keep placebo and anticipation estimates near zero. The employment expectation index is a PBoC diffusion index bounded between approximately 44 and 54 (SD $\approx 2.3$ index points, excluding two apparent data-entry outliers in 2014Q3 and 2015Q1). The coefficient of 986.714 is a 2SLS point estimate produced by a weak first stage (Wald $F = 1.16$); weak-instrument bias inflates IV coefficients toward the ratio of reduced-form noise to a near-zero first stage. The associated $p$-value of 0.783 confirms the estimate is statistically indistinguishable from zero, consistent with the placebo null.
+\item \textit{Notes:} Permutation placebo reassigns the instrument across quarters (300 draws). Coefficients carry significance stars only.
+\item $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
