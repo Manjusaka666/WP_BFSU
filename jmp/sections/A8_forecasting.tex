@@ -1,0 +1,60 @@
+\section{Forecasting Application}\label{app:forecasting}
+
+This appendix presents a simple forecasting exercise that exploits the
+estimated overreaction pattern. The exercise is illustrative: with only
+12 backtest quarters, it demonstrates that the revision-error signal
+contains usable forecasting information but cannot establish that the
+correction is a reliable variance-minimizing tool.
+
+\subsection{Correction Rule}
+
+The correction is a one-step linear adjustment. Let $FR_t$ denote the
+quarter-$t$ inflation forecast revision and $W_t$ collect controls
+observed at $t$ (food CPI, M2 growth, PPI). The predicted forecast error
+is
+\begin{equation}\label{eq:policy_rule_forecasting}
+  \widehat{FE}_{t+1 \mid t}
+  = \hat{\beta}_{0,t} + \hat{\beta}_{1,t} FR_t + \hat{\gamma}_t' W_t .
+\end{equation}
+The adjusted inflation forecast is
+\begin{equation}\label{eq:adjusted_forecast_forecasting}
+  \widehat{\pi}^{adj}_{t+1 \mid t}
+  = \mu_t + \widehat{FE}_{t+1 \mid t},
+\end{equation}
+where $\mu_t$ is the raw Carlson--Parkin survey forecast. Under the
+estimated sign $\hat{\beta}_{1,t} < 0$, a positive revision implies
+subsequent overprediction, so the correction moves the forecast downward.
+
+All inputs are available at decision time. Coefficients are re-estimated
+using only information through $t-1$, then frozen for the $t+1$ forecast.
+
+\input{\tabdir/policy_rule_formula}
+
+\subsection{Expanding-Window Backtest}
+
+I evaluate the rule over 12 forecast quarters starting from 2011Q1. For
+each forecast origin $t$, coefficients are estimated on data through
+$t-1$, then used to generate the one-step adjusted forecast for $t+1$.
+The benchmark is the raw survey forecast $\mu_t$.
+
+The results show mixed performance. MAE declines by 17\%, from 3.58 to
+3.41, and 68\% coverage rises from 42\% to 67\%. RMSE rises from 4.12
+to 4.52, reflecting the bias-variance tradeoff: in tail episodes, the
+correction overshoots because the subsequent inflation shock does not
+mean-revert as quickly as the rule expects.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\textwidth]{policy_backtest_path.pdf}
+\caption{Expanding-window backtest of naive and adjusted
+  forecasts against realized inflation.}
+\label{fig:policy_backtest}
+\end{figure}
+
+The adjusted path tracks reversals more closely after large positive
+survey revisions, reducing systematic overprediction. It performs less
+well in quarters dominated by persistent exogenous shocks.
+
+\input{\tabdir/policy_backtest_metrics}
+
+

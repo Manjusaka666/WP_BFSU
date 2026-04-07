@@ -1,0 +1,35 @@
+\begin{table}[htbp]
+\centering
+\caption{Food-Price Exposure Heterogeneity in the Diagnostic Slope}
+\label{tab:cfps_food_heterogeneity}
+\small
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+ & (1) & (2) & (3) \\
+ & \multicolumn{1}{c}{High CPI} & \multicolumn{1}{c}{Low income} & \multicolumn{1}{c}{Combined} \\
+\midrule
+\addlinespace
+Revision ($\hat{\beta}_1$) & -0.5490*** & -0.5490*** & -0.5490*** \\
+ & (0.0085) & (0.0085) & (0.0085) \\
+\addlinespace
+Revision $\times$ Moderator ($\hat{\beta}_3$) & -0.0000*** & 0.0002 & -0.0000*** \\
+ & (0.0000) & (0.0978) & (0.0000) \\
+\addlinespace
+Implied high-exposure slope ($\hat{\beta}_1 + \hat{\beta}_3$) & -0.5490*** & -0.5488*** & -0.5490*** \\
+ & (0.0085) & (0.0953) & (0.0085) \\
+\midrule
+Observations & 13,031 & 13,031 & 13,031 \\
+$R^2$ & 0.4559 & 0.4560 & 0.4559 \\
+\addlinespace
+Controls & Yes & Yes & Yes \\
+Province $\times$ wave FE & Yes & Yes & Yes \\
+Province-clustered SE & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Notes:} Dependent variable is the forecast error proxy (fe\_proxy). The moderator in column~(1) is an indicator for above-median province-level CPI inflation (high\_cpi). The moderator in column~(2) is an indicator for below-median household income (low\_income), capturing higher food budget shares. The moderator in column~(3) requires both conditions simultaneously (high\_cpi $\times$ low\_income), identifying households most exposed to food-price inflation signals. All specifications include controls for age, education years, income, gender, and urban status, province$\times$wave fixed effects, and province-clustered standard errors. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,58 +1,49 @@
-\section{Policy Implications}\label{sec:policy}
+\section{Forecasting Implications}\label{sec:policy}
 
-This section translates the empirical result into a policy object that
-can be implemented with observed data at decision time. The objective
-is narrow: improve near-term inflation guidance when survey revisions
-are likely to reflect overreaction. I then evaluate the rule in a
-real-time backtest and quantify welfare implications in a compact
-New Keynesian benchmark.
+The documented overreaction has direct forecasting implications.
+Survey revisions predict subsequent forecast errors with a stable
+negative sign, so a simple correction can reduce predictable error in
+real time. This section presents the correction rule, evaluates it in
+an expanding-window backtest, and states the limits of the exercise.
 
-\subsection{Forecast Rule}
+\subsection{Forecast Correction Rule}
 
-The policy object is a one-step forecast correction built from the
-estimated revision--error relationship. Let $FR_t$ denote the quarter-$t$
+The correction is a one-step linear adjustment built from the estimated
+revision-error relationship. Let $FR_t$ denote the quarter-$t$
 inflation forecast revision and let $W_t$ collect controls observed at
 $t$ (food CPI, M2 growth, and PPI). The predicted forecast error is
-\begin{equation}\label{policy_rule}
+\begin{equation}\label{eq:policy_rule_policy}
   \widehat{FE}_{t+1 \mid t}
   = \hat{\beta}_{0,t} + \hat{\beta}_{1,t} FR_t + \hat{\gamma}_t' W_t .
 \end{equation}
 The adjusted inflation forecast is
-\begin{equation}\label{adjusted_forecast}
+\begin{equation}\label{eq:adjusted_forecast_policy}
   \widehat{\pi}^{adj}_{t+1 \mid t}
   = \mu_t + \widehat{FE}_{t+1 \mid t},
 \end{equation}
-where $\mu_t$ is the raw Carlson--Parkin survey forecast. Under the
+where $\mu_t$ is the raw Carlson-Parkin survey forecast. Under the
 estimated sign $\hat{\beta}_{1,t} < 0$, a positive revision implies
-subsequent overprediction of realized inflation, so the correction
-moves the forecast downward.
+subsequent overprediction, so the correction moves the forecast
+downward.
 
-The rule is real-time implementable. At each quarter $t$, all required
-inputs are available without look-ahead: the current survey forecast,
-the current revision, and contemporaneous macro controls. Coefficients
-are re-estimated using only information through $t-1$, then frozen for
-the $t+1$ forecast. No latent state extraction, no future-information
-filtering, and no discretionary tuning parameter is needed after model
-selection. In operational terms, this is a transparent add-on to the
-existing survey monitoring process rather than a replacement for the
-central bank's structural projection framework.
+All inputs are available at decision time. At each quarter $t$, I
+observe the current survey forecast, the current revision, and
+contemporaneous macro controls. Coefficients are re-estimated using
+only information through $t-1$, then frozen for the $t+1$ forecast.
+No latent state extraction, no future-information filtering, and no
+discretionary tuning is needed after model selection.
 
 Table~\ref{tab:policy_rule_formula} reports the mapping from estimated
 coefficients to rule inputs. The revision slope is negative and
 economically material: larger upward revisions predict larger negative
-errors next quarter. Because the rule is linear, policy communication
-can disclose the adjustment as a decomposition into an intercept term,
-a revision term, and control terms. That decomposition is useful when
-the central bank needs to explain why the de-biased path differs from
-the raw survey in a specific quarter.
+errors next quarter. Because the rule is linear, the adjustment
+decomposes into an intercept term, a revision term, and control terms.
 
-The interpretation is disciplined. The correction is designed to reduce
-predictable survey error, not to infer the full structural inflation
-process. If a quarter is dominated by a persistent supply shock that the
-revision variable does not capture, the adjustment can misfire. This is
-a feature of any reduced-form correction rule. The relevant benchmark is
-whether the rule improves directional and absolute forecast performance
-relative to the unadjusted survey in genuinely real-time conditions.
+This is a reduced-form forecasting tool, not a structural policy
+prescription. If a quarter is dominated by a persistent supply shock
+that the revision variable does not capture, the adjustment can misfire.
+The relevant benchmark is whether the rule improves forecast performance
+relative to the unadjusted survey under genuinely real-time conditions.
 
 \input{\tabdir/policy_rule_formula}
 
@@ -62,101 +53,58 @@ I evaluate the rule with an expanding-window backtest over 12
 forecast quarters. The first estimation window begins in 2011Q1 and
 expands recursively. For each forecast origin $t$, coefficients are
 estimated using data through $t-1$, then used to generate the one-step
-adjusted forecast for $t+1$. This design mirrors real-time policy use:
-historical coefficients are available, future realizations are not.
-The benchmark is the raw survey forecast $\mu_t$.
+adjusted forecast for $t+1$. The benchmark is the raw survey forecast
+$\mu_t$.
 
 Three metrics summarize performance: RMSE, MAE, and interval coverage.
 Coverage is the share of quarters in which realized inflation falls
 inside a model-implied uncertainty band around the point forecast.
-With only 12 backtest observations, the exercise is not intended to
-deliver high-power statistical tests. Its purpose is to establish
-whether the correction improves operational forecast quality in a sample
-that includes high-salience episodes.
+With only 12 backtest observations, the exercise cannot deliver
+high-power statistical tests. Its purpose is to check whether the
+correction improves forecast quality in a sample that includes
+high-salience episodes.
 
-Results show a clear tradeoff. MAE declines by 17\%, from 3.58 to 3.41,
-and 68\% coverage rises from 42\% to 67\%. These gains indicate that the
-rule improves central tendency and uncertainty calibration for most
-quarters. The improvement is economically meaningful for communication
-policy: fewer large directional misses and a higher probability that
-realized inflation lands inside the published confidence band.
+The results show mixed performance. MAE declines by 17\%, from 3.58 to
+3.41, and 68\% coverage rises from 42\% to 67\%. These gains suggest
+that the correction can improve central tendency and uncertainty
+calibration for most quarters. At the same time, RMSE rises from 4.12
+to 4.52, reflecting the bias-variance tradeoff inherent in the
+adjustment. The increase is concentrated in tail episodes where the
+correction is large but the subsequent inflation shock does not
+mean-revert as quickly as the rule expects. In those cases the
+squared-error penalty dominates the absolute error gain.
 
-At the same time, RMSE rises from 4.12 to 4.52, reflecting the bias-variance tradeoff inherent in the adjustment. The increase is
-concentrated in tail episodes where the correction is large but the
-subsequent inflation shock does not mean-revert as quickly as the rule
-expects. In those cases the squared-error penalty dominates the absolute
-error gain. The full backtest therefore supports a constrained claim:
-the rule is useful as a communication-oriented de-biasing device, but it
-is not a universal variance-minimizing forecaster.
+The correction improves directional accuracy in most quarters but does
+not universally reduce forecast variance. A 12-quarter backtest with
+this pattern supports a limited claim: the overreaction signal contains
+usable forecasting information, but the correction is not a universal
+variance-minimizing tool.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.86\textwidth]{policy_backtest_path.pdf}
-\caption{Expanding-window backtest of naive and diagnostic-adjusted
+\caption{Expanding-window backtest of naive and adjusted
   forecasts against realized inflation.}
-\label{fig:policy_backtest}
+\label{fig:policy_backtest_policy}
 \end{figure}
 
-Figure~\ref{fig:policy_backtest} shows where the gains come from. The
+Figure~\ref{fig:policy_backtest_policy} shows where the gains come from. The
 adjusted path tracks reversals more closely after large positive survey
 revisions, reducing systematic overprediction. It performs less well in
 quarters dominated by persistent exogenous shocks. This pattern is
-consistent with the mechanism estimates: the rule removes a behavioral
-overreaction component but does not substitute for a structural shock
-decomposition.
+consistent with the mechanism estimates: the correction removes a
+behavioral overreaction component but does not substitute for a
+structural shock decomposition.
 
 \input{\tabdir/policy_backtest_metrics}
 
-\subsection{NK Welfare}
+\medskip
 
-To quantify welfare implications beyond forecast metrics, I use a
-three-equation New Keynesian benchmark with diagnostic expectations.
-The model is
-\begin{align}
-  \pi_t &= \beta E_t^\theta[\pi_{t+1}] + \kappa x_t + u_t, \nonumber \\
-  x_t &= E_t[x_{t+1}] - \sigma^{-1}
-    \left(i_t - E_t^\theta[\pi_{t+1}]\right), \nonumber \\
-  i_t &= \phi_\pi \pi_t + \phi_x x_t. \nonumber
-\end{align}
-Calibration follows the baseline values used in the quantitative
-exercise: $\beta = 0.99$, $\kappa = 0.05$, and $\sigma = 2$ (with
-$\phi_\pi = 1.5$, $\phi_x = 0.5$, and AR(1) cost-push shocks). The
-parameter $\theta$ scales expectation overreaction: $\theta = 0$ is
-rational expectations and larger $\theta$ implies stronger diagnostic
-distortion.
+Appendix~\ref{app:nk_welfare} reports an illustrative New Keynesian
+calibration that maps the estimated overreaction parameter into a
+model-implied welfare loss. That exercise is a local counterfactual
+around the estimated regime, not a policy-invariant welfare mapping.
+Any welfare interpretation is therefore conditional on the maintained
+assumptions of that model environment.
 
-Two calibration points are central. At $\theta = 0.55$, aligned with the
-household estimate, welfare loss is 37.6\% above the rational benchmark.
-At $\theta = 1.0$, aligned with the aggregate implied distortion, welfare
-loss is 78.3\% above benchmark. These are large increases in policy loss
-for parameter values supported by the data. The mechanism is standard:
-diagnostic expectations amplify inflation and output-gap volatility, and
-the welfare function penalizes both.
 
-Table~\ref{tab:nk_welfare} and Figure~\ref{fig:welfare_theta} show that
-the welfare schedule is convex in $\theta$ over the relevant range. This
-convexity matters for policy design. A partial reduction in
-overreaction can yield first-order gains when the economy operates in a
-high-$\theta$ region, even if communication policy cannot fully eliminate
-behavioral distortions.
-
-The welfare exercise should be interpreted with one key caveat: Lucas
-critique. If policy communication changes household belief formation, the
-reduced-form mapping from revisions to errors and the implied $\theta$
-can shift endogenously. The reported numbers are therefore local
-counterfactuals around the estimated regime, not invariant policy
-constants. This limitation does not invalidate the exercise; it defines
-its scope. The model is informative about the order of magnitude of
-welfare gains from lowering diagnostic distortion, while a full policy
-evaluation would require a model in which belief dynamics adjust to the
-communication rule itself.
-
-\input{\tabdir/nk_welfare}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.84\textwidth]{welfare_theta.pdf}
-\caption{Welfare loss as a function of the diagnostic-overreaction
-  parameter $\theta$ in the calibrated New Keynesian benchmark.}
-\label{fig:welfare_theta}
-\end{figure}

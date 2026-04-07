@@ -1,70 +1,66 @@
 \section{Introduction}\label{sec:intro}
 
-A one-point upward revision in household inflation expectations predicts a 0.55-point
-more negative forecast error at the next interview, a slope that is economically large
-for any model that maps survey beliefs into near-term household demand, credit choices,
-and durable-goods timing. I ask a direct question: when salient inflation signals hit China, do households update close to a
-rational benchmark, or do they overshoot and then correct? I show clear overreaction.
-Using seven CFPS waves from 2010 to 2022, I estimate $\beta=-0.55$ (Table~\ref{tab:oster_bounds}) with $p<0.001$
-and about $N\approx13{,}700$ household observations after province and wave fixed
-effects. This elasticity does not come from one narrow subgroup; it appears across
-income, education, age, and urban-rural cells, so the wedge between expected and
-realized inflation is broad rather than idiosyncratic. The magnitude also implies a
-practical forecasting consequence: many expectation revisions contain predictable mean
-reversion at the relevant horizon, so raw revisions can overstate true inflation pressure
-in real time, especially after salient food and energy news shocks. I therefore treat
-overreaction as a first-order measurement problem for macroeconomists, not a side
-detail, because the coefficient size is large enough to change inference about household
-sentiment, policy credibility, policy reaction calibration, and short-run welfare losses
-from misallocated intertemporal choices when transitory price spikes are mistaken for persistent inflation.
+Households in China overreact to inflation signals. Using seven waves of the China
+Family Panel Studies (CFPS, 2010--2022), I regress each household's forecast error on
+its prior expectation revision and estimate $\beta = -0.55$ ($p < 0.001$,
+$N \approx 13{,}000$) with province $\times$ wave fixed effects
+(Table~\ref{tab:cfps_baseline}, column X). The sign is unambiguous: a one-point
+upward revision in expected inflation predicts a 0.55-point more negative forecast
+error at the next interview.
 
-I make three contributions that move beyond a baseline correlation. First, I provide a
-household diagnostic test in a large emerging economy where salience shocks and
-information frictions are both quantitatively important. This is micro evidence at the
-unit that forms expectations: I observe revisions and subsequent errors for the same
-households, and I recover a stable negative revision-error elasticity in within-cell
-variation after rich fixed effects, alternative survey weights, and multiple coding
-choices for qualitative responses. The contribution is external validity with discipline:
-the mechanism survives in a setting with different inflation composition, media ecology,
-and policy communication institutions from the environments where this framework was
-first studied. Second, I run a mechanism competition that places diagnostic overreaction
-and information-rigidity dynamics in one empirical system and asks which channel
-explains forecast errors conditional on the other. I find coexistence instead of a single
-winner; persistence terms matter, but revision-driven overshooting remains central when
-salience is high, which means channel weight is state dependent and policy-relevant
-nonlinearity is empirically present. This matters for policy design because communication
-should damp short-run spikes exactly when salience intensifies, not only re-anchor long-run beliefs. Third, I run a CHFS null channel test
-that asks whether persistent differences in media access alone generate stronger belief
-levels in cross section. The estimated channel slope is $\beta=-0.005$ (Table~\ref{tab:chfs_mechanism_info_channel}, column~1) with $SE=0.022$,
-which is economically tiny and statistically close to zero even under flexible controls.
-I interpret this null as a useful boundary condition: the large CFPS overreaction
-pattern is more consistent with event-triggered salience shocks than with a time-invariant ranking of households by habitual information channel or fixed attention
-gaps tied to media technology alone.
+This sign pattern is consistent with reversal rather than monotone persistence:
+households that revise expected inflation upward subsequently overpredict inflation.
+The pattern does not come from one narrow subgroup. It appears across income
+quartiles, education levels, age bins, and the urban-rural divide, so the wedge
+between expected and realized inflation is broad rather than idiosyncratic.
 
-I also state the limits clearly so claims match evidence. The aggregate corroboration
-sample is short, with $N=32$ quarterly observations, so aggregate regressions can
-confirm sign and timing but cannot pin down precise macro elasticities under many
-controls or discriminate tightly across nearby models. The CFPS expectation variable is biennial, which restricts high-frequency dynamic tracing and compresses adjustment into longer windows than the mechanism likely
-operates. My salience IV has conceptual appeal but weak power in this sample: the
-first-stage statistic is $F=1.16$ (Table~\ref{tab:identification_main}, Panel~A), so IV magnitudes are not a credible basis for sharp
-causal parameter claims and I treat them as directional checks only. The CHFS test is
-a single cross-section, so I cannot follow within-household revisions over time there or
-separate persistent unobserved heterogeneity from channel exposure with panel leverage
-or test dynamic channel switching after shocks.
-These constraints narrow interpretation but do not overturn the core fact: the CFPS
-panel repeatedly shows a large, negative revision-error elasticity with robust precision.
-The limits instead define what I can and cannot claim. I can claim economically
-meaningful household overreaction in reduced form, state-dependent mechanism coexistence
-from direct horse races, and a rejected channel-only interpretation in CHFS. I cannot
-claim point-identified deep structural primitives from the weak-IV aggregate design or
-from one CHFS cross section. That disciplined boundary keeps the contribution strong on
-magnitudes, explicit about uncertainty, transparent on identification, and useful for designing richer next-wave data collection.
+China is a useful setting for studying household expectation formation. Food prices,
+especially pork, are salient to consumers and volatile enough to generate large
+belief revisions; the 2018--2019 African Swine Fever episode is one recent example.
+At the same time, monetary policy communication from the People's Bank of China
+remains less transparent than in major inflation-targeting central banks, so
+households receive strong price signals but weak anchoring guidance. This combination
+makes both overreaction and slow updating plausible ex ante, which means the data can
+discriminate between them rather than merely confirm a prior.
 
-Section~\ref{sec:literature} lays out the framework. Section~\ref{sec:data}
-presents the data, and Section~\ref{sec:identification} details the empirical
-strategy. Section~\ref{sec:results} reports the baseline results.
-Section~\ref{sec:mechanism}, Section~\ref{sec:heterogeneity}, and
-Section~\ref{sec:policy} cover mechanism, heterogeneity, and policy
-implications. Section~\ref{sec:conclusion} concludes, and additional
-robustness checks are reported in the online appendix.
+I make three contributions. First, I establish the main fact at the household level:
+individuals who revise inflation expectations upward subsequently make more negative
+forecast errors, consistent with overshooting. This holds across demographic and
+geographic cells in the CFPS panel with stable magnitude after alternative survey
+weights and multiple coding choices for qualitative responses. Second, I provide
+aggregate corroboration using quarterly PBoC depositor-survey data, which yield
+$\beta = -2.24$ ($p = 0.055$, $N = 32$) (Table~\ref{tab:ols_baseline}, column 2).
+The sign matches the household-level result, and the timing aligns with quarters of
+salient food-price news. Third, I estimate a joint specification that nests both
+overreaction and persistence channels to ask which explains forecast errors
+conditional on the other. Error reversals remain present after controlling for
+persistence, more consistent with overreaction than with pure sluggish updating. A
+supplementary test using the China Household Finance Survey (CHFS) asks whether
+persistent differences in media exposure alone explain belief intensity in cross
+section. The estimated media-channel slope is $\beta = -0.005$ ($SE = 0.022$)
+(Table~\ref{tab:chfs_mechanism_info_channel}, column 1), economically negligible and
+statistically indistinguishable from zero, which suggests that overreaction is
+event-driven rather than a fixed function of information access.
+
+I state the limits of this paper explicitly. I do not claim point identification of
+a structural diagnostic-expectations parameter. I do not claim a decisive test
+against all information-rigidity models. I do not claim a policy-invariant welfare
+mapping from overreaction to output losses. The aggregate sample is short ($N = 32$),
+so macro regressions confirm sign and timing but cannot pin down precise elasticities.
+The CFPS expectation variable is biennial and qualitative, which compresses
+adjustment dynamics and limits high-frequency tracing. The salience IV has weak
+first-stage power ($F = 1.16$, Table~\ref{tab:identification_main}, Panel A), so I
+treat IV estimates as directional checks, not as a basis for sharp causal claims. The
+CHFS test is a single cross-section without panel leverage. These constraints narrow
+interpretation but do not overturn the core household-level fact: a large, negative,
+and precisely estimated revision-error elasticity that replicates across subsamples.
+
+Section~\ref{sec:literature} presents the conceptual framework.
+Section~\ref{sec:data} describes the data, and Section~\ref{sec:identification}
+presents the identification strategy. Section~\ref{sec:results} reports baseline
+results. Section~\ref{sec:interpretation} examines dynamic
+interpretation. Section~\ref{sec:heterogeneity} reports heterogeneity.
+Section~\ref{sec:robustness} collects robustness checks.
+Section~\ref{sec:conclusion} concludes. A forecasting application
+appears in Appendix~\ref{app:forecasting}.
 

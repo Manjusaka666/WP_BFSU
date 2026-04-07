@@ -1,21 +1,25 @@
-\section{Mechanism Competition}\label{sec:mechanism}
+\section{Dynamic Interpretation: Overreaction versus Persistence}%
+\label{sec:interpretation} % formerly \label{sec:mechanism}
 
-This section runs a direct mechanism competition between
-forecast-revision overreaction and information rigidity.
-The evidence is informative but not over-claimed. The
-joint specification is useful as a diagnostic screen,
-not as a fully clean decomposition of structural channels.
-The key result is that the lagged-error term is negative
-and significant in the horse race, which implies error
-reversals rather than sluggish persistence.
-That pattern is inconsistent with a canonical rigidity
-interpretation and consistent with a diagnostic
-reversal dynamic.
+The baseline results establish that forecast revisions
+predict future errors with a negative sign.
+This section asks whether that pattern reflects behavioral
+overreaction or whether it could instead arise from
+information rigidity or other forms of expectation
+persistence.
+I do not claim to fully distinguish diagnostic
+overreaction from every alternative dynamic process.
+What I can show is that the sign and timing of forecast
+errors align with reversal rather than with monotone
+persistence.
+The evidence is therefore more consistent with an
+overreaction account than with a pure rigidity
+interpretation.
 
-\subsection{Horse Race}\label{subsec:horse_race}
+\subsection{Nesting Overreaction and Persistence}%
+\label{sec:horse_race}
 
-I estimate a joint specification that nests the two
-competing channels:
+I estimate a joint specification that nests both channels:
 \begin{equation}\label{eq:horse_race}
   FE_{t+1} = \beta_0 + \beta_1 FR_t
     + \lambda FE_t + \gamma' W_t + \varepsilon_t,
@@ -23,52 +27,49 @@ competing channels:
 where $FR_t$ is the forecast revision,
 $FE_t$ is the lagged forecast error,
 and $W_t$ contains macro controls.
-Under diagnostic overreaction, $\beta_1<0$ because larger
+Under overreaction, $\beta_1<0$ because larger
 upward revisions should be followed by negative errors.
 Under information rigidity, $\lambda>0$ because past
 errors should persist when updating is slow.
 
-The horse-race estimates deliver two facts.
-First, the revision coefficient attenuates once
-$FE_t$ is included jointly.
+Two results stand out.
+First, the revision coefficient flips sign, attenuates to
+near zero, and loses precision in the joint specification
+(column 3), consistent with collinearity between revision
+and lagged error in a short sample.
+Given the limited sample, this sign flip should be read as
+an imprecise joint-specification estimate rather than as a
+stable change in the underlying behavioral relationship.
+
 Second, the lagged-error coefficient is
 $\hat{\lambda}=-0.60$ with $p=0.005$.
-The attenuation in $\hat{\beta}_1$ is expected in this
-small sample because revisions and lagged errors both
-load on the same overreaction process.
-The revision coefficient attenuates to near zero in the joint specification (column~3), consistent with collinearity between revision and lagged error in a short sample.
-The sign of $\hat{\lambda}$ is the decisive diagnostic:
-it is negative, not positive.
+A negative $\lambda$ means that a positive forecast error
+in period $t$ predicts a negative error in $t+1$.
+That is error reversal, the opposite of the persistence
+pattern that canonical rigidity models require
+($\lambda>0$).
 
-A negative $\lambda$ means error reversals.
-A positive forecast error in period $t$ predicts
-a negative error in $t+1$.
-That is the opposite of the persistence logic in
-standard rigidity models, which require $\lambda>0$.
-So the horse race does not support a rigidity reading
-of the lagged-error channel.
-Instead, it shows that the lagged-error regressor is
-capturing correction after prior overshooting.
-
-This is why I treat the horse race as a diagnostic test,
-not a winner-take-all contest.
-The joint regression does not prove that only one
-mechanism exists.
-It does show that the data reject a strict
-rigidity interpretation of the lagged-error term,
-because the estimated sign runs in the wrong direction.
-In short: revision attenuation in the joint model is
-not evidence for rigidity; the negative
-$\hat{\lambda}$ points to diagnostic reversals.
+This result allows a limited but clear statement.
+The data reject a strict rigidity interpretation of the
+lagged-error term because the estimated sign runs in the
+wrong direction.
+The negative $\hat{\lambda}$ is consistent with correction
+after prior overshooting, the signature of a reversal
+dynamic.
+At the same time, the joint regression is a diagnostic
+screen, not a structural decomposition.
+It does not rule out that both overreaction and some
+degree of sluggish updating coexist.
+It does show that the dominant pattern in the data is
+reversal, not persistence.
 
 \input{\tabdir/mechanism_horse_race}
 
-\subsection{Time-Varying Coefficient}%
-\label{subsec:mechanism_state}
+\subsection{Dynamic Measurement of Overreaction Intensity}%
+\label{sec:mechanism_state}
 
-The next question is whether diagnostic intensity is
-state-dependent.
-I first augment the horse race with an interaction:
+Is the degree of overreaction constant over time?
+I augment the joint specification with an interaction:
 \begin{equation}\label{eq:mechanism_state}
   FE_{t+1} = \beta_0 + \beta_1 FR_t
     + \beta_2 (FR_t \times D_t^{high})
@@ -76,63 +77,71 @@ I first augment the horse race with an interaction:
 \end{equation}
 where $D_t^{high}$ marks high-uncertainty periods.
 The estimate is $\hat{\beta}_2=-1.72$ with $p=0.357$.
-The sign is in the diagnostic direction, but precision
-is limited and the interaction is not statistically
-distinguishable from zero.
+The sign points toward stronger overreaction in volatile
+periods, but precision is limited.
+The interaction is not statistically distinguishable from
+zero.
 
-I therefore rely on the full state-space evidence for
-time variation.
-Appendix B (Appendix~\ref{app:ssm}) estimates a Bayesian
-SSM with a time-varying diagnostic coefficient $\beta_t$.
-The estimated path becomes more negative during crisis
-windows and relaxes toward zero in calmer periods.
-The largest spikes line up with major stress episodes,
+A Bayesian state-space model (Appendix~\ref{app:ssm})
+provides a richer view.
+It estimates a time-varying diagnostic coefficient
+$\beta_t$ whose posterior path becomes more negative
+during crisis windows and relaxes toward zero in calmer
+periods.
+The largest spikes coincide with major stress episodes,
 including geopolitical shocks and the pandemic onset.
-This pattern is exactly what a salience-driven mechanism
-would predict: overweighting strengthens when public
-signals are vivid and uncertainty is elevated.
+This pattern is what a salience-driven account would
+predict: overweighting strengthens when public signals are
+vivid and uncertainty is elevated.
 
-The state-variation evidence should still be read
-carefully.
-The interaction term in the reduced-form horse race is
-imprecise, and the SSM is best viewed as dynamic
-measurement rather than independent causal identification.
-But taken together, the two pieces support a common
-reading: diagnostic intensity is not constant; it moves
-with macro-financial stress.
+I treat the SSM evidence as dynamic measurement, not as
+independent causal identification.
+The reduced-form interaction is imprecise, and the SSM
+smooths over a short sample.
+Together, the two exercises suggest that overreaction
+intensity is not constant but moves with macro-financial
+stress.
+Neither exercise pins down the structural channel with
+certainty.
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.84\textwidth]{beta_t.pdf}
   \caption{Time-varying diagnostic coefficient $\beta_t$
     from the Bayesian state-space model.
-    The coefficient spikes in crisis periods and
-    attenuates in calmer periods.
+    The coefficient becomes more negative in crisis periods
+    and attenuates in calmer periods.
     Estimation details are in Appendix B.}
   \label{fig:mechanism_beta_t}
 \end{figure}
 
 \subsection{Revision-Error Gradient}%
-\label{subsec:mechanism_chain}
+\label{sec:mechanism_chain}
 
-A separate nonparametric check bins quarters by revision
-magnitude and computes average subsequent errors within
-revision quintiles.
-If revisions are diagnostic overreactions,
-the gradient should be monotone: larger positive
-revisions should map into more negative future errors.
+A nonparametric check bins quarters by revision magnitude
+and computes average subsequent errors within revision
+quintiles.
+If revisions reflect overreaction, the gradient should be
+monotone: larger positive revisions should map into more
+negative future errors.
+
 That is what the data show.
-
 The top revision quintile has
 $\overline{FE}_{t+1}=-0.68$.
 The bottom quintile is approximately zero.
 Intermediate bins move monotonically between those
 endpoints.
-This shape is hard to reconcile with rational
+
+This monotone shape is hard to reconcile with rational
 expectations, which imply errors centered near zero in
-every bin, and with pure rigidity, which predicts
-persistence in past errors rather than a monotone
-mapping from current revisions to next-period errors.
+every bin.
+It is also hard to reconcile with pure rigidity, which
+predicts persistence in past errors rather than a
+systematic mapping from current revisions to next-period
+errors.
+The gradient therefore provides an independent check that
+the reversal pattern in the joint regression is not an
+artifact of functional form.
 
 \begin{figure}[!htbp]
   \centering
@@ -146,20 +155,16 @@ mapping from current revisions to next-period errors.
 
 \input{\tabdir/revision_predicts_error}
 
-\subsection{CHFS Channel Test}\label{subsec:chfs_info_channel}
+\subsection{CHFS Channel Test: A Boundary Condition}%
+\label{sec:chfs_info_channel}
 
 The CHFS test asks a narrower question:
-does a household's persistent information channel
-explain cross-sectional variation in inflation beliefs?
-If a channel-driven mechanism were central,
-households using high-salience media should show
-systematically stronger inflation beliefs or more
-extreme belief errors.
-If the mechanism is event-triggered rather than
-channel-driven, these cross-sectional differences can be
-small or null once location controls are included.
-
-The baseline CHFS equation is
+does a household's persistent information channel explain
+cross-sectional variation in inflation beliefs?
+If a channel-driven mechanism were important, households
+using high-salience media should show systematically
+stronger inflation beliefs or more extreme belief errors.
+The baseline equation is
 \begin{equation}\label{eq:chfs_info_channel}
   Exp_{ip} = \alpha + \beta_1 HighMedia_i
     + \gamma X_i + \delta_p + \varepsilon_{ip},
@@ -172,8 +177,8 @@ and $\delta_p$ are province fixed effects.
 The result is null.
 In the main specification,
 $\hat{\beta}_1=-0.005$ (SE $=0.022$).
-The point estimate is essentially zero and precisely
-enough to rule out economically large channel effects.
+The point estimate is essentially zero and precise enough
+to rule out economically large channel effects.
 Figure~\ref{fig:chfs_info_channel} shows the same pattern
 visually: high-media and low-media households have very
 similar mean beliefs after accounting for province-level
@@ -181,20 +186,25 @@ composition.
 
 A risk-attitude placebo is also null:
 $\hat{\beta}=-0.010$ (SE $=0.008$).
-This matters because it reduces the concern that the
-CHFS mechanism coefficients are being driven by a broad
-latent trait such as optimism, pessimism, or generalized
-risk tolerance rather than a specific information process.
+This reduces the concern that the mechanism coefficients
+reflect a broad latent trait such as optimism or
+generalized risk tolerance rather than a specific
+information process.
 
-The CHFS evidence should be stated plainly.
-It does not support a channel-driven mechanism.
-Combined with the aggregate and state-varying results,
-the most credible interpretation is that overreaction is
-activated by salient events, not by permanent differences
-in media exposure.
-So this section rules out the channel-driven version of
-the mechanism while leaving the event-driven diagnostic
-channel intact.
+This null result is a boundary condition, not a general
+rejection of media amplification.
+It means that persistent cross-sectional differences in
+media exposure alone do not explain the expectation
+pattern observed in the aggregate data.
+The finding is consistent with the view that overreaction
+is activated by salient events rather than by permanent
+differences in information channels.
+But the CHFS cross-section cannot speak to how media
+coverage of specific episodes might amplify overreaction
+in real time.
+I therefore interpret the null as ruling out one version
+of the channel story while leaving event-driven
+amplification as an open question.
 
 \input{\tabdir/chfs_mechanism_info_channel}
 
@@ -209,3 +219,4 @@ channel intact.
 \end{figure}
 
 \input{\tabdir/chfs_risk_placebo}
+

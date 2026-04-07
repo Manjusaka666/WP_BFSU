@@ -1,17 +1,16 @@
 \section{Empirical Strategy}\label{sec:identification}
 
-This section separates identification from corroboration. The main
-estimand is the revision--error coefficient under diagnostic
-expectations, where $\beta < 0$ implies that upward revisions
-systematically overshoot subsequent inflation. I treat the CFPS panel as
-the core identification design, use aggregate OLS as a sign-consistency
-check, and use the IV only as directional corroboration because the
-first stage is weak.
+The CFPS household panel is the main empirical object in this paper. It
+delivers the identifying variation, the sharpest precision, and the most
+transparent economic interpretation. The aggregate OLS specification on the
+PBoC quarterly series is a sign consistency check. The IV exercise is
+directional corroboration only; its first stage is weak, so it is
+not informative for magnitude.
 
-\subsection{CFPS Panel Design}
+\subsection{CFPS Panel Design: Core Identification}
 
-The primary design uses linked CFPS household observations across
-consecutive survey waves. I estimate
+I estimate the revision--error relationship at the household level using
+linked CFPS observations across consecutive survey waves:
 \begin{equation}\label{eq:cfps_panel}
   \text{Error}_{ipt}
   = \alpha + \beta \,\text{Revision}_{ipt}
@@ -20,120 +19,116 @@ consecutive survey waves. I estimate
 where $\text{Error}_{ipt}$ is household $i$'s inflation forecast error in
 province $p$ and wave $t$, $\text{Revision}_{ipt}$ is the inter-wave
 change in expected inflation, $X_{ipt}$ contains household controls, and
-$\delta_{pt}$ are province-wave fixed effects. Standard errors are
-clustered at the province level. Because $\delta_{pt}$ absorbs all shocks
-shared within a province-wave cell, identification comes from within-cell
-differences in revision behavior across households.
+$\delta_{pt}$ are province $\times$ wave fixed effects. Standard errors are
+clustered at the province level.
 
-This design directly addresses the central confound in aggregate
-time-series specifications: common shocks that simultaneously move
-revisions and realized inflation. The identifying comparison is between
-households observed in the same province and the same survey wave, so any
-province-specific inflation level, local policy change, or nationwide
-macro news that is common within that cell is differenced out. Under
-diagnostic expectations, the prediction is $\beta < 0$. The estimate is
-$\hat{\beta} = -0.55$ with $p < 0.001$, consistent with economically
-large overreaction and substantially tighter precision than the aggregate
-series.
+The province $\times$ wave fixed effects are the central design feature. They
+absorb everything common to households observed in the same province and
+the same survey wave: the local inflation level, any province-specific
+policy change, nationwide macro news, and seasonality. After conditioning
+on $\delta_{pt}$, the remaining variation is cross-household differential
+updating within a cell. Two households in Guangdong in the 2014 wave face
+the same realized inflation, the same food prices, and the same monetary
+policy stance. They differ only in how much they revised their inflation
+expectations between waves. The estimand is therefore a reduced-form
+relation between relative updating intensity and subsequent forecast error,
+conditional on local conditions.
 
-The within-cell estimand is also transparent economically: conditional on
-the same local inflation environment in a given wave, households that
-revise expectations more aggressively subsequently make larger forecast
-errors in the opposite direction. This interpretation does not rely on a
-dynamic filtering model or a latent-state decomposition. It is a direct
-reduced-form test of whether stronger belief updating predicts larger
-ex-post miss rates after conditioning on rich location-time effects.
+This estimand does not identify a deep structural parameter of a
+belief-formation model. It does identify economically meaningful
+overreaction in beliefs. Under rational expectations, $\beta$ should be
+zero: conditional on the same information environment, larger revisions
+should not predict larger errors in the opposite direction. Under
+diagnostic expectations, $\beta < 0$: households that revise more
+aggressively overshoot more. The estimate is $\hat{\beta} = -0.55$ with
+$p < 0.001$, rejecting the rational benchmark.
 
-To assess omitted-variable bias, I report \citet{Oster2019} bounds for
-the CFPS coefficient. The implied proportional-selection threshold is
-$\delta^{*} = -1334$, and the bias-adjusted estimate under $\delta = 1$
-is $-0.562$. Both metrics indicate that unobservables would need to be
-implausibly strong and oppositely signed relative to observables to drive
-the coefficient to zero.
+\paragraph{Addressing the selection concern.}
+Households in the same province $\times$ wave cell may differ in unobserved
+pessimism, financial literacy, attention, or interpretation thresholds.
+If such traits both raise revisions and independently worsen forecast
+errors, the OLS coefficient would be biased. I address this concern with
+\citet{Oster2019} bounds. The implied proportional-selection threshold is
+$\delta^{*} = -2{,}737$: unobservables would need to be over 2,700 times
+as important as the full set of observables, and oppositely signed, to
+drive the coefficient to zero. The bias-adjusted estimate under $\delta=1$
+is $-0.566$, essentially unchanged from the na\"ive estimate. This makes
+it implausible that unobserved heterogeneity accounts for the result.
 \input{\tabdir/oster_bounds}
 
-Sample construction proceeds in three steps. The raw CFPS panel contains
-about 80,000 person-wave observations. Linking respondents across adjacent
-waves with valid expectation information yields roughly 30,000 linked
-observations. Imposing the full regression requirements for revision and
-error proxies yields the estimation sample of about 13.7k
-household-wave observations. Appendix~\ref{app:data} documents these
-filters in detail.
+\paragraph{Sample construction.}
+The raw CFPS panel contains about 80,000 person-wave observations. Linking
+respondents across adjacent waves with valid expectation information yields
+roughly 30,000 linked observations. Imposing the full regression
+requirements for revision and error proxies yields the estimation sample of
+about 13.7k household-wave observations.
+Appendix~\ref{app:data} documents these filters in detail.
 
-\subsection{Aggregate OLS}
+\subsection{Aggregate OLS as a Sign Check}
 
-I also estimate the aggregate revision--error regression in the quarterly
-PBoC series ($N=32$), with Newey--West standard errors to account for
-serial correlation and heteroskedasticity. This specification is not used
-as stand-alone causal evidence; it is a sign-consistency check against the
-micro design. The aggregate coefficient remains negative, matching the
-CFPS sign and supporting the same model discrimination logic, while
-acknowledging the low-power nature of a 32-quarter sample.
-
-The aggregate specification is
+I also estimate the revision--error regression in the quarterly PBoC
+series ($N=32$) with Newey--West standard errors:
 \begin{equation*}
   FE_{t+1}
   = \alpha + \beta \Delta \mu_t + \Psi'W_t + \varepsilon_t,
 \end{equation*}
 where $\Delta \mu_t$ is the quarterly revision in expected inflation and
-$W_t$ includes the baseline macro controls. Under rational expectations,
-the conditional $\beta$ should be near zero; under diagnostic
-overreaction, it should be negative. The aggregate estimate is therefore
-interpreted as a discipline check on direction, not as a source of precise
-magnitudes.
+$W_t$ includes baseline macro controls. Under rational expectations
+$\beta = 0$; under diagnostic overreaction $\beta < 0$. The aggregate
+estimate is negative, matching the CFPS sign. I use this specification as
+a consistency check on direction, not as a source of precise magnitudes.
+A 32-quarter sample has limited statistical power, and aggregate
+time-series regressions face the standard concern that common shocks move
+both revisions and realized inflation simultaneously.
 
-\subsection{IV as Corroboration}
+\subsection{IV as Directional Corroboration}
 
-As supplementary evidence, I instrument attention-driven revision
-pressure with media congestion, defined by the negative standardized
-geopolitical-risk series, $-z(GPR_t)$: when geopolitical news intensity
+As supplementary evidence, I instrument attention-driven revision pressure
+with media congestion, defined by the negative standardized
+geopolitical-risk series $-z(GPR_t)$. When geopolitical news intensity
 rises, media bandwidth for inflation coverage falls, shifting salience
-without requiring a direct domestic inflation innovation. In the data,
-the first-stage F-statistic is 1.16, so the design is weak-instrument by
-conventional standards; the Anderson--Rubin confidence interval is wide
-($[-3,3]$), and 2SLS magnitudes are therefore not informative. The
-reduced form is negative ($-0.41$), which is directionally consistent
-with the diagnostic mechanism, but the IV is used only as corroboration.
-Full construction of the MSI index, the three-equation IV chain, the
-first-stage figure, and placebo outputs is reported in
-the online appendix.
+without requiring a direct domestic inflation innovation. The first-stage
+F-statistic is 1.16, well below conventional thresholds. The
+Anderson--Rubin confidence interval is wide ($[-3,3]$), and 2SLS
+magnitudes are therefore not informative for the size of overreaction. The
+reduced form is negative ($-0.41$), directionally consistent with
+diagnostic overreaction. I use the IV only as corroboration of the sign,
+not for point identification. Full construction of the MSI index, the
+three-equation IV chain, the first-stage figure, and placebo outputs
+appear in the online appendix.
 
 \subsection{Threats to Identification}
 
 \paragraph{Commodity-price channels.}
 Geopolitical shocks can move oil, imported-input costs, and exchange-rate
 pass-through, creating a direct path from $GPR$ to inflation outcomes.
-This risk is mitigated by including the core macro controls used
-throughout (food CPI, PPI inflation, and M2 growth), which absorb the
-most immediate price-level transmission channels.
-The identifying claim therefore does not rely on a zero pass-through
-assumption, only on remaining variation being predominantly informational.
+The core macro controls (food CPI, PPI inflation, M2 growth) absorb the
+most immediate price-level transmission channels. The identifying claim
+does not require zero pass-through, only that remaining variation is
+predominantly informational.
 
 \paragraph{Broad macro shocks.}
 If the instrument captured generalized downturn risk rather than attention
 reallocation, it should predict non-inflation outcomes with similar
 strength. Appendix placebo regressions do not show stable non-inflation
-effects, which is more consistent with a salience channel than with a
-generic macro-shock channel.
-This is why I interpret the IV as a directional mechanism check instead of
-as a stand-alone source of treatment-effect magnitude.
+effects, consistent with a salience channel rather than a generic macro
+shock. This is why I treat the IV as a directional check rather than as a
+source of treatment-effect magnitude.
 
 \paragraph{Anticipation.}
-An anticipation concern is that households revise before the measured
-event window, contaminating timing. Lead-based placebo timing tests are
-close to zero in the appendix, which supports the maintained sequencing
-assumption from revision to subsequent error.
-The timing evidence is not definitive, but it rejects the strongest
+If households revise before the measured event window, timing is
+contaminated. Lead-based placebo timing tests in the appendix are close to
+zero, supporting the maintained sequencing from revision to subsequent
+error. The timing evidence is not definitive but rejects the strongest
 version of pre-trend-driven reverse causality.
 
 \paragraph{Finite-sample limits.}
-All aggregate exercises are based on 32 quarters, and IV precision is
-further limited by weak first-stage variation. I therefore do not use the
-IV for point identification. The empirical claim is based on consistency
-across designs, with identification weight assigned to the high-power
-within-cell CFPS panel estimates.
-In practice, this means the paper's causal language is anchored to the
-panel design and treats aggregate-IV evidence as corroborative.
+All aggregate exercises rest on 32 quarters, and IV precision is further
+limited by weak first-stage variation. The empirical claim is based on the
+high-power within-cell CFPS panel estimates. Aggregate and IV evidence is
+corroborative. Causal language in this paper is anchored to the household
+panel design.
 
 \input{\tabdir/identification_main}
 \input{\tabdir/iv_first_stage}
+

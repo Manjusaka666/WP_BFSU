@@ -2,59 +2,19 @@
 
 This section describes the three survey datasets and the
 quarterly macro controls used in the main specifications.
-The CFPS provides the household panel test, the PBoC
-depositor survey provides the aggregate quarterly test, and
-the CHFS provides cross-sectional mechanism variables on
-information channels and risk attitude.
-
-\subsection{CFPS Household Panel}
-
-The China Family Panel Studies (CFPS) is a nationally
-representative household panel administered by the Institute
-of Social Science Survey at Peking University
-\citep{Xie2014,Xie2022}. I use seven waves (2010, 2012,
-2014, 2016, 2018, 2020, 2022). The analysis sample for the
-baseline household specification contains about 13,700
-household-wave observations after requiring non-missing
-expectation responses, province identifiers, and panel
-linkage.
-
-The CFPS cross-year identifier links respondents across
-waves and allows construction of within-household changes in
-inflation beliefs. Household-level covariates used in later
-sections include age, education, hukou status, and income.
-The panel is unbalanced, so all specifications are estimated
-on the available linked observations for each wave pair.
-
-The inflation-expectation item is a three-point qualitative
-question (prices rise, unchanged, fall). I code
-$\mu_{it}\in\{1,0,-1\}$ for household $i$ at wave $t$. For
-households observed in consecutive waves, the revision is
-\begin{equation*}
-\Delta \mu_{it}=\mu_{it}-\mu_{i,t-1}.
-\end{equation*}
-Forecast errors are constructed by matching each household
-to province-level realized CPI inflation between $t$ and
-$t+1$, then comparing outcomes with the direction implied by
-$\mu_{it}$. This preserves time ordering: revisions use
-information at $t$, while errors use realizations after $t$.
-The baseline CFPS estimators include province and wave fixed
-effects to absorb persistent regional inflation differences
-and common macro shocks between survey rounds.
-
-Table~\ref{tab:cfps_summary} reports wave-by-wave CFPS
-coverage and key composition statistics used in the panel
-construction.
-\input{\tabdir/cfps_summary}
+The PBoC depositor survey provides the aggregate quarterly
+test. The CFPS household panel provides a within-household
+test at biennial frequency. The CHFS contributes a single
+cross-section used for one mechanism boundary condition.
 
 \subsection{PBoC Depositor Survey}
 
 The People's Bank of China Urban Depositor Survey provides
 the aggregate expectation series at quarterly frequency.
-The working sample in this paper spans 2011Q1--2025Q3.
-After merging with macro controls and requiring non-missing
-revisions and forecast errors, the baseline aggregate
-regressions use $N=32$ quarterly observations
+The working sample spans 2011Q1--2025Q3. After merging with
+macro controls and requiring non-missing revisions and
+forecast errors, the baseline aggregate regressions use
+$N=32$ quarterly observations
 (Table~\ref{tab:sample_overview}).
 
 The survey is fielded quarterly in major cities and reports
@@ -65,10 +25,10 @@ timing for revisions and next-quarter forecast errors.
 
 The expectation question is qualitative and published on a
 five-point response scale. I convert the published response
-shares into a quantitative expectation using a brief
+shares into a quantitative expectation using a
 Carlson--Parkin mapping, with full construction details in
-Appendix~\ref{app:data} and Appendix~\ref{app:measurement}. The
-quarterly aggregate revision and error are
+Appendix~\ref{app:data} and Appendix~\ref{app:measurement}.
+The quarterly aggregate revision and error are
 \begin{equation*}
 FR_t=\mu_t-\mu_{t-1},\qquad
 FE_{t+1}=\pi_{t+1}^{QoQ}-\mu_t.
@@ -93,42 +53,100 @@ time-series test.
 \label{fig:revision_error_dynamics}
 \end{figure}
 
-\subsection{CHFS 2011 Cross-Section}\label{subsec:chfs_data}
+\subsection{CFPS Household Panel}
 
-The China Household Finance Survey (CHFS) contributes a
-cross-sectional mechanism dataset centered on the 2011 wave
-\citep{Gan2014}. The key inflation-expectation item is
-question A4008, measured on a five-point scale and available
-only in 2011. This one-wave availability implies that CHFS
-cannot be used to construct within-household expectation
-revisions over time.
+The China Family Panel Studies (CFPS) is a nationally
+representative household panel administered by the Institute
+of Social Science Survey at Peking University
+\citep{Xie2014,Xie2022}. I use seven waves (2010, 2012,
+2014, 2016, 2018, 2020, 2022). The analysis sample contains
+about 13,000 household-wave observations after requiring
+non-missing expectation responses, province identifiers, and
+panel linkage.
 
-The 2011 CHFS wave covers approximately 8,400 households and
-is the only CHFS wave that includes the A4008 inflation
-expectation item used in this paper. Later CHFS waves are
-used only for forward linkage outcomes, not for new
-expectation revisions.
+The CFPS cross-year identifier links respondents across
+waves and allows construction of within-household changes in
+inflation beliefs. Household-level covariates include age,
+education, hukou status, and income. The panel is
+unbalanced, so all specifications are estimated on the
+available linked observations for each wave pair.
 
-CHFS 2011 also provides two variables used in mechanism
-tests. First, A4001 records six information channels
-(newspapers, TV, radio, internet, SMS, family/friends),
-which are used to proxy households' exposure to salient
-price narratives. Second, A4003 records self-reported risk
-attitude on a five-point scale, used as an alternative
-behavioral channel.
+\paragraph{Measurement.}
+The inflation-expectation item is a three-point qualitative
+question: prices rise, unchanged, or fall. I code
+$\mu_{it}\in\{1,0,-1\}$ for household $i$ at wave $t$. For
+households observed in consecutive waves, the revision is
+\begin{equation*}
+\Delta \mu_{it}=\mu_{it}-\mu_{i,t-1}.
+\end{equation*}
+Forecast errors are constructed by matching each household
+to province-level realized CPI inflation between $t$ and
+$t+1$, then comparing outcomes with the direction implied by
+$\mu_{it}$.
 
-Although A4008 appears only in 2011, CHFS household
-identifiers allow linkage of 2011 beliefs to later waves for
-outcome tracking. In linked follow-up analysis, income is
-consistently available, while comparable consumption
-variables are not available with the same coverage across
-waves. For that reason, the forward CHFS consequence
-specification uses income outcomes.
+Three features of this measure deserve explicit comment.
+First, the question is coarse. A three-point scale cannot
+capture the magnitude of expected price changes, only
+direction. Second, the survey is biennial, so revision
+horizons are two years rather than one quarter. Third, the
+forecast-error object is indirect: I match a qualitative
+household response to later realized provincial CPI, which
+is a continuous variable measured at a different level of
+aggregation.
 
-The CHFS role in this paper is therefore complementary to
-CFPS and PBoC: it identifies mechanism-relevant
-cross-sectional variation in information exposure and risk
-attitudes, rather than time-series revision dynamics.
+\paragraph{Why the exercise is still informative.}
+Despite these limitations, the CFPS test has four properties
+that make it useful. The three-point coding is consistent
+across all seven waves, so measurement error in the
+dependent variable is stable over time. The time ordering is
+clean: revisions use information available at $t$, while
+errors use realizations after $t$. The specification
+includes province $\times$ wave fixed effects, so the
+identifying variation is within-cell heterogeneity
+in household belief revisions. This absorbs any aggregate
+provincial inflation trend that might mechanically link
+revisions and errors. Finally, the estimated coefficient is
+stable across alternative control sets and demographic
+subgroups (Section~\ref{sec:robustness}).
+
+Table~\ref{tab:cfps_summary} reports wave-by-wave CFPS
+coverage and key composition statistics used in the panel
+construction.
+\input{\tabdir/cfps_summary}
+
+\paragraph{Horizon mismatch between CFPS and PBoC.}
+The PBoC survey is quarterly and the CFPS is biennial, so the two
+datasets test the overreaction prediction at different forecast
+horizons. This mismatch has three implications. First, power: each
+CFPS household contributes at most one revision per two-year interval,
+so the per-observation information content is lower than in the
+quarterly panel. Second, interpretation: a negative $\hat{\beta}$ in
+the CFPS means that diagnostic-style behavior persists at lower
+frequencies, not that it replicates the quarterly magnitude. The
+biennial horizon integrates over multiple quarterly shocks, which
+should attenuate the coefficient toward zero under both overreaction
+and rational expectations. Finding a negative sign at this horizon is
+therefore a harder test to pass. Third, complementarity: the two
+datasets test the same sign prediction at horizons differing by a
+factor of eight. Agreement across both reduces the concern that the
+result is an artifact of a particular survey design, question wording,
+or frequency.
+
+\subsection{CHFS 2011 Cross-Section}\label{sec:chfs_data}
+
+The China Household Finance Survey (CHFS) 2011 wave
+\citep{Gan2014} provides two variables used in a single
+mechanism boundary-condition test. Question A4008 records
+inflation expectations on a five-point scale, and A4001
+records six information channels (newspapers, TV, radio,
+internet, SMS, family/friends). A4003 records self-reported
+risk attitude on a five-point scale and is a placebo
+channel. The wave covers approximately 8,400 households.
+
+The A4008 item appears only in 2011, so CHFS cannot
+construct within-household revisions over time. Its role in
+this paper is limited to cross-sectional variation in
+information exposure and risk attitudes.
 
 \input{\tabdir/chfs_2011_summary}
 
@@ -136,14 +154,14 @@ attitudes, rather than time-series revision dynamics.
 
 All macro controls are merged at quarterly frequency.
 Inflation controls include headline CPI and food CPI from
-National Bureau of Statistics releases; food CPI is included
+National Bureau of Statistics releases. Food CPI is included
 separately because food-price movements are a salient signal
 in household inflation perceptions. I also include PPI as an
 upstream cost indicator and M2 growth as a monetary
 conditions proxy.
 
 All monthly macro series are aligned to the survey quarter
-using within-quarter averages. Revisions and errors are then
+using within-quarter averages. Revisions and errors are
 defined so that controls are dated at $t$ and realized
 inflation is dated at $t+1$, matching the forecasting
 timeline used in the baseline regressions.
@@ -153,15 +171,17 @@ Uncertainty index \citep{Baker2016} and the Geopolitical
 Risk index \citep{Caldara2022}. Both are monthly source
 series aggregated to quarters by averaging.
 
-The final merged quarterly panel is used in both aggregate
-OLS and the directional IV checks. The same macro block is
-kept across specifications unless a robustness table states
+The merged quarterly panel is used in both aggregate OLS and
+the directional IV checks. The same macro block is kept
+across specifications unless a robustness table states
 otherwise.
 
 Table~\ref{tab:desc_stats} reports descriptive statistics
 for expectations, revisions, forecast errors, and control
-variables in the merged quarterly panel. Table~\ref{tab:cp_bounds}
-reports Carlson--Parkin sensitivity to uncertain responses,
-which is referenced in the measurement discussion.
+variables in the merged quarterly panel.
+Table~\ref{tab:cp_bounds} reports Carlson--Parkin sensitivity
+to uncertain responses, referenced in the measurement
+discussion.
 \input{\tabdir/desc_stats}
 \input{\tabdir/cp_bounds}
+

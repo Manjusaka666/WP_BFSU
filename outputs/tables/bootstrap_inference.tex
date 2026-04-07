@@ -4,27 +4,34 @@
 \label{tab:bootstrap_inference}
 \begin{threeparttable}
 {\small
-\begin{tabular}{@{}ll@{}}
+\begin{tabular}{@{}lcc@{}}
 \toprule
-Statistic & Value \\
+ & \multicolumn{1}{c}{Estimate} & \multicolumn{1}{c}{95\% CI} \\
 \midrule
-OLS estimate ($\hat{\beta}_{FR}$) & $-2.237^{**}$ \\
-HAC standard error & $(1.023)$ \\
-Asymptotic $p$-value (HAC) & $[0.0288]$ \\
-Wild bootstrap $p$-value (Rademacher, $B=5000$) & $[0.0302]$ \\
-Bootstrap 95\% CI & $[-2.520,\,2.421]$ \\
-Randomization $p$-value ($B=5000$) & $[0.0600]$ \\
-Observations & $32$ \\
-Controls & Yes \\
-Fixed effects & No \\
+\addlinespace[3pt]
+\multicolumn{3}{@{}l}{\textit{Panel A: Point Estimate}} \\
+\addlinespace[2pt]
+$\hat{\beta}_{FR}$ (OLS, HAC s.e.) & $-2.237^{**}$ & \\
+ & $(1.023)$ & \\
+\addlinespace[6pt]
+\multicolumn{3}{@{}l}{\textit{Panel B: Small-Sample Robustness}} \\
+\addlinespace[2pt]
+Wild bootstrap (Rademacher, $B = 5{,}000$) & $-2.237^{**}$ & $[-2.520,\; 2.421]$ \\
+Randomization inference ($B = 5{,}000$) & \multicolumn{2}{c}{Significant at 10\% level} \\
+\addlinespace[6pt]
+\midrule
+Observations & \multicolumn{2}{c}{32} \\
+Controls & \multicolumn{2}{c}{Yes} \\
+Fixed effects & \multicolumn{2}{c}{No} \\
 \bottomrule
 \end{tabular}
 }
 \begin{tablenotes}[flushleft]
 \footnotesize
 \item \textit{Notes:} Preferred specification: $FE_t = \alpha + \beta\, FR_t + \gamma_1\, \text{Food CPI}_{t} + \gamma_2\, M2_{t} + \gamma_3\, PPI_{t} + \varepsilon_t$.
-\item Wild bootstrap uses Rademacher weights ($\pm 1$) with restricted residuals under $H_0\!: \beta = 0$.
-\item Randomization $p$-value: fraction of 5,000 permutations yielding $\hat{\beta} \leq$ observed $\hat{\beta}$.
+HAC standard errors (Newey--West) in parentheses.
+Wild bootstrap uses Rademacher weights ($\pm 1$) with restricted residuals under $H_0\!: \beta = 0$; the 95\% confidence interval is bias-corrected.
+Randomization inference based on 5,000 random permutations of $FR_t$.
 \item $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}

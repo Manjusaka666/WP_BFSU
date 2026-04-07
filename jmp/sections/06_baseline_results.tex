@@ -1,237 +1,119 @@
 \section{Baseline Results}\label{sec:results}
 
-This section presents a strict evidence hierarchy. The CFPS household
-panel is the primary result because it provides the most precise estimate
-under the strongest design in this paper
-($\hat{\beta} \approx -0.55$, $p < 0.001$, $N \approx 13{,}700$). The
-PBoC aggregate series is corroborating evidence: it keeps the same sign
-and meaningful magnitude in a low-power quarterly sample
-($\hat{\beta} = -2.24$, $p = 0.055$, $N = 32$). The IV exercise is
-reported only as directional support because first-stage strength is weak
-($F = 1.16$), so IV cannot discipline magnitudes. The ordering is
-intentional: micro evidence anchors identification, aggregate evidence
-checks external consistency, and IV is interpretive rather than
-determinative.
+I present results in a strict evidence hierarchy. The CFPS household
+panel is the primary result: it delivers the most precise estimate under
+the strongest design ($\hat{\beta} \approx -0.55$, significant at 0.1\%,
+$N \approx 13{,}000$). The PBoC aggregate series corroborates the sign
+in a low-power quarterly sample ($\hat{\beta} = -2.24$, $p = 0.055$,
+$N = 32$). The IV exercise provides directional support only, because
+first-stage strength is weak ($F = 1.16$). Micro evidence anchors
+identification, aggregate evidence checks external consistency, and IV
+is interpretive rather than determinative.
 
 \subsection{CFPS Household Panel (Main Result)}
-\label{subsec:cfps_main_result}
+\label{sec:cfps_main_result}
 
-The central estimate of the paper is the household-level revision--error
-slope in the CFPS panel. A one-unit upward revision in inflation
-expectations predicts a subsequent forecast error that is
-0.55 units lower, holding province and wave effects fixed. In magnitude,
-this implies partial reversal of the revision itself: households that
-revise upward the most are exactly those that later overpredict inflation
-the most. The estimate is sharp ($p < 0.001$) and based on roughly
-13,700 household-wave observations, which is an order-of-magnitude
-increase in usable variation relative to the aggregate time series.
+A one-unit upward revision in inflation expectations predicts a
+subsequent forecast error 0.55 units lower, holding province $\times$
+wave effects fixed. Roughly half of the revision is undone in the
+subsequent error. The estimate is significant at 0.1\% and based on
+approximately 13,000 household-wave observations, an
+order-of-magnitude increase in usable variation relative to the
+aggregate time series.
 
-The identifying variation is within province and within survey wave.
-Province fixed effects absorb time-invariant regional inflation
-environments. Wave fixed effects absorb common national shocks, including
-food and energy episodes, policy communication, and broad macro
-conditions. What remains is cross-household variation in revision
-behavior inside the same province-wave cell. Under that design, the
-negative slope is difficult to rationalize as a mechanical time-series
-artifact.
+Province $\times$ wave fixed effects absorb everything common to
+households observed in the same province and survey wave: the local
+inflation environment, province-specific policy changes, national macro
+news, and seasonality. The identifying variation is cross-household
+differences in revision behavior inside the same province $\times$ wave
+cell. Under that design, the negative slope is identified from within-cell
+cross-household differences rather than common time-series movements.
 
-Economic magnitude comes first. The estimate
-$\hat{\beta} \approx -0.55$ means that when two otherwise comparable
-households differ by one unit in revision direction/intensity, the
-household with the larger upward revision makes a forecast error about
-half a unit more negative in the next realization window. In this
-context, the effect is not a small residual correction; it is a first-
-order component of expectation mistakes. Put differently, the response to
-new inflation information appears too strong, and roughly one-half of the
-revision is undone in the subsequent error.
+The estimate is stable in a progressive-control sense
+(Table~\ref{tab:cfps_baseline}). A bivariate specification with only
+revisions already delivers $\hat{\beta} = -0.547$. Adding household
+demographics yields $\hat{\beta} = -0.550$. Adding province $\times$
+wave fixed effects yields $\hat{\beta} = -0.549$. The coefficient is
+unchanged across all three columns. This stability limits the scope for
+omitted-variable bias: the Oster (2019) bounds analysis in
+Section~\ref{sec:identification} shows that unobservables would need to
+be over 2,700 times as important as the full set of observables to
+drive the coefficient to zero.
 
-The pattern is also stable in a progressive-control sense. A parsimonious
-specification with only revisions already delivers a negative slope.
-Adding household demographics and then province and wave fixed effects
-does not attenuate the coefficient in economically meaningful ways. In
-the Oster bounds table, the uncontrolled estimate
-($\hat{\beta} = -0.5199$) and the controlled estimate
-($\hat{\beta} = -0.5238$) are nearly identical, despite the larger
-covariate set and fixed effects. Richer controls improve
-credibility without flipping sign, collapsing magnitude, or relying on a
-single fragile covariate.
-
-This progression can be read in the same nested-column language used in
-progressive-controls empirical tables. Column~(1) isolates the raw revision--error
-covariance. Column~(2) adds household observables that capture life-cycle
-and socioeconomic differences in inflation perception. Column~(3) adds
-province and wave fixed effects, forcing the estimate to be identified
-only by within-cell contrasts. The coefficient remains tightly centered
-near $-0.55$ through this sequence. In other words, the estimate does not
-appear because controls were omitted; it survives when controls are
-stacked in the order most likely to absorb confounding.
-
-The robustness logic here is not ``everything is significant.'' It is
-that magnitude, sign, and design move together in the expected direction.
-First, precision is high because the panel contributes many more
-effective observations than the aggregate sample. Second, the sign is
-stable across model enrichment. Third, inferential threats from omitted
-variables would need implausibly large selection on unobservables to
-drive the coefficient to zero. This combination makes the CFPS slope the
-main empirical object for interpretation.
-
-The interpretation remains conditional. The estimate is a reduced-form
-diagnostic slope in expectation errors, not a structural parameter pinned
-down by exogenous treatment timing. But conditional on the fixed-effects
-design and observed controls, the evidence supports the overreaction
-mechanism more strongly than either rational expectations
-($\beta = 0$) or canonical information-rigidity dynamics
-($\beta > 0$ in this setup). The paper's core quantitative claim should
-therefore be stated at the household level: revisions and subsequent
-errors move in opposite directions with economically large elasticity.
+The estimate is a reduced-form diagnostic slope, not a structural
+parameter pinned down by exogenous treatment timing. But conditional on
+the fixed-effects design and observed controls, the estimated slope is
+negative relative to both the rational-expectations benchmark
+($\beta = 0$) and the canonical rigidity benchmark ($\beta > 0$ in this
+setup). Revisions and subsequent errors move in opposite directions with
+economically large elasticity.
 
 Heterogeneity results in Section~\ref{sec:heterogeneity} reinforce this
-reading rather than weaken it. Interactions by education, income, and
-urban status leave the base revision slope near $-0.55$ in every case,
-with no strong differential slopes. The lack of sharp interaction effects
-is informative: overreaction is broad-based, not confined to a narrow
-subgroup. For a macro application, this matters because aggregate
-implications require behavior that generalizes beyond a single
-demographic tail.
+reading. Interactions by education, income, and urban status leave the
+base revision slope near $-0.55$ in every case, with no strong
+differential slopes. Overreaction is broad-based, not confined to a
+narrow subgroup.
 
-The CFPS result also has a practical interpretation for policy models.
-Suppose a policy communication shock shifts expected inflation upward by
-one unit in survey space. The estimated slope implies that roughly
-one-half of that adjustment is offset by subsequent forecast error in the
-opposite direction. That degree of overshooting is large enough to matter
-for short-horizon policy calibration: mechanical incorporation of raw
-household revisions into inflation nowcasts would overstate persistent
-pressure unless one explicitly adjusts for diagnostic reversal.
-
-Finally, the sample-size contrast is substantive, not cosmetic.
-Aggregate evidence with $N = 32$ can validate sign consistency but cannot
-deliver the same precision frontier as household microdata. Treating
-CFPS as primary and aggregate OLS as corroborating is therefore a design
-choice rooted in statistical content, not narrative preference.
+\input{\tabdir/cfps_baseline}
 
 \subsection{Aggregate Corroboration}
-\label{subsec:aggregate_corroboration}
+\label{sec:aggregate_corroboration}
 
 The aggregate exercise asks whether the micro result survives temporal
-aggregation and market-wide conditioning information. The preferred
-specification yields $\hat{\beta} = -2.24$ with $N = 32$
-($p = 0.055$). Magnitude first: a 1 percentage-point upward revision in
-aggregate expected inflation predicts a 2.24 percentage-point forecast
-error in the opposite direction one quarter ahead. Even with marginal
-classical significance, this is economically large and aligned with the
-CFPS sign.
+aggregation. The preferred specification yields
+$\hat{\beta} = -2.24$ with $N = 32$ ($p = 0.055$): a one
+percentage-point upward revision in aggregate expected inflation predicts
+a 2.24 percentage-point forecast error in the opposite direction one
+quarter ahead. The sign is consistent with the CFPS evidence.
 
-The progression across specifications in Table~\ref{tab:ols_baseline} is
-informative. The bivariate slope is already negative
-($-1.66$). Adding macro controls (food CPI, M2, PPI) strengthens the
-magnitude to $-2.24$. Adding uncertainty controls (EPU, GPR) keeps the
-sign and preserves a large negative point estimate ($-2.13$). In short,
-conditioning choices move precision but do not reverse the core slope.
-Given the small quarterly sample, sign stability across nested columns is
-the key model-discrimination object.
+Across specifications in Table~\ref{tab:ols_baseline}, the bivariate
+slope is already negative ($-1.66$). Adding macro controls strengthens
+it to $-2.24$. Adding uncertainty controls preserves a large negative
+point estimate ($-2.13$). Sign stability across nested columns is the
+key discrimination object given the small sample.
 
-Finite-sample inference confirms that the negative slope is not an
-artifact of a single asymptotic approximation. The bootstrap
-$t$-test yields $p = 0.030$, stronger than the baseline HAC
-asymptotic $p$-value. The percentile confidence interval is wider and
-includes zero, which is expected in short samples with skewed finite-
-sample distributions. The correct interpretation is therefore not
-``conclusive rejection in every metric''; it is that direction and
-economic size are stable, while precision remains bounded by $N = 32$.
+Finite-sample inference confirms the direction. The bootstrap $t$-test
+yields $p = 0.030$, stronger than the baseline HAC $p$-value. The
+percentile confidence interval is wider and includes zero, which is
+expected in short samples with skewed finite-sample distributions. The
+correct reading is that direction and economic size are stable, while
+precision remains bounded by $N = 32$.
 
-Magnitude comparisons help anchor the aggregate estimate. Using the
-reported revision dispersion in the aggregate sample, a typical
-one-standard-deviation revision movement implies roughly a one-
-percentage-point opposite-signed forecast-error movement under the
-baseline slope. Relative to average signed forecast errors in the sample,
-that is not a second-order adjustment. It is large enough to affect
-quarter-ahead narrative interpretation in real time, especially when
-policy discussions rely on survey revisions as a leading signal.
-
-Column~(4) in Table~\ref{tab:ols_baseline} uses the alternative PBoC
-diffusion-index revision measure and returns a positive slope. That
-column should be read as a measurement comparison, not a contradiction of
-the baseline result. The diffusion index is a balance-of-opinion
-indicator, whereas the baseline dependent variable is in percentage-point
-forecast-error units under Carlson--Parkin quantification. A positive
-coefficient in that mixed-scale specification can reflect co-movement
-between broadening inflation concern and realized inflation, rather than
-the overreaction mapping tested by the baseline scale-consistent columns.
-For hypothesis testing in this section, the baseline quantified-revision
-specifications remain the relevant reference.
-
-Taken together, the aggregate block corroborates the CFPS evidence in the
-dimension that matters most for model comparison: sign and meaningful
-magnitude. It does not independently settle causal interpretation, and it
-is not used that way. Its role is to show that the household-level
-revision--error mapping survives when the data are collapsed to the same
-quarterly objects used in policy communication.
-
-This corroboration role is important for external validity. Household
-micro evidence could, in principle, reflect questionnaire-specific
-mechanics or individual-level coding noise. The aggregate exercise
-addresses that concern by showing that the same directional mapping
-appears in the quarterly macro environment where central-bank surveys and
-market commentary are interpreted. The estimate is less precise at that
-level, but it is directionally coherent with the micro result and
-economically material in size.
-
-Additional aggregate diagnostics, control sensitivity tables, and
-correlation matrices are reported in Appendix~\ref{app:robustness} so the
-main text keeps the identification hierarchy transparent.
+I do not over-interpret the aggregate magnitude. With 32 quarterly
+observations, the aggregate block corroborates the CFPS evidence on sign
+and broad economic magnitude. Additional aggregate diagnostics and control sensitivity
+tables are reported in Appendix~\ref{app:robustness}.
 
 \input{\tabdir/ols_baseline}
 \input{\tabdir/bootstrap_inference}
 
 \subsection{Dynamic Response}
-\label{subsec:dynamic_response}
+\label{sec:dynamic_response}
 
-Static coefficients summarize average predictive content, but they do not
-show horizon-by-horizon adjustment. I therefore estimate local
-projections for horizons $h = 0,1,\ldots,8$:
+Static coefficients summarize average predictive content but do not show
+horizon-by-horizon adjustment. I estimate local projections for horizons
+$h = 0,1,\ldots,8$:
 \begin{equation}\label{eq:lp}
   y_{t+h} = \alpha_h + \beta_h FR_t + \Gamma_h' W_t + \varepsilon_{t+h},
 \end{equation}
-where $y_{t+h}$ is either forecast error or realized inflation. The
-impact coefficient is negative for forecast errors, then oscillates
-across horizons in the short sample.
+where $y_{t+h}$ is either forecast error or realized inflation.
 
-On impact, the forecast-error response is
-$\hat{\beta}_0 = -2.24$ (SE $= 1.11$), matching the baseline OLS
-magnitude by construction. At longer horizons, the path alternates in
-sign, with negative responses at selected even horizons and positive
-responses at adjacent odd horizons. Two features matter for
-interpretation. First, the impact sign is unambiguously negative. Second,
-the oscillation arrives as the effective sample shrinks with horizon
-($N$ declines from 32 at $h=0$ to 23 at $h=8$), so medium-horizon
-coefficients should be read as suggestive dynamics rather than precise
-long-run elasticities.
+On impact, the forecast-error response is $\hat{\beta}_0 = -2.24$
+(SE $= 1.11$), matching the baseline OLS by construction. At longer
+horizons, the path alternates in sign. The impact sign is unambiguously
+negative. The oscillation arrives as the effective sample shrinks with
+horizon ($N$ declines from 32 at $h = 0$ to 23 at $h = 8$), so
+medium-horizon coefficients should be read as suggestive rather than
+precise.
 
 The inflation-response LP complements this pattern. Realized inflation
-reacts positively on impact, consistent with revisions containing genuine
-news, but the forecast-error response is still strongly negative at
-impact. That combination is what one expects under ``news plus
-overreaction'': agents update in the right direction yet overshoot in
-magnitude, creating opposite-signed forecast errors afterward. The
-subsequent oscillation is consistent with short-horizon correction rather
-than persistent one-sided bias.
-
-In magnitude terms, the LP block strengthens the baseline message. The
-impact effect is not only negative but large relative to typical quarter-
-to-quarter forecast-error movements in this sample. The dynamic profiles
-also show that the effect is front-loaded: most economically relevant
-action occurs immediately, and later coefficients fluctuate around a much
-less stable trajectory. This temporal shape is consistent with salient signals triggering rapid overweighting followed by partial
-correction.
-
-The dynamic evidence also clarifies what the baseline coefficient is and
-is not. It is not a long-horizon persistence parameter. Instead, it is a
-short-horizon response coefficient concentrated near impact. Once this
-timing pattern is explicit, the apparent tension between large impact
-slopes and weaker medium-horizon precision disappears: they describe
-different parts of the adjustment path. For policy interpretation, that
-means revision shocks should be treated as near-term overshooting signals,
-not as durable medium-run drift in expectations errors.
+reacts positively on impact, consistent with revisions containing
+genuine news, but the forecast-error response is still negative. That
+combination is consistent with ``news plus overreaction'': agents
+update in the right direction yet overshoot in magnitude. The dynamic
+profiles show that the effect is front-loaded: most economically
+relevant action occurs at impact, and later coefficients fluctuate
+around a less stable trajectory.
 
 \begin{figure}[htbp]
 \centering
@@ -256,26 +138,17 @@ not as durable medium-run drift in expectations errors.
 \input{\tabdir/lp_dynamic}
 
 \subsection{IV Directional Check}
-\label{subsec:iv}
+\label{sec:iv}
 
-The IV exercise is intentionally brief in the main text because its role
-is narrow. First-stage strength is weak ($F = 1.16$), so 2SLS magnitudes
-are not reliable for structural interpretation in this sample. The
-Anderson--Rubin 95\% confidence set is wide ($[-3,3]$), and the reduced-
-form coefficient is negative ($-0.41$), matching the direction of the
-CFPS and aggregate OLS results.
+First-stage strength is weak ($F = 1.16$), so 2SLS magnitudes are not
+reliable for structural interpretation. The Anderson--Rubin 95\%
+confidence set is wide ($[-3,3]$), and the reduced-form coefficient is
+negative ($-0.41$), matching the direction of the CFPS and aggregate OLS
+results.
 
-These facts support one statement and no more: IV evidence is
-directionally consistent with diagnostic overreaction, but it cannot rank
-plausible magnitudes. That is why the paper's quantitative conclusions
+IV evidence is directionally consistent with diagnostic overreaction, but
+it cannot rank plausible magnitudes. The paper's quantitative conclusions
 rest on CFPS plus aggregate corroboration, not on IV point estimates.
-Detailed IV implementation and exclusion diagnostics remain in
+Detailed IV implementation and exclusion diagnostics appear in
 Section~\ref{sec:identification} and Appendix~\ref{app:robustness}.
 
-This placement is deliberate for editorial clarity. Keeping weak-IV
-output in a concise final subsection prevents the main results section
-from overstating what the instrument can deliver while still documenting
-that the reduced-form direction matches the primary evidence. The
-empirical hierarchy is therefore consistent from start to finish:
-precision and magnitude from CFPS, sign corroboration from aggregate OLS,
-and directional alignment from IV under weak-identification safeguards.

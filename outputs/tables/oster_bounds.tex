@@ -10,26 +10,27 @@ Statistic & Value \\
 \midrule
 \multicolumn{2}{l}{\textit{Panel A: Baseline Specifications}} \\
 \addlinespace
-Uncontrolled $\hat{\beta}$ (no FE, no controls) & $-0.5199$ \\
-Controlled $\hat{\beta}$ (province + wave FE, demographics) & $-0.5238$ \\
+Uncontrolled $\hat{\beta}$ (no FE, no controls) & $-0.5472$ \\
+Controlled $\hat{\beta}$ (province $\times$ wave FE, demographics) & $-0.5490***$ \\
+ & (0.0085) \\
 \addlinespace
-$R^{2}$ (uncontrolled) & $0.3724$ \\
-$R^{2}$ (controlled) & $0.4241$ \\
-Fixed effects (controlled) & Yes \\
+$R^{2}$ (uncontrolled) & $0.3969$ \\
+$R^{2}$ (controlled) & $0.4559$ \\
+Fixed effects (controlled) & Province $\times$ wave \\
 Controls (controlled) & Yes \\
 \addlinespace
 \multicolumn{2}{l}{\textit{Panel B: Oster Bounds}} \\
 \addlinespace
-$R^2_{\max}$ ($= \min\{2.2 \times R^2_{\text{ctrl}}, 1\}$) & $0.9331$ \\
-$\delta^*$ (proportional selection ratio) & $-1333.63$ \\
-Bias-adjusted $\hat{\beta}$ ($\delta = 1$, $R^2_{\max}$) & $-0.5618$ \\
-$N$ & $30{,}352$ \\
+$R^2_{\max}$ ($= \min\{2.2 \times R^2_{\text{ctrl}}, 1\}$) & $1.0000$ \\
+$\delta^*$ (proportional selection ratio) & $-2737.16$ \\
+Bias-adjusted $\hat{\beta}$ ($\delta = 1$, $R^2_{\max}$) & $-0.5661$ \\
+$N$ & $13,031$ \\
 \bottomrule
 \end{tabular}
 }
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} Oster (2019) bounds for the revision--error coefficient in the CFPS household panel. The uncontrolled regression includes only the revision variable. The controlled regression adds province and wave fixed effects plus demographic controls (age, education, income, gender, urban hukou). $\delta^* > 1$ means selection on unobservables would need to be stronger than selection on observables to drive the coefficient to zero. The bias-adjusted $\hat{\beta}$ assumes proportional selection ($\delta = 1$); a negative value indicates that the result survives full proportional selection. $R^2_{\max}$ follows the Oster (2019) convention of $2.2 \times R^2_{\text{controlled}}$. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
+\item \textit{Notes:} Oster (2019) bounds for the revision--error coefficient in the CFPS household panel. The uncontrolled regression includes only the revision variable. The controlled regression adds province $\times$ wave fixed effects plus demographic controls (age, education, income, gender, urban status). Standard error in parentheses is clustered at the province level. $\delta^* > 1$ means selection on unobservables would need to be stronger than selection on observables to drive the coefficient to zero. The bias-adjusted $\hat{\beta}$ assumes proportional selection ($\delta = 1$); a negative value indicates that the result survives full proportional selection. $R^2_{\max}$ follows the Oster (2019) convention of $2.2 \times R^2_{\text{controlled}}$. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

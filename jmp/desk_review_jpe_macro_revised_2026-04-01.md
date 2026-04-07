@@ -1,396 +1,298 @@
-Under **Route A**, I would not try to “save” the paper as a macro-structural welfare paper. I would **rebuild it as a top-quality reduced-form expectations paper**: disciplined, transparent, hard on identification boundaries, and much less ambitious in what it claims. In my view, that is the only credible way to turn the current draft into something genuinely strong. The present draft already contains a publishable core fact, but it is buried under sections that overstate what the design can deliver. 
+After reviewing how **comparable top-journal papers** handle expectation-formation questions, my conclusion is straightforward:
 
-My blunt judgment is this: the paper’s best contribution is **not** “policy can exploit diagnostic bias and welfare gains are 37.6%.” Its best contribution is:
+**For Route A to succeed, the key is not to add more models, but to rebuild the paper around the empirical style used in strong reduced-form expectations papers.**
+Those papers typically rely on **one clearly dominant empirical object**: either revision–error moments, randomized information treatments, exposure-based heterogeneity, or direct measurement of subjective models. They do **not** try to compensate for a coarse core design by stacking many weak auxiliary exercises. Bordalo et al. study overreaction through the predictability of forecast errors from forecast revisions; Coibion and Gorodnichenko use revision–error dynamics to study information rigidity; Cavallo, Cruces, and Perez-Truglia use survey experiments; D’Acunto et al. use household-level exposure to grocery-price changes; Malmendier and Nagel use lifetime inflation experiences; Andre et al. directly measure people’s subjective macro models. That is the standard you should emulate. ([美国经济协会][1])
 
-> **Chinese household inflation expectations exhibit systematic overreaction to salient inflation signals, and this pattern is more consistent with reversal-based expectation errors than with a simple sluggish-updating narrative.**
+My blunt assessment is this:
 
-That is a real paper. It is not JPE-Macro. But, if executed at a very high level, it could become a strong field-style paper in expectations / household finance / applied macro.
-
----
-
-# Referee-style revision advice for Route A
-
-## 1. Reposition the paper immediately
-
-The first revision is not econometric. It is editorial and conceptual.
-
-You need to change the paper from:
-
-* a paper about **diagnostic expectations, mechanism competition, policy correction, and welfare**,
-
-to:
-
-* a paper about **robust reduced-form evidence on overreaction in household inflation expectations in China**.
-
-That means the title, abstract, introduction, and conclusion all need to be rewritten around a **narrower central claim**. Right now the paper tries to do too much: household micro evidence, aggregate corroboration, IV, state-space time variation, BVAR, media channels, real-time policy correction, and New Keynesian welfare. That bundle is not making the paper look deeper. It is making it look under-disciplined. 
-
-My advice is to state the contribution in three restrained layers:
-
-1. **Main fact:** households that revise inflation expectations upward later make more negative forecast errors.
-2. **Interpretation:** this pattern is consistent with overreaction and subsequent reversal.
-3. **Scope:** the paper documents this pattern robustly, but does not claim full structural identification of belief formation.
-
-That is a much stronger top-paper posture than the current “everything matters and policy can use it” style.
+**Your next revision should not aim to “preserve everything already in the paper.” It should aim to compress the paper into a tightly disciplined, internally consistent, high-quality reduced-form expectations paper.**
+That is much closer to how strong papers in this literature are actually written. JPE Macroeconomics presents significant macroeconomic research at a very high standard, and under that standard the current draft still suffers less from “insufficient sophistication” than from “too many secondary exercises diluting the main design.” ([芝加哥大学期刊][2])
 
 ---
 
-## 2. Cut or radically downgrade the weakest claims
+## I. What you should learn from the relevant top-journal literature
 
-This is the most important practical advice.
+### 1. Papers on overreaction and forecast errors
 
-### A. Cut the welfare section entirely, or move it to an unimportant appendix
+The closest paper in spirit is **Bordalo et al. (AER 2020)**. Its strength is not that it says “diagnostic expectations” many times; its strength is that it organizes the paper around a single empirical object: the systematic relation between forecast revisions and subsequent forecast errors. **Coibion and Gorodnichenko (AER 2015)** do something similar for information rigidity: the central object is still the dynamic relation between revisions and errors. The lesson for you is not “I also have a negative beta.” The lesson is: **all empirical modules must revolve around one clearly defined expectation-error object.** ([美国经济协会][1])
 
-The current welfare calibration is not convincing enough to survive serious referee scrutiny. The paper maps reduced-form coefficients into a diagnostic parameter in a New Keynesian model without establishing a disciplined structural mapping. That is not good enough for strong macro quantitative claims. The current welfare numbers therefore weaken the paper rather than strengthen it. 
+### 2. Papers with genuinely hard identification
 
-My recommendation: **delete Section 8.3 from the main paper**. If you insist on keeping it, reduce it to one short appendix note explicitly labeled as an illustrative calibration, not evidence.
+The strongest papers in this literature often rely on **exogenous information variation**. **Cavallo, Cruces, and Perez-Truglia (AEJ Macro 2017)** use survey experiments to manipulate information about inflation. Other work by Coibion and coauthors does the same more broadly for household expectations. The lesson is obvious: **if you do not have randomized or quasi-experimental information shocks, then your paper must be much more restrained about causal and mechanism claims.** ([美国经济协会][3])
 
-### B. Downgrade the policy-rule section to a short extension
+### 3. Papers using exposure-based heterogeneity
 
-A 12-quarter backtest with mixed performance metrics does not justify a strong policy claim. MAE improves, but RMSE worsens and the out-of-sample block is too short to support operational central-bank rhetoric. This should not be a core contribution. 
+**D’Acunto et al. (JPE 2021)** connect household inflation expectations to actual exposure to grocery-price changes. **Malmendier and Nagel (QJE 2016)** explain heterogeneity in inflation expectations using lifetime inflation experiences. These papers do not rely on generic heterogeneity such as “education” or “urban.” They use **mechanism-proximate heterogeneity**. The implication for you is that household heterogeneity should move away from demographic splits and toward **food-price exposure, pork-related exposure, or inflation-experience exposure**. ([芝加哥大学期刊][4])
 
-My recommendation: keep one compact subsection or appendix note saying that the documented overreaction may have forecasting implications, but **remove all language implying an implementable policy design contribution**.
+### 4. Papers that measure subjective models directly
 
-### C. Remove the BVAR from the main paper
+**Andre et al. (Review of Economic Studies 2022)** are useful because they do not infer people’s internal models indirectly from weak reduced-form patterns; they directly measure beliefs about macroeconomic relationships. The lesson is methodological discipline: **if you do not directly measure the mechanism, do not write as if you have identified it.** Use “consistent with,” not “shows that.” ([OUP Academic][5])
 
-The BVAR is not helping you. In the paper, and even more clearly in the code, the sign restrictions are built to select shocks that already satisfy the diagnostic-overreaction logic. That makes the exercise a consistency illustration, not independent evidence. A referee will see that immediately.  
+### 5. Measurement is central in household expectations work
 
-My recommendation: **drop the BVAR completely**, or at most leave a short appendix sentence noting that a sign-restricted multivariate system is also compatible with the reduced-form pattern. Do not feature it.
+Recent overviews of the household inflation-expectations literature emphasize that these data are noisy, dispersed, and highly sensitive to survey wording, scale, and measurement conventions. That means strong papers in this area treat **measurement discipline as a first-order issue**, not as a brief limitation paragraph. ([NBER][6])
 
-### D. Relegate the IV to a footnote or appendix
+### 6. Nonparametric graphics also have standards
 
-A first stage of 1.16 has essentially no persuasive value. The fact that you are honest about it is good, but honesty does not make weak IV useful. 
-
-My recommendation: keep the IV only as a brief appendix robustness note, and stop presenting it as part of the paper’s main evidence hierarchy.
+**Cattaneo et al. (AER 2024)** show that binscatter is not just a presentational device. Bin choice, covariate adjustment, and uncertainty quantification all matter formally. If you keep the revision–error gradient figure, it should be rebuilt using a proper binscatter framework rather than an ad hoc quintile plot. ([美国经济协会][7])
 
 ---
 
-## 3. Strengthen the actual core: the household reduced-form design
+## II. Complete revision plan
 
-If Route A is the right route, then the paper lives or dies on whether the **CFPS household evidence** can be made to look maximally careful, transparent, and hard to dismiss.
-
-That means you should stop trying to make CFPS look “structural,” and instead make it look **clean, conservative, and thoroughly stress-tested**.
-
-## 3.1 Be brutally honest about measurement
-
-Right now the paper is partly honest, but not enough. It should state more clearly that the CFPS expectation variable is:
-
-* qualitative,
-* three-point,
-* biennial,
-* and only indirectly mapped into a forecast-error object through later realized provincial CPI. 
-
-Do not try to hide that. Instead, own it and explain why the exercise is still informative:
-
-* the question is coarse, but it is consistently coded;
-* the time ordering is clean;
-* the design isolates within-province-wave heterogeneity;
-* the coefficient is stable across controls and subgroups.
-
-That is a defensible reduced-form position.
-
-## 3.2 Show much more measurement robustness
-
-This is where the paper can improve substantially.
-
-You need a more serious battery of alternative constructions of the household outcome. For example:
-
-* alternative codings of the three-point expectation variable;
-* collapsing to binary rise vs non-rise;
-* ordered-model versions instead of linear coding;
-* subsamples where realized provincial inflation is far from zero, so directional coding is less ambiguous;
-* excluding households whose revisions are mechanically small or ambiguous;
-* using only households with stable survey participation patterns.
-
-The point is not to get a prettier coefficient. The point is to show that the negative revision–error relation is **not an artifact of one coding rule**.
-
-## 3.3 Add a more explicit identification discussion for the household design
-
-You need to spell out exactly what province-wave fixed effects do and do not buy you. Right now the paper says they absorb province-level inflation and common shocks, which is correct. But it still leaves open the obvious referee objection: households in the same province-wave cell may differ in unobserved pessimism, financial literacy, attention, or interpretation thresholds. 
-
-You should address that directly. The right response is not “fixed effects solve it.” The right response is:
-
-* fixed effects eliminate common local inflation information;
-* the remaining variation is cross-household differential updating;
-* therefore the estimand is a reduced-form relation between relative updating intensity and subsequent forecast error;
-* this does not identify a deep structural parameter, but it does identify economically meaningful overreaction in beliefs conditional on local conditions.
-
-That is a much more credible statement.
+I would structure the next revision in three tiers: **must fix**, **strongly recommended**, and **optional enhancement**.
 
 ---
 
-## 4. Make the aggregate PBoC evidence secondary and disciplined
+## A. Must fix
 
-The aggregate evidence should remain in the paper, but only as **external descriptive corroboration**, not as quasi-independent identification.
+### A1. Conduct a full “results audit” before adding anything new
 
-The current quarterly sample is too short, and the quantified expectation measure is too fragile, for that section to carry major weight. 
+This is the highest priority. Before you run a single additional model, you need to eliminate all internal inconsistencies.
 
-What I would do:
+You currently have multiple examples of this problem:
 
-* keep one clean baseline table;
-* keep one figure showing revision vs subsequent error;
-* keep one concise paragraph on small-sample limitations;
-* cut the excess discussion.
+* the fixed-effects structure is not described consistently;
+* some appendix statistics are not synchronized with the discussion;
+* some dynamic/state-dependent interpretations differ across sections.
 
-Also, stop overselling the aggregate point estimate magnitude. With 32 quarters, the economically large coefficient is not really the takeaway. The takeaway is simply: **the sign is consistent with the household evidence**.
+A high-level reduced-form paper cannot survive these inconsistencies. The immediate task is to build a **master audit sheet** covering:
 
-That is enough.
+1. every coefficient quoted in the text,
+2. every sample size,
+3. every figure sample span,
+4. every appendix table and its code source.
 
----
+This is not cosmetic. It is foundational.
 
-## 5. Recast “mechanism competition” as interpretation, not adjudication
+### A2. Unify the fixed-effects structure of the main design
 
-The current mechanism section is too categorical. The horse race between diagnostic expectations and information rigidity does not truly identify the winner. It shows that the data display reversal dynamics that are hard to reconcile with a pure sluggish-updating story. That is a useful finding. But it is not a clean model selection result. 
+Your paper must use **one and only one description** of the main household specification. If the model truly uses **province-by-wave fixed effects**, then every section, every table note, and every discussion of identification must say exactly that. If it actually uses province FE plus wave FE separately, then you must stop describing the design as within-province-wave identification.
 
-You should therefore rewrite that section along these lines:
+This is the cornerstone of the main reduced-form claim. It cannot remain ambiguous.
 
-* The paper does **not** fully distinguish behavioral overreaction from all other dynamic expectation processes.
-* It does show that the sign and timing of errors line up better with reversal than with monotone persistence.
-* Therefore the evidence is **more consistent with overreaction than with a pure rigidity account**.
+### A3. Remove or drastically demote the BVAR
 
-That one change in tone will make the section much harder to attack.
+The literature you should be emulating does not rely on sign-restricted BVARs as a substitute for core identification in this type of paper. In your case, the BVAR is especially weak because the sign restrictions already encode the diagnostic-overreaction pattern you want to see. That makes it a consistency exercise, not independent evidence. ([美国经济协会][1])
 
-I would also rename the section. Do not call it “mechanism competition.” Call it something like:
+Best option: **delete it entirely**.
+Second-best option: keep one short appendix note, with no detailed discussion in the main text.
 
-**“Dynamic interpretation: overreaction versus persistence”**
+### A4. Remove the welfare calibration entirely
 
-That is more accurate and more mature.
+Under Route A, the paper should not attempt to map a reduced-form revision–error coefficient into a structural welfare parameter. That is not how strong reduced-form expectations papers are written unless they have a defensible structural bridge. You do not. Keeping the welfare appendix only signals that you are still trying to preserve a macro-structural ambition that the design does not support. ([美国经济协会][1])
 
----
+### A5. Move the forecasting block to the appendix
 
-## 6. Treat CHFS as a boundary condition, nothing more
-
-The CHFS media-channel null can stay, but it must be handled carefully. In its current form, the paper pushes it too far. A single cross section with crude channel proxies cannot rule out channel-driven salience mechanisms in any strong sense. 
-
-The right use of CHFS is:
-
-* not to “reject media amplification,”
-* but to say that **persistent cross-sectional media-use differences alone do not explain much of the expectation pattern**.
-
-That is a modest and defensible statement.
-
-The CHFS section should be short, clearly secondary, and framed as a boundary condition on interpretation rather than as a decisive mechanism test.
+Comparable top papers keep forecasting extensions in the main text only when the exercise is strong enough to matter. Your current forecasting exercise is too short and too mixed to play that role. Since the paper’s real contribution is the household overreaction fact, the forecasting block should no longer occupy central space.
 
 ---
 
-## 7. Rebuild the introduction completely
+## B. Strongly recommended
 
-The introduction is currently too eager and too broad. It starts with a large macro significance claim before the paper has earned it. That creates distrust.
+### B1. Rebuild the paper around one dominant empirical object
 
-A strong Route A introduction should do four things only:
+The paper should be reorganized so that the **CFPS household revision–subsequent-error relation** is unmistakably the main empirical object. Everything else should be secondary.
 
-### Paragraph 1: the empirical question
+The main text should look like this:
 
-State the narrow question cleanly:
-Do households in China revise inflation expectations in a way that subsequently overshoots realized inflation?
+1. household reduced-form evidence,
+2. aggregate sign corroboration,
+3. limited dynamic interpretation,
+4. CHFS as a boundary condition,
+5. everything else moved down or out.
 
-### Paragraph 2: why China is useful
+That structure is much closer to how Bordalo-type and Coibion–Gorodnichenko-type papers are organized. ([美国经济协会][1])
 
-Explain why China is an informative setting:
-salient food-price shocks, imperfect policy communication, and under-studied household expectation formation.
+### B2. Build a full CFPS measurement-robustness matrix
 
-### Paragraph 3: what you actually find
+This is essential. A serious paper in household expectations cannot rely on one coding convention for a coarse qualitative variable.
 
-State the main result in disciplined language:
-households that revise upward subsequently make more negative forecast errors; aggregate survey data show the same sign; the pattern looks more like reversal than pure sluggish persistence.
+I strongly recommend a single appendix robustness matrix including at least:
 
-### Paragraph 4: what the paper does **not** claim
+* baseline ({-1,0,1}) coding,
+* binary rise vs non-rise,
+* binary fall vs non-fall,
+* ordered logit / ordered probit versions,
+* dropping the “unchanged” category,
+* restricting to provinces with large realized inflation moves,
+* restricting to stable repeat respondents,
+* trimming extreme revisions,
+* alternative mappings from qualitative response to error proxy.
 
-This is essential.
-Explicitly state that the paper does not claim:
+This is exactly the kind of measurement seriousness the survey-expectations literature demands. ([NBER][6])
 
-* point identification of a structural diagnostic-expectations parameter,
-* a decisive test against all information-rigidity models,
-* or a policy-invariant welfare mapping.
+### B3. Upgrade “horizon mismatch” into a formal robustness module
 
-That paragraph will make the paper look much more serious.
+The mismatch between CFPS’s biennial horizon and the PBoC quarterly horizon cannot remain a short discussion paragraph. It should become a formal empirical section or appendix module.
 
----
+You need to ask:
 
-## 8. Rewrite the abstract in a much more restrained way
+* how much sign stability survives across horizons,
+* whether longer-horizon aggregate constructions yield the same sign,
+* whether the CFPS result is robust to alternative horizon definitions or realized-inflation windows.
 
-The current abstract overreaches badly. It includes:
+This is one of the most obvious points a referee will focus on.
 
-* a precise revision–error slope,
-* mechanism claims,
-* a policy-rule forecasting gain,
-* and a welfare gain. 
+### B4. Clean up the aggregate table design
 
-For Route A, that is too much.
+If one aggregate specification is not a valid test of your hypothesis because regressor and outcome scales are mixed, it does **not** belong in the baseline main table. A strong paper does not knowingly place a misleading column in the main results table and then explain it away in the appendix.
 
-A strong abstract should contain only:
+The main aggregate table should contain **only scale-consistent specifications**. Any mixed-scale comparison should be moved to the appendix and labeled as such.
 
-* the question,
-* the main reduced-form evidence,
-* the cross-dataset directional corroboration,
-* and one restrained interpretive line.
+### B5. Redefine your official conclusion on state dependence
 
-Something like this in substance:
+At present, the paper risks saying two different things:
 
-> Using linked household survey data from China, I show that upward revisions in inflation expectations predict subsequent forecast errors in the opposite direction. This pattern is robust across specifications and demographic subgroups, and aggregate depositor-survey data display the same sign. The evidence is consistent with overreaction and subsequent reversal in household inflation expectations, though the paper does not claim full structural identification of belief formation.
+* in one place, state dependence is imprecise and descriptive;
+* elsewhere, interaction evidence looks statistically meaningful.
 
-That is much stronger than the current abstract.
+You need a single official conclusion. My recommendation is to choose the more cautious version:
 
----
+> the data suggest state dependence, but the aggregate sample is too short for sharp inference.
 
-## 9. Tighten the paper’s internal consistency and presentation
+That position is safer, more consistent with Route A, and more aligned with how top journals handle small-sample interaction evidence. ([美国经济协会][8])
 
-This matters more than many students think. Referees infer intellectual discipline from document discipline.
+### B6. Replace the current gradient figure with a formal binscatter
 
-You currently have signs of unsynchronized drafting:
+If you keep a nonparametric visualization of the revision–error relation, rebuild it properly:
 
-* unresolved cross-references such as “Table ??” in the conclusion;
-* inconsistent reporting conventions across sections;
-* appendix machinery that sometimes appears more polished than the main identification argument;
-* BVAR acceptance figures that appear inconsistent across places. 
+* residualize first if appropriate,
+* use a formal binning rule,
+* show uncertainty bands,
+* state exactly what is plotted.
 
-Before resubmission anywhere, the paper must be cleaned so that:
-
-* every table and figure is fully synchronized,
-* every coefficient description matches the table exactly,
-* no result is described more strongly in prose than in the table,
-* and no appendix method looks like it was included mainly to create sophistication.
-
-A strong paper below the top-five still needs top-level internal coherence.
+This is no longer optional once you invoke a nonparametric figure as an “independent check.” ([美国经济协会][7])
 
 ---
 
-## 10. Section-by-section recommendation
+## C. Optional but valuable enhancements
 
-## Section 1: Introduction
+### C1. Add mechanism-proximate heterogeneity
 
-Rewrite entirely. Narrow, sober, no welfare language, no policy-design rhetoric.
+This is where the paper could improve the most.
 
-## Section 2: Conceptual framework
+Instead of emphasizing education, income, and urban-rural splits, add heterogeneity based on:
 
-Keep, but shorten. Use it to motivate the sign logic, not to suggest full model discrimination.
+* food-price exposure,
+* pork-related inflation exposure,
+* province-level food CPI intensity,
+* high-food-share households,
+* inflation-experience cohorts.
 
-## Section 3: Data
+That would align the paper much more closely with the strongest papers in this literature, which use heterogeneity tied directly to the hypothesized mechanism rather than generic demographics. ([芝加哥大学期刊][4])
 
-Strengthen the measurement discussion, especially for CFPS. Explicitly distinguish the household proxy from the quantified quarterly PBoC object.
+### C2. Add stronger placebo timing tests
 
-## Section 4: Empirical strategy
+You should add:
 
-This section needs the most improvement.
-Be explicit that:
+* pre-period pseudo-errors,
+* non-adjacent-wave placebo revisions,
+* placebo outcomes unrelated to inflation expectations.
 
-* the household design is the main empirical object;
-* the aggregate evidence is corroborative only;
-* the IV is not informative for magnitude;
-* identification is reduced-form, not structural.
+This would do more for credibility than another appendix model.
 
-## Section 5: Baseline results
+### C3. Add distributional evidence
 
-This should become the core of the paper.
-Lead with CFPS.
-Shorten aggregate.
-Make the evidence hierarchy visually and narratively obvious.
+Do not rely only on regression slopes. Add graphs or tables showing:
 
-## Section 6: Mechanism
+* forecast-error distributions by revision category,
+* mean subsequent errors by revision type,
+* raw joint patterns between revisions and subsequent errors.
 
-Retain only a restrained dynamic-interpretation section.
-Cut the grand language.
-Remove the BVAR from the main text.
+Good papers often persuade with a combination of coefficient evidence and distributional evidence.
 
-## Section 7: Heterogeneity
+### C4. Add a literature-positioning comparison table
 
-Keep only the strongest, most interpretable heterogeneity.
-The flatness across subgroups is actually useful: it shows broad-based overreaction.
+A very effective addition would be a table comparing your paper’s design with related papers:
 
-## Section 8: Policy implications
+* data type,
+* horizon,
+* main expectation object,
+* identification source,
+* whether the mechanism is directly measured or inferred.
 
-Radically shrink.
-At most one brief discussion subsection on forecasting implications.
-Drop welfare.
-
-## Conclusion
-
-Rewrite to sound like a mature applied macro paper, not like a policy manifesto.
+This would help both referees and you. It would make the paper’s contribution more precise and help prevent overclaiming.
 
 ---
 
-## 11. Additional empirical work that would genuinely improve the paper
+## III. Narrative revision plan
 
-If you want the revised Route A paper to be genuinely high-level, I would prioritize the following new work.
+### Abstract
 
-### A. Better placebo and timing tests in the household panel
+Keep it narrow. Avoid language that sounds like mechanism adjudication. Prefer:
 
-You need cleaner evidence that the pattern is not just generic mean reversion in responses.
+> “The data display a reversal pattern more consistent with overreaction than with a pure sluggish-updating account.”
 
-Examples:
+### Introduction
 
-* pseudo-errors using pre-period realized inflation windows;
-* placebo revisions constructed from non-adjacent survey waves where timing is less meaningful;
-* falsification outcomes that should not move if the mechanism is truly inflation-expectation-specific.
+The first page should do only four things:
 
-### B. More serious coding robustness for the qualitative expectation variable
+1. define the empirical question,
+2. explain why China is informative,
+3. state the main fact,
+4. state clearly what the paper does **not** claim.
 
-This is non-negotiable. The paper’s credibility depends on showing that the main result is not driven by one arbitrary mapping.
+That is how strong expectations papers establish credibility early.
 
-### C. More explicit distributional evidence
+### Conclusion
 
-Do not rely only on regression coefficients. Show the distribution of forecast errors by revision category, ideally in a way that lets the reader visually see the reversal pattern. That would strengthen the paper more than another fancy appendix model.
+The conclusion should stop short of operational monetary-policy claims. The right takeaway is:
 
-### D. Clarify horizon interpretation
-
-Because CFPS is biennial while the PBoC object is quarterly, you need one explicit subsection on horizon mismatch. A good referee will notice this immediately.
-
----
-
-## 12. What claims you must stop making
-
-For Route A to work, you must stop making the following claims, or reduce them sharply:
-
-* “The paper identifies a diagnostic expectations parameter.”
-* “The paper cleanly separates diagnostic expectations from information rigidity.”
-* “The policy rule is operationally useful for central banks.”
-* “The welfare gain from bias-aware communication is X%.”
-* “The aggregate evidence confirms the household magnitude.”
-
-None of those claims is adequately supported by the current design. 
+* household survey revisions contain systematic overreaction,
+* this matters for the interpretation of survey-based expectations,
+* turning this into policy design requires richer data or experimental variation.
 
 ---
 
-## 13. What journals this Route A paper could credibly target
+## IV. A practical four-round work plan
 
-I would not frame it as a JPE-Macro paper anymore. I would frame it as a **high-quality applied expectations paper** with relevance for household finance and applied macro.
+### Round 1: Results audit
 
-Without pretending precision, the natural space is something like:
+Goal: eliminate all inconsistencies.
+Output: fully synchronized draft plus audit sheet.
 
-* a strong field journal in macro / applied macro / household finance,
-* or a very good general-interest second tier if the paper becomes much sharper and more disciplined.
+### Round 2: Main-text slimming
 
-The exact venue matters less than the standard you apply. The revised paper should still be written at **top-field quality**, even if the journal target is lower than JPE-Macro.
+Goal: remove BVAR, remove welfare, move forecasting down, unify the main identification narrative.
+Output: clean 45–50 page manuscript.
+
+### Round 3: Measurement and heterogeneity upgrade
+
+Goal: complete CFPS robustness matrix, add food/pork exposure heterogeneity, formalize timing robustness, rebuild the nonparametric figure.
+Output: revised main tables and appendix.
+
+### Round 4: Submission draft
+
+Goal: rewrite abstract, introduction, and conclusion to match the actual evidence level.
+Output: submission-ready paper.
 
 ---
 
-## 14. Final recommendation: what the revised paper should become
+## V. Minimum pre-submission checklist
 
-If you follow Route A seriously, the revised paper should look like this:
+Do **not** submit until all five conditions are met:
 
-### New paper in one sentence
+1. Every fixed-effects statement, sample size, table, and figure is fully synchronized.
+2. The paper has one clear empirical spine and is no longer distracted by auxiliary blocks.
+3. CFPS measurement robustness is presented systematically, not piecemeal.
+4. At least one heterogeneity module is tied directly to salience or inflation exposure.
+5. The paper’s claims are fully reduced-form in tone: no structural welfare or policy-design overreach.
 
-**A careful reduced-form study showing that Chinese household inflation expectations systematically overreact to salient inflation signals and subsequently reverse.**
+---
 
-### What stays
+## Final judgment
 
-* CFPS household evidence
-* a compact PBoC corroboration section
-* restrained dynamic interpretation
-* limited CHFS boundary-condition evidence
+The key lesson from the top-journal literature is this:
 
-### What goes
+**Your paper does not need to become more complicated. It needs to become more disciplined.**
+The strongest comparable papers are not impressive because they contain many techniques. They are impressive because they make one empirical object look maximally credible and then refuse to claim more than that object can support. That is the standard set by papers such as Bordalo et al., Coibion and Gorodnichenko, Cavallo et al., D’Acunto et al., Malmendier and Nagel, and Andre et al. ([美国经济协会][1])
 
-* welfare section
-* BVAR as a featured result
-* strong policy-design rhetoric
-* any suggestion of full structural identification
-
-### What must improve
-
-* measurement transparency
-* coding robustness
-* timing/placebo logic
-* writing discipline
-* claim calibration
-
-That is the route that can make the paper genuinely strong.
+[1]: https://www.aeaweb.org/articles?id=10.1257%2Faer.20181219&utm_source=chatgpt.com "Overreaction in Macroeconomic Expectations"
+[2]: https://www.journals.uchicago.edu/toc/jpe/current?utm_source=chatgpt.com "Journal of Political Economy | Vol 134, No 3"
+[3]: https://www.aeaweb.org/articles?id=10.1257%2Fmac.20150147&utm_source=chatgpt.com "Inflation Expectations, Learning, and Supermarket Prices"
+[4]: https://www.journals.uchicago.edu/doi/abs/10.1086/713192?af=R&utm_source=chatgpt.com "Exposure to Grocery Prices and Inflation Expectations"
+[5]: https://academic.oup.com/restud/article/89/6/2958/6531988?utm_source=chatgpt.com "Subjective Models of the Macroeconomy: Evidence From ..."
+[6]: https://www.nber.org/system/files/working_papers/w32488/w32488.pdf?utm_source=chatgpt.com "Household Inflation Expectations: An Overview of Recent ..."
+[7]: https://www.aeaweb.org/articles?id=10.1257%2Faer.20221576&utm_source=chatgpt.com "On Binscatter"
+[8]: https://www.aeaweb.org/articles?id=10.1257%2Faer.20110306&utm_source=chatgpt.com "Information Rigidity and the Expectations Formation Process"

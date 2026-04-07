@@ -1,0 +1,29 @@
+\begin{table}[htbp]
+\centering
+\begin{threeparttable}
+\caption{CFPS Household Panel: Baseline Revision--Error Regressions}
+\label{tab:cfps_baseline}
+{\small
+\begin{tabular}{lccc}
+\toprule
+ & \multicolumn{3}{c}{Dependent variable: Forecast error proxy$_{it+1}$} \\
+\cmidrule(lr){2-4}
+ & (1) & (2) & (3) \\
+\midrule
+$\hat{\beta}$ (revision) & $-0.547^{***}$ & $-0.550^{***}$ & $-0.549^{***}$ \\
+ & (0.009) & (0.008) & (0.008) \\
+\addlinespace
+Observations & 13,031 & 13,031 & 13,031 \\
+$R^2$ & 0.397 & 0.444 & 0.456 \\
+\addlinespace
+Demographics & $\times$ & $\checkmark$ & $\checkmark$ \\
+Province $\times$ wave FE & $\times$ & $\times$ & $\checkmark$ \\
+\bottomrule
+\end{tabular}
+}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Notes:} The dependent variable is a forecast-error proxy constructed by matching household inflation expectations (coded $\{-1,0,1\}$) to subsequent province-level realized CPI inflation. The revision variable is the inter-wave change in expectation coding. Demographic controls: age, education years, income, gender, urban status. Standard errors in parentheses are clustered at the province level. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

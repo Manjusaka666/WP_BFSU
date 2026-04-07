@@ -1,59 +1,53 @@
 \section{Conclusion}\label{sec:conclusion}
 
-Chinese households overreact to salient inflation signals, and this
-overreaction generates predictable forecast errors. In both aggregate and
-micro data, upward revisions are followed by negative forecast errors,
-which is the sign pattern implied by diagnostic expectations. The
-household panel provides the main quantitative anchor
-($\hat{\beta} \approx -0.55$, $p < 0.001$, $N \approx 13{,}700$; Table~\ref{tab:oster_bounds}), while
-the aggregate series confirms the direction with lower precision
-($\hat{\beta}_1 = -2.24$, $p = 0.055$, $N = 32$; Table~\ref{tab:ols_baseline}, column~2).
+This paper shows that Chinese households overreact to inflation signals.
+Upward revisions in expectations are followed by negative forecast errors,
+a pattern that holds in both household panel data and aggregate PBoC
+survey data. The CFPS panel estimate is $\hat{\beta} \approx -0.55$
+($p < 0.001$, $N \approx 13{,}000$) (Table~\ref{tab:cfps_baseline}, column X),
+while the aggregate series confirms the sign with lower precision
+($N = 32$) (Table~\ref{tab:ols_baseline}, column 2). The direction is more
+consistent with reversal-based overreaction than with pure sluggish updating.
 
-The paper makes three contributions. First, it establishes household-level
-evidence for diagnostic inflation expectations in China using CFPS panel
-variation with province and wave fixed effects. Second, it estimates a
-joint mechanism specification that places revision dynamics and lagged
-forecast errors in the same regression, showing that error reversals are
-empirically central and hard to reconcile with canonical sluggish
-updating alone. Third, it links estimation to implementation by building
-a transparent de-biasing rule that can be computed in real time from
-survey revisions and observed controls. Taken together, these
-contributions connect behavioral evidence, mechanism tests, and policy
-implementation in one empirical framework.
+I make three contributions relative to the existing literature. First, I
+provide the first household-level evidence for diagnostic inflation
+expectations in China, exploiting CFPS panel variation with province $\times$
+wave fixed effects. Second, I estimate a joint specification that places
+revision dynamics and lagged forecast errors in the same regression. Error
+reversals are empirically central, which is difficult to reconcile with
+canonical noisy information models alone. Third, I use a cross-sectional
+test from the CHFS to examine whether persistent media exposure drives the
+pattern. The null result on that channel is consistent with event-driven
+overreaction rather than a sustained information supply effect.
 
-The policy implication is operational. A central bank can treat the raw
-household survey as an informative but biased signal and publish an
-adjusted short-horizon inflation path alongside it. In the backtest, the
-adjusted rule can reduce MAE by 17\% (3.58 to 3.41) and increases 68\%
-coverage from 42\% to 67\%, although RMSE rises from 4.12 to 4.52
-(Table~\ref{tab:policy_backtest_metrics}). In the
-calibrated three-equation New Keynesian benchmark, welfare losses are
-37.6\% above the rational benchmark at $\theta = 0.55$ and 78.3\% above
-benchmark at $\theta = 1.0$ (Table~\ref{tab:nk_welfare}), so reducing overreaction has first-order
-value even when correction is incomplete. This makes the case for using
-the adjusted path as a communication supplement, not as a stand-alone
-replacement for structural inflation forecasting.
+The evidence has clear limits. The aggregate time series contains only 32
+observations (Table~\ref{tab:ols_baseline}, column 2), so mechanism
+discrimination at the macro level is inherently low power. The CFPS is
+biennial, which restricts timing resolution for expectation updating. The
+instrumental variable exercise is weakly identified (first-stage
+$F = 1.16$) (Table~\ref{tab:identification_main}, Panel A), so it supports
+directional consistency rather than precise causal magnitudes. The CHFS
+mechanism test relies on a single cross-section, limiting what can be said
+about dynamic media effects. Finally, any reduced-form forecasting rule
+built on these estimates is subject to the Lucas critique: if the PBoC
+changes its communication strategy in response to the overreaction finding,
+the belief formation process itself may shift.
 
-The evidence has clear limits. The aggregate time series is short, so
-mechanism discrimination in macro data is inherently low power. The IV
-exercise is weakly identified (first-stage $F = 1.16$; Table~\ref{tab:identification_main}, Panel~A), so it supports
-directional checks rather than causal magnitudes. The household panel is
-biennial, which restricts timing resolution for expectation updating, and
-the cross-sectional media test is informative about broad channels but
-cannot recover high-frequency salience shocks. In addition, any reduced-
-form policy rule is subject to Lucas critique once communication changes
-belief formation itself. For that reason, this paper treats the policy
-rule as a practical interim device conditional on the current belief
-formation regime.
+These findings have implications for how survey-based inflation forecasts
+are interpreted. Raw household surveys are informative but biased signals.
+Appendix~\ref{app:forecasting} shows that a simple correction rule built
+from the estimated revision-error relationship can improve directional
+accuracy in an expanding-window backtest (Table~\ref{tab:policy_backtest_metrics};
+Figure~\ref{fig:policy_backtest}), though the adjustment should be treated
+as a practical interim device rather than a structural forecast.
 
-Two extensions are the natural next step. One is higher-frequency
-household expectation data matched to regional information shocks, which
-would allow sharper identification of state-dependent overreaction and its
-persistence. The other is a structural model with endogenous belief
-updating under alternative communication regimes, estimated to match both
-the revision--error moments and the distribution of household responses.
-Together, these extensions would turn the current reduced-form rule into a
-fully policy-invariant communication design problem. A related empirical
-extension is to evaluate whether de-biased guidance reduces forecast
-dispersion across households, which would directly test whether policy
-communication improves coordination as well as point-forecast accuracy.
+Several directions for future work follow naturally. Higher-frequency
+household expectation data matched to regional information shocks would
+allow sharper identification of state-dependent overreaction and its
+persistence. A structural model with endogenous belief updating under
+alternative communication regimes could turn the reduced-form estimates
+into policy-invariant design parameters. It would also be valuable to
+evaluate whether de-biased guidance reduces forecast dispersion across
+households, which would test directly whether improved communication
+enhances coordination beyond point-forecast accuracy.
+

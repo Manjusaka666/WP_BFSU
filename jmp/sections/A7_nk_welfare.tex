@@ -1,0 +1,63 @@
+\section{Illustrative New Keynesian Welfare Calibration}\label{app:nk_welfare}
+
+This appendix reports a model-based welfare exercise that
+maps the estimated overreaction parameter into a
+three-equation New Keynesian benchmark. The exercise is
+illustrative: it quantifies the order of magnitude of
+welfare costs from diagnostic expectations under standard
+calibration, not a policy-invariant welfare mapping.
+
+The model is
+\begin{align}
+  \pi_t &= \beta E_t^\theta[\pi_{t+1}] + \kappa x_t + u_t, \nonumber \\
+  x_t &= E_t[x_{t+1}] - \sigma^{-1}
+    \left(i_t - E_t^\theta[\pi_{t+1}]\right), \nonumber \\
+  i_t &= \phi_\pi \pi_t + \phi_x x_t, \nonumber
+\end{align}
+where $E_t^\theta$ denotes diagnostic expectations with
+overreaction parameter $\theta$. Calibration uses standard
+values: $\beta = 0.99$, $\kappa = 0.05$, $\sigma = 2$,
+$\phi_\pi = 1.5$, $\phi_x = 0.5$, and AR(1) cost-push
+shocks with persistence $\rho_u = 0.8$.
+
+The welfare loss function is
+$\mathcal{L}(\theta) = \mathrm{Var}(\pi) +
+\lambda\,\mathrm{Var}(x)$ with
+$\lambda = \kappa/\varepsilon \approx 0.0083$.
+Table~\ref{tab:nk_welfare} reports welfare losses for a
+range of $\theta$ values. At $\theta = 0.55$, aligned
+with the household panel estimate, the welfare loss is
+approximately 38\% above the rational benchmark
+($\theta = 0$). At $\theta = 1.0$, a value closer to
+what the aggregate point estimate would imply, the loss
+rises to 78\% above benchmark.
+
+\input{\tabdir/nk_welfare}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.84\textwidth]{welfare_theta.pdf}
+\caption{Welfare loss as a function of the
+  diagnostic-overreaction parameter $\theta$ in the
+  calibrated New Keynesian benchmark.}
+\label{fig:welfare_theta}
+\end{figure}
+
+The welfare schedule is convex in $\theta$: partial
+reductions in overreaction yield first-order gains when
+the economy operates in a high-$\theta$ region, even if
+communication policy cannot eliminate behavioral
+distortions entirely.
+
+Two caveats apply. First, the mapping from a reduced-form
+revision--error coefficient to a structural $\theta$
+parameter requires assumptions about the data-generating
+process that this paper does not formally test. The
+calibration is therefore a plausibility check, not a
+structural identification result. Second, if policy
+communication changes household belief formation, the
+reduced-form $\theta$ can shift endogenously (Lucas
+critique). The reported numbers are local counterfactuals
+around the estimated regime, not invariant policy
+constants.
+

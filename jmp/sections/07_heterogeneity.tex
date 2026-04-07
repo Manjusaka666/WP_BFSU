@@ -1,109 +1,82 @@
-\section{Heterogeneity and Dynamics}\label{sec:heterogeneity}
+\section{Heterogeneity}\label{sec:heterogeneity}
 
-This section asks whether the diagnostic pattern documented above is
-concentrated in specific households or specific macro states, and
-whether it has measurable forward consequences in household panels.
-I keep the interpretation conservative throughout. The CFPS
-micro-evidence is precise and points to broad pervasiveness of
-overreaction. By contrast, the aggregate interaction tests rely on
-only 32 quarterly observations and are therefore underpowered for
-fine-grained state dependence. The CHFS forward-tracking exercise is
-informative but only suggestive.
+This section examines whether the overreaction pattern varies across
+households or macroeconomic states, and whether it has detectable
+forward consequences in a separate household panel.
 
 \subsection{Household Heterogeneity}
 
-The CFPS panel remains the most informative source for heterogeneity
-because it has much higher statistical power than the aggregate time
-series and lets me absorb province and wave effects directly. I
-estimate household-level specifications that interact forecast
-revisions with pre-determined household traits. The main coefficient
-on revisions is stable across specifications:
-$\hat{\beta} = -0.55$ with $p < 0.001$. The magnitude is close to the
-baseline CFPS estimate in Section~\ref{sec:results}, indicating that
-the interaction design is not mechanically changing the core signal.
+The CFPS panel offers the most informative test for heterogeneity
+because its sample size provides far more statistical power than the
+aggregate time series. I interact forecast revisions with
+pre-determined household traits. The base coefficient on revisions is
+stable across specifications: $\hat{\beta} = -0.55$ with $p < 0.001$,
+close to the baseline CFPS estimate in Section~\ref{sec:results}.
 
-The first set of interactions tests whether overreaction is stronger
-for less educated, lower-income, or non-urban households. None of
-these interaction slopes is statistically different from zero. For
-education, the interaction estimate is $-0.002$ ($p = 0.85$). For
-income, it is $+0.040$ ($p = 0.69$). For urban status, it is $+0.019$
-($p = 0.18$). All three are small relative to the base coefficient of
-$-0.55$, and all three have confidence intervals that comfortably span
-zero. The empirical message is straightforward: the data do not
-support demographic concentration of diagnosticity along these margins.
+None of the interaction terms is statistically different from zero. The
+education interaction is $-0.002$ ($p = 0.85$), the income interaction
+is $+0.040$ ($p = 0.69$), and the urban status interaction is $+0.019$
+($p = 0.18$). All three are small relative to the base coefficient and
+have confidence intervals that span zero. The data do not support
+demographic concentration of diagnosticity along these margins.
 
-This pattern matters for interpretation. One concern in aggregate
-studies is that negative revision--error slopes could be produced by a
-narrow subgroup with unusual beliefs, while the rest of the
-population updates approximately rationally. The CFPS interactions do
-not support that concern. The base diagnostic slope remains strong and
-precise, while the interaction terms are consistently null. That
-combination is exactly what one would expect if overreaction is a
-general expectation-formation feature rather than a niche behavioral
-pathology.
+This null pattern is informative. One concern in aggregate studies is
+that negative revision--error slopes could be driven by a narrow
+subgroup with unusual beliefs while other households update
+approximately rationally. The CFPS interactions do not support that
+concern. Overreaction appears broad-based across education, income, and
+location groups in this sample.
 
-I next split households by an attention index and estimate the same
-diagnostic slope within each tercile. The coefficients are tightly
-clustered: $-0.525$, $-0.524$, and $-0.521$. The full range is 0.004,
-which is less than 1\% of the baseline absolute effect. This near
-equality across attention terciles is empirically useful for external
-validity. If the mechanism required extreme information constraints,
-one would expect a steep gradient across terciles. Instead, the slope
-is effectively flat.
-
-Taken together, the CFPS heterogeneity exercises strengthen, rather
-than weaken, the baseline interpretation. The evidence does \emph{not}
-show that some groups overreact and others do not. It shows a strong
-average overreaction effect with no detectable gradient by education,
-income, urban status, or attention tercile in this sample. That
-pervasiveness makes it less likely that the main result is an artifact
-of sample composition.
+Splitting households by an attention index confirms the same finding.
+Tercile-specific coefficients are $-0.525$, $-0.524$, and $-0.521$.
+The full range is 0.004, less than 1\% of the baseline absolute
+effect. If overreaction required extreme information constraints, one
+would expect a steep gradient across terciles. The slope is effectively
+flat.
 
 \input{\tabdir/cfps_interactions}
 \input{\tabdir/cfps_monotonicity}
 
+\paragraph{Food-price exposure heterogeneity.}
+The strongest papers in this literature tie heterogeneity to the
+hypothesized mechanism rather than to generic demographics
+\citep{DacuntoHoangPirolliWeber2021}. The CFPS does not contain
+province-level food CPI or household-level grocery expenditure data,
+so I cannot construct a direct food-price exposure measure. This is a
+limitation: the ideal test would interact revisions with province-level
+pork or food CPI intensity. The null interaction results on income and
+urban status are consistent with broad-based overreaction but do not
+speak directly to whether food-price-exposed households overreact more.
+Future work with matched food-price data at the province-wave level
+could address this gap.
+
 \subsection{State Dependence}
 
-I now test whether the revision--error slope changes with aggregate
-uncertainty and information salience. Conceptually, state dependence
-is plausible: diagnostic overreaction may strengthen when salient
-signals are noisy, geopolitical tension is high, or attention is
-fragmented. Empirically, however, this part of the analysis is limited
-by sample size. The quarterly design has $N = 32$, which is enough for
-sign checks but not ideal for interaction-heavy inference.
+I test whether the revision--error slope changes with aggregate
+uncertainty and information salience. This analysis is limited by
+sample size: the quarterly design has $N = 32$, which permits sign
+checks but not precise interaction estimates.
 
 In the EPU and GPR interaction specifications, the interaction terms
 are imprecisely estimated and not statistically distinguishable from
-zero in the quarterly sample. I therefore treat these regressions as
-inconclusive on whether aggregate uncertainty amplifies or attenuates
-diagnosticity. The absence of precision here should not be read as
-evidence of no state dependence; it is equally consistent with
-moderate effects that cannot be pinned down in a short macro panel.
+zero. I treat these regressions as inconclusive on whether aggregate
+uncertainty amplifies or attenuates diagnosticity. The absence of
+precision should not be read as evidence of no state dependence; it is
+equally consistent with moderate effects that a short macro panel
+cannot detect.
 
-To probe nonlinearity differently, I split the sample by salience
-terciles. The tercile-specific coefficients are $-4.04$, $-3.76$, and
-$+2.24$. Two features stand out. First, the point estimates are
-non-monotone: strongly negative at low and middle salience, then
-positive at high salience. Second, the highest-salience estimate
-reverses sign but remains imprecise, so the data do not support a
-clean threshold story. In practical terms, this pattern is difficult
-to map into a single structural channel.
+Splitting by salience terciles yields coefficients of $-4.04$,
+$-3.76$, and $+2.24$. The pattern is non-monotone: strongly negative
+at low and middle salience, then positive at high salience. The
+highest-salience estimate reverses sign but remains imprecise, so the
+data do not support a clean threshold story. One interpretation is that
+high-salience periods include episodes where revisions partly reflect
+genuine inflation news. Another is that the sign change is sampling
+noise from small within-tercile cell sizes. Neither can be ruled out at
+$N = 32$.
 
-The most cautious reading is that state-dependent dynamics may exist,
-but their shape is not identified sharply in the quarterly sample.
-One interpretation is that very high salience periods include episodes
-where revisions partly reflect genuine inflation news, reducing or
-temporarily offsetting diagnostic overreaction. Another is that the
-sign change is sampling noise from small within-tercile cell sizes.
-Both interpretations are plausible; neither can be ruled out with
-precision at $N = 32$.
-
-For that reason, I use the state-dependence results as descriptive
-evidence rather than as a central identification pillar. The reliable
-fact from this subsection is the lack of monotonicity in the salience
-split and the broad imprecision of EPU/GPR interactions in the main
-quarterly sample. This motivates retaining the CFPS micro estimates as
-the primary quantitative anchor.
+I treat the state-dependence results as descriptive. The CFPS micro
+estimates remain the primary quantitative anchor.
 
 \begin{figure}[htbp]
 \centering
@@ -117,42 +90,32 @@ the primary quantitative anchor.
 \input{\tabdir/heterogeneity_interactions}
 \input{\tabdir/heterogeneity_monotonicity}
 
-\subsection{CHFS Forward-Tracking}
+\subsection{CHFS Forward-Tracking (Exploratory)}
 
-The CFPS evidence shows who overreacts; this subsection asks whether
-households identified as overreactors exhibit different medium-run
-outcomes in a separate panel. Using CHFS, I classify households in
-2011 as overreactors if they are in the top quartile of residualized
-inflation expectations. Residualization removes province effects and
-standard observables, so the indicator captures within-province
-relative overreaction in beliefs rather than mechanical level
-differences across locations.
+This subsection asks whether households identified as overreactors in
+CHFS exhibit different medium-run outcomes. Using the 2011 wave, I
+classify households as overreactors if they fall in the top quartile of
+residualized inflation expectations after removing province effects and
+standard observables. I then track income growth in later waves.
 
-I then track income growth for these households in later waves. The
-2011 to 2013 estimate is small and statistically null:
+The 2011 to 2013 estimate is small and statistically null:
 $\hat{\beta} = 0.022$. The 2011 to 2015 estimate is larger,
 $\hat{\beta} = 0.106$, and marginally significant at the 10\% level.
-The positive sign is not what a simple overspending story would
-predict ex ante, where stronger overreaction should map into weaker
-subsequent outcomes.
+The positive sign does not match what a simple overspending story would
+predict, where overreaction should map into weaker subsequent outcomes.
 
-There are at least two reasons to keep interpretation modest. First,
-income growth is a noisy proxy for the welfare channel of interest,
-which is closer to intertemporal consumption-savings distortions.
-Second, the overreactor indicator is based on one baseline wave and a
-coarse expectation measure; this introduces classification noise that
-can attenuate true effects or distort signs in finite samples. In that
-context, a positive and weakly significant long-horizon coefficient is
-better viewed as a reduced-form association than as a structural
-counterexample to diagnostic behavior.
+Two factors limit interpretation. First, income growth is a noisy proxy
+for the welfare channel of interest, which involves intertemporal
+consumption-savings distortions. Second, the overreactor indicator is
+based on one wave and a coarse expectation measure, introducing
+classification noise that can attenuate true effects or distort signs
+in finite samples.
 
-The forward-tracking result is therefore suggestive, not decisive. The
-short-horizon coefficient is null, and the longer-horizon coefficient
-is weakly positive with an unexpected sign. Together, these estimates
-do not provide strong household-outcome validation for the mechanism,
-but they also do not overturn the core evidence from forecast
-revision--error dynamics. The CHFS exercise should be read as an
-exploratory extension that motivates richer panel measurement in
-future work rather than a stand-alone test.
+The short-horizon coefficient is null and the longer-horizon
+coefficient is weakly positive with an unexpected sign. These estimates
+neither confirm nor contradict the overreaction mechanism documented
+above. I view this exercise as suggestive evidence that motivates
+richer panel measurement in future work rather than a stand-alone test.
 
 \input{\tabdir/chfs_consumption_consequences}
+

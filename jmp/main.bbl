@@ -237,6 +237,44 @@
       \field{pages}{541\bibrangedash 553}
       \range{pages}{13}
     \endentry
+    \entry{Cavallo2017}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=53dc53e0371bd5f7d047c356ecc6bf71}{%
+           family={Cavallo},
+           familyi={C\bibinitperiod},
+           given={Alberto},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d55e4d3690f5759d5d814179ab839e45}{%
+           family={Cruces},
+           familyi={C\bibinitperiod},
+           given={Guillermo},
+           giveni={G\bibinitperiod}}}%
+        {{hash=2af151b33c7659750676236148004ad3}{%
+           family={Perez-Truglia},
+           familyi={P\bibinithyphendelim T\bibinitperiod},
+           given={Ricardo},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{a5428164bad2cebd59d500ae8d92601e}
+      \strng{fullhash}{a5428164bad2cebd59d500ae8d92601e}
+      \strng{fullhashraw}{a5428164bad2cebd59d500ae8d92601e}
+      \strng{bibnamehash}{a5428164bad2cebd59d500ae8d92601e}
+      \strng{authorbibnamehash}{a5428164bad2cebd59d500ae8d92601e}
+      \strng{authornamehash}{a5428164bad2cebd59d500ae8d92601e}
+      \strng{authorfullhash}{a5428164bad2cebd59d500ae8d92601e}
+      \strng{authorfullhashraw}{a5428164bad2cebd59d500ae8d92601e}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{American Economic Journal: Macroeconomics}
+      \field{number}{3}
+      \field{title}{Inflation expectations, learning, and supermarket prices: An experimental study}
+      \field{volume}{9}
+      \field{year}{2017}
+      \field{pages}{1\bibrangedash 35}
+      \range{pages}{35}
+    \endentry
     \entry{Chen2022}{article}{}{}
       \name{author}{2}{}{%
         {{hash=1e4162ae3fdc6dfaf21adefe24a1f76c}{%
@@ -301,6 +339,49 @@
       \field{year}{2015}
       \field{pages}{2644\bibrangedash 2678}
       \range{pages}{35}
+    \endentry
+    \entry{DacuntoHoangPirolliWeber2021}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=b6d78f908ee72260b0edbae3b2adc02d}{%
+           family={D'Acunto},
+           familyi={D\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+        {{hash=8aa18a368bc348e862adc290be119dd3}{%
+           family={Malmendier},
+           familyi={M\bibinitperiod},
+           given={Ulrike},
+           giveni={U\bibinitperiod}}}%
+        {{hash=1fa12367da492b48df115556038ca01c}{%
+           family={Ospina},
+           familyi={O\bibinitperiod},
+           given={Juan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e9659ef13f1f7bd1fe161b20f30aaefd}{%
+           family={Weber},
+           familyi={W\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{089fdad6eea87aaab58176ce8ee4a1d4}
+      \strng{fullhash}{0cac1797cc06748501cee5c710034da7}
+      \strng{fullhashraw}{0cac1797cc06748501cee5c710034da7}
+      \strng{bibnamehash}{089fdad6eea87aaab58176ce8ee4a1d4}
+      \strng{authorbibnamehash}{089fdad6eea87aaab58176ce8ee4a1d4}
+      \strng{authornamehash}{089fdad6eea87aaab58176ce8ee4a1d4}
+      \strng{authorfullhash}{0cac1797cc06748501cee5c710034da7}
+      \strng{authorfullhashraw}{0cac1797cc06748501cee5c710034da7}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Journal of Political Economy}
+      \field{number}{5}
+      \field{title}{Exposure to Grocery Prices and Inflation Expectations}
+      \field{volume}{129}
+      \field{year}{2021}
+      \field{pages}{1615\bibrangedash 1639}
+      \range{pages}{25}
     \endentry
     \entry{Gan2014}{article}{}{}
       \name{author}{5}{}{%
@@ -442,6 +523,39 @@
       \field{year}{1986}
       \field{pages}{25\bibrangedash 38}
       \range{pages}{14}
+    \endentry
+    \entry{Malmendier2016}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=8aa18a368bc348e862adc290be119dd3}{%
+           family={Malmendier},
+           familyi={M\bibinitperiod},
+           given={Ulrike},
+           giveni={U\bibinitperiod}}}%
+        {{hash=3e3b96d363a3296b8845dc3004816b5a}{%
+           family={Nagel},
+           familyi={N\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
+      \strng{fullhash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
+      \strng{fullhashraw}{8c50e2a471f324b8fa0ebc49a51f5ee3}
+      \strng{bibnamehash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
+      \strng{authorbibnamehash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
+      \strng{authornamehash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
+      \strng{authorfullhash}{8c50e2a471f324b8fa0ebc49a51f5ee3}
+      \strng{authorfullhashraw}{8c50e2a471f324b8fa0ebc49a51f5ee3}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{The Quarterly Journal of Economics}
+      \field{number}{1}
+      \field{title}{Learning from inflation experiences}
+      \field{volume}{131}
+      \field{year}{2016}
+      \field{pages}{53\bibrangedash 87}
+      \range{pages}{35}
     \endentry
     \entry{Oster2019}{article}{}{}
       \name{author}{1}{}{%

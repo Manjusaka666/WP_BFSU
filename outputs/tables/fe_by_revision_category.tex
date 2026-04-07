@@ -1,0 +1,21 @@
+\begin{table}[htbp]
+\centering
+\begin{threeparttable}
+\caption{Forecast-Error Distribution by Revision Category}
+\label{tab:fe_by_revision}
+\begin{tabular}{lcccc}
+\toprule
+Category & $N$ & Mean & Median & SD \\
+\midrule
+Downward & 7,638 & 0.7426 & 1.0000 & 0.4372 \\
+Unchanged & 14,983 & 0.4334 & 1.0000 & 0.7560 \\
+Upward & 7,731 & -0.5645 & -1.0000 & 0.4959 \\
+\midrule
+Difference (Upward $-$ Downward) & & -1.3071*** & & \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\small
+\item \textit{Notes:} The table reports summary statistics of the forecast-error proxy by belief-revision category. Downward: revision $< 0$; Unchanged: revision $= 0$; Upward: revision $> 0$. The difference row reports the mean difference with significance from a Welch two-sample $t$-test. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

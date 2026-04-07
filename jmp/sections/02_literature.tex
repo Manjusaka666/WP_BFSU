@@ -1,34 +1,28 @@
 \section{Conceptual Framework}\label{sec:literature}
 
-I organize the mechanism discussion around two frictions that can both distort
-household inflation expectations: diagnostic overreaction and information
-rigidity. Diagnostic expectations follow representativeness. Agents overweight
-states that become vivid in recent news and underweight base rates
-\citep{Kahneman1972, Gennaioli2010}. In macro applications, this channel
-implies revisions that overshoot and then partially reverse
-\citep{Bordalo2018, Bordalo2020b}. Information-rigidity models impose a
-different friction. Households update slowly because acquiring and processing
-information is costly \citep{Sims2003, Coibion2015}. This channel implies
-gradual convergence to the full-information benchmark, not immediate overshoot.
+Two frictions can distort household inflation expectations: diagnostic
+overreaction and information rigidity. Diagnostic expectations follow
+representativeness. Agents overweight states made vivid by recent news and
+underweight base rates \citep{Kahneman1972, Gennaioli2010}. In macro
+applications, revisions overshoot and then partially reverse
+\citep{Bordalo2018, Bordalo2020b}. Information rigidity imposes a different
+friction. Households update slowly because acquiring and processing information
+is costly \citep{Sims2003, Coibion2015}. Errors decay gradually rather than
+reversing.
 
-This paper estimates both channels jointly and uses sign and dynamic
-restrictions to separate them. The question is not whether one channel exists
-in isolation. The question is which channel dominates forecast-error variation
-in a setting with high food-price salience and relatively opaque policy
-communication. China is informative on this margin. Pork-price shocks,
-including African Swine Fever episodes, make inflation highly visible. At the
-same time, institutional communication frictions can sustain slow updating
-\citep{Chen2022}. These two features can amplify both channels, but they lead
-to different policy prescriptions.
+I estimate both channels jointly and use sign restrictions to separate them.
+The question is which channel accounts for more forecast-error variation in a
+setting with high food-price salience and relatively opaque policy
+communication.
 
 \subsection{Diagnostic vs rigidity predictions}\label{sec:diagnostic_vs_rigidity}
 
-Define the one-step-ahead forecast error and forecast revision as
+Define the forecast error and forecast revision as
 \begin{equation*}
   FE_{t+1} \equiv \pi_{t+1} - \mu_t, \qquad FR_t \equiv \mu_t - \mu_{t-1},
 \end{equation*}
 where $\pi_{t+1}$ is realized inflation and $\mu_t$ is the expectation formed
-at time $t$. I estimate the moments in a nested specification:
+at time $t$. I estimate a nested specification:
 \begin{equation*}
   FE_{t+1} = \alpha + \beta FR_t + \lambda FE_t + X_t'\Gamma + u_{t+1}.
 \end{equation*}
@@ -36,117 +30,84 @@ The coefficient $\beta$ captures revision overshoot. The coefficient $\lambda$
 captures persistence in inherited forecast gaps.
 
 Under diagnostic expectations, upward revisions are too large relative to
-subsequent realizations. A positive revision is therefore followed by a
-negative future error. The key restriction is
+subsequent realizations. A positive revision is followed by a negative future
+error:
 \begin{equation}\label{eq:diagnostic_prediction}
   \beta < 0 \;\Longleftrightarrow\; \E[FE_{t+1}\mid FR_t>0] < 0.
 \end{equation}
-This is the core overreaction moment in \citet{Bordalo2020b}. In dynamic
-terms, it implies an overshoot-and-correction profile: revisions move quickly,
-then errors partially reverse.
+This is the overreaction moment in \citet{Bordalo2020b}. It implies an
+overshoot-and-correction profile.
 
-Under information rigidity, households close information gaps slowly. If a
-household underpredicts inflation in period $t$, that error tends to persist
-into $t+1$ because updating is incomplete. The key restriction is
+Under information rigidity, households close information gaps slowly. Errors
+persist because updating is incomplete:
 \begin{equation}\label{eq:rigidity_prediction}
   \lambda > 0 \;\Longleftrightarrow\; \E[FE_{t+1}\mid FE_t>0] > 0.
 \end{equation}
-This is the standard sluggish-updating moment in \citet{Coibion2015}. Dynamic
-adjustment is monotone rather than reversal-based: errors decay gradually while
-keeping the same sign across nearby horizons.
+This is the sluggish-updating moment in \citet{Coibion2015}. Adjustment is
+monotone rather than reversal-based.
 
 The two channels can coexist. A household may underreact to low-salience
 background information and overreact when a salient shock dominates attention.
-In that case, $\beta<0$ and $\lambda>0$ can both hold in the same sample. The
-framework therefore treats mechanism identification as a quantitative problem:
-how much each channel contributes, and when. Joint estimation is essential
-because separate regressions can misattribute one channel to the other.
-
-The framework also gives rejection criteria. If estimates repeatedly show
-$\beta\ge 0$, diagnostic overreaction is not first order in this environment.
-If estimates repeatedly show $\lambda\le 0$, slow updating is not first order.
-If both restrictions fail, neither benchmark mechanism is sufficient. If both
-hold, heterogeneity and dynamics determine which policy lever is more valuable.
+In that case, $\beta<0$ and $\lambda>0$ can hold in the same sample. Joint
+estimation is therefore necessary because separate regressions can misattribute
+one channel to the other.
 
 \subsection{Chinese institutional context}\label{sec:china_context}
 
 China provides conditions under which both channels can be strong. On the
-salience side, food inflation is visible in daily shopping, and pork prices are
-the primary amplifier of household inflation narratives. African Swine Fever
-episodes created abrupt supply losses and large price spikes. When households
-observe these spikes repeatedly, recent food news becomes a dominant signal for
-aggregate inflation. This pushes behavior toward representativeness and raises
-the probability of diagnostic overreaction.
+salience side, food inflation is visible in daily shopping, and pork prices
+are the primary amplifier of household inflation narratives. African Swine
+Fever episodes created abrupt supply losses and large price spikes. When
+households observe these spikes repeatedly, recent food news becomes a dominant
+signal for aggregate inflation. This pushes behavior toward representativeness.
 
 On the rigidity side, households face a communication environment with less
 explicit forward guidance and less transparent policy mapping than benchmark
-inflation-targeting regimes. \citet{Chen2022} document institutional features
-consistent with this characterization, including shifts in operational focus
-and limited precision of policy signaling. When households cannot map policy
+inflation-targeting regimes \citep{Chen2022}. When households cannot map policy
 messages into a clear inflation path, they update with delay. That delay raises
 forecast-error persistence, the signature captured by $\lambda>0$.
 
-These two mechanisms are not competing descriptions of different countries.
-They can both be active within China at the same time. Food-price salience can
-increase overshoot in revision moments, while communication opacity can sustain
-persistent lagged errors. The empirical task is to identify which mechanism
-accounts for more variation, in which states, and at which horizons.
-
 Policy implications differ by mechanism. If diagnostic overreaction dominates,
-effective communication should counter salience cascades, correct exaggerated
-food-price narratives quickly, and anchor expectations around medium-run
-inflation fundamentals. If rigidity dominates, policy should improve frequency,
-clarity, and predictability of communication to reduce the stock of uninformed
-households. Both channels favor better communication, but the optimal design is
-different: framing against overreaction versus disclosure to close information
-gaps.
+communication should counter salience cascades and anchor expectations around
+medium-run fundamentals. If rigidity dominates, policy should improve
+frequency, clarity, and predictability of communication to reduce the stock of
+uninformed households. Both channels favor better communication, but the
+optimal design differs.
 
 \subsection{Testable predictions summary}\label{sec:testable_predictions}
 
-The design evaluates four empirical moments that separate the models.
-First, the revision-error sign. Diagnostic models predict $\beta<0$: larger
-upward revisions should precede more negative forecast errors
-\citep{Bordalo2020b}. Pure rigidity does not require this overshoot moment and
-typically implies a weak or nonnegative revision slope once lagged errors are
-included.
+The design evaluates four empirical moments the data can speak to. First, the
+revision-error sign. Diagnostic models predict $\beta<0$: larger upward
+revisions should precede more negative forecast errors \citep{Bordalo2020b}.
+Pure rigidity does not require this overshoot moment.
 
 Second, the lagged-error sign. Rigidity predicts $\lambda>0$: positive errors
 today should carry into next-period errors \citep{Coibion2015}. Diagnostic
 models allow weak or negative lagged-error dependence when correction follows
-overshoot. A positive $\lambda$ supports sluggish updating; a nonpositive
-$\lambda$ weakens that channel.
+overshoot.
 
 Third, cross-sectional media patterns. Diagnostic models predict stronger
-overreaction where inflation news is more salient and cognitively dominant.
-Rigidity models predict faster updating where information access and policy
-signal quality are better, implying weaker persistence in those groups.
-Cross-sectional media variation therefore helps separate salience amplification
-from information-delay amplification.
+overreaction where inflation news is more salient. Rigidity models predict
+faster updating where information access is better, implying weaker persistence
+in those groups.
 
 Fourth, dynamic patterns. Diagnostic dynamics are front-loaded: revision shocks
-move errors quickly, then attenuate or reverse as overshoot is unwound.
-Rigidity dynamics are gradual: errors decay slowly with same-sign persistence
-across adjacent horizons. Dynamic profiles therefore provide a second
-discriminating margin beyond static sign restrictions.
+move errors quickly, then attenuate or reverse. Rigidity dynamics are gradual:
+errors decay slowly with same-sign persistence across adjacent horizons. These
+profiles provide a second discriminating margin beyond static sign restrictions.
 
-\subsubsection{CUT heterogeneity}\label{subsub:cut_heterogeneity}
+I do not claim these moments deliver a decisive structural test between the two
+models. The paper documents patterns consistent with overreaction and quantifies
+how much each channel contributes to forecast-error variation in Chinese
+household data.
 
-I summarize heterogeneity with a CUT decomposition:
-cross-sectional media conditions (C), uncertainty states (U), and temporal
-distance from salient shocks (T). Each mechanism implies a distinct CUT
-signature.
+Table~\ref{tab:literature_comparison} positions the present paper
+relative to the closest work in the household-expectations literature.
+The key distinction is data type and identification source: this paper
+uses a nationally representative household panel with province $\times$
+wave fixed effects rather than professional forecaster data, randomized
+information treatments, or price-scanner exposure. The mechanism is
+inferred from reduced-form moments rather than directly measured.
 
-For C, diagnostic models predict more negative $\beta$ where media salience is
-higher. Rigidity models predict lower $\lambda$ where households face better
-information access and clearer policy communication.
+\input{\tabdir/literature_comparison}
 
-For U, diagnostic intensity should rise when uncertainty is high because agents
-lean more on vivid signals when priors are noisy \citep{Bordalo2018}. Rigidity
-also predicts stronger persistence if uncertainty slows processing. Joint
-estimation identifies whether uncertainty mainly steepens overreaction
-($\beta$ channel) or persistence ($\lambda$ channel).
-
-For T, diagnostics predict an overshoot-then-correction sequence: strongest
-effects close to salient news and weaker or reversed effects at longer horizons.
-Rigidity predicts monotone convergence without an overshoot requirement. Event-
-time dynamics therefore provide a direct CUT test of mechanism dominance.

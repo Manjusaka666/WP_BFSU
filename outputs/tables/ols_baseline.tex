@@ -1,33 +1,30 @@
 \begin{table}[htbp]
 \centering
 \begin{threeparttable}
-\caption{Baseline Forecast-Error Regressions}
+\caption{Aggregate Time-Series Corroboration (PBoC)}
 \label{tab:ols_baseline}
 {\small
-\begin{tabular}{lcccc}
+\begin{tabular}{lccc}
 \toprule
- & \multicolumn{4}{c}{Dependent variable: Forecast error$_{t+1}$} \\
-\cmidrule(lr){2-5}
- & (1) & (2) & (3) & (4) \\
- & Bivariate & +Macro & +Uncertainty & Alt.\ Revision \\
+ & \multicolumn{3}{c}{Dependent variable: Forecast error$_{t+1}$} \\
+\cmidrule(lr){2-4}
+ & (1) & (2) & (3) \\
+ & Bivariate & +Macro & +Uncertainty \\
 \midrule
-$\hat{\beta}$ (revision) & $-1.662^{*}$ & $-2.237^{*}$ & $-2.125$ & $0.535^{***}$ \\
- & (0.957) & (1.114) & (1.256) & (0.080) \\
+$\hat{\beta}$ (revision) & $-1.662^{*}$ & $-2.237^{*}$ & $-2.125$ \\
+ & (0.957) & (1.114) & (1.256) \\
 \addlinespace
-Observations & 32 & 32 & 32 & 36 \\
-$R^2$ & 0.048 & 0.157 & 0.186 & 0.281 \\
+Observations & 32 & 32 & 32 \\
+$R^2$ & 0.048 & 0.157 & 0.186 \\
 \addlinespace
-Province FE & $\times$ & $\times$ & $\times$ & $\times$ \\
-Wave FE & $\times$ & $\times$ & $\times$ & $\times$ \\
-Demographics & $\times$ & $\times$ & $\times$ & $\times$ \\
-Macro controls & $\times$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
-Uncertainty controls & $\times$ & $\times$ & $\checkmark$ & $\times$ \\
+Macro controls & $\times$ & $\checkmark$ & $\checkmark$ \\
+Uncertainty controls & $\times$ & $\times$ & $\checkmark$ \\
 \bottomrule
 \end{tabular}
 }
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} Dependent variable is next-quarter forecast error using Carlson--Parkin expectations. Standard errors (in parentheses) are Newey--West HAC with 4 lags (time-series setting; no cross-sectional clustering). $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
+\item \textit{Notes:} Dependent variable is next-quarter forecast error using Carlson--Parkin quantified expectations from the PBoC depositor survey. Macro controls: food CPI, M2 growth, PPI inflation. Uncertainty controls: EPU and GPR indices. Standard errors (in parentheses) are Newey--West HAC with 4 lags. $^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
