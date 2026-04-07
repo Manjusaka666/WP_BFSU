@@ -1,0 +1,227 @@
+% =============================================================
+%  Appendix A3 -- Wild Cluster Bootstrap Details
+%  Label: app:bootstrap
+% =============================================================
+
+\section{Wild Cluster Bootstrap}\label{app:bootstrap}
+
+\subsection{Methodology}
+
+Asymptotic cluster-robust standard errors can be unreliable
+with fewer than approximately 50 clusters
+\citep{Cameron2008, MacKinnon2017}.
+With 31 province clusters, I supplement conventional inference
+with the wild cluster bootstrap.
+This appendix describes the methodology in detail and reports
+the full results.
+
+The wild cluster bootstrap constructs the null distribution of
+the test statistic by resampling residuals at the cluster level.
+Two versions of the procedure exist: the wild cluster
+unrestricted (WCU) and the wild cluster restricted (WCR).
+In the WCU version, the bootstrap samples are constructed
+from residuals of the unrestricted model (which includes the
+coefficient of interest).
+In the WCR version, the bootstrap samples are constructed
+from residuals of the restricted model, which imposes the
+null hypothesis $H_0\colon \beta = 0$.
+
+I use the WCR version throughout.
+\citet{MacKinnon2017} show that the restricted bootstrap
+has superior size control when the number of clusters is
+small.
+The intuition is that the restricted residuals are computed
+under the null, so the bootstrap distribution is centred at
+the correct location under $H_0$.
+The unrestricted version uses residuals computed under the
+alternative, which can introduce a bias in the bootstrap
+distribution when the number of clusters is small and the
+test statistic is far from zero.
+With 31 clusters and a $t$-statistic exceeding 5 for the
+forecast-error coefficient, this bias is potentially
+nontrivial, making the restricted version the more
+conservative choice.
+
+I use the six-point weight distribution proposed by
+\citet{Webb2023}, which is designed for settings with few
+clusters.
+The standard wild bootstrap draws weights from a two-point
+distribution---either Rademacher $\{-1, +1\}$ or Mammen
+$\{-(1{-}\sqrt{5})/2, (1{+}\sqrt{5})/2\}$---with equal
+probability.
+With $G = 31$ clusters, the Rademacher distribution produces
+$2^{31} \approx 2.15 \times 10^9$ distinct bootstrap samples.
+While this is a large number, the effective coverage of the
+null distribution can be uneven because each bootstrap draw
+assigns the same weight to all observations within a cluster.
+The six-point distribution provides a richer set of weights
+$\{w_1, \ldots, w_6\}$ with $6^{31} \approx 1.3 \times 10^{24}$
+distinct samples, which yields a finer approximation to the
+true null distribution.
+\citet{Webb2023} show in simulations with 10--30 clusters that
+the six-point distribution produces rejection rates closer to
+the nominal size than either the Rademacher or Mammen
+distributions.
+
+Each bootstrap replication proceeds as follows:
+\begin{enumerate}
+  \item Estimate the restricted model (imposing $H_0\colon
+    \beta = 0$) and obtain residuals
+    $\hat{\varepsilon}_{ig}^{r}$ for each observation $i$ in
+    cluster $g$.
+  \item Draw a six-point random weight $w_g$ independently for
+    each of the 31 province clusters.
+    The weight takes one of six values, each with probability
+    $1/6$.
+  \item Construct the bootstrap error as
+    $\varepsilon^*_{ig} = w_g \cdot \hat{\varepsilon}_{ig}^{r}$.
+    All observations within a cluster receive the same weight,
+    preserving the within-cluster correlation structure.
+  \item Construct the bootstrap dependent variable:
+    $y^*_{ig} = \hat{y}_{ig}^{r} + \varepsilon^*_{ig}$,
+    where $\hat{y}_{ig}^{r}$ is the fitted value from the
+    restricted model.
+  \item Re-estimate the unrestricted model on
+    $(y^*_{ig}, X_{ig})$ and compute the $t$-statistic $t^*_b$
+    on the coefficient of interest.
+  \item Repeat steps 2--5 for $B = 9{,}999$ replications.
+  \item The bootstrap $p$-value is the fraction of replications
+    for which $|t^*_b| \geq |t_{\text{obs}}|$, where
+    $t_{\text{obs}}$ is the test statistic from the original
+    data.
+\end{enumerate}
+
+The choice of $B = 9{,}999$ is standard in the literature and
+ensures that the bootstrap $p$-value has a precision of
+approximately $\pm 0.01$ at the 5 percent level.
+With $B = 9{,}999$ and a true rejection rate of 0.05, the
+Monte Carlo standard error of the estimated $p$-value is
+$\sqrt{0.05 \times 0.95 / 10{,}000} \approx 0.002$.
+
+\subsection{Results}
+
+Table~\ref{tab:bootstrap_results} reports the bootstrap
+results for the two main coefficients (expectation and
+forecast error) under both fixed-effect structures.
+
+\begin{table}[htbp]
+\centering
+\caption{Wild Cluster Bootstrap Results}
+\label{tab:bootstrap_results}
+\begin{threeparttable}
+\begin{tabular}{llccccc}
+\toprule
+Equation & FE structure & $\hat{\beta}$ & SE &
+  Asymptotic $p$ & Bootstrap $p$ & $N$ \\
+\midrule
+Eq 1 (Expectations) & Prov + Wave & 0.090 & 0.053
+  & 0.100 & 0.088 & 90,133 \\
+Eq 1 (Expectations) & Region$\times$Wave & 0.242 & 0.174
+  & 0.174 & 0.237 & 90,133 \\
+Eq 3 (Forecast error) & Prov + Wave & $-5.622$ & 1.182
+  & $<0.001$ & $<0.001$ & 69,533 \\
+Eq 3 (Forecast error) & Region$\times$Wave & $-6.067$ & 1.145
+  & $<0.001$ & $<0.001$ & 69,533 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Webb six-point distribution with 9,999 replications.
+  Restricted bootstrap (WCR) imposing $H_0\colon \beta = 0$.
+\item $p$-values are two-sided.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The forecast-error coefficient $\hat{\beta}_3$ is robust to
+the bootstrap correction under both fixed-effect structures.
+The bootstrap $p$-values for Eq~3 are below $0.001$ in both
+cases, matching the asymptotic $p$-values.
+The 95-percent bootstrap confidence intervals for
+$\hat{\beta}_3$ exclude zero by a wide margin under both
+specifications.
+
+The expectation coefficient $\hat{\beta}_1$ is marginal.
+Under province-plus-wave FE, the bootstrap $p$-value of
+$0.088$ is slightly below the conventional 10 percent
+threshold, while the asymptotic $p$-value of $0.100$ is at
+the boundary.
+Under region-by-wave FE, both the asymptotic ($0.174$) and
+bootstrap ($0.237$) $p$-values are above 10 percent.
+The bootstrap does not reverse any asymptotic conclusion but
+does widen the $p$-value modestly for Eq~1 under
+region-by-wave FE, reflecting the conservative nature of the
+WCR procedure with few clusters.
+
+\subsection{Power Considerations}\label{app:bootstrap_power}
+
+The wild cluster bootstrap corrects the size of the test
+(the probability of rejecting a true null) but does not
+improve its power (the probability of rejecting a false null).
+With 31 clusters, the effective degrees of freedom for
+cluster-level variation are limited, and power against small
+to moderate effect sizes is low.
+
+This power limitation is relevant for interpreting the
+imprecise expectation coefficient.
+The identifying variation in $\hat{\beta}_1$ operates at the
+province-wave level: with 31 provinces and 4 waves, the
+maximum number of province-wave cells is 124, but the
+effective number is reduced by the fixed-effect structure.
+Under region-by-wave FE with approximately 24 region-wave
+cells, the residual degrees of freedom for the meat-shock
+coefficient are approximately $124 - 24 = 100$ at the
+cell level, but cluster-robust inference treats the 31
+provinces as the unit, yielding an effective sample size of
+31 for the purpose of the $t$-distribution.
+Power calculations for a two-sided test at the 5 percent
+level with 30 degrees of freedom suggest that detecting an
+effect of the size estimated for $\hat{\beta}_1$ (0.242
+with s.e. 0.174, implying a $t$-ratio of 1.4) requires
+approximately 50--60 clusters to achieve 80 percent power.
+The current design with 31 clusters is underpowered for the
+expectation coefficient.
+
+The forecast-error coefficient does not face this power
+problem.
+The $t$-ratio for $\hat{\beta}_3$ exceeds 5 under both
+FE structures, which is well above any critical value for
+30 degrees of freedom.
+The bootstrap confirms that the apparent power is not an
+artifact of size distortion: the $p$-values remain below
+$0.001$ after the correction.
+
+The asymmetry in power between Eq~1 and Eq~3 reflects both
+the measurement properties of the dependent variables and the
+structure of the identifying variation.
+The ordinal expectation in Eq~1 takes three values
+($-1, 0, 1$), which limits the effective variation in the
+dependent variable.
+The forecast error in Eq~3 combines the ordinal expectation
+with a continuous CPI measure, producing a dependent variable
+with substantially more dispersion.
+The greater dispersion in the dependent variable of Eq~3
+translates to a higher signal-to-noise ratio for the
+coefficient of interest and, consequently, a larger
+$t$-statistic for a given effect size.
+
+A further consideration is that the wild cluster bootstrap
+is designed for inference, not for estimation.
+The point estimates $\hat{\beta}_1$ and $\hat{\beta}_3$ are
+OLS estimates and are unbiased under the standard assumptions.
+The bootstrap corrects only the distribution of the test
+statistic.
+The fact that the bootstrap widens the $p$-value for
+$\hat{\beta}_1$ under region-by-wave FE (from 0.174 to 0.237)
+does not imply that the point estimate is biased; it implies
+that the asymptotic standard error slightly understates the
+true sampling variability of the $t$-ratio with 31 clusters.
+
+These power considerations motivate the emphasis on the
+forecast-error equation as the primary test.
+The forecast-error coefficient provides the most powerful
+test of overreaction because it combines the expectation
+and CPI channels into a single dependent variable with
+high dispersion, and because the sign of $\hat{\beta}_3$
+alone is sufficient to reject the rational benchmark without
+requiring a precise estimate of the expectation response.

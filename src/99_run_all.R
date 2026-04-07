@@ -32,16 +32,17 @@ append_log(c("# Reproducibility Log", "", sprintf("## Run date: %s", format(Sys.
 
 # Core R pipeline.
 r_scripts <- c(
-  "05_carlson_parkin_quantify.R",
-  "10_build_panel.R",
-  "35_identification_main.R",
-  "40_models_baseline.R",
-  "45_models_heterogeneity.R",
-  "50_mechanism_competition.R",
-  "60_lp_dynamic.R",
-  "70_policy_backtest.R",
-  "80_figures_tables.R",
-  "90_parity_check_with_python.R"
+  # --- Data construction ---
+  "15_build_province_cpi.R",
+  "16_build_meat_shock.R",
+  "12_build_cfps_panel.R",
+  # --- Main analysis ---
+  "42_meat_shock_regressions.R",
+  "43_heterogeneity_meat.R",
+  "44_placebo_commodity.R",
+  "46_wild_bootstrap.R",
+  # --- Figures ---
+  "82_asf_figures.R"
 )
 
 for (s in r_scripts) {

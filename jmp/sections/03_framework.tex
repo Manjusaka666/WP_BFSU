@@ -1,0 +1,203 @@
+% =============================================================
+%  Section 3 -- Conceptual Framework
+%  Label: sec:framework
+% =============================================================
+
+\section{Conceptual Framework}\label{sec:framework}
+
+This section derives a rational benchmark for the household
+forecast error and shows how diagnostic expectations generate
+overshooting.
+The model is deliberately parsimonious: its purpose is to
+discipline the empirical test, not to estimate structural
+parameters.
+Full derivations appear in Appendix~\ref{app:model}.
+
+\subsection{Setup}\label{sec:model_setup}
+
+A household in province $p$ at survey wave $t$ observes the
+cumulative meat-price change $s_{pt}$ between waves $t-1$ and $t$.
+The household must forecast headline CPI inflation
+$\pi_{p,\,t \to t+1}$ over the subsequent inter-wave period.
+
+Meat enters headline CPI with weight $\omega \approx 0.05$.
+The meat-price shock has persistence $\rho \in [0,1]$: a fraction
+$\rho$ of the current shock carries forward into the next period's
+headline inflation.
+Formally, the headline CPI response to a meat shock of size $s$ is
+\begin{equation}\label{eq:passthrough_model}
+  \E[\pi_{p,\,t \to t+1} \mid s_{pt}] = \bar{\pi} + \omega\,\rho\,s_{pt},
+\end{equation}
+where $\bar{\pi}$ is unconditional expected inflation.
+The household does not know $\rho$ with certainty but holds a
+prior belief $\hat{\rho}$.
+
+I focus on persistence uncertainty rather than weight uncertainty
+because CPI weights are approximately stable across the sample
+period, so persistent disagreement about $\omega$ would produce
+a constant expectation bias absorbed by fixed effects.
+Persistence uncertainty, by contrast, interacts with the size
+of the shock and generates a coefficient on $s_{pt}$ in the
+forecast-error regression.
+
+\subsection{Rational Benchmark}\label{sec:rational_benchmark}
+
+Under rational expectations, the household forecasts
+$\E_t^{R}[\pi_{p,\,t \to t+1}] = \bar{\pi}
+  + \omega\,\hat{\rho}\,s_{pt}$,
+where $\hat{\rho}$ is the household's best estimate of
+persistence.
+The forecast error is
+\begin{equation}\label{eq:rational_fe}
+  \mathrm{FE}^{R}_{pt}
+  = \pi_{p,\,t \to t+1} - \E_t^{R}[\pi_{p,\,t \to t+1}]
+  = \omega(\rho - \hat{\rho})\,s_{pt} + \eta_{pt},
+\end{equation}
+where $\eta_{pt}$ collects shocks to headline CPI that are
+orthogonal to the meat signal.
+If the household overestimates persistence ($\hat{\rho} > \rho$),
+it expects more meat-driven inflation than actually occurs, and
+the forecast error is negative in provinces with positive shocks.
+If the household underestimates persistence, the forecast error
+is positive in high-shock provinces.
+
+The coefficient on $s_{pt}$ in a regression of the forecast
+error on the meat shock is therefore bounded:
+\begin{equation}\label{eq:rational_bound}
+  \beta_3^{R} = \omega(\rho - \hat{\rho}).
+\end{equation}
+Even in the worst case---where households believe the shock is
+permanent ($\hat{\rho} = 1$) but it is fully transitory
+($\rho = 0$)---the rational forecast-error coefficient is
+$\beta_3^{R} = -\omega \approx -0.05$.
+Under any intermediate belief, $|\beta_3^{R}| < \omega$.
+The rational benchmark therefore predicts
+$|\beta_3| \leq 0.05$ per unit of the meat shock.
+
+This bound is the central object of the empirical test.
+The number $0.05$ is not a free parameter---it is the CPI
+weight on meat, determined by the NBS basket construction.
+Any rational household, regardless of its belief about
+persistence, generates a forecast-error coefficient no larger
+than the mechanical weight of meat in the index, because
+persistence governs the \textit{duration} of the meat
+contribution, not its \textit{size per period}.
+
+\subsection{Diagnostic Extension}\label{sec:diagnostic_extension}
+
+Under diagnostic expectations \citep{Bordalo2018}, the household
+overweights the state that recent signals make more
+representative.
+A large positive meat-price shock makes high-inflation states
+more salient, so the household inflates its forecast by a factor
+$\theta > 0$ beyond the rational update:
+\begin{equation}\label{eq:diagnostic_forecast}
+  \E_t^{\theta}[\pi_{p,\,t \to t+1}]
+  = \bar{\pi}
+    + \omega\,\hat{\rho}\,s_{pt}
+    + \theta\,\omega\,s_{pt}.
+\end{equation}
+The additional term $\theta\,\omega\,s_{pt}$ arises because
+the household tilts its subjective probability distribution
+toward states with high likelihood ratios.
+When $\theta = 0$, the household reverts to the rational
+benchmark; when $\theta > 0$, it places too much probability
+mass on high-inflation outcomes after observing a positive
+meat-price shock.
+
+The diagnostic forecast error is
+\begin{equation}\label{eq:diagnostic_fe}
+  \mathrm{FE}^{\theta}_{pt}
+  = \omega(\rho - \hat{\rho})\,s_{pt}
+    - \theta\,\omega\,s_{pt}
+    + \eta_{pt},
+\end{equation}
+so the regression coefficient becomes
+$\beta_3^{\theta} = \omega(\rho - \hat{\rho} - \theta)$.
+With $\theta > 0$, the forecast error is more negative than under
+rationality for any belief $\hat{\rho}$ and any true persistence
+$\rho$.
+
+The forecast-error regression is a sharper test than the
+expectation regression.
+The expectation coefficient $\beta_1$ depends on
+$\omega(\hat{\rho} + \theta)$, so distinguishing the rational
+component from the diagnostic component requires an independent
+estimate of $\hat{\rho}$, which is not directly observed.
+The forecast-error coefficient $\beta_3$, by contrast, is
+bounded by $\omega$ under rationality regardless of
+$\hat{\rho}$.
+Any estimate of $|\hat{\beta}_3|$ exceeding $0.05$ rejects
+rationality without requiring knowledge of the household's
+belief about persistence.
+
+\subsection{Testable Implications}\label{sec:testable}
+
+The framework generates three predictions that the data can
+discriminate.
+
+\textit{Prediction 1: Bounded forecast errors under rationality.}
+Under rationality, the forecast-error coefficient satisfies
+$|\beta_3| \leq \omega \approx 0.05$.
+If the estimated $\hat{\beta}_3$ exceeds this bound in
+absolute value, rationality is rejected regardless of the
+household's belief about persistence.
+The bound is conservative: it assumes the worst-case belief
+($\hat{\rho} = 1$ when $\rho = 0$); under any more accurate
+belief, the rational coefficient is smaller.
+In the data, the estimated coefficient is $\hat{\beta}_3 =
+-6.07$, which exceeds the rational bound by a factor of 120.
+
+\textit{Prediction 2: Excess expectation response.}
+Under diagnostic expectations the expectation response
+exceeds the rational update:
+$\hat{\beta}_1 > \omega\,\hat{\rho}$.
+The expectation result complements the forecast-error test
+by showing \textit{where} the excess forecast error comes
+from: through the numerator (expectations are too high) rather
+than the denominator (realised CPI is too low).
+In the preferred specification, $\hat{\beta}_1 = 0.242$
+(s.e. = 0.174), which is positive but imprecisely
+estimated due to the ordinal nature of the expectation variable.
+
+\textit{Prediction 3: Commodity asymmetry.}
+A household that overweights salient signals should respond more
+to meat shocks (high purchase frequency, high media coverage)
+than to grain shocks of comparable CPI weight.
+The diagnostic model predicts that $\theta$ is larger for
+meat than for grain because the purchase-frequency channel
+amplifies the representativeness of meat-price signals.
+Grain prices in China are stabilised by government procurement
+and strategic reserves, so they vary less and attract less
+household attention.
+The placebo test in Section~\ref{sec:mechanism} confirms this
+asymmetry: grain shocks produce near-zero forecast errors.
+
+\subsection{Mapping to Empirical Equations}\label{sec:model_mapping}
+
+The three predictions map directly to the three-equation system
+estimated in Section~\ref{sec:strategy}.
+Equation~1 regresses household expectations on the meat shock
+and tests whether $\hat{\beta}_1 > 0$.
+Equation~2 regresses forward realised headline CPI on the
+meat shock and estimates the actual pass-through
+$\omega\,\rho$.
+Equation~3 regresses the forecast error
+(realised CPI minus expectation) on the meat shock and tests
+whether $|\hat{\beta}_3| > \omega$.
+
+The empirical strategy uses province-by-wave fixed effects in
+the preferred specification.
+In the model, these fixed effects absorb $\bar{\pi}$ and any
+province-by-wave shocks common to all households in a given cell.
+The identifying variation is the deviation of a province's
+meat shock from the region-by-wave mean.
+The model predicts that the forecast-error bound
+$|\beta_3| \leq 0.05$ holds even in this demanding
+specification because the bound derives from the CPI weight,
+not from the level of the shock.
+
+Section~\ref{sec:calibration} compares the estimated
+$\hat{\beta}_3$ against the rational bound calibrated
+to the actual persistence of meat-price shocks in the data.
+

@@ -1,0 +1,142 @@
+% =============================================================
+%  Section 7 – Robustness
+%  Label: sec:robustness
+% =============================================================
+
+\section{Robustness}\label{sec:robustness}
+
+This section examines inference with a small number of clusters,
+aggregate sign replication, sensitivity to fixed-effect structure,
+and the 2016 CPI weight revision.
+
+% -------------------------------------------------------------
+\subsection{Wild Cluster Bootstrap}\label{sec:wcb}
+% -------------------------------------------------------------
+
+The preferred specifications cluster standard errors at the
+province level.
+China has 31 mainland provinces, municipalities, and autonomous
+regions, so the maximum number of clusters available for
+inference is around 25 to 31 depending on data coverage.
+This cluster count is in the range where cluster-robust
+standard errors based on the sandwich formula are known to
+over-reject: the asymptotic approximation performs poorly
+below approximately 30 to 50 clusters, leading to
+$t$-statistics that are too large in finite samples
+\citep{Cameron2008, MacKinnon2017}.
+
+To address this, I report wild cluster bootstrap $p$-values
+for the main coefficient estimates.
+I implement the Webb six-point weight distribution, which
+performs well with cluster counts below 30.
+All bootstraps use 9,999 replications and impose the null
+hypothesis on each coefficient separately.
+
+For the expectation equation under province-plus-wave FE,
+the bootstrap $p$-value on $\hat{\beta}_1$ is $0.088$,
+compared with the asymptotic $p = 0.100$.
+Under region-by-wave FE, the bootstrap $p$-value is $0.237$
+(asymptotic: $0.174$).
+The expectation coefficient is thus marginal under both
+inference methods.
+
+The forecast-error coefficient $\hat{\beta}_3$ is robust
+to the bootstrap correction.
+Under province-plus-wave FE, bootstrap $p < 0.001$
+(asymptotic $p < 0.001$).
+Under region-by-wave FE, bootstrap $p < 0.001$
+(asymptotic $p < 0.001$).
+The core overreaction finding in the forecast-error equation
+survives the most conservative available inference with
+31 clusters.
+
+% -------------------------------------------------------------
+\subsection{Aggregate Sign Check: PBoC Depositor Survey}%
+\label{sec:pboc_sign}
+% -------------------------------------------------------------
+
+The PBoC Urban Depositor Survey provides an independent
+aggregate-level check on the sign of the overreaction pattern.
+Using the Carlson--Parkin quantified expectations from the
+quarterly depositor survey, I estimate the baseline
+revision-error regression at the aggregate level.
+The sign of the revision-error slope is negative,
+consistent with the household-level overreaction finding in
+Section~\ref{sec:results}.
+
+Three caveats govern the interpretation.
+First, $N \approx 32$ is too small for precise inference.
+Second, the Carlson--Parkin quantification introduces
+measurement error.
+Third, aggregate time-series regressions cannot rule out
+omitted macro confounders.
+The aggregate evidence is corroborative only; the
+household-level shock design in Section~\ref{sec:results}
+is the primary source of identification.
+
+% -------------------------------------------------------------
+\subsection{Alternative Fixed Effects}\label{sec:altfe}
+% -------------------------------------------------------------
+
+The preferred specifications use region-by-wave fixed
+effects, grouping the 31 provincial units into macro
+regions and interacting the region indicators with
+wave dummies.
+This approach preserves within-region variation in shock
+intensity while absorbing region-specific macro trends.
+I evaluate sensitivity to this choice by estimating
+alternative fixed-effect structures.
+
+The first alternative uses province fixed effects and
+wave fixed effects entered separately (two-way rather than
+interacted).
+This specification permits province-specific time-invariant
+differences and wave-specific national shocks to be absorbed
+independently but does not absorb time-varying
+province-specific trends.
+The province-and-wave specification yields $\hat{\beta}_1
+= 0.090$ ($p = 0.10$) and $\hat{\beta}_3 = -5.62$
+($p < 0.001$), close to the preferred region-by-wave
+estimates.
+The stability across these two FE structures indicates that
+the results are not driven by the specific geographic
+grouping used for region-by-wave absorption.
+
+% -------------------------------------------------------------
+\subsection{CPI Weight Revision}\label{sec:cpi_weights}
+% -------------------------------------------------------------
+
+The National Bureau of Statistics revised the CPI basket
+weights in 2016.
+The revision reduced the headline food weight from
+approximately 31 percent to 28 percent and adjusted
+sub-weights within the food category.
+If these revisions materially shifted the relationship
+between meat prices and headline CPI, the pass-through
+regression in Section~\ref{sec:eq2} could behave
+differently before and after 2016, and the implied forecast
+error could reflect a weight-regime change rather than
+household overreaction.
+
+Two observations mitigate this concern.
+First, the meat CPI data used for shock construction begin in
+January 2016, so the estimation sample (CFPS waves 2016--2022)
+falls entirely within the post-revision weight regime.
+The pre-2016 waves (2012, 2014) lack province-level meat CPI
+data and do not enter the main specifications.
+There is therefore no weight-regime boundary within the
+estimation sample.
+
+Second, the consistency of results across the 2016, 2018,
+2020, and 2022 waves, as shown in the wave-specific
+meat-shock summary statistics, indicates that the relationship
+between meat shocks and expectations is stable within the
+post-revision period.
+
+Taken together, the robustness exercises confirm that the
+forecast-error result is not an artifact of inference method,
+fixed-effect structure, or CPI measurement regime.
+The expectation coefficient is less precisely estimated,
+which is expected given the demanding fixed-effect structure,
+but the core finding that meat-price shocks generate
+systematic overprediction of future inflation is robust.

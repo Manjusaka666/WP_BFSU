@@ -1,0 +1,29 @@
+\begin{table}[!htbp]
+\centering
+\caption{Meat Price Shock and Realized Headline CPI}
+\label{tab:eq2_cpi_passthrough}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+& (1) & (2) & (3) \\
+\multicolumn{4}{l}{\textit{Dep.\ var.: Realized headline CPI (\%, annualized)}} \\
+\midrule
+Meat shock & $-1.812^{***}$ & $-4.703^{***}$ & $-3.519^{*}$ \\
+& $(0.232)$ & $(1.646)$ & $(1.954)$ \\[6pt]
+Province FE &  & Yes &  \\
+Wave FE &  & Yes &  \\
+Region $\times$ wave FE &  &  & Yes \\
+\midrule
+Observations & 93 & 93 & 93 \\
+$R^2$ & 0.192 & 0.704 & 0.589 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Note.} Unit of observation is province $\times$ wave.
+\item Standard errors clustered at the province level.
+\item Dependent variable is annualized realized headline CPI inflation in the province over the subsequent inter-wave period.
+\item $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,0 +1,294 @@
+\section{Empirical Strategy}\label{sec:strategy}
+
+The strategy exploits province-level meat-price variation as an
+external salience treatment.
+The treatment is measured by the National Bureau of Statistics
+and merged from outside the CFPS survey, so the household's
+current expectation never appears on both sides of any
+regression.
+The primary test is a reduced-form regression of forecast errors
+on the meat shock.
+Two decomposition equations identify the channels through which
+the forecast error arises.
+
+\subsection{Treatment Variable}\label{sec:meatshock}
+
+The treatment variable is the cumulative log change in provincial
+meat CPI between two consecutive CFPS waves, defined in
+equation~\eqref{eq:meat_shock_data}.
+Three properties matter for identification.
+First, it is external to the survey: it contains no information
+derived from respondents.
+Second, it is cumulative: a household surveyed in 2020
+experienced the full path of meat-price movements since the
+2018 wave.
+Third, it varies at the province level, which allows me to
+absorb region-by-wave fixed effects and still retain
+within-region identifying variation.
+
+The cumulative measure is the natural choice given the CFPS
+survey design.
+CFPS is fielded every two years, with interviews spanning
+several months within each wave.
+Households report expectations once per wave, and those reports
+reflect whatever price information they accumulated since the
+prior interview.
+The cumulative log change between wave midpoints therefore
+captures the total price signal that a household plausibly
+processed.
+
+Two measurement considerations deserve attention.
+First, the NBS meat CPI index combines pork, beef, mutton, and
+poultry, with pork receiving the dominant weight.
+During the ASF episode, pork drove the bulk of the meat CPI
+movement; the index therefore tracks the pork shock with high
+fidelity during the identification window.
+Second, the cumulative measure aggregates monthly observations
+equally.
+If households weight recent months more heavily, the treatment
+variable understates effective salience, attenuating the
+estimated coefficient toward zero.
+
+The 2018--2019 ASF episode provides the sharpest source of
+variation.
+Provincial herd losses varied because culling policy, transport
+restrictions, and initial herd density differed across provinces.
+This heterogeneity generates cross-sectional dispersion in the
+treatment that is plausibly orthogonal to province-level demand
+conditions.
+
+\subsection{Three-Equation System}\label{sec:three_equations}
+
+Primary test: forecast errors (Equation~3).
+The reduced-form implication of overreaction is that households
+in high-shock provinces subsequently overpredict inflation:
+\begin{equation}\label{eq:eq3}
+  \mathrm{FE}_{ipt}
+  = \alpha
+  + \beta_3\,\mathrm{MeatShock}_{p,\,t-1\to t}
+  + \gamma' X_{ipt}
+  + \delta_{r(p)\times t}
+  + \varepsilon_{ipt},
+\end{equation}
+where $\mathrm{FE}_{ipt}
+  \equiv \pi^{\mathrm{headline}}_{p,\,t\to t+1}
+  - \tilde{\mu}_{ipt}$ is realised provincial headline inflation
+over the next inter-wave period minus the household's directional
+expectation scaled to CPI units.
+A negative forecast error means that the household expected more
+inflation than materialised.
+Under overreaction, $\beta_3 < 0$: high-shock provinces generate
+more negative forecast errors.
+
+The forecast-error equation occupies the primary position because
+it requires the fewest auxiliary assumptions.
+The sign of $\beta_3$ alone tests overreaction.
+If households responded rationally, their expectations would
+adjust by no more than the shock's actual headline CPI weight,
+and forecast errors would be bounded by
+$\omega \approx 0.05$ regardless of the household's belief about
+shock persistence (Section~\ref{sec:framework}).
+Any $|\hat{\beta}_3|$ exceeding this bound rejects rationality
+without requiring knowledge of the conversion factor between
+ordinal expectations and CPI units.
+
+The identification of $\beta_3$ comes from within-region
+variation in meat-price shocks.
+Two households in different provinces within the same region and
+survey wave face identical aggregate conditions but different
+meat-price histories.
+The coefficient $\beta_3$ measures whether the household in
+the higher-shock province produces a more negative forecast
+error.
+
+Decomposition: expectations (Equation~1).
+\begin{equation}\label{eq:eq1}
+  \mu_{ipt}
+  = \alpha
+  + \beta_1\,\mathrm{MeatShock}_{p,\,t-1\to t}
+  + \gamma' X_{ipt}
+  + \delta_{r(p)\times t}
+  + \varepsilon_{ipt},
+\end{equation}
+where $\mu_{ipt} \in \{-1,0,1\}$ is the ordinal inflation
+expectation.
+A positive $\hat{\beta}_1$ indicates that higher meat-price
+shocks shift expectations upward.
+
+Equation~1 identifies whether the shock moves beliefs.
+If households are inattentive or if meat prices lack
+salience, $\beta_1$ would be zero.
+Because the dependent variable is ordinal, the coefficient
+measures shifts in the probability of reporting ``up'' versus
+``same'' or ``down,'' not a cardinal change in expected
+inflation.
+The ordinal scale limits what $\beta_1$ can tell us about the
+magnitude of the expectation response in CPI units, which is
+precisely why the forecast-error equation is the primary test.
+
+Decomposition: pass-through (Equation~2).
+\begin{equation}\label{eq:eq2}
+  \pi^{\mathrm{headline}}_{p,\,t\to t+1}
+  = \alpha
+  + \beta_2\,\mathrm{MeatShock}_{p,\,t-1\to t}
+  + \delta_{r(p)\times t}
+  + u_{pt},
+\end{equation}
+where $\pi^{\mathrm{headline}}_{p,\,t\to t+1}$ is realised
+province-level headline CPI inflation over the subsequent
+inter-wave period.
+This regression runs at the province-wave level (93 observations).
+If $\beta_2 \leq 0$, the shock does not raise future headline
+inflation, closing the second half of the overreaction logic.
+
+The pass-through equation pins down what a rational household
+should have expected.
+A zero or negative $\beta_2$ means the shock reverses. Provinces
+that received large meat-price increases subsequently saw lower,
+not higher, headline inflation.
+The reversal follows ASF supply-shock dynamics.
+As herds recovered through 2021--2022, pork supply expanded and
+meat prices fell, dragging down headline CPI in the provinces
+that experienced the sharpest earlier increases.
+The 93-observation sample size motivates the wild cluster
+bootstrap described in Section~\ref{sec:inference}.
+
+\subsubsection{Decomposition Logic and the Overreaction Test}%
+\label{sec:overreaction_decomposition}
+
+The three coefficients are linked by an approximate
+decomposition:
+$\beta_3 \approx \beta_2 - k\,\beta_1$, where $k$ converts
+the ordinal expectation into implied inflation units.
+This identity clarifies the overreaction test.
+
+The forecast error is realised inflation minus expected inflation.
+Regressing realised inflation on the meat shock gives $\beta_2$.
+Regressing expected inflation on the meat shock gives
+$k\,\beta_1$.
+If expectations respond ($\beta_1 > 0$) but realised CPI does
+not ($\beta_2 \leq 0$), the forecast error is necessarily
+negative because the household raised its expectation in response
+to a signal that did not raise the object it was forecasting.
+
+The sign test $\beta_3 < 0$ does not require knowledge of $k$.
+The CFPS expectation question is ordinal, so the mapping from
+$\mu \in \{-1,0,1\}$ to CPI units is unknown.
+But the forecast error is constructed in CPI units, so
+$\beta_3$ is directly interpretable.
+Whatever $k$ is, if the forecast error is systematically more
+negative in high-shock provinces, households in those provinces
+overpredicted inflation.
+
+The decomposition also clarifies why $|\hat{\beta}_3|$
+exceeds the rational bound by such a wide margin.
+Under rational expectations, $\beta_1$ should equal
+$\omega\,\hat{\rho} / k$, where $\omega \approx 0.05$ is meat's
+CPI weight and $\hat{\rho}$ is the household's persistence
+belief.
+Even if $\hat{\rho} = 1$, the rational forecast-error coefficient
+is bounded by $|\beta_3^R| \leq 0.05$.
+Finding $|\hat{\beta}_3| \approx 6$ means the actual expectation
+response far exceeds the rational response.
+
+\subsection{Identification Assumptions}%
+\label{sec:identification_assumptions}
+
+The strategy requires two conditions.
+
+The first condition is relevance: the meat-price shock must
+predict household forecast errors.
+Pork is widely consumed, purchased frequently, and priced
+visibly; ASF generated extensive media coverage that was
+difficult to miss even for inattentive consumers.
+Three features support relevance: pork accounts for roughly
+60 percent of China's meat consumption and is purchased several
+times per week; the ASF episode received extensive state and
+social media coverage; and prices at wet markets are posted on
+visible boards and updated daily.
+
+The second condition is conditional exogeneity: the meat-price
+shock must be uncorrelated with province-level
+determinants of forecast errors other than through salience,
+conditional on fixed effects and controls.
+Region-by-wave fixed effects absorb regional business cycles,
+monetary policy transmission, and nationwide shocks hitting
+all provinces within a region simultaneously.
+The remaining identifying variation is within-region
+cross-province differences in meat-price shocks over time.
+
+The main threat is a province-specific demand shock that
+simultaneously raises meat prices and expectations through
+a real-income channel.
+Two features mitigate this concern.
+First, ASF provides a biologically determined supply shock.
+The disease entered China through contaminated feed imports
+and spread along pig transportation corridors, with provincial
+infection severity determined by initial herd density and
+proximity to early outbreak sites.
+Second, the commodity-placebo test in
+Section~\ref{sec:mechanism} shows that grain shocks of
+comparable magnitude do not produce the same forecast-error
+pattern.
+If local demand were driving both prices and expectations,
+grain prices should respond to the same demand shock and
+produce a similar expectation effect.
+
+A second concern is that province-level meat-price variation
+might proxy for local food-price inflation more broadly.
+Region-by-wave fixed effects partially address this by
+absorbing region-level food-price trends.
+The within-region variation in meat prices is largely
+idiosyncratic to the ASF episode and does not coincide with
+similar dispersion in non-meat food categories.
+
+The design also requires stable unit treatment: household $i$'s
+forecast error depends
+on the meat shock in province $p$ where the household resides,
+not on meat shocks in other provinces.
+Region-by-wave fixed effects absorb any national-level or
+region-level price signal, so the identifying variation reflects
+local price conditions.
+The CFPS expectation question asks about general price changes,
+not pork prices specifically; households that follow national
+pork-price news would report higher expectations in all
+provinces, which would be absorbed by the wave fixed effect.
+
+What the fixed effects absorb and what they leave.
+Region-by-wave fixed effects partition the 31 provinces into
+six NBS macro-regions and absorb any time-varying shock common
+to provinces within a region.
+This removes aggregate monetary policy shocks, regional business
+cycles, and region-specific food supply disruptions.
+The remaining variation is within-region cross-province
+differences in meat-price shocks.
+The fixed effects do not absorb province-specific shocks that
+are correlated with the meat shock.
+If a province experienced an unobserved demand boom that
+raised both meat prices and expectations, this would bias
+$\beta_3$ toward zero rather than away from zero.
+The direction of potential omitted-variable bias therefore
+works against the overreaction finding.
+
+\subsection{Inference}\label{sec:inference}
+
+With 31 province clusters, asymptotic cluster-robust standard
+errors can over-reject \citep{Cameron2008}.
+Simulation evidence suggests that 30--50 clusters is a
+borderline case where asymptotic approximations may or may not
+perform well.
+
+I report wild cluster bootstrap $p$-values throughout, using
+the \citet{Webb2023} six-point weight distribution with 9,999
+replications.
+The six-point distribution is preferred over the Rademacher
+two-point distribution because it provides better size control
+for cluster counts between 10 and 50, precisely the range that
+applies here.
+The bootstrap is implemented under the null hypothesis of
+zero treatment effect (restricted residuals).
+
+Point estimates and conventional cluster-robust standard errors
+are reported alongside bootstrap $p$-values.
+All significance statements in the text refer to bootstrap
+$p$-values unless otherwise noted.

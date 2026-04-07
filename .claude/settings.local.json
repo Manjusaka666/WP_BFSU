@@ -22,7 +22,8 @@
       "Bash(biber main:*)",
       "Bash(ls \"e:/研究生/WP_BFSU/outputs/tables/\"*.tex)",
       "Bash(Rscript src/81_regenerate_figures.R)",
-      "Bash(find e:/研究生/WP_BFSU -name *backtest*path* -o -name *backtest*csv)"
+      "Bash(find e:/研究生/WP_BFSU -name *backtest*path* -o -name *backtest*csv)",
+      "Bash(node:*)"
     ]
   }
 }

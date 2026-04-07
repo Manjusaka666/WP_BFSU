@@ -1,0 +1,174 @@
+% =============================================================
+%  Section 5 – Main Results
+%  Label: sec:results
+% =============================================================
+
+\section{Main Results}\label{sec:results}
+
+The primary finding is that province-level meat-price shocks
+generate large, negative household forecast errors.
+I present this result first (Section~\ref{sec:eq3}), then
+decompose it into the expectation channel
+(Section~\ref{sec:eq1}) and the pass-through channel
+(Section~\ref{sec:eq2}).
+Section~\ref{sec:event_study} visualises the treatment variation
+and the pass-through relationship.
+
+% -------------------------------------------------------------
+\subsection{Meat Shocks Generate Systematic Forecast Errors}%
+\label{sec:eq3}
+% -------------------------------------------------------------
+
+\input{\tabdir/eq3_forecast_error}
+
+Table~\ref{tab:eq3_forecast_error} reports estimates of
+equation~\eqref{eq:eq3}.
+The dependent variable is realised province-level headline CPI
+inflation minus the household's inflation expectation formed at
+the survey wave.
+A negative value indicates overprediction: the household expected
+more inflation than materialised.
+
+The preferred estimate under region-by-wave fixed effects
+is negative, large, and precisely estimated (column~4).
+The coefficient is stable across the specification sequence:
+it is negative and statistically distinguishable from zero
+in every column, from the bivariate specification through to
+the saturated model with fixed effects and demographic controls.
+Wild cluster bootstrap confirms significance at the $p < 0.001$
+level under both province-plus-wave and region-by-wave fixed-effect
+structures (Section~\ref{sec:wcb}).
+
+The economic interpretation is direct.
+Provinces that experienced larger meat-price increases between
+survey waves had households that subsequently overpredicted
+inflation more severely.
+The overprediction is not driven by a decline in realised
+inflation---the pass-through equation below shows that realised
+CPI was if anything lower in high-shock provinces---but by an
+upward shift in expectations that exceeded whatever headline
+inflation actually materialised.
+
+% -------------------------------------------------------------
+\subsection{Decomposition: The Expectation Channel}%
+\label{sec:eq1}
+% -------------------------------------------------------------
+
+\input{\tabdir/eq1_expectations}
+
+Table~\ref{tab:eq1_expectations} decomposes the forecast-error
+result by asking whether meat-price shocks shift the expectation
+itself (equation~\eqref{eq:eq1}).
+
+The coefficient is positive across all five columns.
+In the bivariate specification, the estimate is small and
+statistically significant at conventional levels.
+Under region-by-wave fixed effects (column~4), the point estimate
+increases but precision falls as the fixed effects absorb a
+substantial share of the province-level shock variation.
+With both fixed effects and demographics (column~5), the point
+estimate is larger and statistically significant, though the sample
+shrinks by approximately three-quarters due to missing demographic
+variables.
+
+The positive sign is economically meaningful even where statistical
+precision is limited.
+Meat's official CPI weight is approximately 5 percent, so the
+rational expectation response to a unit meat shock is
+$\beta_1^{\text{rational}} \approx 0.05$.
+The estimated response in the preferred specification is several
+times this benchmark.
+A confidence interval that includes zero on this coefficient
+does not imply that expectations do not respond; it implies that
+the response is imprecisely measured in the demanding FE structure,
+which absorbs region-level common shocks.
+The forecast-error result in Table~\ref{tab:eq3_forecast_error}
+provides the more powerful test: even if the individual expectation
+channel is noisy, the joint outcome---expectations minus
+realised CPI---is precisely estimated as negative.
+
+% -------------------------------------------------------------
+\subsection{Decomposition: The Pass-Through Channel}%
+\label{sec:eq2}
+% -------------------------------------------------------------
+
+\input{\tabdir/eq2_cpi_passthrough}
+
+Table~\ref{tab:eq2_cpi_passthrough} estimates equation~\eqref{eq:eq2}
+at the province level.
+The dependent variable is forward realised headline CPI inflation
+over the subsequent inter-wave period.
+
+The point estimate is negative across all columns: provinces with
+larger meat-price shocks experienced slightly lower forward
+headline inflation.
+This is consistent with the supply-shock reversal documented in
+other commodity episodes---the same ASF shock that raised meat
+prices in 2019--2020 suppressed them in 2021--2022 as herds
+recovered and overproduction set in.
+
+The economic content of this finding is that meat-price shocks do
+not predict higher future headline inflation at the province level.
+The absence of positive pass-through closes the second half of
+the overreaction logic.
+Households raise their expectations (Table~\ref{tab:eq1_expectations})
+in response to a shock that does not, on net, raise the aggregate
+price level they are ostensibly forecasting
+(Table~\ref{tab:eq2_cpi_passthrough}).
+The gap between these two responses is the forecast error documented
+in Table~\ref{tab:eq3_forecast_error}.
+
+% -------------------------------------------------------------
+\subsection{Visualising the Treatment Variation}%
+\label{sec:event_study}
+% -------------------------------------------------------------
+
+Figure~\ref{fig:meat_cpi_spaghetti} displays province-level
+meat CPI trajectories over the sample period.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.84\textwidth]{fig_meat_cpi_spaghetti.pdf}
+\caption{Province-level meat CPI trajectories, 2016--2025.
+  Each line is one province; colour indicates macro-region.
+  The vertical dashed line marks August 2018 (first ASF case).
+  The sharp divergence in 2019--2020 followed by mean reversion
+  illustrates the temporary supply-shock nature of the ASF
+  episode.}
+\label{fig:meat_cpi_spaghetti}
+\end{figure}
+
+Three features are visible.
+All 31 provinces experience a sharp spike in 2019--2020, but with
+meaningful cross-province heterogeneity in magnitude.
+The shock reverses by 2021--2022 as pork supply recovered.
+The pre-2018 period shows moderate variation that provides
+additional identifying power beyond the ASF episode.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.80\textwidth]{fig_meat_shock_distribution.pdf}
+\caption{Distribution of province-level meat price shocks
+  by CFPS wave.  Each dot is one province; boxes show
+  interquartile range.  The 2020 wave captures the ASF
+  peak; the 2022 wave shows the reversal.}
+\label{fig:meat_shock_dist}
+\end{figure}
+
+Figure~\ref{fig:meat_vs_headline} plots the meat shock against
+forward realised headline CPI at the province level, providing
+a direct visual counterpart to the regression in
+Table~\ref{tab:eq2_cpi_passthrough}.
+The negative slope confirms that high-shock provinces did not
+experience higher subsequent headline inflation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.80\textwidth]{fig_meat_vs_headline.pdf}
+\caption{Meat shock vs.\ forward realised headline CPI
+  at the province level.
+  The fitted line shows the negative relationship: provinces
+  with larger meat shocks do not experience higher subsequent
+  headline inflation.}
+\label{fig:meat_vs_headline}
+\end{figure}

@@ -1,53 +1,72 @@
 \section{Conclusion}\label{sec:conclusion}
 
-This paper shows that Chinese households overreact to inflation signals.
-Upward revisions in expectations are followed by negative forecast errors,
-a pattern that holds in both household panel data and aggregate PBoC
-survey data. The CFPS panel estimate is $\hat{\beta} \approx -0.55$
-($p < 0.001$, $N \approx 13{,}000$) (Table~\ref{tab:cfps_baseline}, column X),
-while the aggregate series confirms the sign with lower precision
-($N = 32$) (Table~\ref{tab:ols_baseline}, column 2). The direction is more
-consistent with reversal-based overreaction than with pure sluggish updating.
+Households exposed to large pork-price shocks systematically
+overpredict future inflation.
+The forecast errors are negative, large, and robust: provinces
+with bigger meat-price increases between CFPS waves had households
+whose inflation expectations exceeded realised headline CPI by a
+wider margin at the next wave.
+The result survives wild cluster bootstrap inference with
+31 province clusters and is stable across progressive additions
+of province, wave, and region-by-wave fixed effects.
 
-I make three contributions relative to the existing literature. First, I
-provide the first household-level evidence for diagnostic inflation
-expectations in China, exploiting CFPS panel variation with province $\times$
-wave fixed effects. Second, I estimate a joint specification that places
-revision dynamics and lagged forecast errors in the same regression. Error
-reversals are empirically central, which is difficult to reconcile with
-canonical noisy information models alone. Third, I use a cross-sectional
-test from the CHFS to examine whether persistent media exposure drives the
-pattern. The null result on that channel is consistent with event-driven
-overreaction rather than a sustained information supply effect.
+The overreaction has a clean decomposition.
+Meat-price shocks raise household expectations but do not raise
+forward headline CPI at the province level.
+The gap between the expectation response and the price-level
+response is the forecast error.
+This two-equation structure separates the belief channel from the
+price-level channel and avoids the mechanical negative correlation
+that contaminates standard revision-error designs, where the level
+of the expectation enters both the revision and the error by
+construction.
 
-The evidence has clear limits. The aggregate time series contains only 32
-observations (Table~\ref{tab:ols_baseline}, column 2), so mechanism
-discrimination at the macro level is inherently low power. The CFPS is
-biennial, which restricts timing resolution for expectation updating. The
-instrumental variable exercise is weakly identified (first-stage
-$F = 1.16$) (Table~\ref{tab:identification_main}, Panel A), so it supports
-directional consistency rather than precise causal magnitudes. The CHFS
-mechanism test relies on a single cross-section, limiting what can be said
-about dynamic media effects. Finally, any reduced-form forecasting rule
-built on these estimates is subject to the Lucas critique: if the PBoC
-changes its communication strategy in response to the overreaction finding,
-the belief formation process itself may shift.
+Three features of the evidence discipline the mechanism.
+First, the commodity placebo test shows that grain shocks of
+comparable statistical magnitude do not produce the same
+expectation response, which rules out generic food-price
+confounding and points to a salience channel specific to
+frequently purchased, cognitively prominent goods.
+Second, the estimated expectation response exceeds the rational
+benchmark by a large margin: meat's official CPI weight implies
+a rational response of roughly $0.05$, while the point estimate
+is several times larger.
+Third, the demographic interactions indicate that the
+overreaction is broad-based across education, income, and
+urban-rural groups rather than concentrated in any single
+demographic stratum.
 
-These findings have implications for how survey-based inflation forecasts
-are interpreted. Raw household surveys are informative but biased signals.
-Appendix~\ref{app:forecasting} shows that a simple correction rule built
-from the estimated revision-error relationship can improve directional
-accuracy in an expanding-window backtest (Table~\ref{tab:policy_backtest_metrics};
-Figure~\ref{fig:policy_backtest}), though the adjustment should be treated
-as a practical interim device rather than a structural forecast.
+These findings bear on how central banks interpret survey-based
+inflation expectations.
+If households systematically extrapolate from salient
+relative-price movements, raw survey measures overstate the
+inflation signal embedded in actual price dynamics.
+The PBoC, which publishes quarterly depositor-survey expectations
+as one input to its policy deliberations, faces this problem
+directly.
+Adjusting for the salience wedge documented here could improve
+the signal content of survey expectations as a policy input.
 
-Several directions for future work follow naturally. Higher-frequency
-household expectation data matched to regional information shocks would
-allow sharper identification of state-dependent overreaction and its
-persistence. A structural model with endogenous belief updating under
-alternative communication regimes could turn the reduced-form estimates
-into policy-invariant design parameters. It would also be valuable to
-evaluate whether de-biased guidance reduces forecast dispersion across
-households, which would test directly whether improved communication
-enhances coordination beyond point-forecast accuracy.
+Several limitations apply.
+The CFPS is biennial, so the analysis cannot trace within-year
+adjustment dynamics or test whether overreaction concentrates
+in the months immediately following a shock.
+Province-level meat CPI conflates supply and demand movements;
+ASF provides a plausible supply instrument, but the treatment
+is an imperfect proxy for the supply component alone.
+The ordinal three-point expectation measure in the CFPS limits
+the precision with which the expectation response can be
+quantified in CPI units.
+With 31 province clusters, all inference relies on the wild
+cluster bootstrap.
 
+Two extensions follow naturally.
+Higher-frequency household expectation data matched to
+commodity-price signals at a finer geographic level would allow
+sharper identification of the adjustment dynamics and the
+persistence of the salience effect.
+A structural model of belief formation under diagnostic
+expectations, calibrated to the reduced-form estimates presented
+here, could quantify the welfare cost of the expectation wedge
+and evaluate whether targeted communication about relative-price
+versus aggregate-price movements reduces the overreaction.

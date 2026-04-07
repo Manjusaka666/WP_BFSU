@@ -83,8 +83,9 @@ extract_wave <- function(wave_info) {
   }
 
   # Province
-  prov_candidates <- c("provcd", "provcd16", "provcd14",
-                       "provcd12", "provcd10", "urban",
+  prov_candidates <- c("provcd", "provcd22", "provcd20",
+                       "provcd18", "provcd16", "provcd14",
+                       "provcd12", "provcd10",
                        "cfps2010_province_survey")
   prov_var <- intersect(prov_candidates, col_names)[1]
   if (!is.na(prov_var)) {
@@ -99,6 +100,15 @@ extract_wave <- function(wave_info) {
       vars_to_select <- c(vars_to_select, vname)
       var_mapping[[nm]] <- vname
     }
+  }
+
+  # Urban indicator (direct, for waves where hukou is unavailable)
+  urban_candidates <- c("urban22", "urban20", "urban18", "urban16",
+                        "urban14", "urban12", "urban")
+  urban_var <- intersect(urban_candidates, col_names)[1]
+  if (!is.na(urban_var)) {
+    vars_to_select <- c(vars_to_select, urban_var)
+    var_mapping[["urban_direct"]] <- urban_var
   }
 
   # Income candidates
@@ -239,6 +249,17 @@ panel <- panel %>%
     )
   )
 
+# Fill urban from direct urban indicator if hukou-based is NA
+if ("urban_direct" %in% names(panel)) {
+  panel <- panel %>%
+    mutate(urban = ifelse(is.na(urban) & !is.na(urban_direct),
+                          as.integer(urban_direct), urban))
+}
+
+# Clean urban: recode negative values (e.g., -9 missing codes) to NA
+panel <- panel %>%
+  mutate(urban = ifelse(urban < 0, NA_integer_, urban))
+
 # Income terciles within wave
 panel <- panel %>%
   group_by(wave) %>%
@@ -284,6 +305,72 @@ revision_panel <- panel_clean %>%
 message(sprintf("Revision panel: %d obs with consecutive-wave revisions",
                 nrow(revision_panel)))
 
+# --- Merge province-wave shocks ---
+shocks <- read_csv(
+  file.path(out_dir, "..", "intermediate", "province_wave_shocks.csv"),
+  show_col_types = FALSE
+) %>%
+  mutate(
+    provcd = as.numeric(provcd),
+    wave = as.integer(wave)
+  )
+
+shock_cols <- intersect(
+  c("provcd", "wave", "meat_shock", "grain_shock",
+    "egg_shock", "headline_cpi_next", "region"),
+  names(shocks)
+)
+shocks_slim <- shocks %>% select(all_of(shock_cols))
+if (!"region" %in% names(shocks_slim)) {
+  shocks_slim$region <- NA_character_
+}
+
+clean_province_code <- function(x) {
+  x_num <- suppressWarnings(as.numeric(x))
+  x_num <- if_else(!is.na(x_num) & x_num > 99,
+                   floor(x_num / 10000),
+                   x_num)
+  if_else(!is.na(x_num) & x_num >= 11 & x_num <= 65,
+          x_num,
+          NA_real_)
+}
+
+panel_clean <- panel_clean %>%
+  mutate(province_join = clean_province_code(province)) %>%
+  arrange(pid, wave) %>%
+  group_by(pid) %>%
+  fill(province_join, .direction = "downup") %>%
+  ungroup() %>%
+  left_join(shocks_slim, by = c("province_join" = "provcd", "wave" = "wave")) %>%
+  mutate(
+    realized_cpi_ann = if_else(!is.na(headline_cpi_next),
+                               headline_cpi_next * 100,
+                               NA_real_),
+    fe_clean = if_else(!is.na(realized_cpi_ann) & !is.na(price_exp),
+                       realized_cpi_ann - price_exp * 2.0,
+                       NA_real_)
+  )
+
+# --- Add region codes ---
+source(file.path("src", "17_province_code_map.R"))
+pmap <- get_province_map() %>%
+  as_tibble() %>%
+  transmute(province_join = as.numeric(provcd), region_map = region)
+
+panel_clean <- panel_clean %>%
+  left_join(pmap, by = "province_join") %>%
+  mutate(region = coalesce(region, region_map)) %>%
+  select(-region_map, -province_join)
+
+# Also merge into revision_panel
+revision_panel <- panel_clean %>%
+  filter(!is.na(revision))
+
+message(sprintf("Shock merge (panel_clean): meat_shock non-missing = %d / %d",
+                sum(!is.na(panel_clean$meat_shock)), nrow(panel_clean)))
+message(sprintf("Shock merge (revision_panel): meat_shock non-missing = %d / %d",
+                sum(!is.na(revision_panel$meat_shock)), nrow(revision_panel)))
+
 # --- Save ---
 write_csv(panel_clean,
           file.path(out_dir, "cfps_panel.csv"))
@@ -307,3 +394,13 @@ cat(sprintf("Mean education years: %.1f\n",
             mean(panel_clean$edu_years, na.rm = TRUE)))
 cat(sprintf("Fraction urban hukou: %.2f\n",
             mean(panel_clean$urban, na.rm = TRUE)))
+cat(sprintf("Non-missing meat_shock: %d\n",
+            sum(!is.na(panel_clean$meat_shock))))
+cat(sprintf("Non-missing region: %d\n",
+            sum(!is.na(panel_clean$region))))
+cat(sprintf("Non-missing fe_clean: %d\n",
+            sum(!is.na(panel_clean$fe_clean))))
+cat("\nMeat shock non-missing by wave:\n")
+print(panel_clean %>%
+        group_by(wave) %>%
+        summarise(n_meat_shock = sum(!is.na(meat_shock)), .groups = "drop"))

@@ -1,298 +1,48 @@
-After reviewing how **comparable top-journal papers** handle expectation-formation questions, my conclusion is straightforward:
+**Referee Report for JPE Macroeconomics**
 
-**For Route A to succeed, the key is not to add more models, but to rebuild the paper around the empirical style used in strong reduced-form expectations papers.**
-Those papers typically rely on **one clearly dominant empirical object**: either revision–error moments, randomized information treatments, exposure-based heterogeneity, or direct measurement of subjective models. They do **not** try to compensate for a coarse core design by stacking many weak auxiliary exercises. Bordalo et al. study overreaction through the predictability of forecast errors from forecast revisions; Coibion and Gorodnichenko use revision–error dynamics to study information rigidity; Cavallo, Cruces, and Perez-Truglia use survey experiments; D’Acunto et al. use household-level exposure to grocery-price changes; Malmendier and Nagel use lifetime inflation experiences; Andre et al. directly measure people’s subjective macro models. That is the standard you should emulate. ([美国经济协会][1])
+**Manuscript:** *Overreaction in Household Inflation Expectations: Evidence from China*
+**Recommendation:** Reject
 
-My blunt assessment is this:
+JPE Macroeconomics aims to publish high-quality theoretical and empirical research on macroeconomic issues, and the journal places clear weight on replicability, precise documentation, and internally coherent empirical implementation. Against that standard, this draft is improved, but it is still not publishable in its current form. ([芝加哥期刊][1])
 
-**Your next revision should not aim to “preserve everything already in the paper.” It should aim to compress the paper into a tightly disciplined, internally consistent, high-quality reduced-form expectations paper.**
-That is much closer to how strong papers in this literature are actually written. JPE Macroeconomics presents significant macroeconomic research at a very high standard, and under that standard the current draft still suffers less from “insufficient sophistication” than from “too many secondary exercises diluting the main design.” ([芝加哥大学期刊][2])
+Let me begin with the most important update relative to my earlier assessment. If, as the author now clarifies, the **raw province-level CPI sub-indices are in “previous month = 100” form**, then one of my earlier concerns is materially weakened. The official NBS statistical database indeed reports CPI series in multiple bases, including both **“preceding month = 100”** and **“same month of preceding year = 100”**, and the NBS explanatory note explicitly states that month-on-month CPI growth is defined by treating the previous month as 100. Under that interpretation, summing monthly log changes to form an inter-wave cumulative shock is conceptually defensible. ([data.stats.gov.cn][2])
 
----
+However, that clarification does not rescue the paper. It simply changes the nature of the problem. The manuscript itself still states in Appendix B.1 that the raw provincial CPI sub-index observations are **year-on-year** changes and describes the treatment construction accordingly. If the underlying raw series are in fact **previous-month indices**, then the appendix is wrong in a way that directly affects replicability and reader interpretation. A top-field journal cannot accept a paper in which the core treatment variable is built from one object while the data appendix describes a different one. This is not a cosmetic issue. It is a documentation failure at the center of the empirical design. 
 
-## I. What you should learn from the relevant top-journal literature
+That point is important because this version’s main contribution is precisely the move from the old revision–error setup to an external **meat-price shock** design. The paper is now much more coherent than the previous draft. The appendices are better aligned with the main text, the three-equation decomposition is clearer, and the author has made a serious effort to separate “rational forecast errors due to persistence uncertainty” from behavioral overreaction using a signal-extraction benchmark. Those are real improvements. 
 
-### 1. Papers on overreaction and forecast errors
+Even so, I would still recommend rejection for five main reasons.
 
-The closest paper in spirit is **Bordalo et al. (AER 2020)**. Its strength is not that it says “diagnostic expectations” many times; its strength is that it organizes the paper around a single empirical object: the systematic relation between forecast revisions and subsequent forecast errors. **Coibion and Gorodnichenko (AER 2015)** do something similar for information rigidity: the central object is still the dynamic relation between revisions and errors. The lesson for you is not “I also have a negative beta.” The lesson is: **all empirical modules must revolve around one clearly defined expectation-error object.** ([美国经济协会][1])
+The first is that the paper still overstates the strength of its measurement and identification. The manuscript repeatedly presents the CFPS sample as a household-level design with 90,133 observations in the expectation equation and 69,533 in the forecast-error equation. But the treatment varies at the **province × wave** level, and the pass-through equation is run on only **93 province × wave cells**. That means the effective identifying variation is not household-level in the economically meaningful sense. The household stack increases the number of residual observations, but the design is fundamentally driven by a very small number of province-wave treatment cells. The wild cluster bootstrap is appropriate, but it does not change the fact that the paper is ultimately asking a great deal of about ninety province-wave observations. 
 
-### 2. Papers with genuinely hard identification
+The second is that the preferred fixed-effects structure is still not convincing as the definitive specification. The manuscript treats **region-by-wave fixed effects** as the preferred setup, arguing that they absorb regional shocks while preserving within-region treatment variation. But the appendix itself notes that this structure does **not** absorb province-specific time-invariant deviations from the regional mean. That matters because province-level treatment intensity may still be correlated with persistent province characteristics: food culture, market structure, pork dependence, statistical reporting quality, or local expectation norms. In a design where the treatment varies at province-wave level, I do not think the paper has yet justified why **province fixed effects plus region-by-wave shocks** are not the more natural target. As written, the paper still asks the reader to trust that province-level fixed heterogeneity is not driving part of the result. 
 
-The strongest papers in this literature often rely on **exogenous information variation**. **Cavallo, Cruces, and Perez-Truglia (AEJ Macro 2017)** use survey experiments to manipulate information about inflation. Other work by Coibion and coauthors does the same more broadly for household expectations. The lesson is obvious: **if you do not have randomized or quasi-experimental information shocks, then your paper must be much more restrained about causal and mechanism claims.** ([美国经济协会][3])
+The third is that the paper’s headline quantitative comparison to the rational benchmark remains too strong for what the data can actually support. The manuscript now argues that the estimated forecast-error coefficient exceeds the rational bound by factors of **121 to 233**, depending on the persistence assumption. But that comparison is not clean, because the theory is formulated in terms of a **continuous inflation expectation in CPI units**, while the empirical forecast error is constructed by imposing an arbitrary mapping from an ordinal expectation variable into CPI units, with alternative mappings shown in Appendix E. Once the paper itself admits that the magnitude of the forecast-error coefficient depends on the scaling of the ordinal expectation, the claim that the estimate is “two orders of magnitude larger than the rational bound” becomes much less secure as a structural statement. The sign is informative. The exact multiple is not. 
 
-### 3. Papers using exposure-based heterogeneity
+There is also a concrete internal inconsistency here. The abstract and introduction state that a **one-standard-deviation meat-price shock** generates a forecast error of **−6.07 percentage points**. But the descriptive statistics report a meat-shock standard deviation of **0.28**, and the estimated coefficient of −6.067 is plainly the effect of a **one-unit shock**, not a one-standard-deviation shock. A one-standard-deviation effect would be about −1.70, not −6.07. This is not a minor numerical slip. It shows that the paper still does not have full control over the units of its central result. 
 
-**D’Acunto et al. (JPE 2021)** connect household inflation expectations to actual exposure to grocery-price changes. **Malmendier and Nagel (QJE 2016)** explain heterogeneity in inflation expectations using lifetime inflation experiences. These papers do not rely on generic heterogeneity such as “education” or “urban.” They use **mechanism-proximate heterogeneity**. The implication for you is that household heterogeneity should move away from demographic splits and toward **food-price exposure, pork-related exposure, or inflation-experience exposure**. ([芝加哥大学期刊][4])
+The fourth is that the mechanism evidence is still not strong enough for a JPE Macro paper. The decomposition requires the reader to believe that meat shocks raise expectations while failing to raise future headline inflation. The pass-through equation does show negative subsequent CPI in high-shock provinces, which is helpful. But the expectation equation remains weak in precisely the specification the paper wants to emphasize. Under region-by-wave fixed effects, the coefficient is positive but imprecise. The paper’s response is to say that the forecast-error equation is more powerful and therefore should carry the main weight. That is acceptable up to a point. But it does not solve the problem that the belief channel itself is not tightly estimated in the preferred empirical design. In a top journal, a strong reduced-form wedge is not the same thing as a strongly established behavioral mechanism. 
 
-### 4. Papers that measure subjective models directly
+The same issue appears in the placebo evidence. The paper now sensibly narrows the placebo comparison to meat versus grain and excludes eggs because of substitution during ASF. But Table 6 still does not deliver the sharp mechanism result the text wants. The meat coefficient is positive and imprecise; the grain coefficient is also positive and even more imprecise. What the table shows is not “meat matters and grain does not” in a statistically disciplined sense. It shows that the meat estimate is more stable and the grain estimate is noisier. The paper does not report a formal test of equality between the meat and grain coefficients. Without that, the placebo section remains suggestive rather than decisive. 
 
-**Andre et al. (Review of Economic Studies 2022)** are useful because they do not infer people’s internal models indirectly from weak reduced-form patterns; they directly measure beliefs about macroeconomic relationships. The lesson is methodological discipline: **if you do not directly measure the mechanism, do not write as if you have identified it.** Use “consistent with,” not “shows that.” ([OUP Academic][5])
+The fifth reason for rejection is a serious **reference-integrity problem**. This draft is cleaner than the earlier one, but the bibliography still contains citations that are either plainly miscited or too weakly documented to support the claims they are attached to. The most obvious case is **Fang (2012)**. That paper is real, but it is *“Is There a Middle-Income Trap? Theories, Experiences and Relevance to China”*—a growth-development paper, not a paper about pork CPI weights, ASF, or Chinese food-price dynamics. Using it to support pork-specific institutional claims is not a minor citation error; it is a substantive misreference. ([Wiley Online Library][3])
 
-### 5. Measurement is central in household expectations work
+A similar problem arises with **Blanchard and Galí (2010)**. That is a classic paper on oil price shocks and macroeconomic transmission, not a source on Chinese pork CPI weights or ASF-related food-price institutions. Again, this is not fabrication in the narrow sense, but it is a citation being asked to do work it cannot do. ([IDEAS/RePEc][4])
 
-Recent overviews of the household inflation-expectations literature emphasize that these data are noisy, dispersed, and highly sensitive to survey wording, scale, and measurement conventions. That means strong papers in this area treat **measurement discipline as a first-order issue**, not as a brief limitation paragraph. ([NBER][6])
+By contrast, **Webb (2023)** is a real and relevant citation for wild bootstrap inference. The problem, therefore, is not that the entire bibliography is invented. The problem is that the paper still contains enough **miscited, unsupported, or non-credible references** to damage trust in the empirical narrative. At the JPE Macro level, that is a serious defect in itself. ([Wiley Online Library][5])
 
-### 6. Nonparametric graphics also have standards
+There are additional concerns, though they are secondary relative to the five above. The descriptive table still appears to contain a data-cleaning problem: the urban indicator has a minimum of **−9**, which strongly suggests that a missing-value code has not been fully purged from the analysis sample. The manuscript also still contains passages where the prose overstates the table. For example, it says the forecast-error coefficient is significant across all specifications even though some columns do not report stars. These are not fatal alone, but in combination with the deeper issues they reinforce the impression that the paper is not yet under full empirical control. 
 
-**Cattaneo et al. (AER 2024)** show that binscatter is not just a presentational device. Bin choice, covariate adjustment, and uncertainty quantification all matter formally. If you keep the revision–error gradient figure, it should be rebuilt using a proper binscatter framework rather than an ad hoc quintile plot. ([美国经济协会][7])
+Stepping back, my updated view is the following. This is no longer a paper with a fundamentally misguided design. The move to an external commodity-shock framework was the correct response to the earlier criticism, and the clarified treatment construction based on **previous-month CPI indices** removes one important earlier objection. But the paper is still not at the JPE Macro standard because the implementation remains too fragile. The treatment is now more plausible, but the paper’s documentation of that treatment is wrong. The rational benchmark is more formal, but the comparison remains quantitatively overstated because of scaling issues. The main reduced-form result is strong, but the mechanism chain is not strong enough. And the reference list still contains serious integrity problems.
 
----
+My recommendation is therefore still **reject**.
 
-## II. Complete revision plan
+If the author wants to continue developing the project, I think the path forward is now clearer than before. The first priority is to fully rewrite the data appendix so that the raw NBS series are described correctly as **previous-month = 100** indices, with the exact transformation from raw series to inter-wave cumulative shocks documented line by line. The second is to re-express the rational benchmark in units that are genuinely comparable to the empirical forecast-error object, rather than relying on a coefficient ratio that is partly driven by ordinal scaling. The third is to strengthen the province-wave design itself, ideally by combining province fixed effects with the relevant time-varying regional absorbers. The fourth is to formalize the mechanism evidence by reporting direct meat-versus-grain coefficient difference tests and, if possible, more direct measures of salience. The fifth is to clean the references rigorously and remove every citation that is vague, unsupported, or being used for a claim it does not actually establish. 
 
-I would structure the next revision in three tiers: **must fix**, **strongly recommended**, and **optional enhancement**.
+In its current form, however, I do not think the manuscript reaches the publication threshold for JPE Macroeconomics.
 
----
-
-## A. Must fix
-
-### A1. Conduct a full “results audit” before adding anything new
-
-This is the highest priority. Before you run a single additional model, you need to eliminate all internal inconsistencies.
-
-You currently have multiple examples of this problem:
-
-* the fixed-effects structure is not described consistently;
-* some appendix statistics are not synchronized with the discussion;
-* some dynamic/state-dependent interpretations differ across sections.
-
-A high-level reduced-form paper cannot survive these inconsistencies. The immediate task is to build a **master audit sheet** covering:
-
-1. every coefficient quoted in the text,
-2. every sample size,
-3. every figure sample span,
-4. every appendix table and its code source.
-
-This is not cosmetic. It is foundational.
-
-### A2. Unify the fixed-effects structure of the main design
-
-Your paper must use **one and only one description** of the main household specification. If the model truly uses **province-by-wave fixed effects**, then every section, every table note, and every discussion of identification must say exactly that. If it actually uses province FE plus wave FE separately, then you must stop describing the design as within-province-wave identification.
-
-This is the cornerstone of the main reduced-form claim. It cannot remain ambiguous.
-
-### A3. Remove or drastically demote the BVAR
-
-The literature you should be emulating does not rely on sign-restricted BVARs as a substitute for core identification in this type of paper. In your case, the BVAR is especially weak because the sign restrictions already encode the diagnostic-overreaction pattern you want to see. That makes it a consistency exercise, not independent evidence. ([美国经济协会][1])
-
-Best option: **delete it entirely**.
-Second-best option: keep one short appendix note, with no detailed discussion in the main text.
-
-### A4. Remove the welfare calibration entirely
-
-Under Route A, the paper should not attempt to map a reduced-form revision–error coefficient into a structural welfare parameter. That is not how strong reduced-form expectations papers are written unless they have a defensible structural bridge. You do not. Keeping the welfare appendix only signals that you are still trying to preserve a macro-structural ambition that the design does not support. ([美国经济协会][1])
-
-### A5. Move the forecasting block to the appendix
-
-Comparable top papers keep forecasting extensions in the main text only when the exercise is strong enough to matter. Your current forecasting exercise is too short and too mixed to play that role. Since the paper’s real contribution is the household overreaction fact, the forecasting block should no longer occupy central space.
-
----
-
-## B. Strongly recommended
-
-### B1. Rebuild the paper around one dominant empirical object
-
-The paper should be reorganized so that the **CFPS household revision–subsequent-error relation** is unmistakably the main empirical object. Everything else should be secondary.
-
-The main text should look like this:
-
-1. household reduced-form evidence,
-2. aggregate sign corroboration,
-3. limited dynamic interpretation,
-4. CHFS as a boundary condition,
-5. everything else moved down or out.
-
-That structure is much closer to how Bordalo-type and Coibion–Gorodnichenko-type papers are organized. ([美国经济协会][1])
-
-### B2. Build a full CFPS measurement-robustness matrix
-
-This is essential. A serious paper in household expectations cannot rely on one coding convention for a coarse qualitative variable.
-
-I strongly recommend a single appendix robustness matrix including at least:
-
-* baseline ({-1,0,1}) coding,
-* binary rise vs non-rise,
-* binary fall vs non-fall,
-* ordered logit / ordered probit versions,
-* dropping the “unchanged” category,
-* restricting to provinces with large realized inflation moves,
-* restricting to stable repeat respondents,
-* trimming extreme revisions,
-* alternative mappings from qualitative response to error proxy.
-
-This is exactly the kind of measurement seriousness the survey-expectations literature demands. ([NBER][6])
-
-### B3. Upgrade “horizon mismatch” into a formal robustness module
-
-The mismatch between CFPS’s biennial horizon and the PBoC quarterly horizon cannot remain a short discussion paragraph. It should become a formal empirical section or appendix module.
-
-You need to ask:
-
-* how much sign stability survives across horizons,
-* whether longer-horizon aggregate constructions yield the same sign,
-* whether the CFPS result is robust to alternative horizon definitions or realized-inflation windows.
-
-This is one of the most obvious points a referee will focus on.
-
-### B4. Clean up the aggregate table design
-
-If one aggregate specification is not a valid test of your hypothesis because regressor and outcome scales are mixed, it does **not** belong in the baseline main table. A strong paper does not knowingly place a misleading column in the main results table and then explain it away in the appendix.
-
-The main aggregate table should contain **only scale-consistent specifications**. Any mixed-scale comparison should be moved to the appendix and labeled as such.
-
-### B5. Redefine your official conclusion on state dependence
-
-At present, the paper risks saying two different things:
-
-* in one place, state dependence is imprecise and descriptive;
-* elsewhere, interaction evidence looks statistically meaningful.
-
-You need a single official conclusion. My recommendation is to choose the more cautious version:
-
-> the data suggest state dependence, but the aggregate sample is too short for sharp inference.
-
-That position is safer, more consistent with Route A, and more aligned with how top journals handle small-sample interaction evidence. ([美国经济协会][8])
-
-### B6. Replace the current gradient figure with a formal binscatter
-
-If you keep a nonparametric visualization of the revision–error relation, rebuild it properly:
-
-* residualize first if appropriate,
-* use a formal binning rule,
-* show uncertainty bands,
-* state exactly what is plotted.
-
-This is no longer optional once you invoke a nonparametric figure as an “independent check.” ([美国经济协会][7])
-
----
-
-## C. Optional but valuable enhancements
-
-### C1. Add mechanism-proximate heterogeneity
-
-This is where the paper could improve the most.
-
-Instead of emphasizing education, income, and urban-rural splits, add heterogeneity based on:
-
-* food-price exposure,
-* pork-related inflation exposure,
-* province-level food CPI intensity,
-* high-food-share households,
-* inflation-experience cohorts.
-
-That would align the paper much more closely with the strongest papers in this literature, which use heterogeneity tied directly to the hypothesized mechanism rather than generic demographics. ([芝加哥大学期刊][4])
-
-### C2. Add stronger placebo timing tests
-
-You should add:
-
-* pre-period pseudo-errors,
-* non-adjacent-wave placebo revisions,
-* placebo outcomes unrelated to inflation expectations.
-
-This would do more for credibility than another appendix model.
-
-### C3. Add distributional evidence
-
-Do not rely only on regression slopes. Add graphs or tables showing:
-
-* forecast-error distributions by revision category,
-* mean subsequent errors by revision type,
-* raw joint patterns between revisions and subsequent errors.
-
-Good papers often persuade with a combination of coefficient evidence and distributional evidence.
-
-### C4. Add a literature-positioning comparison table
-
-A very effective addition would be a table comparing your paper’s design with related papers:
-
-* data type,
-* horizon,
-* main expectation object,
-* identification source,
-* whether the mechanism is directly measured or inferred.
-
-This would help both referees and you. It would make the paper’s contribution more precise and help prevent overclaiming.
-
----
-
-## III. Narrative revision plan
-
-### Abstract
-
-Keep it narrow. Avoid language that sounds like mechanism adjudication. Prefer:
-
-> “The data display a reversal pattern more consistent with overreaction than with a pure sluggish-updating account.”
-
-### Introduction
-
-The first page should do only four things:
-
-1. define the empirical question,
-2. explain why China is informative,
-3. state the main fact,
-4. state clearly what the paper does **not** claim.
-
-That is how strong expectations papers establish credibility early.
-
-### Conclusion
-
-The conclusion should stop short of operational monetary-policy claims. The right takeaway is:
-
-* household survey revisions contain systematic overreaction,
-* this matters for the interpretation of survey-based expectations,
-* turning this into policy design requires richer data or experimental variation.
-
----
-
-## IV. A practical four-round work plan
-
-### Round 1: Results audit
-
-Goal: eliminate all inconsistencies.
-Output: fully synchronized draft plus audit sheet.
-
-### Round 2: Main-text slimming
-
-Goal: remove BVAR, remove welfare, move forecasting down, unify the main identification narrative.
-Output: clean 45–50 page manuscript.
-
-### Round 3: Measurement and heterogeneity upgrade
-
-Goal: complete CFPS robustness matrix, add food/pork exposure heterogeneity, formalize timing robustness, rebuild the nonparametric figure.
-Output: revised main tables and appendix.
-
-### Round 4: Submission draft
-
-Goal: rewrite abstract, introduction, and conclusion to match the actual evidence level.
-Output: submission-ready paper.
-
----
-
-## V. Minimum pre-submission checklist
-
-Do **not** submit until all five conditions are met:
-
-1. Every fixed-effects statement, sample size, table, and figure is fully synchronized.
-2. The paper has one clear empirical spine and is no longer distracted by auxiliary blocks.
-3. CFPS measurement robustness is presented systematically, not piecemeal.
-4. At least one heterogeneity module is tied directly to salience or inflation exposure.
-5. The paper’s claims are fully reduced-form in tone: no structural welfare or policy-design overreach.
-
----
-
-## Final judgment
-
-The key lesson from the top-journal literature is this:
-
-**Your paper does not need to become more complicated. It needs to become more disciplined.**
-The strongest comparable papers are not impressive because they contain many techniques. They are impressive because they make one empirical object look maximally credible and then refuse to claim more than that object can support. That is the standard set by papers such as Bordalo et al., Coibion and Gorodnichenko, Cavallo et al., D’Acunto et al., Malmendier and Nagel, and Andre et al. ([美国经济协会][1])
-
-[1]: https://www.aeaweb.org/articles?id=10.1257%2Faer.20181219&utm_source=chatgpt.com "Overreaction in Macroeconomic Expectations"
-[2]: https://www.journals.uchicago.edu/toc/jpe/current?utm_source=chatgpt.com "Journal of Political Economy | Vol 134, No 3"
-[3]: https://www.aeaweb.org/articles?id=10.1257%2Fmac.20150147&utm_source=chatgpt.com "Inflation Expectations, Learning, and Supermarket Prices"
-[4]: https://www.journals.uchicago.edu/doi/abs/10.1086/713192?af=R&utm_source=chatgpt.com "Exposure to Grocery Prices and Inflation Expectations"
-[5]: https://academic.oup.com/restud/article/89/6/2958/6531988?utm_source=chatgpt.com "Subjective Models of the Macroeconomy: Evidence From ..."
-[6]: https://www.nber.org/system/files/working_papers/w32488/w32488.pdf?utm_source=chatgpt.com "Household Inflation Expectations: An Overview of Recent ..."
-[7]: https://www.aeaweb.org/articles?id=10.1257%2Faer.20221576&utm_source=chatgpt.com "On Binscatter"
-[8]: https://www.aeaweb.org/articles?id=10.1257%2Faer.20110306&utm_source=chatgpt.com "Information Rigidity and the Expectations Formation Process"
+[1]: https://www.journals.uchicago.edu/economics?utm_source=chatgpt.com "Upcoming economics exhibits"
+[2]: https://data.stats.gov.cn/search.htm?s=%E6%B6%88%E8%B4%B9%E4%BB%B7%E6%A0%BC%E6%8C%87%E6%95%B0&utm_source=chatgpt.com "月度数据 - 国家数据- 国家统计局"
+[3]: https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1749-124X.2012.01272.x?utm_source=chatgpt.com "Is There a “Middle‐income Trap”? Theories, Experiences ..."
+[4]: https://ideas.repec.org/p/upf/upfgen/1045.html?utm_source=chatgpt.com "The macroeconomic effects of oil price shocks"
+[5]: https://onlinelibrary.wiley.com/doi/abs/10.1111/caje.12661?utm_source=chatgpt.com "Reworking wild bootstrap‐based inference for clustered ..."

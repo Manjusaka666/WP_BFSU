@@ -1,0 +1,174 @@
+% =============================================================
+%  Section 4 -- Data
+%  Label: sec:data
+% =============================================================
+
+\section{Data}\label{sec:data}
+
+\subsection{China Family Panel Studies}\label{sec:cfps}
+
+The China Family Panel Studies (CFPS) is a nationally
+representative biennial household panel survey administered
+by the Institute of Social Science Survey (ISSS) at Peking
+University \citep{CFPSData}.
+The baseline wave in 2010 drew a stratified, multi-stage
+probability sample of approximately 16,000 households in
+25 mainland provinces, covering roughly 95 percent of the
+national population.
+The survey has been fielded in 2010, 2012, 2014, 2016, 2018,
+2020, and 2022.
+I use the four waves from 2016 to 2022, which overlap with
+the availability of province-level meat CPI data from the NBS.
+For auxiliary cross-sectional checks in companion specifications,
+I draw CHFS source files from the China Household Finance Survey
+and Research Center at Southwestern University of Finance and
+Economics \citep{CHFSData}.
+
+Response rates are high by international panel standards.
+The baseline household response rate was approximately
+81 percent, with re-contact rates between 75 and 85 percent
+in subsequent waves.
+Attrition is non-random---younger, more educated, and
+urban-resident households are more likely to exit---and I
+include age, education, and urban indicators as controls
+where available.
+
+The inflation expectation variable is a three-point ordinal
+question (item qp201) that asks respondents: ``Compared with
+the current period, do you think the price level in the coming
+year will rise, stay the same, or fall?''
+I code the response as $\mu_{it} \in \{-1, 0, 1\}$, where
+$1$ indicates expected price increases and $-1$ indicates
+expected decreases.
+The question wording refers to ``price level'' (物价水平)
+rather than the CPI specifically, which is consistent with
+the salience channel: if respondents map ``price level'' to
+the prices of goods they buy frequently, their responses will
+be disproportionately influenced by salient price changes.
+
+The coarseness of the three-point scale attenuates the estimated
+coefficients: respondents who revise their beliefs upward by
+different amounts all register as $+1$.
+This attenuation bias works against finding overreaction, so
+any detected overreaction is a lower bound.
+
+The estimation sample contains 90,133 household-wave
+observations across 31 provinces and four waves.
+The forecast-error sample is smaller (69,533 observations)
+because the 2022 wave lacks forward realised headline CPI
+at the time of data construction.
+Demographic controls---age, a high-education indicator, and
+an urban-residence indicator---are available for a subsample
+of approximately 22,100 observations.
+
+\subsection{Province-Level CPI Data}\label{sec:nbs_cpi}
+
+The National Bureau of Statistics (NBS) publishes monthly
+consumer price indices at the province level for major
+sub-categories.
+I use the meat and poultry sub-index, the grain sub-index,
+and the headline CPI index.
+Province-level meat CPI is available from January 2016 onward;
+grain and headline CPI are available from January 2012.
+
+Geographic coverage spans all 31 mainland provinces.
+Two potential measurement concerns arise.
+First, the outlet sample may not fully represent rural areas,
+where wet markets are the dominant channel for fresh protein.
+If rural meat prices move differently from the sampled outlets,
+the NBS meat sub-index may understate the price variation
+experienced by rural CFPS households, attenuating the
+estimated coefficients toward zero.
+Second, the transition from separate urban and rural CPI
+baskets to a unified basket in 2016 may create a level shift
+in some province-level series.
+I avoid this problem by beginning the analysis in 2016 and
+using cumulative log changes, which difference out level shifts.
+
+The NBS reports these sub-indices in \emph{previous month
+$= 100$} form: a value of 105 means the price level rose
+5 percent relative to the preceding month.
+I convert each monthly observation to a log change by
+dividing by 100 and taking the natural logarithm; because the
+base is the previous month, this yields the exact
+month-on-month log growth rate.
+I then sum these monthly log changes over the inter-wave
+period to obtain the cumulative treatment.
+
+\subsection{Treatment Construction}\label{sec:shock_construction}
+
+The treatment variable is the cumulative log change in
+provincial meat CPI between two consecutive CFPS waves:
+\begin{equation}\label{eq:meat_shock_data}
+  \mathrm{MeatShock}_{p,\,t-1 \to t}
+  = \sum_{m \in \mathcal{M}(t-1,t)}
+      \log\!\left(\frac{\mathrm{MeatCPI}_{pm}}{100}\right),
+\end{equation}
+where $\mathrm{MeatCPI}_{pm}$ is the NBS meat and poultry
+sub-index for province $p$ in month $m$, and
+$\mathcal{M}(t-1,t)$ is the set of months between the
+midpoints of two consecutive CFPS fieldwork periods.
+The grain shock is constructed identically from the
+grain sub-index.
+
+I define the inter-wave period using the midpoint of each
+wave's fieldwork window.
+The 2016 wave was fielded primarily between June and December
+2016; the 2018 wave between June and November 2018; the 2020
+wave between July 2020 and January 2021 (delayed by
+COVID-19); and the 2022 wave between June and December 2022.
+This midpoint convention ensures that the treatment
+captures the price changes that the typical respondent
+experienced between consecutive interview dates.
+
+The identifying variation operates at the province$\times$wave
+level.
+The sample contains 93 province$\times$wave cells across
+31 provinces and three to four waves, depending on forward
+CPI availability.
+All standard errors are clustered at the province level
+(31 clusters), and inference uses the wild cluster bootstrap
+to account for the small number of clusters.
+
+\subsection{Descriptive Statistics}\label{sec:desc_stats}
+
+\input{\tabdir/summary_stats_new}
+
+Table~\ref{tab:summary_stats} reports summary statistics for
+the estimation sample.
+
+The mean inflation expectation is $-0.32$ on the $[-1, 1]$
+scale, indicating that the majority of respondents expect
+prices to stay the same or fall.
+This finding is consistent with two features of the data.
+First, the sample period includes the post-ASF price reversal of
+2021--2022, during which headline CPI inflation fell below
+1 percent.
+Second, the $\{-1, 0, 1\}$ coding treats ``stay the
+same'' as the midpoint.
+
+The mean forecast error is $4.67$ percentage points.
+The positive sign reflects the mechanical asymmetry of the
+ordinal coding: when respondents report expectations of zero
+or below but realised CPI inflation is positive, the forecast
+error is positive.
+The regression analysis controls for this level effect through
+fixed effects; the coefficient of interest captures the
+\textit{differential} forecast error in high-shock versus
+low-shock provinces, not the mean level.
+
+The mean meat shock is $0.05$ log points, with a standard
+deviation of $0.28$.
+The near-zero mean reflects offsetting waves: the 2018--2020
+pair captures the ASF peak (large positive shocks), while the
+2020--2022 pair captures the price reversal (large negative
+shocks).
+A one-standard-deviation shock of $0.28$ log points
+corresponds to a cumulative meat-price increase of roughly
+32 percent ($e^{0.28} - 1 \approx 0.32$) over the inter-wave
+period.
+
+Forward realised headline CPI averages $4.03$ percent
+(annualised), with moderate cross-province variation driven
+by the elevated food prices during the 2018--2020 inter-wave
+period.

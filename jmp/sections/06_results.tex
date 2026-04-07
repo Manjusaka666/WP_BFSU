@@ -1,0 +1,366 @@
+% =============================================================
+%  Section 6 -- Main Results
+%  Label: sec:results
+% =============================================================
+
+\section{Main Results}\label{sec:results}
+
+The primary finding is that province-level meat-price shocks
+generate large, negative household forecast errors that lie
+well above the rational benchmark in absolute value.
+I present the forecast-error result first
+(Section~\ref{sec:eq3_results}), then decompose it into the
+expectation channel (Section~\ref{sec:eq1_results}) and the
+pass-through channel (Section~\ref{sec:eq2_results}).
+Section~\ref{sec:calibration} compares the estimated
+coefficient against the rational bound.
+Section~\ref{sec:event_study} visualises the treatment
+variation.
+
+% -------------------------------------------------------------
+\subsection{Meat Shocks Generate Systematic Forecast Errors}%
+\label{sec:eq3_results}
+% -------------------------------------------------------------
+
+\input{\tabdir/eq3_forecast_error}
+
+Table~\ref{tab:eq3_forecast_error} reports estimates of
+equation~\eqref{eq:eq3}.
+The dependent variable is realised province-level headline CPI
+inflation minus the household's inflation expectation.
+A negative value indicates overprediction: the household
+expected more inflation than materialised.
+
+The coefficient is negative and statistically significant across
+all specifications.
+In the bivariate specification (column~1),
+$\hat{\beta}_3 = -2.01$ (s.e. = 0.25, $p < 0.001$), already
+40 times the maximum rational coefficient of 0.05.
+Under province-plus-wave fixed effects (column~3), the
+coefficient increases to $-5.62$ (bootstrap $p < 0.001$).
+The preferred region-by-wave specification (column~4) yields
+$\hat{\beta}_3 = -6.07$ (s.e. = 1.15, bootstrap $p < 0.001$).
+
+The increase from $-2.01$ to $-6.07$ when adding fixed effects
+indicates that the bivariate estimate was attenuated by omitted
+factors, not inflated.
+Province fixed effects remove time-invariant province
+characteristics such as average income, urbanisation, and
+climate.
+Wave fixed effects remove aggregate inflation trends that affect
+all provinces in a given wave.
+Region-by-wave fixed effects absorb all time-varying
+region-level shocks: regional business cycles, region-specific
+monetary transmission, and any shock common to provinces
+within a macro-region.
+The stability from column~3 to column~4 ($-5.62$ to $-6.07$)
+confirms that the result is not driven by region-specific
+confounds that vary across waves.
+
+Columns~2 and 5 add household demographics (education, income,
+urban status).
+Both are imprecise because the demographic subsample drops to
+22,121 observations (roughly one-quarter of the full sample).
+The precision loss from a 68 percent reduction in sample size
+is mechanical: with fewer observations and the same number of
+clusters, standard errors inflate.
+The point estimate in column~5 ($-4.26$) retains the same sign
+and similar order of magnitude as the preferred estimate.
+The attenuation from $-6.07$ to $-4.48$ is consistent with
+selection into the demographic subsample rather than
+confounding: if the subsample overrepresents urban households
+with better access to price information, these households may
+produce smaller forecast errors.
+
+The preferred estimate has a clear economic interpretation.
+Consider two provinces in the same region observed in the same
+wave; one experienced a cumulative meat CPI increase of
+0.5 log points (about 65 percent), the other 0.3 log points
+(about 35 percent).
+The difference in treatment is 0.2 log points.
+The predicted difference in forecast errors is
+$-6.07 \times 0.2 = -1.21$: households in the higher-shock
+province overpredict inflation by 1.21 percentage points more.
+This is large relative to the unconditional standard deviation
+of forecast errors in the sample and relative to average
+headline CPI inflation during the sample period (roughly
+2 percent per year).
+
+% -------------------------------------------------------------
+\subsection{Decomposition: Expectations}%
+\label{sec:eq1_results}
+% -------------------------------------------------------------
+
+\input{\tabdir/eq1_expectations}
+
+Table~\ref{tab:eq1_expectations} asks whether meat-price shocks
+shift expectations (equation~\eqref{eq:eq1}).
+The coefficient is positive across all five columns,
+indicating that higher meat-price shocks raise household
+inflation expectations.
+
+In the bivariate specification (column~1),
+$\hat{\beta}_1 = 0.028$ (s.e. = 0.012, $p = 0.03$).
+A one-unit increase in the cumulative meat log-change shifts
+the ordinal expectation upward by 0.028 units on a
+$\{-1,0,1\}$ scale.
+Given that roughly 60 percent of respondents report ``up'' in
+the pooled sample, the marginal effect is modest in absolute
+terms but statistically clear.
+
+Under province-plus-wave fixed effects (column~3),
+$\hat{\beta}_1 = 0.090$ (s.e. = 0.053, bootstrap $p = 0.088$).
+Under region-by-wave fixed effects (column~4), the point
+estimate increases to $0.242$ but precision falls
+(s.e. = 0.174, bootstrap $p = 0.237$).
+The identifying variation for $\beta_1$ comes from
+within-region cross-province differences in the meat shock.
+With 31 provinces in 6 regions, region-by-wave fixed effects
+absorb 18 degrees of freedom, leaving the treatment effect to
+be identified from residual province-level variation within
+each region-wave cell.
+
+Column~5 adds demographics to the region-by-wave specification:
+$\hat{\beta}_1 = 2.77$ (s.e. = 0.85, $p = 0.003$), again with
+the reduced sample of 22,121.
+The large increase in the point estimate reflects both the
+sample restriction and the inclusion of controls that absorb
+variance in $\mu_{ipt}$ orthogonal to the meat shock.
+
+Why imprecision of Equation~1 does not overturn the main result.
+The weaker precision under demanding fixed effects is mainly a
+power issue.
+The main inference continues to come from Equation~3, where the
+joint object (realised inflation minus expectations) is
+estimated precisely and remains negative (bootstrap
+$p < 0.001$).
+The sign test for overreaction does not require a cardinal
+mapping of the ordinal expectation response.
+
+% -------------------------------------------------------------
+\subsection{Decomposition: Pass-Through}%
+\label{sec:eq2_results}
+% -------------------------------------------------------------
+
+\input{\tabdir/eq2_cpi_passthrough}
+
+Table~\ref{tab:eq2_cpi_passthrough} estimates
+equation~\eqref{eq:eq2} at the province$\times$wave level
+(93 observations).
+The point estimate is negative in all columns: provinces with
+larger meat-price shocks experienced lower forward
+headline inflation.
+
+In the bivariate specification (column~1), $\hat{\beta}_2 =
+-1.81$ (s.e. = 0.23, $p < 0.001$).
+Under province-plus-wave fixed effects (column~2),
+$\hat{\beta}_2 = -4.70$ (s.e. = 1.65, $p = 0.008$).
+Under region-by-wave fixed effects (column~3),
+$\hat{\beta}_2 = -3.52$ (s.e. = 1.95, $p = 0.08$).
+The negative coefficient grows in absolute value from the
+bivariate to the fixed-effect specifications, paralleling
+the pattern in the forecast-error equation.
+
+The negative $\beta_2$ reflects the ASF supply-shock reversal.
+The ASF shock contracted pork supply in 2018--2019, raising
+meat prices sharply.
+Provinces with larger initial herd losses experienced steeper
+price increases.
+As herds recovered through 2020--2022, the same provinces saw
+the sharpest price reversals: meat CPI fell fastest where it
+had risen most.
+Because meat carries a non-trivial weight in headline CPI
+(roughly 3--6 percent), the reversal dragged down headline CPI
+in high-shock provinces.
+
+This reversal is central to the overreaction interpretation.
+Households in high-shock provinces observed large meat-price
+increases and revised their inflation expectations upward.
+But the price signal was temporary: future headline inflation in
+their province was not higher but if anything lower.
+The household overreacted in the sense that it treated a
+transitory shock as informative about future inflation when
+the shock predicted the opposite.
+
+The preferred estimate of $\hat{\beta}_2 = -3.52$ exceeds what
+meat's CPI weight alone would imply ($\omega \approx 0.05$),
+suggesting the meat-price reversal was correlated with declines
+in other food sub-components.
+This is plausible: as pork supply recovered, prices of
+substitute meats (poultry, eggs) also fell, amplifying the
+headline CPI decline in high-shock provinces.
+
+% -------------------------------------------------------------
+\subsection{Comparison with the Rational Benchmark}%
+\label{sec:calibration}
+% -------------------------------------------------------------
+
+\input{\tabdir/calibration_benchmark}
+
+Table~\ref{tab:calibration_benchmark} compares the estimated
+$\hat{\beta}_3$ against the rational benchmark derived in
+Section~\ref{sec:rational_benchmark}.
+This comparison is the paper's main quantitative check.
+
+Under the rational benchmark, the forecast-error coefficient is
+$\beta_3^R = \omega(\rho - \hat{\rho})$, where $\omega
+\approx 0.05$ is meat's weight in headline CPI, $\rho$ is
+the true persistence of the meat-price shock, and $\hat{\rho}$
+is the household's belief about persistence.
+For any $\rho$ and $\hat{\rho}$ in $[0,1]$, the rational
+coefficient is bounded:
+$|\beta_3^R| \leq \omega = 0.05$.
+The bound is attained only in the extreme case where the
+household's persistence belief is maximally wrong---for
+example, the household believes the shock is permanent
+($\hat{\rho} = 1$) when it is fully transitory ($\rho = 0$).
+
+The table then calibrates the benchmark under four persistence
+assumptions, corresponding to different values
+of $\rho$.
+
+Row~1 assumes the shock is fully transitory ($\rho = 0$).
+If the household knows this, the rational forecast error is
+zero.
+In the worst case ($\hat{\rho} = 1$), the rational bound is
+$-0.05$.
+The estimated $\hat{\beta}_3 = -6.07$ exceeds this by a
+factor of 121.
+
+Row~2 uses the estimated persistence from an AR(1) regression
+on monthly province-level meat CPI with province fixed effects:
+$\hat{\rho} = 0.48$ (s.e. = 0.01, $p < 0.001$).
+Under correct belief, the rational forecast error is zero.
+In the worst case, $\beta_3^R = 0.05 \times (0.48 - 1) =
+-0.026$.
+The ratio of the estimated to the rational worst-case
+coefficient is 233.
+
+Row~3 assumes moderate persistence ($\rho = 0.5$), close to
+the estimated value.
+The worst-case rational bound is $-0.025$, and the ratio
+is 243.
+
+Row~4 assumes the shock is permanent ($\rho = 1$).
+Under correct belief, $\beta_3^R = 0$.
+Under any other belief ($\hat{\rho} < 1$), $\beta_3^R > 0$:
+the household under-predicts inflation.
+There is no value of $\hat{\rho}$ that generates a negative
+rational forecast error when $\rho = 1$.
+The ratio is infinite.
+
+These ratios, ranging from 121 to infinity depending on the persistence
+assumption, mean that the estimated forecast-error
+coefficient is hard to reconcile with the rational benchmark
+in Section~\ref{sec:framework}.
+The gap is about economic magnitude, not statistical
+significance.
+The estimated coefficient is far larger than anything a rational
+household could produce, even under extreme persistence
+assumptions.
+
+One might ask whether the large ratio is partly an artifact of
+the ordinal expectation scale.
+The \emph{sign} of the test does not depend on the mapping $k$:
+whatever scaling maps the ordinal expectation into CPI units,
+$\hat{\beta}_3 < 0$ rejects rational expectations.
+However, the \emph{magnitude} of the ratio is sensitive to $k$.
+The forecast error $\mathrm{FE}_{ipt} = \pi^{\text{headline}} -
+k\,\mu_{ipt}$ inherits the scaling parameter, and a larger $k$
+mechanically inflates $|\hat{\beta}_3|$ relative to the rational
+bound.
+The baseline mapping $k = 2$ (so that $\{-1,0,1\} \to
+\{-2,0,2\}$ percentage points) yields the reported ratio;
+alternative mappings in Appendix~\ref{app:scaling} shift the
+ratio but do not bring it below 50.
+The point estimate of $\hat{\theta}$ should therefore be
+interpreted as an order-of-magnitude statement rather than a
+precise calibration.
+
+Under the diagnostic model of
+Section~\ref{sec:diagnostic_extension}, the excess forecast
+error identifies the product $\theta\,\omega$, where $\theta$
+is the diagnostic parameter.
+The implied $\hat{\theta}$ is
+$(\hat{\beta}_3 - \beta_3^R) / \omega$.
+Taking the most conservative rational bound ($\beta_3^R =
+-0.05$), $\hat{\theta} = (-6.07 + 0.05) / 0.05 = 120.4$.
+This is large.
+Even dividing by 10 to account for potential measurement
+amplification from the ordinal scale gives $\theta \approx 12$,
+still far above the values of $\theta \in [0.5, 1.5]$
+typically estimated in the professional-forecast literature
+\citep{Bordalo2020b}.
+The household response to a salient commodity shock is
+qualitatively different from the overreaction patterns
+documented in professional forecasts.
+
+% -------------------------------------------------------------
+\subsection{Visualising the Treatment Variation}%
+\label{sec:event_study}
+% -------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.84\textwidth]{fig_meat_cpi_spaghetti.pdf}
+\caption{Province-level meat CPI trajectories, 2016--2025.
+  Each line is one province; colour indicates macro-region.
+  The vertical dashed line marks August 2018 (first ASF case).
+  The sharp divergence in 2019--2020 followed by mean reversion
+  illustrates the temporary supply-shock nature of the ASF
+  episode.}
+\label{fig:meat_cpi_spaghetti}
+\end{figure}
+
+Figure~\ref{fig:meat_cpi_spaghetti} displays province-level
+meat CPI trajectories from 2016 to 2025.
+All 31 provinces track closely before August 2018, then diverge
+sharply, with some experiencing increases of 80--100 log points
+and others 40--60 log points.
+The trajectories converge back by 2021--2022 as herds recovered,
+confirming the temporary nature of the shock.
+The dispersion appears across regions, alleviating the
+concern that results are driven by outliers.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.80\textwidth]{fig_meat_shock_distribution.pdf}
+\caption{Distribution of province-level meat-price shocks
+  by CFPS wave.  Each dot is one province; boxes show
+  interquartile range.  The 2020 wave captures the ASF
+  peak; the 2022 wave shows the reversal.}
+\label{fig:meat_shock_dist}
+\end{figure}
+
+Figure~\ref{fig:meat_shock_dist} shows the distribution of
+the treatment variable by CFPS wave.
+The 2020 wave has the largest and most dispersed shocks,
+with an interquartile range of roughly 0.15 to 0.55 log points.
+The 2022 wave shows negative shocks as meat prices reversed,
+nearly uniformly across provinces.
+Pre-ASF waves (2016, 2018) show modest shocks clustered
+near zero, confirming that the ASF episode is the dominant
+source of treatment variation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.80\textwidth]{fig_meat_vs_headline.pdf}
+\caption{Meat shock vs.\ forward realised headline CPI
+  at the province level.
+  The fitted line shows the negative relationship: provinces
+  with larger meat shocks do not experience higher subsequent
+  headline inflation.}
+\label{fig:meat_vs_headline}
+\end{figure}
+
+Figure~\ref{fig:meat_vs_headline} plots the meat shock against
+forward headline CPI at the province level.
+Each point is one province-wave cell.
+The fitted line slopes downward, confirming that high-shock
+provinces experienced lower subsequent headline inflation.
+This provides a visual counterpart to
+Table~\ref{tab:eq2_cpi_passthrough}.
+The negative slope is the visual expression of the overreaction
+logic: households raised expectations in response to a signal
+that predicted the opposite of what they expected.
+

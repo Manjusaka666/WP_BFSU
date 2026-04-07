@@ -60,11 +60,8 @@
 
 % --- Title ---
 \title{Overreaction in Household Inflation Expectations: \\
-Evidence from China\thanks{All errors are my own. Replication code and data documentation
-are available at \url{https://github.com/Manjusaka666/WP\_BFSU}.}}
-\author{Jingle Fu\thanks{International Business School,
-Beijing Foreign Studies University.
-Email: \href{mailto:purgatoriofu@gmail.com}{purgatoriofu@gmail.com}}}
+Evidence from China}
+\author{Jingle Fu\thanks{International Business School, Beijing Foreign Studies University}}
 \date{April 2026}
 
 \begin{document}
@@ -74,23 +71,31 @@ Email: \href{mailto:purgatoriofu@gmail.com}{purgatoriofu@gmail.com}}}
 
 \begin{abstract}
 	\noindent
-	Using linked household data from seven waves of the China Family Panel
-	Studies, I show that upward revisions in inflation expectations predict
-	subsequent forecast errors in the opposite direction
-	($\hat{\beta}=-0.55$, $N\approx 13{,}000$). The pattern is robust
-	across demographic subgroups, alternative expectation codings, and
-	progressive controls with province $\times$ wave fixed effects. Aggregate
-	depositor-survey data display the same sign. A joint specification
-	nesting revision-driven overreaction and lagged-error persistence
-	reveals error reversals rather than sluggish updating, though the
-	short aggregate sample limits sharp discrimination between models.
-	The data display a reversal pattern more consistent with overreaction
-	than with a pure sluggish-updating account, though the paper does not
-	claim full structural identification of belief formation.
+	This paper asks whether households overreact to salient
+	relative-price shocks when forming inflation expectations.
+	I combine province-level meat CPI shocks with four waves of the
+	China Family Panel Studies (2016--2022) and estimate a
+	forecast-error design with region-by-wave fixed effects.
+	Within the same region and wave, provinces with larger meat-price
+	increases have substantially more negative subsequent forecast
+	errors: $\hat{\beta}_3=-6.07$ (wild cluster bootstrap
+	$p < 0.001$, 31 clusters), implying about $-1.70$ percentage
+	points for a one-standard-deviation shock.
+	A signal-extraction benchmark implies a rational bound
+	$|\beta_3^R|\leq 0.05$ under any persistence belief, so the
+	estimated response is far too large to be reconciled with
+	rational updating alone.
+	The mechanism is a wedge decomposition: meat shocks raise
+	expectations but do not raise forward headline CPI because the
+	ASF-driven price spike later reverses.
+	Placebo tests show that grain shocks with comparable CPI weight
+	do not generate the same pattern.
+	The evidence supports salience-driven diagnostic overreaction
+	in household inflation beliefs.
 	\\[0.5em]
-	\textbf{JEL Codes:} D84, E31, E71, G53 \\
+	\textbf{JEL Codes:} D84, E31, E71 \\
 	\textbf{Keywords:} inflation expectations, overreaction,
-	household surveys, diagnostic expectations, China
+	diagnostic expectations, salience, household surveys, China
 \end{abstract}
 
 \newpage
@@ -98,14 +103,15 @@ Email: \href{mailto:purgatoriofu@gmail.com}{purgatoriofu@gmail.com}}}
 
 % --- Main text ---
 \input{sections/01_introduction}
-\input{sections/02_literature}
-\input{sections/03_institutional_data}
-\input{sections/05_identification}
-\input{sections/06_baseline_results}
-\input{sections/08_mechanism}
-\input{sections/07_heterogeneity}
-\input{sections/10_robustness}
-\input{sections/11_conclusion}
+\input{sections/02_background}
+\input{sections/03_framework}
+\input{sections/04_data}
+\input{sections/05_strategy}
+\input{sections/06_results}
+\input{sections/07_mechanism}
+\input{sections/08_robustness}
+\input{sections/09_discussion}
+\input{sections/10_conclusion}
 
 % --- Appendix ---
 \newpage
@@ -115,13 +121,11 @@ Email: \href{mailto:purgatoriofu@gmail.com}{purgatoriofu@gmail.com}}}
 \renewcommand{\thetable}{A\arabic{table}}
 \renewcommand{\thefigure}{A\arabic{figure}}
 
-\input{sections/A1_bayesian_ssm}
-\input{sections/A2_bvar}
-\input{sections/A3_data_construction}
-\input{sections/A4_additional_robustness}
-\input{sections/A5_measurement}
-\input{sections/A7_nk_welfare}
-\input{sections/A8_forecasting}
+\input{sections/A1_model_derivation}
+\input{sections/A2_data_construction}
+\input{sections/A3_bootstrap}
+\input{sections/A4_alt_fe}
+\input{sections/A5_scaling}
 
 % --- Bibliography ---
 \newpage

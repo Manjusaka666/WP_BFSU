@@ -1,0 +1,193 @@
+% =============================================================
+%  Section 9 -- Discussion
+%  Label: sec:discussion
+% =============================================================
+
+\section{Discussion}\label{sec:discussion}
+
+\subsection{Transitory Shocks and Rational Forecast Errors}%
+\label{sec:transitory}
+
+A natural objection is that the negative forecast errors
+reflect rational uncertainty about shock persistence rather
+than behavioural overreaction.
+If households observe a large meat-price spike but cannot know
+ex ante whether it will persist or reverse, a rational agent
+who assigns positive probability to persistence will form
+expectations that, ex post, overshoot when the shock turns out
+to be transitory.
+This section shows that the magnitudes rule out this
+explanation.
+
+The rational forecast-error coefficient is
+$\beta_3^R = \omega(\rho - \hat{\rho})$, where $\omega$ is
+the CPI weight on meat, $\rho$ is the true persistence, and
+$\hat{\rho}$ is the household's belief about persistence
+(Section~\ref{sec:framework}).
+Because $\rho$ and $\hat{\rho}$ both lie in $[0,1]$, the
+maximum absolute value of the rational coefficient is
+$|\beta_3^R| \leq \omega$.
+With $\omega \approx 0.05$, the rational forecast-error
+coefficient cannot exceed $0.05$ in absolute value regardless
+of what the household believes about persistence.
+
+The most generous case for the rational explanation is
+$\hat{\rho} = 1$ and $\rho = 0$: the household believes the
+shock is permanent but it is fully transitory.
+Even then, $\beta_3^R = -0.05$.
+The estimated coefficient is $\hat{\beta}_3 = -6.067$ under
+region-by-wave fixed effects and $-5.622$ under
+province-plus-wave fixed effects---exceeding the rational upper
+bound by factors of 121 and 112 respectively.
+No intermediate belief $\hat{\rho} \in (0,1)$ can close this
+gap.
+
+Table~\ref{tab:calibration_benchmark} makes the comparison
+explicit across a grid of persistence assumptions.
+At the estimated AR(1) persistence of $\hat{\rho} = 0.480$
+(3,689 monthly observations, 31 provinces), a household that
+overestimates persistence by the maximum possible amount
+produces $\beta_3^R = -0.026$.
+The estimated coefficient is 233 times larger in absolute
+value.
+
+A subtler version of the objection invokes model uncertainty.
+Perhaps households assign a larger CPI weight to meat than the
+official weight implies.
+To close the gap, households would need to believe that
+meat carries a CPI weight of approximately 6 percentage
+points---120 times the actual weight.
+Even doubling the official weight to $0.10$ leaves the rational
+bound 60 times below the estimated coefficient.
+
+Under the diagnostic model of Section~\ref{sec:diagnostic_extension},
+the excess forecast error beyond the rational bound identifies
+$\theta \cdot \omega$.
+The implied $\theta \approx 120$ is large; the ordinal scale
+inflates this estimate, so the point value should not be taken
+literally.
+But the qualitative conclusion is unambiguous: the household
+response to meat-price shocks is far beyond what any rational
+model with known or uncertain persistence can generate.
+The transitory-shock explanation is quantitatively insufficient
+under the benchmark, though the exact ratio depends on the
+ordinal scaling (Appendix~\ref{app:scaling}).
+
+\subsection{Overreaction Across Demographic Groups}\label{sec:broadbased}
+
+The null demographic heterogeneity results in
+Table~\ref{tab:heterogeneity} are informative about the
+mechanism driving overreaction.
+The effect does not concentrate among low-income or
+less-educated households, as a pure expenditure-weight channel
+would predict.
+Instead, the effect is roughly uniform across the income and
+education distribution.
+
+Engel's Law predicts that food's expenditure share declines
+with income.
+In China, the lowest income quintile allocates 40 to 50 percent
+of spending to food, compared with 20 to 25 percent for the
+highest quintile.
+If overreaction operated through personal budget shares,
+low-income households should overreact more by a factor of
+roughly two.
+The data do not support this prediction: the interaction between
+the meat shock and a low-income indicator is small and
+insignificant, as are the interactions with education and
+urban-rural status.
+
+The absence of demographic gradients is more consistent with
+a cognitive salience mechanism.
+Under salience, what matters is the visibility of a price
+change, not its objective weight in the household's basket.
+Pork prices in China are observed frequently at wet markets,
+displayed on price boards, and covered extensively in media.
+During the ASF episode, pork-price reports were a daily fixture
+on television news and social media.
+This visibility is common across demographic groups: a
+university-educated urban resident and a low-income rural
+farmer both encounter pork-price information regularly,
+even if their pork expenditure shares differ substantially.
+
+The cross-group similarity in overreaction also has
+implications for aggregation.
+If overreaction were concentrated among a demographic
+minority, aggregate expectation indices would attenuate the
+effect by averaging.
+Uniform overreaction implies that aggregate measures---such
+as the PBoC Urban Depositor Survey---reflect the full
+magnitude of the distortion, strengthening the policy
+relevance for central banks that rely on survey expectations.
+
+\subsection{External Validity}\label{sec:external}
+
+China's institutional setting amplifies the salience channel
+along two dimensions.
+First, the official CPI food weight (approximately 28 percent)
+is roughly twice the comparable share in high-income economies
+(8 percent in the US, 15 percent in the euro area).
+Second, pork accounts for approximately 60 percent of total
+meat consumption in China---no single protein commodity plays
+a comparable role in most OECD countries.
+These features suggest that the magnitude documented here may
+be an upper bound on what the same design would find in
+high-income settings.
+
+But the underlying mechanism---salient relative-price movements
+distorting aggregate inflation beliefs---is not specific to China.
+\citet{Cavallo2017} document that US households weight
+frequently purchased goods more heavily in their inflation
+perceptions than official CPI weights imply.
+\citet{Coibion2015} find that gasoline-price movements
+explain a substantial share of cross-sectional variation
+in US household inflation expectations.
+\citet{DacuntoHoangPirolliWeber2021} find similar patterns
+in European data, and \citet{Malmendier2016} show that
+personally experienced inflation episodes have persistent
+effects beyond what rational learning models predict.
+The cognitive mechanism is portable to other settings where
+salient commodity-price shocks generate disproportionate
+expectation responses.
+
+\subsection{Policy Implications}\label{sec:policy}
+
+Central banks that use survey-based inflation expectations
+as a policy input face a signal-extraction problem of their
+own.
+If households systematically extrapolate from salient
+relative-price movements, raw survey measures overstate the
+inflation signal during periods of food-price volatility.
+A central bank that tightens in response to elevated survey
+expectations driven by a pork-price spike may be responding
+to noise rather than signal.
+
+The PBoC publishes quarterly Urban Depositor Survey
+expectations as one input to its policy deliberations and
+has cited the depositor survey index in quarterly reports
+as evidence of expectation anchoring or de-anchoring.
+If the index rises mechanically when pork prices spike,
+the policy inference is misleading: the rise reflects a
+commodity-specific salience effect rather than a generalized
+shift in the expected inflation regime.
+
+Adjusting for the commodity-specific salience wedge could
+improve the information content of survey expectations.
+One approach is to estimate the salience component in real
+time using the reduced-form coefficients and observed
+meat-price movements, then subtract the predicted contribution
+from the raw survey index---analogous to how central banks
+use core inflation alongside headline inflation.
+The survey design itself could also be improved: decomposing
+the question into food and non-food components would allow
+direct measurement of the salience wedge.
+The Michigan Survey of Consumers has moved in this direction
+by asking about expected price changes for specific goods
+alongside the general inflation question.
+
+More broadly, central bank communication that explicitly
+distinguishes relative-price adjustments from aggregate
+inflation trends could dampen the salience channel, though
+the effectiveness of such communication for household
+expectations (as opposed to financial market expectations)
+remains an open question.

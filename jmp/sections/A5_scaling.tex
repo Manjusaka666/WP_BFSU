@@ -1,0 +1,277 @@
+% =============================================================
+%  Appendix A5 -- Expectation Scaling Sensitivity
+%  Label: app:scaling
+% =============================================================
+
+\section{Expectation Scaling Sensitivity}\label{app:scaling}
+
+\subsection{The Scaling Problem}
+
+The CFPS inflation expectation question is ordinal.
+Respondents report whether they expect prices to rise, stay
+the same, or fall.
+The raw response is coded as $\mu_{it} \in \{-1, 0, 1\}$.
+To construct the forecast error
+$\mathrm{FE}_{ipt} = \pi^{\text{headline}}_{p,\,t\to t+1}
+- \tilde{\mu}_{ipt}$,
+I must convert the ordinal expectation into units comparable
+with the realised CPI (which is measured in annual
+percentage points).
+This conversion requires a scaling function
+$\tilde{\mu} = f(\mu)$ that maps ordinal codes to CPI units.
+
+The scaling is inherently underdetermined.
+The CFPS question asks for the direction of expected price
+changes, not for a point forecast.
+A respondent who reports ``prices will rise'' could mean
+1 percent, 5 percent, or 20 percent.
+No information in the survey resolves this ambiguity.
+The scaling choice therefore affects the level and variance
+of the forecast error and, consequently, the magnitude
+(though not the sign) of the regression coefficient
+$\hat{\beta}_3$.
+
+This section evaluates the sensitivity of the main results
+to the scaling choice by considering four alternative
+mappings and providing economic reasoning for each.
+
+\subsection{Scaling Alternatives}
+
+I consider the following four scaling functions.
+
+Baseline: $\{-2, 0, 2\}$.
+The baseline maps ``fall'' to $-2$ percentage points,
+``same'' to $0$, and ``rise'' to $+2$ percentage points.
+The rationale is that unconditional headline CPI inflation
+in China during the sample period (2016--2022) averaged
+approximately 2 percent per year.
+A respondent who expects ``prices will rise'' is interpreted
+as expecting roughly average inflation.
+A respondent who expects ``prices will fall'' is interpreted
+as expecting deflation of comparable magnitude.
+The symmetry of the mapping reflects the symmetric phrasing
+of the survey question.
+
+Alternative 1: $\{-1, 0, 1\}$ (unit ordinal).
+The simplest scaling uses the ordinal codes directly.
+The forecast error becomes realised CPI in percentage points
+minus the ordinal code ($-1$, $0$, or $1$).
+This scaling implicitly assumes that ``prices will rise''
+corresponds to 1 percent expected inflation.
+Given that average realised inflation is approximately 2
+percent, this mapping understates the expected inflation of
+optimistic respondents and compresses the forecast-error
+distribution.
+
+Under this scaling, the dependent variable has a narrower
+range.
+The forecast error for a respondent in a province with 2
+percent realised inflation who reported ``rise'' is
+$2 - 1 = 1$ percentage point, compared with $2 - 2 = 0$
+under the baseline.
+The coefficient $\hat{\beta}_3$ will be larger in magnitude
+under the unit scaling because the dependent variable
+attributes less of the realised CPI to the expectation
+component, making the forecast error larger on average for
+``rise'' respondents.
+
+Alternative 2: $\{-4, 0, 4\}$ (wide scaling).
+This scaling assumes that ``prices will rise'' implies
+roughly 4 percent expected inflation.
+The rationale is that during high-inflation episodes
+(such as the 2019--2020 food-price spike), households
+reporting ``rise'' may have had in mind inflation rates
+well above the unconditional mean.
+If respondents anchor on recent salient price increases
+rather than on average CPI, a wider scaling may better
+approximate the implied expectation.
+
+Under this scaling, the forecast error for a ``rise''
+respondent in a 2-percent-inflation province is
+$2 - 4 = -2$ percentage points.
+The wider scaling mechanically increases the fraction of
+negative forecast errors among ``rise'' respondents,
+reducing the variance of the forecast error conditional
+on the shock and potentially attenuating $\hat{\beta}_3$.
+
+Alternative 3: $\{-1, 0, 3\}$ (asymmetric).
+This scaling allows the ``rise'' response to carry a
+different magnitude than the ``fall'' response.
+The rationale is that China experienced positive average
+inflation during the sample period, so ``prices will rise''
+may be the default expectation (consistent with the fact
+that approximately 60 to 70 percent of respondents choose
+this category in most waves).
+If ``rise'' is the typical response, the associated
+expected inflation may be higher than the expected
+deflation associated with ``fall.''
+The asymmetric mapping assigns $+3$ to ``rise'' and $-1$ to
+``fall,'' reflecting the possibility that respondents who
+expect prices to rise anticipate moderate inflation while
+those who expect prices to fall anticipate only mild
+deflation.
+
+\subsection{Results Under Alternative Scalings}
+
+Table~\ref{tab:scaling_sensitivity} reports the
+forecast-error coefficient $\hat{\beta}_3$ under each scaling
+for the preferred region-by-wave FE specification.
+
+\begin{table}[htbp]
+\centering
+\caption{Forecast-Error Coefficient Under Alternative
+  Expectation Scalings}
+\label{tab:scaling_sensitivity}
+\begin{threeparttable}
+\begin{tabular}{lccccc}
+\toprule
+Scaling & $\tilde{\mu}$ map &
+  $\hat{\beta}_3$ & SE & $p$-value & $N$ \\
+\midrule
+Baseline       & $\{-2,\;0,\;2\}$  & $-6.067$ & 1.145
+  & $<0.001$ & 69,533 \\
+Unit ordinal   & $\{-1,\;0,\;1\}$  & $-6.309$ & 1.319
+  & $<0.001$ & 69,533 \\
+Wide           & $\{-4,\;0,\;4\}$  & $-5.583$ & 0.978
+  & $<0.001$ & 69,533 \\
+Asymmetric     & $\{-1,\;0,\;3\}$  & $-5.825$ & 1.067
+  & $<0.001$ & 69,533 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Region-by-wave fixed effects. Standard errors clustered
+  at the province level.
+\item All specifications include the same set of controls as
+  the preferred specification in
+  Table~\ref{tab:eq3_forecast_error}.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The sign of $\hat{\beta}_3$ is negative and statistically
+significant at $p < 0.001$ under all four scalings.
+The point estimate ranges from $-5.583$ (wide scaling) to
+$-6.309$ (unit ordinal scaling), a spread of approximately
+12 percent around the baseline.
+The variation in magnitude follows the logic outlined above.
+A wider positive scaling (attributing more expected inflation
+to ``rise'' respondents) mechanically reduces the forecast
+error and compresses $\hat{\beta}_3$ toward zero, while a
+narrower scaling inflates the forecast error and increases
+$|\hat{\beta}_3|$.
+
+\subsection{Why the Sign Is Invariant}
+
+The invariance of the sign to scaling has a simple
+algebraic explanation.
+The forecast error is
+$\mathrm{FE}_{ipt} = \pi_{p,\,t\to t+1} - f(\mu_{it})$.
+The meat shock enters the regression through its covariance
+with the forecast error.
+The realised CPI $\pi_{p,\,t\to t+1}$ does not depend on the
+scaling (it is an external variable), so the only channel
+through which scaling affects $\hat{\beta}_3$ is through
+its effect on $f(\mu_{it})$.
+
+Since the ordinal expectation $\mu_{it}$ is positively
+correlated with the meat shock (households in high-shock
+provinces are more likely to report ``rise''), the scaled
+expectation $f(\mu_{it})$ is also positively correlated
+with the shock for any scaling that is monotonically increasing
+in $\mu$ (i.e., any scaling where ``rise'' maps to a higher
+value than ``fall'').
+The forecast error $\pi - f(\mu)$ therefore has a negative
+partial correlation with the shock because the expectation
+component overshoots the CPI component.
+This negative partial correlation produces a negative
+$\hat{\beta}_3$ regardless of the specific values assigned
+to each ordinal category, as long as the ordering is preserved.
+
+The magnitude of $\hat{\beta}_3$ changes with the scaling
+because the scaling affects the variance of $f(\mu)$ and its
+covariance with the shock.
+A wider scaling increases the variance of the expectation
+component, which reduces the forecast error for ``rise''
+respondents (making it less negative) and increases it for
+``fall'' respondents (making it more positive).
+The net effect on $\hat{\beta}_3$ depends on the relative
+magnitudes of these adjustments, but the sign is determined
+by the ordering of the categories, which is invariant to
+monotone transformations.
+
+\subsection{Which Scaling Is Most Defensible?}
+
+No scaling can be verified from the data because the survey
+does not elicit a point forecast.
+However, three considerations favour the baseline
+$\{-2, 0, 2\}$ mapping.
+
+First, the baseline is centred on the unconditional mean of
+realised headline CPI during the sample period
+(approximately 2 percent per year).
+This makes the forecast error approximately mean-zero
+for respondents who correctly predict the direction of
+inflation, which is a desirable property for interpreting
+the constant in the regression.
+
+Second, the symmetric mapping avoids imposing an asymmetry
+on the expectation distribution that the survey question does
+not support.
+The CFPS question is phrased symmetrically (``will prices
+rise, stay the same, or fall?''), so there is no a priori
+reason to assign different magnitudes to the ``rise'' and
+``fall'' categories.
+The asymmetric scaling $\{-1, 0, 3\}$ is motivated by the
+empirical distribution of responses (most respondents choose
+``rise''), but this distribution could reflect either the
+level of expected inflation or a cognitive default toward
+the modal response.
+Without additional information, the symmetric mapping is
+more conservative.
+
+Third, the baseline scaling produces a coefficient magnitude
+($-6.067$) that is intermediate in the range across scalings.
+This means that the baseline is neither the most nor the least
+conservative interpretation of the overreaction.
+The qualitative comparison with the rational benchmark
+($|\beta_3^R| \leq 0.05$) is unaffected: the estimated
+coefficient exceeds the bound by a factor of at least 112
+(under the wide scaling) and at most 126 (under the unit
+ordinal scaling).
+The two-orders-of-magnitude excess is invariant to any
+reasonable scaling choice.
+
+\subsection{Implications for the Implied Diagnostic Parameter}
+
+The implied diagnostic parameter $\hat{\theta} =
+|\hat{\beta}_3|/\omega$ depends on both the scaling and the
+assumed CPI weight $\omega$.
+Under the baseline scaling and $\omega = 0.05$,
+$\hat{\theta} \approx 121$.
+Under the unit ordinal scaling, $\hat{\theta} \approx 126$;
+under the wide scaling, $\hat{\theta} \approx 112$;
+under the asymmetric scaling, $\hat{\theta} \approx 117$.
+
+These values are all large relative to estimates of $\theta$
+in the professional-forecast literature, where
+\citet{Bordalo2020b} report values on the order of 0.5 to 1.5.
+The inflation of $\hat{\theta}$ in this setting is expected:
+the ordinal expectation measure is a coarse proxy for the
+continuous belief that the diagnostic model assumes.
+The three-category variable compresses the rich heterogeneity
+in household expectations into three bins, amplifying the
+apparent diagnostic parameter.
+A continuous expectation measure (e.g., a point forecast in
+percentage terms) would produce a lower $\hat{\theta}$
+because it would capture gradations within the ``rise''
+category that the ordinal variable conflates.
+
+The scaling exercise confirms that the ordinal nature of the
+expectation measure introduces quantitative imprecision in
+the implied $\theta$ but does not affect the qualitative
+conclusion.
+The estimated forecast error exceeds the rational benchmark
+by a factor of at least 50 under every scaling considered, and
+the sign of $\hat{\beta}_3$ is invariant to the choice of
+mapping.

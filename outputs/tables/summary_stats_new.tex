@@ -1,0 +1,28 @@
+\begin{table}[!htbp]
+\centering
+\caption{Descriptive Statistics}
+\label{tab:summary_stats}
+\begin{threeparttable}
+\begin{tabular}{lrrrrrr}
+\toprule
+Variable & $N$ & Mean & SD & Min & Median & Max \\
+\midrule
+Inflation expectation ($\mu_{it}$) & 90,133 & -0.32 & 0.81 & -1.00 & -1.00 & 1.00 \\
+Forecast error ($FE_{it}$) & 69,533 & 4.67 & 1.88 & -0.21 & 5.07 & 8.14 \\
+Meat shock ($s_{pt}$) & 90,133 & 0.05 & 0.28 & -0.40 & -0.01 & 0.57 \\
+Grain shock & 90,133 & 0.04 & 0.02 & -0.07 & 0.03 & 0.12 \\
+Realized headline CPI (\%, ann.) & 69,533 & 4.03 & 0.96 & 1.79 & 3.86 & 6.14 \\
+Age & 22,320 & 40.19 & 14.27 & 18.00 & 39.00 & 70.00 \\
+High education (indicator) & 90,133 & 0.30 & 0.46 & 0.00 & 0.00 & 1.00 \\
+Urban (indicator) & 87,414 & 0.67 & 0.47 & 0.00 & 1.00 & 1.00 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Note.} Sample restricted to observations with non-missing province code, inflation expectation, and meat shock.
+\item Inflation expectation coded as $\{-1, 0, 1\}$ (prices fall, stable, rise).
+\item Forecast error = realized headline CPI (\%) $-$ expectation scaled to CPI units ($\{-2, 0, 2\}$).
+\item Demographics available for a subsample; $N$ varies across rows.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

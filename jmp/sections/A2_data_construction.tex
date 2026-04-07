@@ -1,0 +1,247 @@
+% =============================================================
+%  Appendix A2 -- Data Construction
+%  Label: app:data
+% =============================================================
+
+\section{Data Construction}\label{app:data}
+
+This appendix documents the construction of the analysis
+dataset from raw sources, the coding decisions made at each
+stage, and the sample attrition from the raw CFPS to the
+estimation sample.
+
+\subsection{Province-Level CPI Data}
+
+The National Bureau of Statistics publishes monthly consumer
+price sub-indices at the province level.
+I collect the meat and poultry sub-index, the grain sub-index,
+the eggs sub-index, and the headline CPI index for all 31
+mainland provinces, municipalities, and autonomous regions
+from January 2016 to December 2025.
+The data are sourced from the NBS monthly statistical releases
+and cross-checked against the CEIC China Premium Database.
+
+Each observation is reported as a \emph{previous month $= 100$}
+index: a value of 105 indicates that the price level in the
+reference month is 5 percent higher than in the \emph{preceding}
+month.
+The NBS publishes CPI sub-indices in multiple bases
+(previous month $= 100$, same month of preceding year $= 100$,
+and fixed base); I use the month-on-month series throughout
+because it permits exact construction of cumulative price
+changes over arbitrary calendar windows without requiring a
+year-on-year-to-monthly inversion.
+
+I convert each monthly observation to a log change,
+$\Delta\log(\mathrm{CPI}_{pm}) = \log(\mathrm{CPI}_{pm}/100)$.
+Because the raw index uses the previous month as base,
+$\mathrm{CPI}_{pm}/100$ equals the gross monthly price change,
+and its logarithm is the exact month-on-month log growth rate.
+For values close to 100 the approximation is accurate to
+second order; for extreme values (such as meat CPI reaching
+138 during the ASF peak) the log transformation compresses
+the upper tail relative to a linear percentage change.
+
+The treatment variable for the meat shock is the cumulative
+sum of monthly log changes between the midpoints of
+consecutive CFPS fieldwork periods:
+\[
+  \mathrm{MeatShock}_{p,\,t-1\to t}
+  = \sum_{m \in \mathcal{M}(t-1,t)}
+    \Delta\log(\mathrm{MeatCPI}_{pm}).
+\]
+The fieldwork midpoints are approximated as July of each wave
+year (2016, 2018, 2020, 2022), based on the typical CFPS
+survey timeline.
+The grain shock and eggs shock are constructed identically
+from their respective sub-indices.
+All three commodity shocks vary at the province-wave level
+and enter the regressions as right-hand-side variables.
+
+\subsection{CFPS Panel Construction}
+
+The China Family Panel Studies is a nationally representative
+longitudinal survey conducted by the Institute of Social
+Science Survey at Peking University.
+I merge the household-level data across waves 2016, 2018,
+2020, and 2022.
+The key variables are the inflation expectation item
+(qp201 in most waves), household demographic characteristics,
+and the province of residence.
+
+The inflation expectation variable is coded as
+$\mu_{it} \in \{-1, 0, 1\}$, where $-1$ indicates the
+household expects prices to fall, $0$ indicates prices will
+stay the same, and $1$ indicates prices will rise.
+The original CFPS coding uses numeric values (typically
+1, 2, 3 or 1, 2, 5 depending on the wave), which I recode
+to the $\{-1, 0, 1\}$ ordinal scale.
+I verify the recoding against the CFPS codebook for each wave
+to ensure consistency.
+
+Province-of-residence codes present a harmonization challenge.
+Across waves, the CFPS uses different variable names:
+\texttt{provcd} in some waves, \texttt{provcd10} in the 2010
+baseline, \texttt{provcd12} in the 2012 follow-up, and
+variants in later waves.
+All province codes follow the GB/T 2260 national standard but
+differ in the number of trailing digits.
+I standardise all codes to the two-digit level (e.g., Beijing
+$= 11$, Shanghai $= 31$, Guangdong $= 44$) and merge on the
+standardised code.
+Provinces that changed administrative boundaries during the
+sample period (none did at the provincial level between 2016
+and 2022) would require additional harmonization, but this
+issue does not arise.
+
+The province code is used to match each household to
+province-level CPI data.
+The merge is many-to-one: all households within a province
+at a given wave receive the same province-wave meat shock.
+The CFPS covers 25 of the 31 mainland provinces in the public-use
+data; the remaining provinces are either not sampled or
+suppressed for confidentiality.
+I use all available provinces, which yields coverage of
+approximately 95 percent of the national population.
+
+\subsection{Forecast Error Construction}
+
+The forecast error is defined as
+\[
+  \mathrm{FE}_{ipt}
+  = \pi^{\text{headline}}_{p,\,t\to t+1}
+    - \tilde{\mu}_{ipt},
+\]
+where $\pi^{\text{headline}}_{p,\,t\to t+1}$ is the
+annualised realised headline CPI inflation in province $p$
+over the next inter-wave period, and $\tilde{\mu}_{ipt}$ is
+the household's ordinal expectation scaled to CPI units.
+
+The forward CPI is computed as follows.
+For each province and wave, I take the cumulative sum of
+monthly headline CPI log changes from the midpoint of wave
+$t$ to the midpoint of wave $t+1$.
+This cumulative change is then annualised by dividing by the
+number of years between midpoints (approximately 2 for
+biennial waves).
+The annualisation ensures that the forecast error is
+expressed in annual percentage-point units, comparable across
+wave pairs of slightly different length.
+
+For the scaling of the ordinal expectation, I map
+$\{-1, 0, 1\}$ to $\{-2, 0, 2\}$ percentage points in the
+baseline specification.
+This mapping reflects the assumption that a household
+reporting ``prices will rise'' expects approximately 2 percent
+annual inflation, a household reporting ``stay the same''
+expects zero, and a household reporting ``prices will fall''
+expects approximately 2 percent deflation.
+These values are chosen to be symmetric and to approximate
+the unconditional mean of headline CPI inflation during the
+sample period (which averages approximately 2 percent).
+Appendix~\ref{app:scaling} reports sensitivity to alternative
+scaling choices, including $\{-1, 0, 1\}$ (unit ordinal),
+$\{-4, 0, 4\}$ (wide), and $\{-1, 0, 3\}$ (asymmetric).
+
+The forecast-error sample requires that forward realised CPI
+be available.
+For the 2022 wave, the forward CPI requires data through
+mid-2024, which is available in the current data extract.
+For any wave whose forward CPI is not yet observed at the
+time of data construction, the observation is dropped from
+the forecast-error estimation but retained for the
+expectation equation (Eq~1), which does not use forward CPI.
+
+\subsection{Sample Attrition}\label{app:attrition}
+
+The raw CFPS household panel contains approximately 130,000
+household-wave observations across the four waves (2016, 2018,
+2020, 2022).
+The estimation sample is substantially smaller due to several
+restrictions.
+
+The first restriction is non-missing inflation expectations.
+Approximately 15 to 20 percent of households do not respond
+to the inflation expectation question (item qp201) in a given
+wave, either because the question was not administered
+(routing differences across waves) or because the respondent
+refused or answered ``don't know.''
+This restriction reduces the sample to approximately 105,000
+observations.
+
+The second restriction is a valid province code that matches
+the CPI data.
+Households in provinces not covered by the CFPS public-use
+data, or with missing province codes, are dropped.
+This restriction has a modest effect, reducing the sample to
+approximately 100,000 observations.
+
+The third restriction is non-missing meat-shock values.
+Because the NBS meat CPI data begin in January 2016, the
+earliest wave for which the meat shock can be constructed is
+2016 (using the 2014--2016 backward link).
+Households surveyed before 2016, if any remain after wave
+selection, are dropped.
+After this restriction, the full estimation sample for the
+expectation equation (Eq~1) contains 90,133 household-wave
+observations.
+
+The fourth restriction applies only to the forecast-error
+equation (Eq~3): forward realised headline CPI must be
+available.
+For wave $t$, this requires CPI data through the midpoint of
+wave $t+1$.
+At the time of data construction, forward CPI is available
+for the 2016, 2018, and 2020 waves (using data through
+mid-2022, mid-2024, and projected mid-2024 respectively).
+The 2022 wave lacks a complete forward realisation at the
+time of the most recent data pull, reducing the
+forecast-error sample to 69,533 observations.
+
+The fifth restriction applies to specifications with
+demographic controls.
+The age, education, and urban-status variables are drawn from
+the CFPS household and individual questionnaires.
+The urban indicator is missing for a substantial fraction of
+observations in the 2018, 2020, and 2022 waves due to
+changes in the questionnaire routing.
+When all three demographic controls are required
+simultaneously, the sample shrinks to approximately 22,121
+observations.
+The main results are reported with and without demographic
+controls to show that the forecast-error finding is not
+driven by the sample composition change.
+
+\subsection{Persistence Estimation}
+
+The AR(1) persistence of meat-price shocks is estimated from
+the monthly province-level data.
+The estimating equation is
+\[
+  \Delta\log(\mathrm{MeatCPI}_{pm})
+  = \alpha_p
+  + \rho\,\Delta\log(\mathrm{MeatCPI}_{p,m-1})
+  + \varepsilon_{pm},
+\]
+estimated by OLS with province fixed effects and standard
+errors clustered at the province level.
+The sample covers January 2016 to December 2025 across 31
+provinces, yielding 3,689 monthly observations after
+dropping the initial month for each province.
+The estimated coefficient is $\hat{\rho} = 0.480$
+(s.e. = 0.010, $p < 0.001$).
+
+The AR(1) specification is chosen for parsimony: it provides
+a single persistence parameter that maps directly into the
+signal-extraction model.
+Higher-order specifications (AR(2) or AR(12) to capture
+seasonal patterns) would allow richer dynamics but would
+complicate the calibration without changing the qualitative
+conclusion, because the rational bound depends on the total
+persistence over the forecast horizon, not on the lag
+structure.
+The province fixed effects absorb persistent differences in
+the level of meat-price inflation across provinces, ensuring
+that $\hat{\rho}$ captures within-province temporal
+persistence rather than cross-province level differences.
+

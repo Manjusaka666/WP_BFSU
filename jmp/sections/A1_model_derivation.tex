@@ -1,0 +1,308 @@
+% =============================================================
+%  Appendix A1 -- Signal-Extraction Model Derivation
+%  Label: app:model
+% =============================================================
+
+\section{Signal-Extraction Model Derivation}\label{app:model}
+
+This appendix provides the full derivation of the rational
+benchmark and diagnostic extension summarised in
+Section~\ref{sec:framework}.
+
+\subsection{Environment}
+
+A household in province $p$ at wave $t$ observes a meat-price
+signal $s_{pt}$ and must forecast headline CPI inflation
+$\pi_{p,\,t \to t+1}$ over the next inter-wave period.
+The signal $s_{pt}$ is the cumulative log change in the
+province-level meat CPI between waves $t-1$ and $t$, as
+defined in equation~\eqref{eq:meat_shock_data}.
+
+Headline CPI responds to the meat shock according to
+\[
+  \pi_{p,\,t \to t+1}
+  = \bar{\pi} + \omega\,\rho\,s_{pt} + \eta_{pt},
+\]
+where $\omega \in (0,1)$ is the CPI weight on meat,
+$\rho \in [0,1]$ is the persistence of the shock
+(the fraction that carries forward into the next period),
+and $\eta_{pt} \sim (0, \sigma_\eta^2)$ is an aggregate
+noise term orthogonal to the meat signal.
+The noise term $\eta_{pt}$ captures all non-meat determinants
+of headline inflation: monetary policy, non-food supply shocks,
+demand conditions, and measurement error in the CPI.
+
+The assumption that headline CPI is linear in the meat shock is
+a first-order approximation.
+In the CPI accounting identity, the contribution of meat to
+headline inflation is $\omega \times \pi^{\text{meat}}$, where
+$\pi^{\text{meat}}$ is meat-price inflation.
+If the current meat shock $s_{pt}$ persists at rate $\rho$
+into the next period, the predicted contribution is
+$\omega \cdot \rho \cdot s_{pt}$.
+The linearity assumption also rules out threshold effects
+(e.g., overreaction only when meat-price changes exceed
+some attention threshold) and interaction effects between
+meat prices and other CPI components.
+These features could be added at the cost of additional
+parameters that the data cannot identify separately.
+
+The household does not know $\rho$ with certainty.
+It holds a point belief $\hat{\rho} \in [0,1]$ about
+persistence.
+This parametrises the household's uncertainty about whether
+the current meat-price movement will persist or reverse.
+The household knows $\omega$ and observes $s_{pt}$ without
+error.
+Relaxing the assumption that $\omega$ is known shifts the
+rational bound proportionally, as discussed in
+Section~\ref{sec:transitory}.
+
+\subsection{Rational Forecast}
+
+Under rational expectations given the household's belief
+about persistence, the optimal forecast is
+\[
+  \E_t^R[\pi_{p,\,t \to t+1}]
+  = \bar{\pi} + \omega\,\hat{\rho}\,s_{pt}.
+\]
+This is the minimum-mean-squared-error forecast given the
+information set $\{s_{pt}, \omega, \hat{\rho}\}$ and the
+linear signal structure.
+The household weights the observed meat shock by its CPI
+weight and its perceived persistence.
+
+The forecast error is
+\begin{align}
+  \mathrm{FE}^R_{pt}
+  &= \pi_{p,\,t \to t+1}
+    - \E_t^R[\pi_{p,\,t \to t+1}] \notag \\
+  &= \omega(\rho - \hat{\rho})\,s_{pt} + \eta_{pt}.
+    \label{eq:app_rational_fe}
+\end{align}
+The forecast error is mean-zero conditional on $s_{pt}$ only
+if $\hat{\rho} = \rho$---that is, only if the household has
+the correct belief about persistence.
+If $\hat{\rho} \neq \rho$, the forecast error covaries with
+the signal, and the regression coefficient
+$\beta_3^R = \omega(\rho - \hat{\rho})$ is nonzero.
+
+The absolute value of the rational coefficient satisfies
+\[
+  |\beta_3^R| = \omega\,|\rho - \hat{\rho}|
+  \leq \omega
+  \approx 0.05,
+\]
+since $\rho, \hat{\rho} \in [0,1]$.
+The maximum is attained at the corners: when the household
+believes the shock is permanent ($\hat{\rho} = 1$) but it is
+fully transitory ($\rho = 0$), or vice versa.
+This bound is the sharpest test the model delivers.
+It does not require knowledge of $\hat{\rho}$: regardless of
+what the household believes, the rational forecast-error
+coefficient is bounded by $\omega$.
+
+\subsection{Diagnostic Forecast}
+
+Under diagnostic expectations \citep{Bordalo2018}, the
+household distorts its likelihood by overweighting states made
+more representative by the recent signal.
+In the Gaussian case, this amounts to an additive distortion
+with parameter $\theta > 0$:
+\[
+  \E_t^\theta[\pi_{p,\,t \to t+1}]
+  = \bar{\pi} + \omega\,\hat{\rho}\,s_{pt}
+    + \theta\,\omega\,s_{pt}.
+\]
+The diagnostic distortion is proportional to the signal $s_{pt}$
+and to the CPI weight $\omega$.
+The parameter $\theta$ governs the degree of overweighting:
+$\theta = 0$ reduces to the rational case, and $\theta > 0$
+generates over-reaction in the direction of the signal.
+
+The diagnostic forecast error is
+\begin{align}
+  \mathrm{FE}^\theta_{pt}
+  &= \omega(\rho - \hat{\rho})\,s_{pt}
+    - \theta\,\omega\,s_{pt} + \eta_{pt} \notag \\
+  &= \omega(\rho - \hat{\rho} - \theta)\,s_{pt}
+    + \eta_{pt}.
+    \label{eq:app_diagnostic_fe}
+\end{align}
+The regression coefficient is
+$\beta_3^\theta = \omega(\rho - \hat{\rho} - \theta)$.
+Since $\theta > 0$:
+\[
+  |\beta_3^\theta| > |\beta_3^R|
+  \quad \text{for all } \rho, \hat{\rho} \in [0,1].
+\]
+The gap $|\beta_3^\theta| - |\beta_3^R| = \omega\,\theta$
+identifies the diagnostic parameter scaled by the CPI weight.
+
+\subsection{Calibration}
+
+I estimate $\rho$ from a pooled AR(1) regression on monthly
+province-level meat CPI log changes with province fixed effects.
+The estimating equation is
+\[
+  \Delta \log(\mathrm{MeatCPI}_{pm})
+  = \alpha_p
+  + \rho\,\Delta \log(\mathrm{MeatCPI}_{p,m-1})
+  + \varepsilon_{pm},
+\]
+with standard errors clustered at the province level.
+The sample covers January 2016 through December 2025 for 31
+provinces, yielding approximately 3,689 monthly observations.
+The estimated persistence is $\hat{\rho} = 0.480$.
+
+Given $\hat{\rho}$ from the data and $\omega = 0.05$, the
+rational benchmark is
+$|\beta_3^R| \leq \omega = 0.05$.
+The estimated $\hat{\beta}_3 = -6.067$ yields an implied
+diagnostic parameter of
+$\hat{\theta} = (|\hat{\beta}_3| - \omega)/\omega
+\approx (6.07 - 0.05)/0.05 = 120$.
+While the ordinal expectation scale inflates this number, the
+qualitative finding is robust: $\hat{\theta} \gg 0$.
+
+\subsection{Comparative Statics}
+
+The gap between the diagnostic and rational forecast errors is
+$|\beta_3^\theta| - |\beta_3^R| = \omega\,\theta$.
+This expression shows how the observable wedge depends on the
+model parameters.
+
+The wedge is increasing in $\omega$: a higher CPI weight on
+meat amplifies the overreaction because each unit of the
+diagnostic distortion translates into a larger revision of
+the expected headline inflation rate.
+In a country where meat carries a CPI weight of 0.10 rather
+than 0.05, the same $\theta$ would produce a wedge twice as
+large.
+This has implications for external validity: the overreaction
+documented here should be larger in economies with high food
+CPI weights and smaller in economies where food is a minor
+CPI component.
+
+The wedge is increasing in $\theta$: a more diagnostic
+household produces a larger forecast error for a given shock.
+The $\theta$ parameter is treated as a constant in the
+baseline model, but it could vary across households (for
+example, with education or financial literacy) or across
+signal types (for example, more salient signals could
+generate a higher effective $\theta$).
+The null heterogeneity results in Table~\ref{tab:heterogeneity}
+suggest that $\theta$ does not vary strongly with observable
+demographics in this sample, though this does not rule out
+heterogeneity along unobserved dimensions such as news
+consumption or market experience.
+
+The wedge does not depend on $\rho$ or $\hat{\rho}$.
+The persistence parameters affect both the rational and
+diagnostic coefficients, but their effects cancel in the
+difference.
+This is a useful property: the identification of $\theta$
+does not require the econometrician to know or estimate the
+household's belief about persistence.
+In practice, the calibration exercise in
+Section~\ref{sec:calibration} uses $\rho$ to compute the
+rational bound separately, but the excess beyond the bound
+identifies $\omega\,\theta$ regardless of $\rho$.
+
+\subsection{Connection to the Empirical Specification}
+
+The model maps directly to the regression equations in
+Section~\ref{sec:three_equations}.
+The meat shock $s_{pt}$ corresponds to the
+$\mathrm{MeatShock}_{p,\,t-1\to t}$ variable constructed from
+NBS data.
+The forecast error $\mathrm{FE}_{pt}$ corresponds to
+$\pi^{\text{headline}}_{p,\,t\to t+1} - \tilde{\mu}_{ipt}$
+in equation~\eqref{eq:eq3}.
+
+The model predicts that a regression of the forecast error
+on the meat shock should yield a coefficient $\beta_3$ that
+is bounded by $\omega$ under rationality.
+The empirical equation~\eqref{eq:eq3} includes fixed effects
+$\delta_{r(p)\times t}$ that are not present in the model.
+In the model, $\bar{\pi}$ is a constant; in the data, the
+fixed effects absorb variation in $\bar{\pi}$ across regions
+and waves, as well as any region-wave-specific component of
+$\eta_{pt}$.
+The fixed effects therefore improve the precision of
+$\hat{\beta}_3$ without affecting its probability limit,
+provided that the meat shock is conditionally uncorrelated
+with the fixed-effect-absorbed component of $\eta_{pt}$.
+
+The household controls $X_{ipt}$ in the empirical specification
+have no counterpart in the model.
+They are included to absorb observable heterogeneity in
+expectation formation (e.g., education, income, urban status)
+that might be correlated with provincial meat-shock exposure.
+Their inclusion does not alter the theoretical prediction;
+it sharpens the empirical estimate by reducing residual
+variance.
+
+One gap between model and data deserves note.
+The model assumes that the household observes a continuous
+signal $s_{pt}$ and forms a continuous expectation.
+The CFPS expectation is ordinal: $\mu_{ipt} \in \{-1,0,1\}$.
+The scaling from ordinal to CPI units (the mapping
+$\{-1,0,1\} \to \{-2,0,2\}$) introduces an additional
+degree of freedom that the model does not pin down.
+Appendix~\ref{app:scaling} shows that the sign of
+$\hat{\beta}_3$ is invariant to the scaling choice, so the
+qualitative test of rationality is unaffected.
+But the point estimate of $\hat{\theta}$ depends on the scaling
+and should be interpreted with caution.
+
+\subsection{Limitations of the Model}
+
+The signal-extraction framework is deliberately parsimonious.
+Its purpose is to provide a quantitative benchmark for the
+rational forecast error, not to describe the full
+information environment of Chinese households.
+Several features are omitted.
+
+First, the model assumes a single signal.
+In reality, households observe multiple price signals (meat,
+grain, vegetables, housing, services) and must aggregate them
+into an inflation forecast.
+The model's prediction---that the forecast-error coefficient
+on the meat shock is bounded by $\omega$---holds in a
+multi-signal extension provided that the meat shock is
+orthogonal to other signals conditional on fixed effects.
+The fixed-effect structure in the empirical specification is
+designed to absorb common components across signals.
+
+Second, the model assumes static expectations: the household
+forms a one-period-ahead forecast and does not revise it.
+In practice, households may update their beliefs between
+survey waves as new information arrives.
+The biennial CFPS structure does not allow observation of
+intra-wave updating.
+A dynamic extension with sequential signals would be
+appropriate for higher-frequency data but would add
+parameters that the current data cannot identify.
+
+Third, the model does not endogenise attention.
+The diagnostic parameter $\theta$ is a constant that applies
+to the meat signal regardless of its size.
+A richer model in the spirit of rational inattention
+\citep{Sims2003} would allow $\theta$ to depend on the
+signal-to-noise ratio or the cost of processing information.
+Such an extension could explain why overreaction is larger
+during the ASF episode (when meat-price signals were
+unusually large) than in normal times, but it requires
+additional structure and cross-sectional variation in
+attention costs that are not available in the current data.
+
+Fourth, the model assumes homogeneous households.
+In the data, households differ in income, education, and
+geographic location.
+A heterogeneous-agent extension would allow $\theta$ or
+$\hat{\rho}$ to vary with household characteristics.
+The null heterogeneity results suggest that any such
+variation is small, but the ordinal expectation measure may
+lack the resolution to detect moderate heterogeneity in the
+diagnostic parameter.

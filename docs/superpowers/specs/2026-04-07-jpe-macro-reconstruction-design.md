@@ -269,11 +269,10 @@ Report the 93 province×wave cell count prominently in the data and strategy sec
 
 ### All tables: formatting rules
 
-- No significance stars in table body
+- Use significance stars for p-values in table body
 - Standard errors in round parentheses: (0.174)
-- Wild bootstrap p-values in square brackets below SE: [0.237]
 - Panel headers using \multicolumn
-- Self-contained notes: variable definitions, sample, inference method
+- Self-contained notes
 - 2–3 decimal places
 - threeparttable environment
 

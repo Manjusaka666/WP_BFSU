@@ -1,66 +1,112 @@
 \section{Introduction}\label{sec:intro}
 
-Households in China overreact to inflation signals. Using seven waves of the China
-Family Panel Studies (CFPS, 2010--2022), I regress each household's forecast error on
-its prior expectation revision and estimate $\beta = -0.55$ ($p < 0.001$,
-$N \approx 13{,}000$) with province $\times$ wave fixed effects
-(Table~\ref{tab:cfps_baseline}, column X). The sign is unambiguous: a one-point
-upward revision in expected inflation predicts a 0.55-point more negative forecast
-error at the next interview.
+Households exposed to large pork-price shocks systematically
+overpredict future inflation.
+Using province-level meat CPI variation from the National Bureau
+of Statistics matched to four waves of the China Family Panel
+Studies (2016--2022), I estimate that a one-unit increase in
+the cumulative meat log-price shock generates a forecast error
+of $-6.07$ percentage points under the preferred specification
+with region-by-wave fixed effects (wild cluster bootstrap
+$p < 0.001$, 31 province clusters); a one-standard-deviation
+shock (0.28 log points) implies a forecast error of $-1.70$
+percentage points.
+The negative sign means that households in high-shock provinces
+expected more inflation than materialised.
+A signal-extraction model calibrated to the actual persistence
+of meat-price shocks bounds the rational forecast error at
+$|\beta_3^R| \leq \omega \approx 0.05$ per unit of the shock.
+The estimated coefficient exceeds this bound by a wide margin,
+and no combination of persistence assumptions within the
+plausible range closes the gap.
+The excess is consistent with diagnostic overreaction
+\citep{Bordalo2018, Bordalo2020b}.
 
-This sign pattern is consistent with reversal rather than monotone persistence:
-households that revise expected inflation upward subsequently overpredict inflation.
-The pattern does not come from one narrow subgroup. It appears across income
-quartiles, education levels, age bins, and the urban-rural divide, so the wedge
-between expected and realized inflation is broad rather than idiosyncratic.
+Why does this matter for macroeconomics?
+Inflation expectations anchor wage bargaining, consumption
+timing, and portfolio allocation.
+If a large share of the population systematically overpredicts
+inflation in response to salient relative-price movements, the
+expectation wedge feeds back into real activity through
+precautionary saving and consumption compression.
+In China, where pork accounts for roughly 60 percent of
+household meat consumption and food carries an official CPI
+weight near 28 percent, the scope for salience-driven belief
+distortion is larger than in economies with lower food shares
+or more diversified protein markets.
+The 2018--2019 African Swine Fever (ASF) episode, which reduced
+the national hog herd by an estimated 30--55 percent, provides
+sharp cross-province variation in the size of the salience
+signal.
 
-China is a useful setting for studying household expectation formation. Food prices,
-especially pork, are salient to consumers and volatile enough to generate large
-belief revisions; the 2018--2019 African Swine Fever episode is one recent example.
-At the same time, monetary policy communication from the People's Bank of China
-remains less transparent than in major inflation-targeting central banks, so
-households receive strong price signals but weak anchoring guidance. This combination
-makes both overreaction and slow updating plausible ex ante, which means the data can
-discriminate between them rather than merely confirm a prior.
+The identification rests on a three-equation system that
+separates the belief channel from the price-level channel.
+The primary test is a reduced-form regression of household
+forecast errors on the province-level meat-price shock
+(Equation~3).
+Two decomposition equations ask whether the shock raises
+household expectations (Equation~1) and whether it predicts
+forward headline CPI (Equation~2).
+The expectation response is positive across specifications
+but imprecisely estimated under the demanding region-by-wave
+fixed-effect structure; the forecast-error result is the more
+powerful test because it measures the joint outcome of
+expectations minus realised inflation directly and does not
+require the expectation channel to be individually precise.
+The treatment is measured by the NBS and merged from outside
+the CFPS survey, so the household's current expectation never
+appears on both sides of any equation.
 
-I make three contributions. First, I establish the main fact at the household level:
-individuals who revise inflation expectations upward subsequently make more negative
-forecast errors, consistent with overshooting. This holds across demographic and
-geographic cells in the CFPS panel with stable magnitude after alternative survey
-weights and multiple coding choices for qualitative responses. Second, I provide
-aggregate corroboration using quarterly PBoC depositor-survey data, which yield
-$\beta = -2.24$ ($p = 0.055$, $N = 32$) (Table~\ref{tab:ols_baseline}, column 2).
-The sign matches the household-level result, and the timing aligns with quarters of
-salient food-price news. Third, I estimate a joint specification that nests both
-overreaction and persistence channels to ask which explains forecast errors
-conditional on the other. Error reversals remain present after controlling for
-persistence, more consistent with overreaction than with pure sluggish updating. A
-supplementary test using the China Household Finance Survey (CHFS) asks whether
-persistent differences in media exposure alone explain belief intensity in cross
-section. The estimated media-channel slope is $\beta = -0.005$ ($SE = 0.022$)
-(Table~\ref{tab:chfs_mechanism_info_channel}, column 1), economically negligible and
-statistically indistinguishable from zero, which suggests that overreaction is
-event-driven rather than a fixed function of information access.
+I make three contributions.
+First, I provide a forecast-error test of household inflation
+overreaction that avoids the mechanical negative correlation
+in standard revision-error designs.
+The identifying variation comes from an external, supply-driven
+price signal, not from within-survey belief revisions.
+Second, I derive a calibrated rational benchmark from a
+signal-extraction model and show that the estimated forecast
+error exceeds the rational bound under any persistence
+assumption.
+This separates behavioural overreaction from rational forecast
+errors due to transitory-shock uncertainty.
+Third, I show that the overreaction is commodity-specific.
+Meat shocks generate forecast errors while grain shocks of
+comparable CPI weight do not, consistent with salience-driven
+rather than rational updating.
 
-I state the limits of this paper explicitly. I do not claim point identification of
-a structural diagnostic-expectations parameter. I do not claim a decisive test
-against all information-rigidity models. I do not claim a policy-invariant welfare
-mapping from overreaction to output losses. The aggregate sample is short ($N = 32$),
-so macro regressions confirm sign and timing but cannot pin down precise elasticities.
-The CFPS expectation variable is biennial and qualitative, which compresses
-adjustment dynamics and limits high-frequency tracing. The salience IV has weak
-first-stage power ($F = 1.16$, Table~\ref{tab:identification_main}, Panel A), so I
-treat IV estimates as directional checks, not as a basis for sharp causal claims. The
-CHFS test is a single cross-section without panel leverage. These constraints narrow
-interpretation but do not overturn the core household-level fact: a large, negative,
-and precisely estimated revision-error elasticity that replicates across subsamples.
+The paper connects to three literatures.
+Diagnostic expectations \citep{Bordalo2018, Bordalo2020b}
+predict that agents overweight signals made representative
+by recent experience; the forecast-error pattern I document
+is a direct counterpart of this prediction.
+Rational inattention \citep{Sims2003, Mackowiak2009} predicts
+selective attention to informative signals; the commodity
+asymmetry is consistent with disproportionate attention to
+high-frequency prices.
+Experience-based learning
+\citep{Malmendier2016, Kuchler2019} predict that personal
+purchase experience shapes expectations more than official
+statistics; the meat channel operates through precisely
+these signals.
 
-Section~\ref{sec:literature} presents the conceptual framework.
-Section~\ref{sec:data} describes the data, and Section~\ref{sec:identification}
-presents the identification strategy. Section~\ref{sec:results} reports baseline
-results. Section~\ref{sec:interpretation} examines dynamic
-interpretation. Section~\ref{sec:heterogeneity} reports heterogeneity.
-Section~\ref{sec:robustness} collects robustness checks.
-Section~\ref{sec:conclusion} concludes. A forecasting application
-appears in Appendix~\ref{app:forecasting}.
+Three limits apply.
+The CFPS is biennial, so I cannot trace within-year adjustment
+dynamics.
+Province-level meat CPI conflates supply and demand movements;
+ASF provides a plausible supply instrument, but the treatment
+is an imperfect proxy for the supply component alone.
+With 31 province clusters, inference throughout relies on
+the wild cluster bootstrap.
+
+The remainder of the paper proceeds as follows.
+Section~\ref{sec:background} provides institutional background.
+Section~\ref{sec:framework} develops the conceptual framework.
+Section~\ref{sec:data} describes the data.
+Section~\ref{sec:strategy} presents the empirical strategy.
+Section~\ref{sec:results} reports main results.
+Section~\ref{sec:mechanism} presents commodity placebo evidence.
+Section~\ref{sec:robustness} contains robustness checks.
+Section~\ref{sec:discussion} discusses alternative
+interpretations and policy implications.
+Section~\ref{sec:conclusion} concludes.
 

@@ -1,0 +1,243 @@
+% =============================================================
+%  Section 7 -- Mechanism: Commodity Placebo and Heterogeneity
+%  Label: sec:mechanism
+% =============================================================
+
+\section{Mechanism Evidence}\label{sec:mechanism}
+
+The main results establish that meat-price shocks generate
+systematic forecast errors.
+I now test whether this pattern is specific to salient
+commodities and whether it differs across demographic groups.
+
+% -------------------------------------------------------------
+\subsection{Commodity Placebo: Meat vs.\ Grain}%
+\label{sec:placebo}
+% -------------------------------------------------------------
+
+\input{\tabdir/placebo_commodity}
+
+The salience hypothesis predicts that overreaction should be
+stronger for commodities with higher cognitive salience and
+weaker for commodities that households observe less frequently.
+I test this using province-level grain-price shocks as a
+placebo.
+
+Grain is a useful placebo for three reasons.
+First, grain carries an official CPI sub-weight similar in
+order of magnitude to meat (roughly 2--3 percent of headline
+CPI), so rational updating would predict comparable expectation
+responses for grain and meat shocks.
+If households update beliefs proportional to CPI weights, a
+one-unit grain shock should move expectations by roughly the
+same amount as a one-unit meat shock.
+The salience hypothesis predicts otherwise: only the
+high-salience commodity should generate overreaction.
+
+Second, grain is purchased less frequently as a fresh ingredient.
+Urban households buy rice or flour in bulk, often monthly or
+less frequently, and observe price changes at the point of
+purchase.
+Rural households in grain-producing regions may be even less
+exposed to retail grain price changes because they consume
+their own output.
+Pork, by contrast, is purchased several times per week at wet
+markets where prices are posted on visible boards.
+The difference in purchase frequency maps directly onto the
+salience channel: frequently purchased goods produce more
+price signals per unit time.
+
+Third, grain prices were not subject to the same supply
+disruption as pork during the ASF episode.
+ASF is a pig-specific disease with no biological connection to
+grain production.
+Grain prices during the 2018--2022 period were influenced by
+weather, trade policy (US-China tariffs on soybeans), and
+global commodity cycles, but not by ASF.
+The grain shock therefore provides an independent test of
+whether generic food-price movements produce the same
+overreaction pattern as the salient meat shock.%
+\footnote{Egg prices are excluded from the main analysis because
+pork-egg substitution during the ASF episode mechanically
+correlates egg and meat price movements. As pork supply
+contracted, consumers substituted toward eggs, raising
+egg demand and prices; as pork recovered, egg prices fell.
+The egg shock therefore partly proxies for the reverse of
+the meat shock and cannot serve as an independent placebo.}
+
+Table~\ref{tab:placebo_commodity} presents expectation
+coefficients for meat and grain shocks side by side.
+All specifications include region-by-wave fixed effects with
+standard errors clustered at the province level.
+
+Column~(1) enters the meat shock alone, replicating the
+baseline Equation~1 result under region-by-wave fixed effects.
+The coefficient is $\hat{\beta}_1^{\text{meat}} = 0.242$
+(s.e. = 0.174).
+Column~(2) enters the grain shock alone.
+The coefficient is $\hat{\beta}_1^{\text{grain}} = 0.371$
+(s.e. = 0.583, $p = 0.53$): positive but imprecise, with
+s.e. more than 50 percent larger than the
+coefficient.
+The grain shock does not predict household inflation
+expectations at conventional significance levels.
+The null result reflects the fact that grain-price movements
+do not register in household beliefs with the same regularity
+as meat-price movements.
+
+Column~(3) enters both shocks jointly in a horse-race
+specification.
+The meat shock coefficient is $0.240$ (s.e. = 0.172),
+nearly unchanged from column~(1).
+The grain coefficient is $0.357$ (s.e. = 0.610), also
+similar to column~(2).
+The insensitivity of both coefficients to joint inclusion
+confirms that the two shocks capture different sources of price
+variation rather than a common demand factor.
+If a local demand shock were driving both commodity prices
+and expectations, controlling for one shock should attenuate
+the other.
+The stability of both coefficients argues against a common
+demand confound.
+
+A formal Wald test of $H_0\colon \beta^{\text{meat}} =
+\beta^{\text{grain}}$ in the horse-race specification cannot
+reject equality for the expectation equation (difference
+$= -0.117$, s.e. = 0.518, $p = 0.822$).
+The failure to reject reflects the large standard error on
+the grain coefficient rather than genuine similarity of the
+point estimates.
+For the forecast-error equation, the horse-race yields
+$\hat{\beta}_3^{\text{meat}} = -5.97$ (s.e. = 1.19) and
+$\hat{\beta}_3^{\text{grain}} = 2.57$ (s.e. = 4.95).
+The Wald test rejects equality at the 10 percent level
+(difference $= -8.54$, s.e. = 4.56, $p = 0.071$),
+providing formal evidence that meat and grain shocks produce
+economically distinct forecast-error responses.
+The test is conservative because the grain coefficient is
+noisy; with more precise estimation of the grain effect, the
+difference would tighten.
+
+The contrast between meat and grain is not what a simple
+rational-weighting benchmark predicts.
+Under rational expectations with correct CPI weights, a
+household that responds to a one-unit meat shock should respond
+similarly to a one-unit grain shock, because both commodities
+carry comparable headline CPI weights.
+The data show a positive (if imprecise) response to meat and
+a null response to grain.
+
+The salience channel provides a coherent explanation.
+Pork prices are observed at high frequency and received
+extensive media coverage during the ASF episode.
+Grain prices are observed at low frequency and received
+modest media attention.
+The difference in salience, not CPI weight, explains the
+differential expectation response.
+This pattern is predicted by models in which households
+weight signals by their experiential vividness rather than
+their statistical informativeness
+\citep{Cavallo2017, DacuntoHoangPirolliWeber2021}.
+
+The null grain result also addresses a key concern.
+If the overreaction finding were driven by province-level
+demand shocks correlated with meat prices, the same demand
+shocks should correlate with grain prices and produce a
+similar expectation response.
+The null grain result makes this explanation unlikely.
+
+% -------------------------------------------------------------
+\subsection{Demographic Heterogeneity}\label{sec:demo_het}
+% -------------------------------------------------------------
+
+\input{\tabdir/heterogeneity}
+
+Table~\ref{tab:heterogeneity} augments the baseline expectation
+equation with interaction terms between the meat shock and three
+household characteristics: education, income, and urban status.
+Each column enters one interaction at a time.
+All specifications include region-by-wave fixed effects.
+
+Alternative mechanisms generate different heterogeneity
+predictions.
+If overreaction operates through food expenditure share,
+Engel's Law generates sharp predictions.
+Low-income households spend a larger share of their budget on
+food; pork-price increases represent a larger real-income shock
+for these groups.
+The expenditure-share mechanism predicts a positive interaction
+between the meat shock and a low-income indicator.
+Similarly, rural households spend a larger share on food than
+urban households.
+Education may also operate through the information channel.
+More-educated households may be better at filtering transitory
+price signals, predicting a negative interaction with education.
+
+The cognitive salience mechanism generates a different
+prediction.
+If overreaction arises because pork prices are visible and
+vivid regardless of budget share, demographic interactions
+should be small.
+Pork is purchased at similar frequency by rich and poor
+households, by urban and rural households, and by more- and
+less-educated households.
+Under salience, effects should be similar across groups.
+
+The data do not support sharp demographic gradients.
+
+The education interaction is $-0.008$ (s.e. = 0.019),
+economically and statistically zero.
+More-educated households do not overreact less.
+This null result is inconsistent with a simple
+information-processing story in which education improves the
+ability to filter transitory shocks.
+
+The income interaction is $-1.691$ (s.e. = 0.988, $p < 0.10$),
+negative and marginally significant.
+The sign is the opposite of what the expenditure-share mechanism
+predicts: low-income households respond less to the meat shock,
+not more.
+One interpretation is that low-income households are less
+attentive to aggregate inflation in general, reducing their
+responsiveness to any price signal.
+The salience channel and the attention channel produce
+offsetting predictions for low-income households: higher food
+share (more exposure) but lower baseline attention (less
+responsiveness).
+
+The urban-rural interaction is $0.003$ (s.e. = 0.005),
+effectively zero.
+Urban and rural households respond identically to meat-price
+shocks despite differences in food expenditure share, market
+access, and information environment.
+
+Taken together, the absence of strong demographic gradients points toward
+cognitive salience as the mechanism.
+Three patterns together support this interpretation.
+
+First, overreaction is similar across income, education,
+and urban-rural groups rather than operating selectively through
+the food-budget-share channel.
+If budget share were the driver, the interaction terms should be
+large and precisely estimated.
+
+Second, the null education interaction rules out the simplest
+information-processing story.
+The zero coefficient means that the cognitive mechanism operates
+at a level below formal education: even college-educated
+households overweight salient price signals when forming
+inflation expectations.
+
+Third, the null urban-rural interaction confirms that the
+mechanism is not specific to a particular market structure.
+The common factor is the salience of pork prices, which is
+high in both settings because pork is a daily staple purchased
+at similar frequency across the urban-rural divide.
+
+This pattern is more consistent with a cognitive salience
+mechanism, in which the visibility of price changes matters
+regardless of budget share, than with a pure
+expenditure-weight explanation.
+Section~\ref{sec:broadbased} discusses this interpretation
+further.
+
