@@ -1,0 +1,32 @@
+\begin{table}[!htbp]
+\centering
+\caption{Revision Regressions: Meat Shock Effects Across Specifications}
+\label{tab:revision_regressions}
+\begin{threeparttable}
+\begin{tabular}{lcccccc}
+\toprule
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+& Exp: RW FE & Exp: RW FE + X & Exp: Prov+Wave FE & Exp: Horse race & FE: RW FE & FE: RW FE + X \\
+\midrule
+Meat shock & $0.242$ & $2.636^{***}$ & $0.090^{*}$ & $0.240$ & $-5.555^{***}$ & $-1.623$ \\
+& $(0.174)$ & $(0.806)$ & $(0.053)$ & $(0.172)$ & $(1.198)$ & $(5.741)$ \\[4pt]
+Grain shock &  &  &  & $0.357$ &  &  \\
+&  &  &  & $(0.610)$ &  &  \\[4pt]
+\midrule
+Demographics &  & Yes &  &  &  & Yes \\
+Province FE &  &  & Yes &  &  &  \\
+Wave FE &  &  & Yes &  &  &  \\
+Region $\times$ wave FE & Yes & Yes &  & Yes & Yes & Yes \\
+Observations & 90,133 & 22,121 & 90,133 & 90,133 & 69,533 & 22,121 \\
+$R^2$ & 0.002 & 0.042 & 0.011 & 0.002 & 0.484 & 0.055 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Note.} Standard errors clustered at the province level in parentheses.
+\item Demographics include age, high-education indicator, and urban indicator (with negative urban codes recoded to missing).
+\item Column (4) is the horse-race specification that enters meat and grain shocks jointly.
+\item $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

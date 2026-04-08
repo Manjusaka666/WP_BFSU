@@ -80,7 +80,7 @@ lines <- c(
   "\\toprule",
   "& (1) & (2) & (3) \\\\",
   "& Meat & Grain & Horse race \\\\",
-  "\\multicolumn{4}{l}{\\textit{Dep.\\ var.: Inflation expectation ($\\mu_{it}$)}} \\\\",
+  # Dep var moved to table note (AEA format)
   "\\midrule"
 )
 

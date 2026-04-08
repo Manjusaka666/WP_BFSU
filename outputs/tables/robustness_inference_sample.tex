@@ -1,0 +1,56 @@
+\begin{table}[!htbp]
+\centering
+\caption{Robustness: Inference and Sample Stability}
+\label{tab:robustness_inference_sample}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+& $\hat{\beta}$ & & $N$ & $R^{2}$ \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Panel A: Inference robustness --- forecast error}} \\[6pt]
+Wild cluster bootstrap\textsuperscript{a}
+  & $-7.127^{***}$ &                & 69,533 & 0.526 \\[3pt]
+Randomization inference\textsuperscript{b}
+  & $-5.555^{***}$ &                & 69,533 & 0.484 \\[3pt]
+Collapsed cell means\textsuperscript{c}
+  & $-5.555^{***}$ & $(1.335)$      & 93     & 0.814 \\[6pt]
+\multicolumn{5}{@{}l}{\textit{Panel A (cont.): Inference robustness --- expectations}} \\[6pt]
+Wild cluster bootstrap\textsuperscript{a}
+  & $0.119^{**}$  &                & 90,133 & 0.012 \\[3pt]
+Randomization inference\textsuperscript{b}
+  & $0.242^{***}$ &                & 90,133 & 0.002 \\[3pt]
+Collapsed cell means\textsuperscript{c}
+  & $0.242$       & $(0.194)$      & 124    & 0.145 \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Panel B: Sample robustness --- forecast error}} \\[6pt]
+Drop 2022 wave
+  & $-5.555^{***}$ & $(1.198)$ & 69,533 & 0.484 \\[3pt]
+Drop North
+  & $-5.220^{***}$ & $(1.250)$ & 60,565 & 0.485 \\[3pt]
+Drop East
+  & $-6.488^{***}$ & $(1.403)$ & 56,214 & 0.496 \\[3pt]
+Drop Northeast
+  & $-5.437^{***}$ & $(1.236)$ & 61,072 & 0.504 \\[3pt]
+Drop South
+  & $-5.793^{***}$ & $(1.279)$ & 61,272 & 0.439 \\[3pt]
+Drop Central
+  & $-5.720^{***}$ & $(1.217)$ & 58,599 & 0.472 \\[3pt]
+Drop West
+  & $-4.504^{***}$ & $(0.984)$ & 49,943 & 0.506 \\[6pt]
+\multicolumn{5}{@{}l}{\textit{Panel B (cont.): Sample robustness --- expectations}} \\[6pt]
+Drop 2022 wave
+  & $0.512^{**}$   & $(0.194)$ & 69,533 & 0.002 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Note.} Each row reports the meat-shock coefficient from a single regression. The second column reports standard errors clustered at the province level in parentheses where applicable. Bootstrap and randomization inference rows report significance stars based on resampling $p$-values rather than asymptotic standard errors. All regressions use region $\times$ wave fixed effects except collapsed cell means, which use the province $\times$ wave cell-mean specification.
+\item[a] Restricted wild cluster bootstrap (WCR) with Webb six-point distribution and 9,999 replications, applied to the province + region $\times$ wave specification.
+\item[b] 2,000 permutations of the meat shock within region $\times$ wave cells.
+\item[c] Province $\times$ wave cell means weighted by household count, with region $\times$ wave fixed effects.
+\item $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

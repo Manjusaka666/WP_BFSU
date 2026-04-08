@@ -35,43 +35,53 @@ The most generous case for the rational explanation is
 $\hat{\rho} = 1$ and $\rho = 0$: the household believes the
 shock is permanent but it is fully transitory.
 Even then, $\beta_3^R = -0.05$.
-The estimated coefficient is $\hat{\beta}_3 = -6.067$ under
-region-by-wave fixed effects and $-5.622$ under
-province-plus-wave fixed effects---exceeding the rational upper
-bound by factors of 121 and 112 respectively.
-No intermediate belief $\hat{\rho} \in (0,1)$ can close this
-gap.
+The estimated coefficient is $\hat{\beta}_3 = -7.13$ under
+the preferred province-plus-region-by-wave specification,
+exceeding the rational upper bound by two orders of magnitude.
+Section~\ref{sec:time_aggregation} shows that the bound
+survives time aggregation: even the most generous
+time-aggregated rational bound ($24\omega = 1.20$) is six
+times smaller than the estimated coefficient.
+No intermediate belief $\hat{\rho} \in (0,1)$ and no
+time-aggregation assumption can close this gap.
 
 Table~\ref{tab:calibration_benchmark} makes the comparison
 explicit across a grid of persistence assumptions.
-At the estimated AR(1) persistence of $\hat{\rho} = 0.480$
-(3,689 monthly observations, 31 provinces), a household that
-overestimates persistence by the maximum possible amount
-produces $\beta_3^R = -0.026$.
-The estimated coefficient is 233 times larger in absolute
-value.
+Under every scenario, the rational worst-case bound lies
+between zero and $-1.20$ (the time-aggregated extreme).
+The estimated coefficient exceeds even this most generous
+bound by a wide margin.
 
 A subtler version of the objection invokes model uncertainty.
 Perhaps households assign a larger CPI weight to meat than the
 official weight implies.
-To close the gap, households would need to believe that
-meat carries a CPI weight of approximately 6 percentage
-points---120 times the actual weight.
-Even doubling the official weight to $0.10$ leaves the rational
-bound 60 times below the estimated coefficient.
+Even tripling the official weight to $\omega = 0.15$ and
+combining it with the most generous time-aggregated bound
+yields $24 \times 0.15 = 3.6$, still about half the
+estimated coefficient.
+Closing the gap requires assumptions about subjective CPI
+weights that are difficult to sustain.
 
-Under the diagnostic model of Section~\ref{sec:diagnostic_extension},
-the excess forecast error beyond the rational bound identifies
-$\theta \cdot \omega$.
-The implied $\theta \approx 120$ is large; the ordinal scale
-inflates this estimate, so the point value should not be taken
-literally.
-But the qualitative conclusion is unambiguous: the household
-response to meat-price shocks is far beyond what any rational
-model with known or uncertain persistence can generate.
-The transitory-shock explanation is quantitatively insufficient
-under the benchmark, though the exact ratio depends on the
-ordinal scaling (Appendix~\ref{app:scaling}).
+The ordinal nature of the CFPS expectation variable means
+that the exact magnitude of $\hat{\beta}_3$ should not be
+taken at face value.
+The paper's conclusion rests on two objects that do not depend
+on the ordinal scaling.
+The sign of $\hat{\beta}_3 < 0$ is invariant to any monotone
+rescaling of the ordinal codes (Appendix~\ref{app:scaling}),
+and the pass-through coefficient $\hat{\beta}_2 = -5.25$
+is measured in CPI percentage points and involves no ordinal
+variable.
+Even ignoring the expectation channel entirely,
+$|\hat{\beta}_2|$ exceeds the time-aggregated rational bound
+of 1.20 by a factor of four.
+No combination of persistence beliefs, CPI weights, or
+ordinal-to-cardinal mappings can close this gap.
+Appendix~\ref{app:scaling} provides a formal sign-invariance
+proof, reports sensitivity across three scaling functions,
+and confirms the result using a Carlson-Parkin quantification
+that converts the ordinal responses to cardinal expected
+inflation rates.
 
 \subsection{Overreaction Across Demographic Groups}\label{sec:broadbased}
 
@@ -92,10 +102,10 @@ highest quintile.
 If overreaction operated through personal budget shares,
 low-income households should overreact more by a factor of
 roughly two.
-The data do not support this prediction: the interaction between
-the meat shock and a low-income indicator is small and
-insignificant, as are the interactions with education and
-urban-rural status.
+The data do not support this prediction: the interactions
+between the meat shock and education, income, and urban-rural
+indicators are all small and statistically indistinguishable
+from zero at conventional levels.
 
 The absence of demographic gradients is more consistent with
 a cognitive salience mechanism.
@@ -124,11 +134,11 @@ relevance for central banks that rely on survey expectations.
 
 China's institutional setting amplifies the salience channel
 along two dimensions.
-First, the official CPI food weight (approximately 28 percent)
+The official CPI food weight (approximately 28 percent)
 is roughly twice the comparable share in high-income economies
 (8 percent in the US, 15 percent in the euro area).
-Second, pork accounts for approximately 60 percent of total
-meat consumption in China---no single protein commodity plays
+Pork accounts for approximately 60 percent of total
+meat consumption in China, and no single protein commodity plays
 a comparable role in most OECD countries.
 These features suggest that the magnitude documented here may
 be an upper bound on what the same design would find in

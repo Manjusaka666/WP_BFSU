@@ -1,0 +1,32 @@
+\begin{table}[!htbp]
+\centering
+\caption{Robustness: Sample Stability}
+\label{tab:robustness_sample}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+& (1) & (2) & (3) & (4) & (5) & (6) & (7) \\
+& \shortstack{Drop 2022\\wave} & \shortstack{Drop\\North} & \shortstack{Drop\\East} & \shortstack{Drop\\Northeast} & \shortstack{Drop\\South} & \shortstack{Drop\\Central} & \shortstack{Drop\\West} \\
+\midrule
+\multicolumn{8}{@{}l}{\textit{Panel A: Forecast error}} \\[6pt]
+Meat shock & $-5.555^{***}$ & $-5.220^{***}$ & $-6.488^{***}$ & $-5.437^{***}$ & $-5.793^{***}$ & $-5.720^{***}$ & $-4.504^{***}$ \\
+           & $(1.198)$      & $(1.250)$      & $(1.403)$      & $(1.236)$      & $(1.279)$      & $(1.217)$      & $(0.984)$      \\[6pt]
+Observations & 69,533 & 60,565 & 56,214 & 61,072 & 61,272 & 58,599 & 49,943 \\
+$R^{2}$      & 0.484  & 0.485  & 0.496  & 0.504  & 0.439  & 0.472  & 0.506  \\
+\midrule
+\multicolumn{8}{@{}l}{\textit{Panel B: Inflation expectation ($\mu_{it} \in \{-1,0,1\}$)}} \\[6pt]
+Meat shock   & $0.512^{**}$ & $0.237$   & $0.177$   & $0.250$   & $0.294$   & $0.095$   & $0.517$   \\
+             & $(0.194)$    & $(0.182)$ & $(0.227)$ & $(0.178)$ & $(0.190)$ & $(0.108)$ & $(0.323)$ \\[6pt]
+Observations & 69,533  & 78,163 & 72,989 & 79,217 & 79,547 & 75,699 & 65,050 \\
+$R^{2}$      & 0.002   & 0.002  & 0.001  & 0.002  & 0.002  & 0.001  & 0.003  \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Note.} Each column drops the indicated subsample. Standard errors clustered at the province level in parentheses. All columns use region $\times$ wave fixed effects. The expectation coefficient is positive in every subsample; drop-2022 is significant at the five-percent level, while the leave-one-region-out estimates are positive but imprecise.
+\item $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

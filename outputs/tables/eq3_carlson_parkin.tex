@@ -1,0 +1,30 @@
+\begin{table}[!htbp]
+\centering
+\caption{Meat Price Shock and Carlson-Parkin Forecast Errors}
+\label{tab:eq3_carlson_parkin}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccccc}
+\toprule
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+& Bivariate & Demographics & \shortstack{Province\\+ wave} & \shortstack{Region\\$\times$ wave} & \shortstack{Region $\times$ wave\\+ demographics} & \shortstack{Province +\\region $\times$ wave} \\
+\midrule
+Meat shock & $-1.960^{***}$ & $-2.860$ & $-5.694^{***}$ & $-6.291^{***}$ & $-6.628$ & $-7.610^{***}$ \\
+& $(0.259)$ & $(5.783)$ & $(1.197)$ & $(1.129)$ & $(5.373)$ & $(1.124)$ \\[6pt]
+Demographics &  & Yes &  &  & Yes &  \\
+Province FE &  &  & Yes &  &  & Yes \\
+Wave FE &  &  & Yes &  &  &  \\
+Region $\times$ wave FE &  &  &  & Yes & Yes & Yes \\
+\midrule
+Observations & 69,529 & 22,118 & 69,529 & 69,529 & 22,118 & 69,529 \\
+$R^2$ & 0.215 & 0.023 & 0.828 & 0.801 & 0.154 & 0.887 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Note.} The dependent variable is the Carlson-Parkin forecast error: realized province-level CPI inflation minus the Carlson-Parkin quantified expected inflation ($\delta = 0.5$ pp). Standard errors clustered at the province level in parentheses. Column~(6) is the preferred specification.
+\item $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

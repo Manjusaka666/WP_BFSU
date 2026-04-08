@@ -3,26 +3,27 @@
 \caption{Meat Price Shock and Household Inflation Expectations}
 \label{tab:eq1_expectations}
 \begin{threeparttable}
-\begin{tabular}{lccccc}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccccc}
 \toprule
-& (1) & (2) & (3) & (4) & (5) \\
-\multicolumn{6}{l}{\textit{Dep.\ var.: Inflation expectation ($\mu_{it}$)}} \\
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+& Bivariate & Demographics & \shortstack{Province\\+ wave} & \shortstack{Region\\$\times$ wave} & \shortstack{Region $\times$ wave\\+ demographics} & \shortstack{Province +\\region $\times$ wave} \\
 \midrule
-Meat shock & $0.028^{**}$ & $2.492^{***}$ & $0.090^{*}$ & $0.242$ & $2.636^{***}$ \\
-& $(0.012)$ & $(0.812)$ & $(0.053)$ & $(0.174)$ & $(0.806)$ \\[6pt]
-Demographics &  & Yes &  &  & Yes \\
-Province FE &  &  & Yes &  &  \\
-Wave FE &  &  & Yes &  &  \\
-Region $\times$ wave FE &  &  &  & Yes & Yes \\
+Meat shock & $0.028^{**}$ & $2.492^{***}$ & $0.090^{*}$ & $0.242$ & $2.636^{***}$ & $0.119^{**}$ \\
+& $(0.012)$ & $(0.812)$ & $(0.053)$ & $(0.174)$ & $(0.806)$ & $(0.050)$ \\[6pt]
+Demographics &  & Yes &  &  & Yes &  \\
+Province FE &  &  & Yes &  &  & Yes \\
+Wave FE &  &  & Yes &  &  &  \\
+Region $\times$ wave FE &  &  &  & Yes & Yes & Yes \\
 \midrule
-Observations & 90,133 & 22,121 & 90,133 & 90,133 & 22,121 \\
-$R^2$ & 0.000 & 0.038 & 0.011 & 0.002 & 0.042 \\
+Observations & 90,133 & 22,121 & 90,133 & 90,133 & 22,121 & 90,133 \\
+$R^2$ & 0.000 & 0.038 & 0.011 & 0.002 & 0.042 & 0.012 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Note.} Standard errors clustered at the province level in parentheses.
-\item Meat shock is the cumulative log meat CPI change in the household's province between consecutive CFPS waves.
+\item \textit{Note.} The dependent variable is the household's ordinal inflation expectation ($\mu_{it} \in \{-1, 0, 1\}$). Standard errors clustered at the province level in parentheses. Column~(6) is the preferred specification.
 \item $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
 \end{tablenotes}
 \end{threeparttable}

@@ -49,6 +49,8 @@
 \captionsetup{font=small, labelfont=bf}
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 
 % --- Custom commands ---
 \newcommand{\tabdir}{../outputs/tables}
@@ -59,8 +61,8 @@
 \DeclareMathOperator*{\argmax}{arg\,max}
 
 % --- Title ---
-\title{Overreaction in Household Inflation Expectations: \\
-Evidence from China}
+\title{Diagnostic Overreaction in Inflation Expectations: \\
+Evidence from China's Pork Supply Crisis}
 \author{Jingle Fu\thanks{International Business School, Beijing Foreign Studies University}}
 \date{April 2026}
 
@@ -71,27 +73,16 @@ Evidence from China}
 
 \begin{abstract}
 	\noindent
-	This paper asks whether households overreact to salient
-	relative-price shocks when forming inflation expectations.
-	I combine province-level meat CPI shocks with four waves of the
-	China Family Panel Studies (2016--2022) and estimate a
-	forecast-error design with region-by-wave fixed effects.
-	Within the same region and wave, provinces with larger meat-price
-	increases have substantially more negative subsequent forecast
-	errors: $\hat{\beta}_3=-6.07$ (wild cluster bootstrap
-	$p < 0.001$, 31 clusters), implying about $-1.70$ percentage
-	points for a one-standard-deviation shock.
-	A signal-extraction benchmark implies a rational bound
-	$|\beta_3^R|\leq 0.05$ under any persistence belief, so the
-	estimated response is far too large to be reconciled with
-	rational updating alone.
-	The mechanism is a wedge decomposition: meat shocks raise
-	expectations but do not raise forward headline CPI because the
-	ASF-driven price spike later reverses.
-	Placebo tests show that grain shocks with comparable CPI weight
-	do not generate the same pattern.
-	The evidence supports salience-driven diagnostic overreaction
-	in household inflation beliefs.
+	Households systematically overpredict inflation after salient food-price shocks. I exploit the 2018--2019 African Swine
+	Fever outbreak in China, which reduced the national hog herd by 30--55 percent and generated sharp cross-province
+	variation in meat prices. Combining province-level meat CPI data with four waves of the China Family Panel Studies
+	(2016--2022), I show that a one-standard-deviation meat-price shock raises household forecast errors by 1.7 percentage
+	points, roughly three-quarters of average headline inflation. A signal-extraction model calibrated to the CPI weight of
+	meat bounds the rational forecast error at less than one-twentieth of the estimated response. The excess is consistent
+	with diagnostic overreaction: households treat a transitory, mean-reverting shock as informative about persistent
+	inflation. Placebo tests confirm that grain shocks of comparable CPI weight produce no such pattern. The findings imply
+	that salient relative-price movements can durably distort the inflation expectations that anchor consumption and
+	wage-setting decisions.
 	\\[0.5em]
 	\textbf{JEL Codes:} D84, E31, E71 \\
 	\textbf{Keywords:} inflation expectations, overreaction,
@@ -116,10 +107,10 @@ Evidence from China}
 % --- Appendix ---
 \newpage
 \appendix
-\setcounter{table}{0}
-\setcounter{figure}{0}
-\renewcommand{\thetable}{A\arabic{table}}
-\renewcommand{\thefigure}{A\arabic{figure}}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
 
 \input{sections/A1_model_derivation}
 \input{sections/A2_data_construction}

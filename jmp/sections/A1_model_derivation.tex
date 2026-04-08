@@ -139,6 +139,63 @@ Since $\theta > 0$:
 The gap $|\beta_3^\theta| - |\beta_3^R| = \omega\,\theta$
 identifies the diagnostic parameter scaled by the CPI weight.
 
+\subsection{Time-Aggregation Extension}
+
+The one-period model treats the meat shock as a single
+realisation.
+In the data, the treatment $S_{pt} = \sum_{m=1}^{M} s_{pm}$
+is a cumulative shock over $M \approx 24$ months, and the
+forecast horizon covers $H \approx 24$ forward months.
+This subsection derives the rational bound for the
+time-aggregated object.
+
+Under the AR(1) specification, the headline CPI contribution
+of a monthly meat shock $s_{pm}$ at horizon $h$ months ahead
+is $\omega\,\rho^h\,s_{pm}$.
+The total forward headline CPI response to the sequence of
+monthly shocks is
+\[
+  \sum_{m=1}^{M}\sum_{h=1}^{H}
+  \omega\,\rho^h\,s_{pm}
+  = \omega\,\frac{\rho(1-\rho^H)}{1-\rho}\,S_{pt},
+\]
+where I use the fact that
+$\sum_{h=1}^H \rho^h = \rho(1-\rho^H)/(1-\rho)$ and
+$\sum_{m=1}^M s_{pm} = S_{pt}$.
+
+A rational household with belief $\hat{\rho}$ forecasts the
+same expression with $\hat{\rho}$ replacing $\rho$.
+The forecast-error regression coefficient on $S_{pt}$ is
+\[
+  \beta_3^R
+  = \omega\left[
+      \frac{\rho(1-\rho^H)}{1-\rho}
+    - \frac{\hat{\rho}(1-\hat{\rho}^H)}{1-\hat{\rho}}
+    \right].
+\]
+
+Define $g(\rho) \equiv \rho(1-\rho^H)/(1-\rho)$.
+For $\rho \in [0,1]$ and finite $H$, $g$ is continuous with
+$g(0) = 0$ and $\lim_{\rho \to 1} g(\rho) = H$.
+The range of $g$ is $[0, H]$.
+Therefore
+$|g(\rho) - g(\hat{\rho})| \leq H$ for all
+$\rho, \hat{\rho} \in [0,1]$, and
+\[
+  |\beta_3^R| \leq \omega\,H.
+\]
+With $H \approx 24$, the time-aggregated rational bound is
+$24 \times 0.05 = 1.20$.
+
+The bound is tightest when the treatment and forecast horizons
+are equal ($M \approx H$), which is the case in the CFPS
+design.
+If the treatment were concentrated in a single month ($M = 1$)
+but the forecast horizon remained 24 months, the bound per unit
+of $S_{pt}$ would be $\omega H = 1.20$, unchanged.
+The estimated $|\hat{\beta}_3| = 7.13$ exceeds this bound by a
+factor of six.
+
 \subsection{Calibration}
 
 I estimate $\rho$ from a pooled AR(1) regression on monthly
@@ -158,12 +215,21 @@ The estimated persistence is $\hat{\rho} = 0.480$.
 Given $\hat{\rho}$ from the data and $\omega = 0.05$, the
 rational benchmark is
 $|\beta_3^R| \leq \omega = 0.05$.
-The estimated $\hat{\beta}_3 = -6.067$ yields an implied
-diagnostic parameter of
-$\hat{\theta} = (|\hat{\beta}_3| - \omega)/\omega
-\approx (6.07 - 0.05)/0.05 = 120$.
-While the ordinal expectation scale inflates this number, the
-qualitative finding is robust: $\hat{\theta} \gg 0$.
+The estimated $\hat{\beta}_3 = -7.13$ under the preferred
+specification yields an implied diagnostic parameter that is
+large.
+Even using the time-aggregated rational bound of $1.20$ as
+the baseline, the excess is
+$(7.13 - 1.20)/0.05 = 119$.
+Because the CFPS expectation is ordinal, the exact magnitude
+of $\hat{\beta}_3$ embeds an arbitrary scaling choice, and
+the implied $\hat{\theta}$ should not be taken at face value.
+The qualitative conclusion is that $\hat{\theta} \gg 0$:
+overreaction is large relative to the rational benchmark.
+A scaling-free lower bound on the excess comes from the
+pass-through coefficient: $|\hat{\beta}_2| = 5.25$ exceeds
+the time-aggregated rational bound of 1.20 without involving
+any ordinal variable (Appendix~\ref{app:scaling}).
 
 \subsection{Comparative Statics}
 
@@ -247,14 +313,15 @@ One gap between model and data deserves note.
 The model assumes that the household observes a continuous
 signal $s_{pt}$ and forms a continuous expectation.
 The CFPS expectation is ordinal: $\mu_{ipt} \in \{-1,0,1\}$.
-The scaling from ordinal to CPI units (the mapping
-$\{-1,0,1\} \to \{-2,0,2\}$) introduces an additional
-degree of freedom that the model does not pin down.
-Appendix~\ref{app:scaling} shows that the sign of
-$\hat{\beta}_3$ is invariant to the scaling choice, so the
-qualitative test of rationality is unaffected.
-But the point estimate of $\hat{\theta}$ depends on the scaling
-and should be interpreted with caution.
+No information in the survey resolves the mapping from
+ordinal codes to CPI units.
+The overreaction test does not require this mapping:
+the sign of $\hat{\beta}_3$ is invariant to any monotone
+rescaling of the ordinal variable
+(Appendix~\ref{app:scaling}), and the pass-through coefficient
+$\hat{\beta}_2$ provides a scaling-free magnitude test.
+The implied $\hat{\theta}$ depends on the assumed mapping
+and should not be interpreted as a point estimate.
 
 \subsection{Limitations of the Model}
 
@@ -264,28 +331,26 @@ rational forecast error, not to describe the full
 information environment of Chinese households.
 Several features are omitted.
 
-First, the model assumes a single signal.
+The model assumes a single signal.
 In reality, households observe multiple price signals (meat,
 grain, vegetables, housing, services) and must aggregate them
 into an inflation forecast.
-The model's prediction---that the forecast-error coefficient
-on the meat shock is bounded by $\omega$---holds in a
-multi-signal extension provided that the meat shock is
-orthogonal to other signals conditional on fixed effects.
-The fixed-effect structure in the empirical specification is
-designed to absorb common components across signals.
+The prediction that the forecast-error coefficient on the meat
+shock is bounded by $\omega$ holds in a multi-signal extension
+provided that the meat shock is orthogonal to other signals
+conditional on fixed effects; the fixed-effect structure in
+the empirical specification is designed to absorb common
+components across signals.
 
-Second, the model assumes static expectations: the household
+The model also assumes static expectations: the household
 forms a one-period-ahead forecast and does not revise it.
 In practice, households may update their beliefs between
 survey waves as new information arrives.
 The biennial CFPS structure does not allow observation of
-intra-wave updating.
-A dynamic extension with sequential signals would be
-appropriate for higher-frequency data but would add
-parameters that the current data cannot identify.
+intra-wave updating, and a dynamic extension with sequential
+signals would add parameters the current data cannot identify.
 
-Third, the model does not endogenise attention.
+Finally, the model does not endogenise attention.
 The diagnostic parameter $\theta$ is a constant that applies
 to the meat signal regardless of its size.
 A richer model in the spirit of rational inattention
@@ -297,7 +362,7 @@ unusually large) than in normal times, but it requires
 additional structure and cross-sectional variation in
 attention costs that are not available in the current data.
 
-Fourth, the model assumes homogeneous households.
+The model also assumes homogeneous households.
 In the data, households differ in income, education, and
 geographic location.
 A heterogeneous-agent extension would allow $\theta$ or

@@ -63,33 +63,29 @@ the six-point distribution produces rejection rates closer to
 the nominal size than either the Rademacher or Mammen
 distributions.
 
-Each bootstrap replication proceeds as follows:
-\begin{enumerate}
-  \item Estimate the restricted model (imposing $H_0\colon
-    \beta = 0$) and obtain residuals
-    $\hat{\varepsilon}_{ig}^{r}$ for each observation $i$ in
-    cluster $g$.
-  \item Draw a six-point random weight $w_g$ independently for
-    each of the 31 province clusters.
-    The weight takes one of six values, each with probability
-    $1/6$.
-  \item Construct the bootstrap error as
-    $\varepsilon^*_{ig} = w_g \cdot \hat{\varepsilon}_{ig}^{r}$.
-    All observations within a cluster receive the same weight,
-    preserving the within-cluster correlation structure.
-  \item Construct the bootstrap dependent variable:
-    $y^*_{ig} = \hat{y}_{ig}^{r} + \varepsilon^*_{ig}$,
-    where $\hat{y}_{ig}^{r}$ is the fitted value from the
-    restricted model.
-  \item Re-estimate the unrestricted model on
-    $(y^*_{ig}, X_{ig})$ and compute the $t$-statistic $t^*_b$
-    on the coefficient of interest.
-  \item Repeat steps 2--5 for $B = 9{,}999$ replications.
-  \item The bootstrap $p$-value is the fraction of replications
-    for which $|t^*_b| \geq |t_{\text{obs}}|$, where
-    $t_{\text{obs}}$ is the test statistic from the original
-    data.
-\end{enumerate}
+Each bootstrap replication proceeds as follows.
+
+\begin{algorithm}[htbp]
+\caption{Wild Cluster Restricted Bootstrap (WCR)}\label{alg:wcr_bootstrap}
+\begin{algorithmic}[1]
+\Require Observed data $\{(y_{ig}, X_{ig})\}$; number of clusters $G = 31$; replications $B = 9{,}999$
+\Ensure Bootstrap $p$-value for $H_0\colon \beta = 0$
+\State Estimate the restricted model (imposing $H_0\colon \beta = 0$) and obtain residuals $\hat{\varepsilon}_{ig}^{r}$ and fitted values $\hat{y}_{ig}^{r}$ for each observation $i$ in cluster $g$
+\State Estimate the unrestricted model on the original data and record $t_{\text{obs}}$
+\For{$b = 1, \ldots, B$}
+    \For{$g = 1, \ldots, G$}
+        \State Draw $w_g$ independently from the six-point distribution (each value with probability $1/6$)
+    \EndFor
+    \For{each observation $i$ in cluster $g$}
+        \State $\varepsilon^*_{ig} \gets w_g \cdot \hat{\varepsilon}_{ig}^{r}$ \Comment{Preserve within-cluster correlation}
+        \State $y^*_{ig} \gets \hat{y}_{ig}^{r} + \varepsilon^*_{ig}$
+    \EndFor
+    \State Re-estimate the unrestricted model on $(y^*_{ig}, X_{ig})$
+    \State Record $t^*_b$ for the coefficient of interest
+\EndFor
+\State \Return $\hat{p} = \dfrac{1}{B+1}\displaystyle\sum_{b=1}^{B} \mathbf{1}\!\left(|t^*_b| \geq |t_{\text{obs}}|\right)$
+\end{algorithmic}
+\end{algorithm}
 
 The choice of $B = 9{,}999$ is standard in the literature and
 ensures that the bootstrap $p$-value has a precision of
@@ -109,18 +105,24 @@ forecast error) under both fixed-effect structures.
 \caption{Wild Cluster Bootstrap Results}
 \label{tab:bootstrap_results}
 \begin{threeparttable}
+\small
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{llccccc}
 \toprule
-Equation & FE structure & $\hat{\beta}$ & SE &
+Equation & Fixed effects & $\hat{\beta}$ & SE &
   Asymptotic $p$ & Bootstrap $p$ & $N$ \\
 \midrule
-Eq 1 (Expectations) & Prov + Wave & 0.090 & 0.053
+Expectations & Province + wave & 0.090 & 0.053
   & 0.100 & 0.088 & 90,133 \\
-Eq 1 (Expectations) & Region$\times$Wave & 0.242 & 0.174
+Expectations & Region $\times$ wave & 0.242 & 0.174
   & 0.174 & 0.237 & 90,133 \\
-Eq 3 (Forecast error) & Prov + Wave & $-5.622$ & 1.182
+Expectations & Province + region $\times$ wave & 0.119 & 0.050
+  & 0.024 & 0.024 & 90,133 \\[4pt]
+Forecast error & Province + wave & $-5.351$ & 1.201
   & $<0.001$ & $<0.001$ & 69,533 \\
-Eq 3 (Forecast error) & Region$\times$Wave & $-6.067$ & 1.145
+Forecast error & Region $\times$ wave & $-5.555$ & 1.198
+  & $<0.001$ & $<0.001$ & 69,533 \\
+Forecast error & Province + region $\times$ wave & $-7.127$ & 1.193
   & $<0.001$ & $<0.001$ & 69,533 \\
 \bottomrule
 \end{tabular}

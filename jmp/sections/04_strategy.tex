@@ -26,12 +26,12 @@ January 2016, which covers four CFPS wave pairs (2016--2018,
 2018--2020, 2020--2022, and the backward link from 2014--2016).
 
 Three properties of this measure matter for identification.
-First, it is external to the survey: it contains no information
+It is external to the survey: it contains no information
 derived from respondents themselves.
-Second, it is cumulative: a household surveyed in 2020 experienced
+It is cumulative: a household surveyed in 2020 experienced
 the full path of meat-price movements since the 2018 wave, not just
 the end-point level.
-Third, it varies at the province level, which allows me to absorb
+And it varies at the province level, which allows me to absorb
 region-by-wave fixed effects and still retain within-region
 identifying variation.
 
@@ -100,7 +100,7 @@ high-shock provinces subsequently overpredict inflation:
 where $\mathrm{FE}_{ipt} \equiv \pi^{\mathrm{headline}}_{p,\,t\to t+1}
 - \tilde{\mu}_{ipt}$ is realised provincial headline inflation over
 the next inter-wave period minus the household's directional
-expectation scaled to CPI units.
+ordinal expectation ($\mu_{ipt} \in \{-1, 0, 1\}$).
 A negative forecast error means that the household expected more
 inflation than materialised (overprediction).
 Under overreaction, $\beta_3 < 0$: provinces with larger meat-price
@@ -156,13 +156,13 @@ The main threat is a province-specific demand shock that
 simultaneously raises meat prices and inflation expectations through
 a real-income channel.
 I address this in two ways.
-First, the ASF episode provides a biologically determined source of
+The ASF episode provides a biologically determined source of
 supply variation: the disease spread was driven by initial herd
 density and animal movement networks, not by province-level
 aggregate demand.
-Second, the commodity-placebo test in Section~\ref{sec:placebo}
-shows that grain shocks of comparable magnitude do not produce the
-same expectation response, which is inconsistent with a generic
+The commodity-placebo test in Section~\ref{sec:placebo}
+then shows that grain shocks of comparable magnitude do not produce
+the same expectation response, which is inconsistent with a generic
 demand-side confound.
 
 \subsection{Inference with Few Clusters}

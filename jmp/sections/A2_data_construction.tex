@@ -115,7 +115,7 @@ The forecast error is defined as
 where $\pi^{\text{headline}}_{p,\,t\to t+1}$ is the
 annualised realised headline CPI inflation in province $p$
 over the next inter-wave period, and $\tilde{\mu}_{ipt}$ is
-the household's ordinal expectation scaled to CPI units.
+the household's ordinal expectation ($\mu_{ipt} \in \{-1,0,1\}$).
 
 The forward CPI is computed as follows.
 For each province and wave, I take the cumulative sum of
@@ -128,29 +128,34 @@ The annualisation ensures that the forecast error is
 expressed in annual percentage-point units, comparable across
 wave pairs of slightly different length.
 
-For the scaling of the ordinal expectation, I map
-$\{-1, 0, 1\}$ to $\{-2, 0, 2\}$ percentage points in the
-baseline specification.
-This mapping reflects the assumption that a household
-reporting ``prices will rise'' expects approximately 2 percent
-annual inflation, a household reporting ``stay the same''
-expects zero, and a household reporting ``prices will fall''
-expects approximately 2 percent deflation.
-These values are chosen to be symmetric and to approximate
-the unconditional mean of headline CPI inflation during the
-sample period (which averages approximately 2 percent).
-Appendix~\ref{app:scaling} reports sensitivity to alternative
-scaling choices, including $\{-1, 0, 1\}$ (unit ordinal),
-$\{-4, 0, 4\}$ (wide), and $\{-1, 0, 3\}$ (asymmetric).
+The baseline specification uses the raw ordinal codes
+$\mu_{it} \in \{-1, 0, 1\}$ directly.
+Because the CFPS question elicits direction rather than a
+point forecast, no mapping from ordinal codes to CPI
+percentage points is uniquely correct.
+The forecast-error variable
+$\mathrm{FE}_{ipt} = \pi_{p,t\to t+1} - \mu_{ipt}$
+therefore mixes a continuous CPI measure with a categorical
+indicator.
+The overreaction test relies on the sign of the forecast-error
+coefficient, which is invariant to any monotone rescaling
+of the ordinal variable, and on the pass-through coefficient,
+which involves no ordinal variable at all.
+Appendix~\ref{app:scaling} proves these invariance properties
+and reports sensitivity across alternative mappings and a
+Carlson-Parkin quantification.
 
 The forecast-error sample requires that forward realised CPI
 be available.
-For the 2022 wave, the forward CPI requires data through
-mid-2024, which is available in the current data extract.
-For any wave whose forward CPI is not yet observed at the
-time of data construction, the observation is dropped from
-the forecast-error estimation but retained for the
-expectation equation (Eq~1), which does not use forward CPI.
+For wave $t$, forward CPI requires data through the midpoint
+of wave $t+1$.
+At the time of the most recent data pull, forward CPI is
+available for the 2016, 2018, and 2020 waves but not for the
+2022 wave, whose forward realisation extends into mid-2024
+and is not yet complete.
+The 2022 wave is therefore retained in the expectation
+equation (Eq~1) but excluded from the forecast-error
+estimation (Eq~3).
 
 \subsection{Sample Attrition}\label{app:attrition}
 
@@ -189,14 +194,10 @@ observations.
 The fourth restriction applies only to the forecast-error
 equation (Eq~3): forward realised headline CPI must be
 available.
-For wave $t$, this requires CPI data through the midpoint of
-wave $t+1$.
-At the time of data construction, forward CPI is available
-for the 2016, 2018, and 2020 waves (using data through
-mid-2022, mid-2024, and projected mid-2024 respectively).
-The 2022 wave lacks a complete forward realisation at the
-time of the most recent data pull, reducing the
-forecast-error sample to 69,533 observations.
+As described above, the 2022 wave is excluded because its
+forward realisation is incomplete, reducing the
+forecast-error sample to 69,533 observations drawn from
+the 2016, 2018, and 2020 waves.
 
 The fifth restriction applies to specifications with
 demographic controls.
@@ -244,4 +245,11 @@ The province fixed effects absorb persistent differences in
 the level of meat-price inflation across provinces, ensuring
 that $\hat{\rho}$ captures within-province temporal
 persistence rather than cross-province level differences.
+
+\subsection{Variable Dictionary}
+
+Table~\ref{tab:variable_dict} summarises the variables used
+in the analysis, their sources, and their frequency.
+
+\input{\tabdir/variable_dict}
 

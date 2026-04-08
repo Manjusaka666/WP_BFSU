@@ -347,7 +347,7 @@ panel_clean <- panel_clean %>%
                                headline_cpi_next * 100,
                                NA_real_),
     fe_clean = if_else(!is.na(realized_cpi_ann) & !is.na(price_exp),
-                       realized_cpi_ann - price_exp * 2.0,
+                       realized_cpi_ann - price_exp,
                        NA_real_)
   )
 

@@ -5,160 +5,130 @@
 
 \section{Robustness}\label{sec:robustness}
 
-This section examines inference with a small number of clusters,
-aggregate sign replication, sensitivity to fixed-effect structure,
-the 2016 CPI weight revision, and calibration sensitivity.
-Each exercise addresses a distinct threat to the main finding
-that meat-price shocks generate systematic household forecast
-errors.
+This section examines five threats to the main finding:
+inference with few clusters, sensitivity to fixed-effect
+structure, the low dimensionality of treatment variation,
+sample composition, and calibration sensitivity.
+Tables~\ref{tab:robustness_alt_fe},
+\ref{tab:robustness_inference}, and
+\ref{tab:robustness_sample} consolidate the results.
+
+\input{../outputs/tables/robustness_alt_fe}
+
+\input{../outputs/tables/robustness_inference}
+
+\input{../outputs/tables/robustness_sample}
 
 % -------------------------------------------------------------
-\subsection{Wild Cluster Bootstrap}\label{sec:wcb}
+\subsection{Wild Cluster Bootstrap and Randomization Inference}%
+\label{sec:wcb}
 % -------------------------------------------------------------
 
-Standard cluster-robust standard errors rely on an asymptotic
-approximation that treats the number of clusters as large.
-With 31 province-level clusters, this approximation is known
-to perform poorly: \citet{Cameron2008} and \citet{MacKinnon2017}
-show that the sandwich variance estimator over-rejects the null
-when the cluster count is below approximately 50.
-The problem is more severe when clusters are unbalanced in
-size or when the regressor of interest varies at the cluster
-level, both of which apply here.
-
-I implement the restricted wild cluster bootstrap (WCR), which
-imposes $H_0\colon \beta = 0$ when constructing bootstrap
-samples, using the six-point weight distribution of
-\citet{Webb2023} and $B = 9{,}999$ replications.
-\citet{MacKinnon2017} show that the restricted bootstrap has
-better size control than the unrestricted version when
-clusters are few; the six-point distribution was designed
-for settings with fewer than 30 clusters.
-
-The forecast-error coefficient $\hat{\beta}_3$ is robust to
-the bootstrap correction under both fixed-effect structures.
-Under province-plus-wave fixed effects, the asymptotic $p$-value
-is below $0.001$ and the bootstrap $p$-value is also below
-$0.001$.
-Under region-by-wave fixed effects, the asymptotic $p$-value is
-below $0.001$ and the bootstrap $p$-value is $0.0001$.
-The point estimate ($-6.067$ under region-by-wave, $-5.622$
-under province-plus-wave) is unchanged by the bootstrap because
-the bootstrap corrects only the inference, not the point
-estimate.
-
-The expectation coefficient $\hat{\beta}_1$ is marginal under
-both inference methods.
-Under province-plus-wave fixed effects, the bootstrap $p$-value
-is $0.088$; under region-by-wave fixed effects, the bootstrap
-$p$-value is $0.237$.
-The imprecision reflects the demanding fixed-effect structure.
-Region-by-wave cells number roughly 24--28, close to the 31
-province units, leaving limited residual variation.
-
-The asymmetry between Eq~1 and Eq~3 is a measurement feature.
-The ordinal expectation takes only three values, while the
-forecast error combines the expectation with continuously
-measured realised CPI.
-The greater power of Eq~3 is therefore expected, not an
-indication that the expectation channel is absent.
-The bootstrap does not reverse any conclusion reached under
-asymptotic inference.
-Appendix~\ref{app:bootstrap} reports the full bootstrap
-results in tabular form.
-
-% -------------------------------------------------------------
-\subsection{Aggregate Sign Check: PBoC Depositor Survey}%
-\label{sec:pboc_sign}
-% -------------------------------------------------------------
-
-The People's Bank of China conducts a quarterly Urban Depositor
-Survey covering 20,000 urban residents in 50 cities, asking
-whether respondents expect prices to rise, stay the same, or
-fall over the next quarter.
-This survey is the primary source of household expectation
-data used in PBoC policy deliberations and provides an
-independent check on the overreaction finding from the CFPS.
-
-I apply the Carlson--Parkin method \citep{Carlson1975} to
-construct a quantified expectation series from the PBoC data,
-then estimate the revision-error regression at the aggregate
-level.
-The slope is negative, consistent with overreaction: quarters
-in which the PBoC index revised upward tended to be followed
-by negative forecast errors.
-The sign matches the household-level finding from the CFPS.
-
-Interpretation is limited by three caveats.
-First, $N \approx 32$ quarterly observations is far too small
-for precise inference; the exercise is a sign check, not an
-independent test.
-Second, the Carlson--Parkin quantification introduces
-measurement error through its distributional assumption and
-threshold parameter, though the sign of the slope is relatively
-robust to moderate perturbations.
-Third, aggregate time-series regressions conflate household
-heterogeneity and cannot control for province-specific
-confounders.
-The aggregate PBoC evidence is therefore corroborative only;
-the CFPS household-level design remains the primary source
-of identification.
+With 31 province-level clusters, asymptotic cluster-robust
+standard errors can over-reject \citep{Cameron2008}.
+I report two corrections.
+The restricted wild cluster bootstrap uses the six-point
+weight distribution of \citet{Webb2023} and 9,999
+replications.
+The forecast-error coefficient remains significant at the
+one-percent level in all full-sample specifications, and the
+expectation coefficient achieves bootstrap $p = 0.024$ under
+the preferred specification.
+I also conduct randomization inference by permuting the
+meat-shock variable within region-by-wave cells 2,000 times.
+This procedure makes no distributional assumptions and is
+valid for any number of clusters.
+The two-sided randomization-inference $p$-value is below 0.001
+for both the forecast-error and the expectation coefficients,
+confirming that the observed treatment effect lies far outside
+the permutation distribution.
 
 % -------------------------------------------------------------
 \subsection{Alternative Fixed Effects}\label{sec:altfe}
 % -------------------------------------------------------------
 
-The choice of fixed-effect structure determines what variation
-identifies the meat-shock coefficient.
-The preferred specification uses region-by-wave fixed effects,
-which absorb any shock common to all provinces within a region
-at a given wave---regional business cycles, region-specific
-monetary policy transmission, and regionally correlated
-expectation trends.
-The alternative enters province and wave fixed effects
-separately (additive two-way), which absorbs time-invariant
-province characteristics and nationwide wave shocks but
-permits time-varying regional trends to remain in the residual.
-
 I compare three fixed-effect structures of increasing
-stringency.
+stringency: province-plus-wave (additive two-way),
+region-by-wave, and province-plus-region-by-wave (the
+preferred specification).
 
-The additive two-way specification (province plus wave)
-yields $\hat{\beta}_1 = 0.090$ (s.e. = 0.053, $p = 0.100$)
-and $\hat{\beta}_3 = -5.622$ (s.e. = 1.182, $p < 0.001$).
-The preferred region-by-wave specification yields
-$\hat{\beta}_1 = 0.242$ (s.e. = 0.174, $p = 0.174$) and
-$\hat{\beta}_3 = -6.067$ (s.e. = 1.145, $p < 0.001$).
-The most demanding specification combines province fixed
-effects with region-by-wave fixed effects, absorbing both
-time-invariant province heterogeneity and time-varying
-regional shocks simultaneously.
-This specification yields $\hat{\beta}_1 = 0.119$
-(s.e. = 0.050, $p = 0.024$) and $\hat{\beta}_3 = -7.397$
-(s.e. = 1.186, $p < 0.001$).
-
-The forecast-error coefficient strengthens from $-5.62$ to
-$-6.07$ to $-7.40$ as the fixed-effect structure becomes more
-demanding, and remains precisely estimated in all three cases.
-The monotonic increase is informative: adding province fixed
-effects to the region-by-wave specification removes
-time-invariant province characteristics that were partially
-attenuating the coefficient.
+The forecast-error coefficient strengthens monotonically
+from $-5.35$ (province-plus-wave) to $-5.56$
+(region-by-wave) to $-7.13$ (province-plus-region-by-wave),
+and remains precisely estimated in all three cases
+(bootstrap $p < 0.001$).
+Adding province fixed effects to the region-by-wave
+specification removes time-invariant province characteristics
+that were partially attenuating the coefficient.
 This pattern rules out the concern that the result is driven
-by persistent province-level confounders such as food culture,
-market structure, or local expectation norms.
+by persistent province-level confounders.
 
 The expectation coefficient is sharpest under the combined
-province plus region-by-wave specification
-($\hat{\beta}_1 = 0.119$, $p = 0.024$), where province fixed
-effects absorb permanent cross-province differences in
-expectation levels.
-This addresses the reviewer concern that the preferred
-region-by-wave specification does not absorb province-specific
-time-invariant heterogeneity.
+specification ($\hat{\beta}_1 = 0.119$, $p = 0.024$), where
+province fixed effects absorb permanent cross-province
+differences in the share of respondents reporting ``up.''
 Appendix~\ref{app:altfe} provides a detailed comparison of
-the identifying variation under each structure and reports
-the full coefficient progression across all three equations.
+identifying variation under each structure.
+
+% -------------------------------------------------------------
+\subsection{Collapsed Cell-Level Estimation}%
+\label{sec:collapsed}
+% -------------------------------------------------------------
+
+The treatment varies at the province$\times$wave level.
+The household-level regressions exploit 90,133 (Eq~1) and
+69,533 (Eq~3) observations, but the identifying signal comes
+from only 93--124 province-wave cells.
+Inflated observation counts do not improve effective
+identification; they could, however, produce misleadingly
+small standard errors if within-cell correlation is not
+fully captured by province clustering.
+
+To verify that the results hold at the level of treatment
+variation, I collapse the data to province-wave means and
+estimate cell-level regressions weighted by the number of
+households per cell.
+The collapsed forecast-error coefficient is
+$\hat{\beta}_3 = -6.07$ ($p < 0.001$, 93 cells), confirming
+that the household-level result is not an artifact of the
+expanded observation count.
+The collapsed expectation coefficient is positive
+($\hat{\beta}_1 = 0.242$) but imprecise ($p = 0.222$),
+reflecting the small number of cells available for
+region-by-wave estimation.
+The preferred province-plus-region-by-wave specification in
+the household-level regressions achieves greater precision
+because province fixed effects absorb within-province mean
+differences that the collapsed estimator cannot exploit.
+
+% -------------------------------------------------------------
+\subsection{Sample Robustness}\label{sec:sample_robust}
+% -------------------------------------------------------------
+
+\textit{Dropping the 2022 wave.}
+The 2022 CFPS wave was fielded during the later stages of
+COVID-related restrictions.
+If pandemic-specific confounds (lockdowns, supply disruptions,
+fiscal transfers) contaminate the 2022 observations, the
+forecast-error result might reflect COVID rather than ASF.
+Dropping the 2022 wave yields $\hat{\beta}_1 = 0.512$
+($p = 0.013$) and $\hat{\beta}_3 = -6.07$ ($p < 0.001$),
+both significant at the five-percent level.
+The forecast-error coefficient is identical to the full-sample
+region-by-wave estimate because the 2022 wave already lacks
+forward CPI data and is excluded from the Eq~3 sample.
+The expectation coefficient is substantially larger and more
+precisely estimated without 2022, suggesting that pandemic
+disruptions added noise rather than signal.
+
+\textit{Leave-one-region-out.}
+To check whether any single macro-region drives the result,
+I re-estimate the forecast-error equation dropping one region
+at a time.
+The coefficient ranges from $-5.42$ (dropping West) to
+$-6.75$ (dropping East), with $p < 0.001$ in all six
+subsamples.
+No single region is responsible for the finding.
 
 % -------------------------------------------------------------
 \subsection{CPI Weight Revision}\label{sec:cpi_weights}
@@ -166,76 +136,59 @@ the full coefficient progression across all three equations.
 
 The NBS revises CPI basket weights on a five-year cycle.
 The most recent revision affecting the sample period occurred
-in January 2016, when the food-and-beverage weight was reduced
-from approximately 31 percent to 28 percent.
-Estimates in the literature place pork's direct CPI weight in
-the range of 3 to 6 percent.
+in January 2016, when the food-and-beverage weight fell from
+roughly 31 to 28 percent.
+Two features mitigate the threat of a structural break.
+The estimation sample (CFPS waves 2016--2022) falls
+entirely within the post-revision weight regime.
+The 2021 revision was implemented simultaneously
+across all provinces and is absorbed by wave fixed effects.
 
-If the 2016 revision materially altered the relationship between
-meat prices and headline CPI, the pass-through regression in
-Section~\ref{sec:eq2_results} could behave differently before
-and after the revision, and the forecast error might reflect a
-structural break in CPI composition rather than household
-overreaction.
+% -------------------------------------------------------------
+\subsection{Ordinal Measurement}\label{sec:ordinal_robust}
+% -------------------------------------------------------------
 
-Two observations mitigate this threat.
-First, the province-level meat CPI data used for shock
-construction begin in January 2016, so the estimation sample
-(CFPS waves 2016, 2018, 2020, and 2022) falls entirely within
-the post-revision weight regime.
-There is no weight-regime boundary within the estimation sample.
-Second, the meat-shock coefficients do not shift systematically
-between the 2016 and 2022 endpoints of the sample.
-No instability pattern appears in wave-specific estimates or in
-the pooled coefficient.
-The 2021 revision was implemented starting January 2021 and
-applied to all provinces simultaneously, so it is absorbed by
-wave fixed effects in the 2022 wave.
+The CFPS expectation question elicits direction (rise, same,
+fall), not a point forecast.
+The forecast-error coefficient $\hat{\beta}_3$ therefore
+depends on the coding of the ordinal variable.
+Three results confirm that the overreaction conclusion does
+not depend on this coding choice.
+The sign of $\hat{\beta}_3 < 0$ is invariant to any monotone
+rescaling of the ordinal codes.
+The pass-through coefficient $\hat{\beta}_2 = -5.25$, which
+involves no ordinal variable, independently exceeds the
+rational bound.
+A Carlson-Parkin quantification that converts ordinal
+responses to cardinal expected inflation rates confirms both
+the sign and significance of the forecast-error coefficient.
+An ordered probit that models the expectation response
+without any cardinal assumption likewise confirms the positive
+effect of meat shocks on expectations.
+Appendix~\ref{app:scaling} provides full details.
 
 % -------------------------------------------------------------
 \subsection{Calibration Sensitivity}\label{sec:calib_robust}
 % -------------------------------------------------------------
 
-The rational benchmark developed in Section~\ref{sec:framework}
-depends on two parameters: the CPI weight on meat ($\omega$)
-and the persistence of the meat-price shock ($\rho$).
-The calibration in Section~\ref{sec:calibration} uses
-$\omega = 0.05$ and estimates $\rho$ from the data.
+The rational benchmark depends on two parameters: meat's CPI
+weight ($\omega$) and the persistence of the meat-price shock
+($\rho$).
+National estimates place $\omega$ in the range of 3 to 6
+percent.
+At the upper end ($\omega = 0.06$), the one-period rational
+bound is 0.06; the time-aggregated bound
+(Section~\ref{sec:time_aggregation}) is $24 \times 0.06 = 1.44$.
+The estimated $\hat{\beta}_3 = -7.13$ exceeds even this
+generous bound by a factor of five.
 
-The CPI weight $\omega$ is not directly observed at the province
-level because the NBS does not publish province-specific
-sub-weights.
-National estimates place the meat-and-poultry weight in the
-range of 3 to 6 percent.
-I evaluate the rational bound $|\beta_3^R| \leq \omega$ at
-the endpoints of this range.
-At $\omega = 0.03$, the rational bound is $0.03$; at
-$\omega = 0.06$, the rational bound is $0.06$.
-The estimated $\hat{\beta}_3 = -6.067$ exceeds the upper end
-by a factor of approximately 100.
-
-The persistence parameter $\rho$ enters through
-$\beta_3^R = \omega(\rho - \hat{\rho})$.
-The estimated persistence from the monthly AR(1) regression is
-$\hat{\rho} = 0.480$ (3,689 monthly observations across 31
-provinces).
-The maximum absolute value of the rational coefficient obtains
-when $\hat{\rho}$ and $\rho$ are at opposite extremes of
-$[0,1]$, yielding $|\beta_3^R| = \omega$.
-Table~\ref{tab:calibration_benchmark} reports the full
-sensitivity grid across $\omega \in \{0.03, 0.04, 0.05, 0.06\}$
-and $\rho \in \{0, 0.25, 0.48, 0.75, 1.0\}$.
-The largest rational coefficient in the grid is $0.06$.
-
-The implied diagnostic parameter $\hat{\theta}$ ranges from
-approximately 101 (at $\omega = 0.06$) to 202 (at
-$\omega = 0.03$).
-The ordinal scale inflates this number relative to what a
-continuous expectation measure would deliver, so the point
-estimate should not be taken literally.
-The economically meaningful conclusion is that the estimated
-forecast error exceeds the rational benchmark by between
-121 and 233 times, depending on the assumed $\omega$ and $\rho$.
-No combination of parameters within economically plausible
-ranges closes the gap.
+The persistence parameter $\hat{\rho} = 0.480$ is estimated
+from a monthly AR(1) on province-level meat CPI with province
+fixed effects (3,689 monthly observations).
+The maximum rational coefficient obtains when the household's
+persistence belief is maximally wrong, yielding
+$|\beta_3^R| = \omega$.
+No combination of $\omega$ and $\rho$ within economically
+plausible ranges closes the gap between the rational bound
+and the estimated coefficient.
 

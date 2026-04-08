@@ -81,7 +81,7 @@ lines <- c(
   "\\begin{tabular}{lccc}",
   "\\toprule",
   sprintf("& %s \\\\", paste(paste0("(", seq_along(cols), ")"), collapse = " & ")),
-  "\\multicolumn{4}{l}{\\textit{Dep.\\ var.: Inflation expectation ($\\mu_{it}$)}} \\\\",
+  "& Education & Income & Urban status \\\\",
   "\\midrule"
 )
 

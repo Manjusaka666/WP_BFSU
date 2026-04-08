@@ -145,16 +145,16 @@ the direction, not just the magnitude, of subsequent price
 movements.
 
 Two features of ASF matter for the identification strategy.
-First, the disease spread through biological transmission in
-pig populations, not as a consequence of local economic
-conditions or household demand.
+The disease spread through biological transmission in pig
+populations, not as a consequence of local economic conditions
+or household demand.
 Cross-province variation in meat prices is therefore plausibly
 orthogonal to demand shocks that might independently affect
 inflation expectations.
-Second, the province-level treatment intensity was determined
-by pre-existing herd geography---centuries of agricultural
+In addition, province-level treatment intensity was determined
+by pre-existing herd geography, centuries of agricultural
 specialisation, climate suitability, and feed-cost
-differentials---rather than by contemporary household
+differentials, rather than by contemporary household
 characteristics.
 This pre-determination rules out the concern that provinces
 with systematically different expectation-formation processes
@@ -164,124 +164,80 @@ selected into larger shocks.
 \subsection{Related Literature}\label{sec:literature}
 % -------------------------------------------------------------
 
-Related evidence falls into three strands.
+\subsubsection{Overreaction in expectations}
 
-\subsubsection{Overreaction in Expectations}
-
-\citet{Coibion2015} provide a foundational test using the
-information-rigidity framework.
-Under noisy information or sticky updating, forecast revisions
-should positively predict subsequent forecast errors.
-A negative revision-error slope, conversely, indicates
-overreaction.
-\citet{Coibion2015} find that US professional forecasters
-display positive revision-error covariance for most
-macroeconomic variables, consistent with information rigidity
-rather than overreaction.
-
+The standard test for overreaction regresses forecast errors
+on prior forecast revisions \citep{Coibion2015}.
+Under noisy information or sticky updating, the slope is
+positive: agents underreact.
+A negative slope indicates overreaction.
+\citet{Coibion2015} find positive slopes for US professional
+forecasters across most macroeconomic variables.
 \citet{Bordalo2020b} revisit this test with a longer panel
-of professional forecasts across six macroeconomic variables.
-They document a sign switch: at short horizons, forecast
-revisions negatively predict errors (overreaction), while at
-longer horizons the relationship is positive (underreaction).
+and document a sign switch: negative slopes at short horizons
+(overreaction), positive at long horizons (underreaction).
 The diagnostic expectations model of \citet{Bordalo2018}
-generates exactly this horizon-dependent pattern through a
-single parameter $\theta$ that governs the degree to which
-agents overweight the likelihood ratio of the signal.
+generates this horizon dependence through a single parameter
+$\theta$ governing the overweighting of the likelihood ratio.
 
-\citet{Angeletos2021} develop a model in which dispersed
-information generates aggregate patterns observationally
-similar to overreaction even when individual agents update
-rationally.
-The province-level design here partially addresses
-this concern: because the treatment varies across provinces
-within a given wave, the identification does not rely on
-aggregate time-series patterns that could be confounded by
-general equilibrium feedback.
+A concern with the revision-error approach is that dispersed
+information can generate aggregate overreaction patterns even
+when individual agents update rationally
+\citep{Angeletos2021}.
+My design partly sidesteps this problem: the treatment varies
+across provinces within a wave, so identification does not
+rely on aggregate time-series patterns.
+The design also avoids the mechanical correlation in the
+standard revision-error framework.
+The treatment is an NBS price statistic containing no
+household expectation data, and the dependent variable is
+constructed from the household's expectation and subsequent
+realised CPI, both measured independently of the treatment.
 
-I provide a household-level test that exploits
-an external commodity shock rather than within-survey revisions.
-The meat-shock design avoids the mechanical correlation that
-arises in the standard revision-error framework: the treatment
-is an NBS price statistic that does not contain any household
-expectation data, and the dependent variable (forecast error)
-is constructed from the household's expectation and subsequent
-realised CPI---both measured independently of the treatment.
-
-\subsubsection{Salience and Inflation Expectations}
+\subsubsection{Salience and inflation expectations}
 
 \citet{Cavallo2017} show that US households weight frequently
 purchased goods more heavily in their inflation perceptions
-than the official CPI weights imply.
-Respondents systematically overweight price changes for items
-they buy weekly (groceries, gasoline) relative to items they
-buy annually (appliances, insurance).
-The overweighting is large: perceived inflation tracks a
-frequency-weighted index roughly twice as closely as it tracks
-the official CPI.
+than official CPI weights imply.
+Perceived inflation tracks a frequency-weighted index roughly
+twice as closely as it tracks the official CPI.
+\citet{DacuntoHoangPirolliWeber2021} extend this finding to
+European households: country-level variation in prices of
+frequently purchased goods predicts cross-country variation
+in inflation expectations after controlling for official CPI,
+with an asymmetry favouring price increases.
+\citet{Malmendier2016} show that personally experienced
+inflation shapes expectations decades later, and
+\citet{Kuchler2019} document an analogous pattern for housing.
 
-\citet{DacuntoHoangPirolliWeber2021} extend this logic to
-European households using the European Commission's Consumer
-Survey.
-Country-level variation in the prices of frequently purchased
-goods predicts cross-country variation in household inflation
-expectations after controlling for official CPI.
-The effect is asymmetric: price increases in salient categories
-raise expectations by more than price decreases lower them.
-
-\citet{Malmendier2016} document that personally experienced
-inflation has a stronger influence on expectations than
-historical data alone.
-Using the Michigan Survey of Consumers, they show that
-respondents who lived through periods of high inflation
-report systematically higher expectations decades later.
-\citet{Kuchler2019} document this pattern for housing
-expectations, showing that personal experience with local
-house-price appreciation predicts national housing return
-forecasts.
-
-These findings motivate the commodity-specific design used here.
+These findings motivate the commodity-specific design.
 If salience operates through purchase frequency and personal
 exposure, meat and grain shocks should produce different
 expectation responses despite similar CPI weights.
-The placebo test uses this asymmetry: grain shocks of
-comparable CPI weight do not generate forecast errors,
-which rules out mechanical pass-through as the explanation
-for the meat-shock result.
+The placebo test exploits this asymmetry: grain shocks of
+comparable CPI weight do not produce the same forecast errors,
+ruling out mechanical pass-through.
 
-\subsubsection{China-Specific Evidence}
+\subsubsection{China-specific evidence}
 
-Household inflation expectations in China have received
-limited attention relative to the US and European literatures.
-The primary data source is the People's Bank of China (PBoC)
-Urban Depositor Survey, a quarterly survey of roughly 20,000
-depositors in 50 cities that uses an ordinal scale to elicit
-expected price changes.
-
-\citet{Chen2022} document how financial-policy regimes shape
-China's macroeconomic dynamics.
 Direct evidence on household inflation-expectation formation in
-China remains limited and is often based on aggregate diffusion
-indices from the PBoC Urban Depositor Survey.
+China is scarce.
+Most existing work relies on aggregate diffusion indices from
+the PBoC Urban Depositor Survey, a quarterly survey of roughly
+20,000 depositors in 50 cities \citep[see, e.g.,][]{Chen2022}.
 The aggregate nature of these data limits identification of
 cross-sectional expectation responses, and the survey samples
 depositors rather than the general population.
 
-The CFPS micro data used here address both limitations.
-The CFPS is a nationally representative panel covering both
-urban and rural households across 25 provinces.
-Province-level treatment variation allows me to test whether
-the expectation response differs across locations with
-different shock magnitudes, and the panel dimension allows
-me to control for household fixed effects.
-
-The ASF episode provides identifying variation that has not
-been exploited in prior work on Chinese inflation expectations.
-Existing studies of ASF in the economics literature focus
-on supply-chain disruption, international trade effects, and
-food security, but none examines the household-level belief
-response.
-This analysis fills that gap by connecting province-level
-price consequences of ASF to the inflation expectations of
-households exposed to those prices.
+The CFPS micro data address both limitations.
+The CFPS is a nationally representative panel covering urban
+and rural households across 25 provinces, and province-level
+treatment variation allows me to test whether the expectation
+response differs across locations with different shock
+magnitudes.
+No prior work on Chinese inflation expectations has exploited
+the ASF episode as identifying variation.
+Existing ASF studies in economics focus on supply-chain
+disruption and trade effects; none examines the household
+belief response.
 

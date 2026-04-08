@@ -6,19 +6,20 @@ Using province-level meat CPI variation from the National Bureau
 of Statistics matched to four waves of the China Family Panel
 Studies (2016--2022), I estimate that a one-unit increase in
 the cumulative meat log-price shock generates a forecast error
-of $-6.07$ percentage points under the preferred specification
-with region-by-wave fixed effects (wild cluster bootstrap
-$p < 0.001$, 31 province clusters); a one-standard-deviation
-shock (0.28 log points) implies a forecast error of $-1.70$
-percentage points.
+of $-7.13$ percentage points under the preferred specification
+with province and region-by-wave fixed effects (wild cluster
+bootstrap $p < 0.001$, 31 province clusters).
 The negative sign means that households in high-shock provinces
 expected more inflation than materialised.
 A signal-extraction model calibrated to the actual persistence
 of meat-price shocks bounds the rational forecast error at
-$|\beta_3^R| \leq \omega \approx 0.05$ per unit of the shock.
-The estimated coefficient exceeds this bound by a wide margin,
-and no combination of persistence assumptions within the
-plausible range closes the gap.
+$|\beta_3^R| \leq \omega \approx 0.05$ per unit of the shock;
+even after accounting for time aggregation between the model
+and the empirical object, the most generous rational bound
+is 1.20.
+The estimated coefficient exceeds this bound by a factor of
+six, and no combination of persistence or CPI-weight
+assumptions within the plausible range closes the gap.
 The excess is consistent with diagnostic overreaction
 \citep{Bordalo2018, Bordalo2020b}.
 
@@ -47,29 +48,29 @@ forecast errors on the province-level meat-price shock
 Two decomposition equations ask whether the shock raises
 household expectations (Equation~1) and whether it predicts
 forward headline CPI (Equation~2).
-The expectation response is positive across specifications
-but imprecisely estimated under the demanding region-by-wave
-fixed-effect structure; the forecast-error result is the more
-powerful test because it measures the joint outcome of
-expectations minus realised inflation directly and does not
-require the expectation channel to be individually precise.
+The expectation response is positive and statistically
+significant at the five-percent level under the preferred
+province-plus-region-by-wave specification
+($\hat{\beta}_1 = 0.119$, $p = 0.024$).
+The forecast-error result is the more powerful test because it
+measures the joint outcome of expectations minus realised
+inflation directly, but the significant expectation channel
+confirms that the excess forecast error comes from beliefs,
+not from an unexpected decline in realised CPI.
 The treatment is measured by the NBS and merged from outside
 the CFPS survey, so the household's current expectation never
 appears on both sides of any equation.
 
 I make three contributions.
-First, I provide a forecast-error test of household inflation
-overreaction that avoids the mechanical negative correlation
-in standard revision-error designs.
-The identifying variation comes from an external, supply-driven
-price signal, not from within-survey belief revisions.
-Second, I derive a calibrated rational benchmark from a
-signal-extraction model and show that the estimated forecast
-error exceeds the rational bound under any persistence
-assumption.
-This separates behavioural overreaction from rational forecast
-errors due to transitory-shock uncertainty.
-Third, I show that the overreaction is commodity-specific.
+The forecast-error test avoids the mechanical negative
+correlation in standard revision-error designs by using an
+external, supply-driven price signal rather than
+within-survey belief revisions.
+A calibrated signal-extraction benchmark then separates
+behavioural overreaction from rational forecast errors due to
+transitory-shock uncertainty: the estimated forecast error
+exceeds the rational bound under any persistence assumption.
+The commodity placebo test disciplines the mechanism.
 Meat shocks generate forecast errors while grain shocks of
 comparable CPI weight do not, consistent with salience-driven
 rather than rational updating.

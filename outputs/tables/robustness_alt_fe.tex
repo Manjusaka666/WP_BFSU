@@ -1,0 +1,32 @@
+\begin{table}[!htbp]
+\centering
+\caption{Robustness: Alternative Fixed-Effect Structures}
+\label{tab:robustness_alt_fe}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+& (1) & (2) & (3) \\
+& \shortstack{Province\\+ wave} & \shortstack{Region\\$\times$ wave} & \shortstack{Province +\\region $\times$ wave} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Panel A: Forecast error}} \\[6pt]
+Meat shock & $-5.351^{***}$ & $-5.555^{***}$ & $-7.127^{***}$ \\
+           & $(1.201)$      & $(1.198)$      & $(1.193)$      \\[6pt]
+Observations & 69,533 & 69,533 & 69,533 \\
+$R^{2}$      & 0.488  & 0.484  & 0.526  \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Panel B: Inflation expectation ($\mu_{it} \in \{-1,0,1\}$)}} \\[6pt]
+Meat shock & $0.090^{*}$  & $0.242$   & $0.119^{**}$  \\
+           & $(0.053)$    & $(0.174)$ & $(0.050)$     \\[6pt]
+Observations & 90,133 & 90,133 & 90,133 \\
+$R^{2}$      & 0.011  & 0.002  & 0.012  \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Note.} Each cell reports the coefficient on the meat price shock. Standard errors clustered at the province level in parentheses. Panel~A uses the household forecast error (realized province-level CPI inflation minus the ordinal expectation) as the dependent variable. Panel~B uses the ordinal inflation expectation ($\mu_{it} \in \{-1,0,1\}$). Column~(3) is the preferred specification.
+\item $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

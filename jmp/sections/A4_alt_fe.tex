@@ -5,16 +5,17 @@
 
 \section{Alternative Fixed-Effect Structures}\label{app:altfe}
 
-This appendix provides a detailed comparison of the two
+This appendix provides a detailed comparison of the three
 fixed-effect structures used in the main analysis, explains
 the identifying variation under each, and reports the key
 coefficients in a unified format.
 
 \subsection{Fixed-Effect Specifications}
 
-The main text reports results under two fixed-effect structures:
-region-by-wave (the preferred specification) and province
-plus wave (the robustness check).
+The main text reports results under three fixed-effect
+structures: province-plus-wave (additive two-way),
+region-by-wave, and province-plus-region-by-wave (the preferred
+specification).
 Each structure absorbs a different component of the variation
 in outcomes and treatment, leaving a different residual source
 of identification.
@@ -83,6 +84,24 @@ meat shock for provinces in the same region and wave.
 This is a narrower source of variation than the two-way
 residual and produces fewer effective degrees of freedom.
 
+The preferred specification combines province fixed effects
+with region-by-wave interactions:
+\[
+  y_{ipt} = \beta\,s_{pt} + \gamma' X_{ipt}
+    + \alpha_p + \delta_{r(p) \times t} + \varepsilon_{ipt}.
+\]
+This structure absorbs both time-invariant province
+characteristics (through $\alpha_p$) and region-specific
+wave shocks (through $\delta_{r(p) \times t}$).
+The identifying variation is the same within-region
+cross-province deviation as under the region-by-wave
+structure, but the province intercepts remove permanent
+province-level differences in both the outcome and the
+treatment.
+The result is a double-differencing estimator that nets out
+province means before comparing provinces within the same
+region and wave.
+
 \subsection{What Each Structure Absorbs}
 
 Table~\ref{tab:fe_comparison} summarises the sources of
@@ -94,24 +113,25 @@ identifying variation.
 \caption{Comparison of Fixed-Effect Structures}
 \label{tab:fe_comparison}
 \begin{threeparttable}
-\begin{tabular}{p{4.8cm}cc}
+\footnotesize
+\begin{tabular}{p{4.2cm}ccc}
 \toprule
-Source of variation & Prov + Wave & Region$\times$Wave \\
+Source of variation & \shortstack{Province\\+ wave} & \shortstack{Region\\$\times$ wave} & \shortstack{Province + \\region $\times$ wave} \\
 \midrule
-Province time-invariant level     & Absorbed & Absorbed$^a$ \\
-National wave effect              & Absorbed & Absorbed \\
-Region-specific wave effect       & \textit{Not absorbed} & Absorbed \\
-Province-specific time trend      & \textit{Not absorbed} & \textit{Not absorbed} \\
-Within-region province$\times$wave & Identifying & Identifying \\
+Province time-invariant level     & Absorbed & Absorbed\textsuperscript{a} & Absorbed \\
+National wave effect              & Absorbed & Absorbed & Absorbed \\
+Region-specific wave effect       & \textit{Not absorbed} & Absorbed & Absorbed \\
+Province-specific time trend      & \textit{Not absorbed} & \textit{Not absorbed} & \textit{Not absorbed} \\
+Within-region province$\times$wave & Identifying & Identifying & Identifying \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item[$a$] Province time-invariant levels are subsumed by
-  region-by-wave FE only to the extent that region membership
-  captures the cross-province level variation.
+\item[a] Province time-invariant levels are subsumed by
+  region-by-wave fixed effects only to the extent that region
+  membership captures the cross-province level variation.
   Province-specific deviations from the regional mean are not
-  absorbed.
+  absorbed. The combined specification absorbs these fully.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -131,8 +151,8 @@ regional peers.
 \subsection{Coefficient Comparison Across Structures}
 
 Table~\ref{tab:fe_coef_comparison} reports the key
-coefficients from Equations 1 and 3 under both FE structures,
-along with bootstrap $p$-values.
+coefficients from Equations 1 and 3 under all three FE
+structures, along with bootstrap $p$-values.
 
 \begin{table}[htbp]
 \centering
@@ -140,22 +160,27 @@ along with bootstrap $p$-values.
   Structures}
 \label{tab:fe_coef_comparison}
 \begin{threeparttable}
+\footnotesize
 \begin{tabular}{llcccc}
 \toprule
-Equation & FE structure & $\hat{\beta}$ & SE &
+Equation & Fixed-effect structure & $\hat{\beta}$ & SE &
   Bootstrap $p$ & $N$ \\
 \midrule
 \multicolumn{6}{l}{\textit{Panel A: Expectation equation
   (Eq 1)}} \\
-& Prov + Wave       & 0.090  & 0.053  & 0.088
+& Province + wave       & 0.090  & 0.053  & 0.088
   & 90,133 \\
-& Region$\times$Wave & 0.242  & 0.174  & 0.237
+& Region $\times$ wave & 0.242  & 0.174  & 0.237
+  & 90,133 \\
+& Province + region $\times$ wave & 0.119  & 0.050  & 0.024
   & 90,133 \\[6pt]
 \multicolumn{6}{l}{\textit{Panel B: Forecast-error equation
   (Eq 3)}} \\
-& Prov + Wave       & $-5.622$ & 1.182  & $<0.001$
+& Province + wave       & $-5.351$ & 1.201  & $<0.001$
   & 69,533 \\
-& Region$\times$Wave & $-6.067$ & 1.145  & $<0.001$
+& Region $\times$ wave & $-5.555$ & 1.198  & $<0.001$
+  & 69,533 \\
+& Province + region $\times$ wave & $-7.127$ & 1.193  & $<0.001$
   & 69,533 \\
 \bottomrule
 \end{tabular}
@@ -169,17 +194,16 @@ Equation & FE structure & $\hat{\beta}$ & SE &
 \end{threeparttable}
 \end{table}
 
-The forecast-error coefficient is stable across FE structures.
-Moving from province-plus-wave to region-by-wave, the point
-estimate shifts from $-5.622$ to $-6.067$, a change of 7.9
-percent.
-Both estimates are precisely estimated with $p < 0.001$ under
-both asymptotic and bootstrap inference.
-The modest increase in magnitude under region-by-wave FE
-suggests that absorbing regional trends removes a small
-positive confound (i.e., a regional factor that slightly
-attenuates the negative forecast-error relationship), but the
-adjustment is minor relative to the overall coefficient.
+The forecast-error coefficient strengthens monotonically across
+FE structures: from $-5.351$ (province-plus-wave) to $-5.555$
+(region-by-wave) to $-7.127$ (province-plus-region-by-wave).
+All three estimates are precisely estimated with $p < 0.001$
+under both asymptotic and bootstrap inference.
+The increase in magnitude under the combined specification
+indicates that province fixed effects remove a positive
+confound (time-invariant province characteristics that
+slightly attenuate the negative forecast-error relationship)
+beyond what region-by-wave fixed effects alone absorb.
 
 \subsection{Interpretation of Coefficient Stability}
 
@@ -197,31 +221,26 @@ pooled variation, which is consistent with the meat shock
 operating through a household-level salience channel rather
 than through a region-level macroeconomic confound.
 
-The expectation coefficient behaves differently.
+The expectation coefficient follows a non-monotone pattern.
 The point estimate increases from $0.090$ under
-province-plus-wave to $0.242$ under region-by-wave, but
-the standard error more than triples (from 0.053 to 0.174).
-The increase in the point estimate reflects the removal of
-a negative confound at the regional level: under additive FE,
-the estimate is pulled toward zero by regional factors that
-covary negatively with both the meat shock and the
-expectation.
-The large increase in the standard error reflects the
-mechanical reduction in identifying variation: the
-region-by-wave cells absorb a substantial share of the
-province-level shock, leaving little residual variation for
-identification.
+province-plus-wave to $0.242$ under region-by-wave, but the
+standard error more than triples (from 0.053 to 0.174),
+rendering the latter imprecise.
+The preferred combined specification achieves the best balance:
+$\hat{\beta}_1 = 0.119$ ($p = 0.024$) with a standard error
+of 0.050.
+Province fixed effects absorb permanent cross-province
+differences in the share of respondents reporting ``up,''
+sharpening identification of the within-province shock effect.
 
-This precision loss is expected and does not undermine the
-main finding.
+The contrasting precision pattern between equations is
+expected and does not undermine the main finding.
 The forecast-error test (Eq~3) is the primary identification
-strategy precisely because it does not require a precise
-estimate of the expectation coefficient.
-The sign of $\hat{\beta}_3$ provides a direct test of
-overreaction that is robust to the FE structure, while the
-magnitude of $\hat{\beta}_1$ provides mechanism evidence
-whose precision varies with the specificity of the FE
-absorption.
+strategy because it does not require a precise estimate of the
+expectation coefficient.
+The magnitude of $\hat{\beta}_3$ provides the overreaction
+test, while $\hat{\beta}_1$ provides supporting mechanism
+evidence.
 
 \subsection{Why Not Province-by-Wave Fixed Effects?}
 

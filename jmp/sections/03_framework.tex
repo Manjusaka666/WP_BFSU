@@ -83,6 +83,62 @@ than the mechanical weight of meat in the index, because
 persistence governs the \textit{duration} of the meat
 contribution, not its \textit{size per period}.
 
+\subsection{Time Aggregation}\label{sec:time_aggregation}
+
+The one-period model generates a bound $|\beta_3^R| \leq \omega$
+per unit of a single-period shock.
+The empirical treatment is a cumulative inter-wave shock
+$S_{pt} = \sum_{m=1}^{M} s_{pm}$ spanning roughly 24 months.
+This subsection shows that the bound extends to the
+time-aggregated object.
+
+Under the AR(1) specification, the headline CPI contribution
+of a single monthly meat shock $s_{pm}$ at horizon $h$ is
+$\omega\,\rho^{h}\,s_{pm}$.
+The cumulative forward headline CPI response to the sequence
+of monthly shocks is
+\begin{equation}\label{eq:time_agg_cpi}
+  \sum_{m=1}^{M}\sum_{h=1}^{H}\omega\,\rho^{h}\,s_{pm}
+  = \omega\,\frac{\rho(1-\rho^{H})}{1-\rho}\,S_{pt},
+\end{equation}
+where $H$ is the forward horizon in months and I assume for
+simplicity that each monthly shock contributes equally to the
+cumulative treatment $S_{pt}$.
+A rational household that knows $\rho$ forecasts this quantity
+exactly; a household that believes $\hat{\rho}$ forecasts the
+same expression with $\hat{\rho}$ in place of $\rho$.
+The forecast-error coefficient on $S_{pt}$ is therefore
+\begin{equation}\label{eq:time_agg_bound}
+  \beta_3^{R}
+  = \omega\left[
+      \frac{\rho(1-\rho^{H})}{1-\rho}
+    - \frac{\hat{\rho}(1-\hat{\rho}^{H})}{1-\hat{\rho}}
+    \right].
+\end{equation}
+The term in brackets is a difference of two bounded functions
+of persistence.
+For any $\rho, \hat{\rho} \in [0,1]$ and finite $H$, the
+absolute value of the bracket is bounded above by
+$H$ (the maximum number of contributing periods).
+The rational forecast-error coefficient per unit of the
+cumulative shock therefore satisfies
+$|\beta_3^R| \leq \omega \cdot H / M$.
+With $M \approx H \approx 24$ (both the treatment window and
+the forward window span roughly two years), the bound simplifies
+to $|\beta_3^R| \leq \omega \approx 0.05$, exactly as in the
+one-period case.
+
+The bound is weakest when $M$ is small relative to $H$, so
+that a concentrated shock has a long forward horizon over which
+persistence beliefs matter.
+Even in the extreme case $M = 1$ (a single monthly shock)
+with $H = 24$ and $\hat{\rho} = 1$, the rational bound is
+$|\beta_3^R| \leq 24\omega \approx 1.2$, still far below the
+estimated coefficient of $|\hat{\beta}_3| \approx 7.4$.
+The time-aggregation mismatch therefore cannot close the gap
+between the rational bound and the data.
+Full derivations appear in Appendix~\ref{app:model}.
+
 \subsection{Diagnostic Extension}\label{sec:diagnostic_extension}
 
 Under diagnostic expectations \citep{Bordalo2018}, the household
@@ -146,7 +202,18 @@ The bound is conservative: it assumes the worst-case belief
 ($\hat{\rho} = 1$ when $\rho = 0$); under any more accurate
 belief, the rational coefficient is smaller.
 In the data, the estimated coefficient is $\hat{\beta}_3 =
--6.07$, which exceeds the rational bound by a factor of 120.
+-7.13$ under the preferred specification (province plus
+region-by-wave fixed effects).
+Because the CFPS expectation is ordinal, the exact magnitude
+of $\hat{\beta}_3$ depends on the coding of the ordinal
+variable.
+The test does not rely on this magnitude, however.
+The \textit{sign} of $\hat{\beta}_3 < 0$ rejects rationality
+under any monotone rescaling
+(Appendix~\ref{app:scaling}), and the pass-through
+coefficient $\hat{\beta}_2 = -5.25$, which involves no
+ordinal variable, independently exceeds the time-aggregated
+rational bound of 1.20 by a factor of four.
 
 \textit{Prediction 2: Excess expectation response.}
 Under diagnostic expectations the expectation response
@@ -156,9 +223,9 @@ The expectation result complements the forecast-error test
 by showing \textit{where} the excess forecast error comes
 from: through the numerator (expectations are too high) rather
 than the denominator (realised CPI is too low).
-In the preferred specification, $\hat{\beta}_1 = 0.242$
-(s.e. = 0.174), which is positive but imprecisely
-estimated due to the ordinal nature of the expectation variable.
+In the preferred specification, $\hat{\beta}_1 = 0.119$
+($p = 0.024$), which is positive and statistically significant
+at the five-percent level.
 
 \textit{Prediction 3: Commodity asymmetry.}
 A household that overweights salient signals should respond more
@@ -186,11 +253,11 @@ Equation~3 regresses the forecast error
 (realised CPI minus expectation) on the meat shock and tests
 whether $|\hat{\beta}_3| > \omega$.
 
-The empirical strategy uses province-by-wave fixed effects in
-the preferred specification.
-In the model, these fixed effects absorb $\bar{\pi}$ and any
-province-by-wave shocks common to all households in a given cell.
-The identifying variation is the deviation of a province's
+The empirical strategy uses province fixed effects combined
+with region-by-wave fixed effects in the preferred specification.
+These fixed effects absorb time-invariant province characteristics
+and any time-varying shocks common to provinces within a region.
+The identifying variation is the within-province deviation of the
 meat shock from the region-by-wave mean.
 The model predicts that the forecast-error bound
 $|\beta_3| \leq 0.05$ holds even in this demanding

@@ -17,14 +17,13 @@ The treatment variable is the cumulative log change in provincial
 meat CPI between two consecutive CFPS waves, defined in
 equation~\eqref{eq:meat_shock_data}.
 Three properties matter for identification.
-First, it is external to the survey: it contains no information
-derived from respondents.
-Second, it is cumulative: a household surveyed in 2020
-experienced the full path of meat-price movements since the
-2018 wave.
-Third, it varies at the province level, which allows me to
-absorb region-by-wave fixed effects and still retain
-within-region identifying variation.
+The variable is external to the survey, containing no
+information derived from respondents.
+It is cumulative: a household surveyed in 2020 experienced the
+full path of meat-price movements since the 2018 wave.
+And it varies at the province level, which allows me to absorb
+region-by-wave fixed effects while retaining within-region
+identifying variation.
 
 The cumulative measure is the natural choice given the CFPS
 survey design.
@@ -38,12 +37,12 @@ captures the total price signal that a household plausibly
 processed.
 
 Two measurement considerations deserve attention.
-First, the NBS meat CPI index combines pork, beef, mutton, and
+The NBS meat CPI index combines pork, beef, mutton, and
 poultry, with pork receiving the dominant weight.
 During the ASF episode, pork drove the bulk of the meat CPI
-movement; the index therefore tracks the pork shock with high
-fidelity during the identification window.
-Second, the cumulative measure aggregates monthly observations
+movement, so the index tracks the pork shock with high fidelity
+during the identification window.
+The cumulative measure also aggregates monthly observations
 equally.
 If households weight recent months more heavily, the treatment
 variable understates effective salience, attenuating the
@@ -64,17 +63,19 @@ The reduced-form implication of overreaction is that households
 in high-shock provinces subsequently overpredict inflation:
 \begin{equation}\label{eq:eq3}
   \mathrm{FE}_{ipt}
-  = \alpha
+  = \alpha_p
   + \beta_3\,\mathrm{MeatShock}_{p,\,t-1\to t}
   + \gamma' X_{ipt}
   + \delta_{r(p)\times t}
   + \varepsilon_{ipt},
 \end{equation}
-where $\mathrm{FE}_{ipt}
+where $\alpha_p$ is a province fixed effect,
+$\delta_{r(p)\times t}$ is a region-by-wave fixed effect,
+and $\mathrm{FE}_{ipt}
   \equiv \pi^{\mathrm{headline}}_{p,\,t\to t+1}
   - \tilde{\mu}_{ipt}$ is realised provincial headline inflation
 over the next inter-wave period minus the household's directional
-expectation scaled to CPI units.
+ordinal expectation ($\mu_{ipt} \in \{-1, 0, 1\}$).
 A negative forecast error means that the household expected more
 inflation than materialised.
 Under overreaction, $\beta_3 < 0$: high-shock provinces generate
@@ -92,19 +93,23 @@ Any $|\hat{\beta}_3|$ exceeding this bound rejects rationality
 without requiring knowledge of the conversion factor between
 ordinal expectations and CPI units.
 
-The identification of $\beta_3$ comes from within-region
-variation in meat-price shocks.
-Two households in different provinces within the same region and
-survey wave face identical aggregate conditions but different
-meat-price histories.
-The coefficient $\beta_3$ measures whether the household in
-the higher-shock province produces a more negative forecast
-error.
+The preferred specification includes province fixed effects
+together with region-by-wave fixed effects.
+Province fixed effects absorb any time-invariant provincial
+characteristic (income level, food culture, baseline inflation
+expectations); region-by-wave fixed effects absorb
+time-varying shocks common to provinces within a region.
+The identifying variation is the within-province deviation
+of the meat shock from the region-by-wave mean.
+This double-differencing design asks whether a province that
+receives a larger-than-regional-average meat shock in a given
+wave produces a more negative forecast error than the same
+province does at other times.
 
 Decomposition: expectations (Equation~1).
 \begin{equation}\label{eq:eq1}
   \mu_{ipt}
-  = \alpha
+  = \alpha_p
   + \beta_1\,\mathrm{MeatShock}_{p,\,t-1\to t}
   + \gamma' X_{ipt}
   + \delta_{r(p)\times t}
@@ -180,16 +185,19 @@ Whatever $k$ is, if the forecast error is systematically more
 negative in high-shock provinces, households in those provinces
 overpredicted inflation.
 
-The decomposition also clarifies why $|\hat{\beta}_3|$
-exceeds the rational bound by such a wide margin.
-Under rational expectations, $\beta_1$ should equal
-$\omega\,\hat{\rho} / k$, where $\omega \approx 0.05$ is meat's
-CPI weight and $\hat{\rho}$ is the household's persistence
-belief.
-Even if $\hat{\rho} = 1$, the rational forecast-error coefficient
-is bounded by $|\beta_3^R| \leq 0.05$.
-Finding $|\hat{\beta}_3| \approx 6$ means the actual expectation
-response far exceeds the rational response.
+The decomposition also provides a scaling-free magnitude test.
+Because $\beta_3 \approx \beta_2 - k\,\beta_1$, setting
+$k = 0$ (ignoring the ordinal expectation entirely) yields
+$\beta_3 = \beta_2$.
+If $|\hat{\beta}_2|$ exceeds the rational bound, the
+conclusion holds without assigning any cardinal meaning to
+the ordinal codes.
+Under the time-aggregated bound
+(Section~\ref{sec:time_aggregation}),
+$|\beta_3^R| \leq 24\omega \approx 1.20$.
+Finding $|\hat{\beta}_2| = 5.25$ in the preferred
+specification exceeds this bound by a factor of four,
+independent of any scaling assumption.
 
 \subsection{Identification Assumptions}%
 \label{sec:identification_assumptions}
@@ -221,15 +229,14 @@ The main threat is a province-specific demand shock that
 simultaneously raises meat prices and expectations through
 a real-income channel.
 Two features mitigate this concern.
-First, ASF provides a biologically determined supply shock.
-The disease entered China through contaminated feed imports
-and spread along pig transportation corridors, with provincial
+ASF provides a biologically determined supply shock: the
+disease entered China through contaminated feed imports and
+spread along pig transportation corridors, with provincial
 infection severity determined by initial herd density and
 proximity to early outbreak sites.
-Second, the commodity-placebo test in
-Section~\ref{sec:mechanism} shows that grain shocks of
-comparable magnitude do not produce the same forecast-error
-pattern.
+The commodity-placebo test in Section~\ref{sec:mechanism}
+provides further discipline: grain shocks of comparable
+magnitude do not produce the same forecast-error pattern.
 If local demand were driving both prices and expectations,
 grain prices should respond to the same demand shock and
 produce a similar expectation effect.
@@ -255,15 +262,19 @@ pork-price news would report higher expectations in all
 provinces, which would be absorbed by the wave fixed effect.
 
 What the fixed effects absorb and what they leave.
-Region-by-wave fixed effects partition the 31 provinces into
-six NBS macro-regions and absorb any time-varying shock common
-to provinces within a region.
-This removes aggregate monetary policy shocks, regional business
-cycles, and region-specific food supply disruptions.
-The remaining variation is within-region cross-province
-differences in meat-price shocks.
-The fixed effects do not absorb province-specific shocks that
-are correlated with the meat shock.
+Province fixed effects absorb permanent provincial
+characteristics: income, food culture, media environment,
+baseline inflation expectations.
+Region-by-wave fixed effects absorb any time-varying shock
+common to provinces within a region, including aggregate
+monetary policy, regional business cycles, and region-specific
+food supply disruptions.
+Together, the two sets of fixed effects leave only
+within-province, within-region-wave variation in meat-price
+shocks as the identifying source.
+Robustness checks in Section~\ref{sec:robustness} show that
+results are stable across alternative fixed-effect structures,
+including region-by-wave alone and province-plus-wave.
 If a province experienced an unobserved demand boom that
 raised both meat prices and expectations, this would bias
 $\beta_3$ toward zero rather than away from zero.

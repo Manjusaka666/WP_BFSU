@@ -3,19 +3,19 @@
 \caption{Meat Price Shock and Realized Headline CPI}
 \label{tab:eq2_cpi_passthrough}
 \begin{threeparttable}
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \toprule
-& (1) & (2) & (3) \\
-\multicolumn{4}{l}{\textit{Dep.\ var.: Realized headline CPI (\%, annualized)}} \\
+& (1) & (2) & (3) & (4) \\
+& Bivariate & \shortstack{Province\\+ wave} & \shortstack{Region\\$\times$ wave} & \shortstack{Province +\\region $\times$ wave} \\
 \midrule
-Meat shock & $-1.812^{***}$ & $-4.703^{***}$ & $-3.519^{*}$ \\
-& $(0.232)$ & $(1.646)$ & $(1.954)$ \\[6pt]
-Province FE &  & Yes &  \\
-Wave FE &  & Yes &  \\
-Region $\times$ wave FE &  &  & Yes \\
+Meat shock & $-1.812^{***}$ & $-4.703^{***}$ & $-3.519^{*}$ & $-5.249^{***}$ \\
+& $(0.232)$ & $(1.646)$ & $(1.954)$ & $(1.817)$ \\[6pt]
+Province FE &  & Yes &  & Yes \\
+Wave FE &  & Yes &  &  \\
+Region $\times$ wave FE &  &  & Yes & Yes \\
 \midrule
-Observations & 93 & 93 & 93 \\
-$R^2$ & 0.192 & 0.704 & 0.589 \\
+Observations & 93 & 93 & 93 & 93 \\
+$R^2$ & 0.192 & 0.704 & 0.589 & 0.738 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]

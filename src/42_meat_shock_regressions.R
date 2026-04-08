@@ -55,8 +55,7 @@ build_multicolumn_table <- function(cols, dep_var, caption, label, notes,
     sprintf("\\begin{tabular}{l%s}", paste(rep("c", ncols), collapse = "")),
     "\\toprule",
     sprintf("& %s \\\\", paste(col_headers, collapse = " & ")),
-    sprintf("\\multicolumn{%d}{l}{\\textit{Dep.\\ var.: %s}} \\\\",
-            ncols + 1, dep_var),
+    # Column sub-headers instead of "Dep. var" row (AEA format)
     "\\midrule"
   )
 

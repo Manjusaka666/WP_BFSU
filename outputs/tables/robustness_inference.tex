@@ -1,0 +1,37 @@
+\begin{table}[!htbp]
+\centering
+\caption{Robustness: Inference and Ordinal Measurement}
+\label{tab:robustness_inference}
+\begin{threeparttable}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+& (1) & (2) & (3) & (4) & (5) \\
+& \shortstack{Wild cluster\\bootstrap\textsuperscript{a}} & \shortstack{Randomization\\inference\textsuperscript{b}} & \shortstack{Collapsed\\cell means\textsuperscript{c}} & \shortstack{Carlson--\\Parkin\textsuperscript{d}} & \shortstack{Ordered\\probit\textsuperscript{e}} \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Panel A: Forecast error}} \\[6pt]
+Meat shock   & $-7.127^{***}$ & $-5.555^{***}$ & $-5.555^{***}$ & $-7.610^{***}$ &  \\
+             &                &                & $(1.335)$      & $(1.124)$      &  \\[6pt]
+Observations & 69,533         & 69,533         & 93             & 69,529         &  \\
+$R^{2}$      & 0.526          & 0.484          & 0.814          & 0.887          &  \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Panel B: Inflation expectation ($\mu_{it} \in \{-1,0,1\}$)}} \\[6pt]
+Meat shock   & $0.119^{**}$   & $0.242^{***}$  & $0.242$        &                & $0.354^{***}$ \\
+             &                &                & $(0.194)$      &                & $(0.104)$     \\[6pt]
+Observations & 90,133         & 90,133         & 124            &                & 90,133        \\
+$R^{2}$      & 0.012          & 0.002          & 0.145          &                &               \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Note.} Each column reports the meat-shock coefficient under an alternative inference procedure or measurement approach. Columns~(1)--(2) report significance stars based on resampling $p$-values; no standard errors are shown. Column~(3) reports province-clustered standard errors in parentheses. Columns~(4)--(5) report standard errors clustered at the province level in parentheses. Blank cells indicate that the method does not apply to that dependent variable.
+\item[a] Restricted wild cluster bootstrap (WCR) with Webb six-point distribution and 9,999 replications; province + region $\times$ wave FE.
+\item[b] 2,000 permutations of the meat shock within region $\times$ wave cells.
+\item[c] Province $\times$ wave cell means weighted by household count; region $\times$ wave FE.
+\item[d] Carlson--Parkin quantification converts ordinal responses to cardinal expected inflation; province + region $\times$ wave FE.
+\item[e] Ordered probit on ordinal expectation (rise/same/fall); region $\times$ wave FE. Coefficient is the latent-index effect.
+\item $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
