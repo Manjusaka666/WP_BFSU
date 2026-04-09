@@ -68,7 +68,7 @@ Each bootstrap replication proceeds as follows.
 \begin{algorithm}[htbp]
 \caption{Wild Cluster Restricted Bootstrap (WCR)}\label{alg:wcr_bootstrap}
 \begin{algorithmic}[1]
-\Require Observed data $\{(y_{ig}, X_{ig})\}$; number of clusters $G = 31$; replications $B = 9{,}999$
+\Require Observed data $\{(y_{ig}, X_{ig})\}$; number of clusters $G = 31$; replications $B = 999$
 \Ensure Bootstrap $p$-value for $H_0\colon \beta = 0$
 \State Estimate the restricted model (imposing $H_0\colon \beta = 0$) and obtain residuals $\hat{\varepsilon}_{ig}^{r}$ and fitted values $\hat{y}_{ig}^{r}$ for each observation $i$ in cluster $g$
 \State Estimate the unrestricted model on the original data and record $t_{\text{obs}}$
@@ -87,18 +87,18 @@ Each bootstrap replication proceeds as follows.
 \end{algorithmic}
 \end{algorithm}
 
-The choice of $B = 9{,}999$ is standard in the literature and
+The choice of $B = 999$ is standard in the literature and
 ensures that the bootstrap $p$-value has a precision of
 approximately $\pm 0.01$ at the 5 percent level.
-With $B = 9{,}999$ and a true rejection rate of 0.05, the
+With $B = 999$ and a true rejection rate of 0.05, the
 Monte Carlo standard error of the estimated $p$-value is
-$\sqrt{0.05 \times 0.95 / 10{,}000} \approx 0.002$.
+$\sqrt{0.05 \times 0.95 / 1{,}000} \approx 0.007$.
 
 \subsection{Results}
 
 Table~\ref{tab:bootstrap_results} reports the bootstrap
 results for the two main coefficients (expectation and
-forecast error) under both fixed-effect structures.
+forecast error) under three fixed-effect structures.
 
 \begin{table}[htbp]
 \centering
@@ -113,22 +113,22 @@ Equation & Fixed effects & $\hat{\beta}$ & SE &
   Asymptotic $p$ & Bootstrap $p$ & $N$ \\
 \midrule
 Expectations & Province + wave & 0.090 & 0.053
-  & 0.100 & 0.088 & 90,133 \\
+  & 0.100 & 0.095 & 90,133 \\
 Expectations & Region $\times$ wave & 0.242 & 0.174
-  & 0.174 & 0.237 & 90,133 \\
+  & 0.174 & 0.225 & 90,133 \\
 Expectations & Province + region $\times$ wave & 0.119 & 0.050
-  & 0.024 & 0.024 & 90,133 \\[4pt]
-Forecast error & Province + wave & $-5.351$ & 1.201
-  & $<0.001$ & $<0.001$ & 69,533 \\
-Forecast error & Region $\times$ wave & $-5.555$ & 1.198
-  & $<0.001$ & $<0.001$ & 69,533 \\
-Forecast error & Province + region $\times$ wave & $-7.127$ & 1.193
-  & $<0.001$ & $<0.001$ & 69,533 \\
+  & 0.024 & 0.019 & 90,133 \\[4pt]
+Forecast error & Province + wave & $-5.694$ & 1.197
+  & $<0.001$ & $<0.001$ & 69,529 \\
+Forecast error & Region $\times$ wave & $-6.291$ & 1.129
+  & $<0.001$ & $<0.001$ & 69,529 \\
+Forecast error & Province + region $\times$ wave & $-7.610$ & 1.124
+  & $<0.001$ & 0.005 & 69,529 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item Webb six-point distribution with 9,999 replications.
+\item Webb six-point distribution with 999 replications.
   Restricted bootstrap (WCR) imposing $H_0\colon \beta = 0$.
 \item $p$-values are two-sided.
 \end{tablenotes}
@@ -136,20 +136,20 @@ Forecast error & Province + region $\times$ wave & $-7.127$ & 1.193
 \end{table}
 
 The forecast-error coefficient $\hat{\beta}_3$ is robust to
-the bootstrap correction under both fixed-effect structures.
-The bootstrap $p$-values for Eq~3 are below $0.001$ in both
-cases, matching the asymptotic $p$-values.
+the bootstrap correction under all three fixed-effect structures.
+The bootstrap $p$-values for Eq~3 are below $0.01$ in all three
+specifications, and below $0.001$ in two of them.
 The 95-percent bootstrap confidence intervals for
-$\hat{\beta}_3$ exclude zero by a wide margin under both
+$\hat{\beta}_3$ exclude zero by a wide margin under all three
 specifications.
 
 The expectation coefficient $\hat{\beta}_1$ is marginal.
 Under province-plus-wave FE, the bootstrap $p$-value of
-$0.088$ is slightly below the conventional 10 percent
+$0.095$ is slightly below the conventional 10 percent
 threshold, while the asymptotic $p$-value of $0.100$ is at
 the boundary.
 Under region-by-wave FE, both the asymptotic ($0.174$) and
-bootstrap ($0.237$) $p$-values are above 10 percent.
+bootstrap ($0.225$) $p$-values are above 10 percent.
 The bootstrap does not reverse any asymptotic conclusion but
 does widen the $p$-value modestly for Eq~1 under
 region-by-wave FE, reflecting the conservative nature of the
@@ -186,12 +186,12 @@ expectation coefficient.
 
 The forecast-error coefficient does not face this power
 problem.
-The $t$-ratio for $\hat{\beta}_3$ exceeds 5 under both
+The $t$-ratio for $\hat{\beta}_3$ exceeds 5 under all three
 FE structures, which is well above any critical value for
 30 degrees of freedom.
 The bootstrap confirms that the apparent power is not an
 artifact of size distortion: the $p$-values remain below
-$0.001$ after the correction.
+$0.01$ after the correction.
 
 The asymmetry in power between Eq~1 and Eq~3 reflects both
 the measurement properties of the dependent variables and the
@@ -214,7 +214,7 @@ OLS estimates and are unbiased under the standard assumptions.
 The bootstrap corrects only the distribution of the test
 statistic.
 The fact that the bootstrap widens the $p$-value for
-$\hat{\beta}_1$ under region-by-wave FE (from 0.174 to 0.237)
+$\hat{\beta}_1$ under region-by-wave FE (from 0.174 to 0.225)
 does not imply that the point estimate is biased; it implies
 that the asymptotic standard error slightly understates the
 true sampling variability of the $t$-ratio with 31 clusters.

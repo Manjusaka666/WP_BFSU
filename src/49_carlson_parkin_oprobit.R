@@ -67,8 +67,8 @@ cell[, z_u := qnorm(1 - p_up_c)]
 cell[, sigma_cp := 2 * delta / (z_u - z_d)]
 cell[, mu_cp := delta - sigma_cp * z_u]
 
-# Drop cells where sigma is non-positive (degenerate cells)
-cell[sigma_cp <= 0, c("mu_cp", "sigma_cp") := .(NA_real_, NA_real_)]
+# Drop cells where sigma is non-positive or non-finite (degenerate cells)
+cell[!is.finite(sigma_cp) | sigma_cp <= 0, c("mu_cp", "sigma_cp") := .(NA_real_, NA_real_)]
 
 cat(sprintf("[49] CP quantification valid for %d / %d cells
 ",

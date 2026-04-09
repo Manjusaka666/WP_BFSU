@@ -168,26 +168,26 @@ Equation & Fixed-effect structure & $\hat{\beta}$ & SE &
 \midrule
 \multicolumn{6}{l}{\textit{Panel A: Expectation equation
   (Eq 1)}} \\
-& Province + wave       & 0.090  & 0.053  & 0.088
+& Province + wave       & 0.090  & 0.053  & 0.095
   & 90,133 \\
-& Region $\times$ wave & 0.242  & 0.174  & 0.237
+& Region $\times$ wave & 0.242  & 0.174  & 0.225
   & 90,133 \\
-& Province + region $\times$ wave & 0.119  & 0.050  & 0.024
+& Province + region $\times$ wave & 0.119  & 0.050  & 0.019
   & 90,133 \\[6pt]
 \multicolumn{6}{l}{\textit{Panel B: Forecast-error equation
   (Eq 3)}} \\
-& Province + wave       & $-5.351$ & 1.201  & $<0.001$
-  & 69,533 \\
-& Region $\times$ wave & $-5.555$ & 1.198  & $<0.001$
-  & 69,533 \\
-& Province + region $\times$ wave & $-7.127$ & 1.193  & $<0.001$
-  & 69,533 \\
+& Province + wave       & $-5.694$ & 1.197  & $<0.001$
+  & 69,529 \\
+& Region $\times$ wave & $-6.291$ & 1.129  & $<0.001$
+  & 69,529 \\
+& Province + region $\times$ wave & $-7.610$ & 1.124  & 0.005
+  & 69,529 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
 \item Wild cluster bootstrap (WCR) with Webb six-point
-  distribution and 9,999 replications.
+  distribution and 999 replications.
 \item Standard errors clustered at the province level.
 \item $p$-values are two-sided.
 \end{tablenotes}
@@ -195,9 +195,9 @@ Equation & Fixed-effect structure & $\hat{\beta}$ & SE &
 \end{table}
 
 The forecast-error coefficient strengthens monotonically across
-FE structures: from $-5.351$ (province-plus-wave) to $-5.555$
-(region-by-wave) to $-7.127$ (province-plus-region-by-wave).
-All three estimates are precisely estimated with $p < 0.001$
+FE structures: from $-5.694$ (province-plus-wave) to $-6.291$
+(region-by-wave) to $-7.610$ (province-plus-region-by-wave).
+All three estimates are precisely estimated with $p < 0.01$
 under both asymptotic and bootstrap inference.
 The increase in magnitude under the combined specification
 indicates that province fixed effects remove a positive
@@ -227,7 +227,7 @@ province-plus-wave to $0.242$ under region-by-wave, but the
 standard error more than triples (from 0.053 to 0.174),
 rendering the latter imprecise.
 The preferred combined specification achieves the best balance:
-$\hat{\beta}_1 = 0.119$ ($p = 0.024$) with a standard error
+$\hat{\beta}_1 = 0.119$ ($p = 0.019$) with a standard error
 of 0.050.
 Province fixed effects absorb permanent cross-province
 differences in the share of respondents reporting ``up,''

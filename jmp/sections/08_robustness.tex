@@ -28,20 +28,20 @@ With 31 province-level clusters, asymptotic cluster-robust
 standard errors can over-reject \citep{Cameron2008}.
 I report two corrections.
 The restricted wild cluster bootstrap uses the six-point
-weight distribution of \citet{Webb2023} and 9,999
+weight distribution of \citet{Webb2023} and 999
 replications.
 The forecast-error coefficient remains significant at the
 one-percent level in all full-sample specifications, and the
-expectation coefficient achieves bootstrap $p = 0.024$ under
+expectation coefficient achieves bootstrap $p = 0.019$ under
 the preferred specification.
 I also conduct randomization inference by permuting the
 meat-shock variable within region-by-wave cells 2,000 times.
 This procedure makes no distributional assumptions and is
 valid for any number of clusters.
-The two-sided randomization-inference $p$-value is below 0.001
-for both the forecast-error and the expectation coefficients,
-confirming that the observed treatment effect lies far outside
-the permutation distribution.
+The two-sided randomization-inference $p$-value is below 0.01
+for the forecast-error coefficient, while the expectation
+coefficient is not statistically significant under randomization
+inference.
 
 % -------------------------------------------------------------
 \subsection{Alternative Fixed Effects}\label{sec:altfe}
@@ -53,10 +53,10 @@ region-by-wave, and province-plus-region-by-wave (the
 preferred specification).
 
 The forecast-error coefficient strengthens monotonically
-from $-5.35$ (province-plus-wave) to $-5.56$
-(region-by-wave) to $-7.13$ (province-plus-region-by-wave),
+from $-5.69$ (province-plus-wave) to $-6.29$
+(region-by-wave) to $-7.61$ (province-plus-region-by-wave),
 and remains precisely estimated in all three cases
-(bootstrap $p < 0.001$).
+(bootstrap $p < 0.01$).
 Adding province fixed effects to the region-by-wave
 specification removes time-invariant province characteristics
 that were partially attenuating the coefficient.
@@ -64,7 +64,7 @@ This pattern rules out the concern that the result is driven
 by persistent province-level confounders.
 
 The expectation coefficient is sharpest under the combined
-specification ($\hat{\beta}_1 = 0.119$, $p = 0.024$), where
+specification ($\hat{\beta}_1 = 0.119$, $p = 0.019$), where
 province fixed effects absorb permanent cross-province
 differences in the share of respondents reporting ``up.''
 Appendix~\ref{app:altfe} provides a detailed comparison of
@@ -77,7 +77,7 @@ identifying variation under each structure.
 
 The treatment varies at the province$\times$wave level.
 The household-level regressions exploit 90,133 (Eq~1) and
-69,533 (Eq~3) observations, but the identifying signal comes
+69,529 (Eq~3) observations, but the identifying signal comes
 from only 93--124 province-wave cells.
 Inflated observation counts do not improve effective
 identification; they could, however, produce misleadingly
@@ -89,7 +89,7 @@ variation, I collapse the data to province-wave means and
 estimate cell-level regressions weighted by the number of
 households per cell.
 The collapsed forecast-error coefficient is
-$\hat{\beta}_3 = -6.07$ ($p < 0.001$, 93 cells), confirming
+$\hat{\beta}_3 = -6.29$ ($p < 0.01$, 93 cells), confirming
 that the household-level result is not an artifact of the
 expanded observation count.
 The collapsed expectation coefficient is positive
@@ -112,7 +112,7 @@ If pandemic-specific confounds (lockdowns, supply disruptions,
 fiscal transfers) contaminate the 2022 observations, the
 forecast-error result might reflect COVID rather than ASF.
 Dropping the 2022 wave yields $\hat{\beta}_1 = 0.512$
-($p = 0.013$) and $\hat{\beta}_3 = -6.07$ ($p < 0.001$),
+($p = 0.013$) and $\hat{\beta}_3 = -6.29$ ($p < 0.01$),
 both significant at the five-percent level.
 The forecast-error coefficient is identical to the full-sample
 region-by-wave estimate because the 2022 wave already lacks
@@ -125,8 +125,8 @@ disruptions added noise rather than signal.
 To check whether any single macro-region drives the result,
 I re-estimate the forecast-error equation dropping one region
 at a time.
-The coefficient ranges from $-5.42$ (dropping West) to
-$-6.75$ (dropping East), with $p < 0.001$ in all six
+The coefficient ranges from $-5.87$ (dropping West) to
+$-6.88$ (dropping East), with $p < 0.01$ in all six
 subsamples.
 No single region is responsible for the finding.
 
@@ -179,7 +179,7 @@ percent.
 At the upper end ($\omega = 0.06$), the one-period rational
 bound is 0.06; the time-aggregated bound
 (Section~\ref{sec:time_aggregation}) is $24 \times 0.06 = 1.44$.
-The estimated $\hat{\beta}_3 = -7.13$ exceeds even this
+The estimated $\hat{\beta}_3 = -7.61$ exceeds even this
 generous bound by a factor of five.
 
 The persistence parameter $\hat{\rho} = 0.480$ is estimated

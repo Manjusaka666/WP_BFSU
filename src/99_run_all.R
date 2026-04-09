@@ -41,6 +41,8 @@ r_scripts <- c(
   "43_heterogeneity_meat.R",
   "44_placebo_commodity.R",
   "46_wild_bootstrap.R",
+  "49_carlson_parkin_oprobit.R",
+  "52_cp_revision_diagnostics.R",
   # --- Figures ---
   "82_asf_figures.R"
 )
@@ -72,4 +74,3 @@ if (dir.exists(project_paths$figures)) {
 }
 
 cat("[99] Full pipeline completed successfully.\n")
-
